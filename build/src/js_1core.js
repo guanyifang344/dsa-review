@@ -42,4 +42,4 @@ function md(s){
 }
 
 // reference code that a question points to (e.g. "the function from the L08 notes")
-const refCode = q => q.code ? `<div class="refcode"><div class="rc-h"><span>题目引用的代码</span><small>${q.ref||''}</small></div>${md(q.code)}</div>` : '';
+const refCode = q => q.code ? `<div class="refcode"><div class="rc-h"><span>题目引用的代码</span><small>${esc(q.ref||'')}</small></div>${md(q.code)}</div>` : '';

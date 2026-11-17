@@ -43,7 +43,14 @@ function runQuiz(list, opt){
     <div class="segs big">${marks.map(m=>`<i class="${m}"></i>`).join('')}</div>
     <p class="dnote">${wrongIds.length?`${wrongIds.length} 道错题已进入错题本。`:'这一轮没有错题。'}</p>
     <div class="row" style="justify-content:center"><button class="btn" id="a1">${opt.back?'换一组题':opt.redo?'再做一遍':'再来一轮'}</button>${wrongIds.length&&!opt.redo?'<button class="btn pink" id="a2">去错题本</button>':''}${opt.back?'<button class="btn gold" id="a4">回到本课</button>':''}<button class="btn ghost" id="a3">回道场</button></div></div></div>`;
-    $('#a1').onclick = () => opt.back ? go('review',{l:opt.back.l}) : go(tab, ctx);
+    $('#a1').onclick = () => {
+      if(opt.back){
+        const pool = Q.filter(q => q.lesson===opt.back.l);
+        runQuiz(shuffle(pool).slice(0,4), opt);
+      } else if(opt.redo){
+        runQuiz(shuffle(list), opt);
+      } else go(tab, ctx);
+    };
     if($('#a2')) $('#a2').onclick = () => go('mistakes'); $('#a3').onclick = () => go('home'); if($('#a4')) $('#a4').onclick = () => go('review',{l:opt.back.l});
   }
   show();
