@@ -1,0 +1,27 @@
+window.LESSONS = [
+ {id:'L01',title:'算法与数据结构',en:'Algorithms & Data Structures',color:'#ff8fb1',
+  points:['算法 = 任何人都能严格照做的步骤 + 一定会结束 + 对所有合法输入都正确','算法不等于代码，代码只是写下算法的一种方式','数据结构 = 组织和存储数据的方式，让使用更高效','猜数字 1–1,000,000：逐个猜最坏 1,000,000 次，每次减半只要约 20 次'],
+  traps:['以为算法必须用编程语言写','"我的例子能跑通"不等于正确，必须对所有合法输入成立']},
+ {id:'L02',title:'复杂度与 Big-O',en:'Complexity & Big-O',color:'#ffb86b',
+  points:['五种增长，由慢到快：O(1) < O(log n) < O(n) < O(n log n) < O(n²)','化简两条规则：去掉常数系数；只留增长最快的项','先后两个循环相加，嵌套循环相乘','数"轮数"而不是数页面上的循环个数：内层固定 3 次仍是 O(n)','没说明情况时指最坏情况；空间复杂度只算额外内存，输入不算','n 翻倍：O(n) 变 2 倍，O(n²) 变 4 倍，O(log n) 只多一步'],
+  traps:['把 O(n) 当成"n 秒"，Big-O 没有单位','认为 O(2n) 和 O(n) 不同','空间复杂度把输入也算进去']},
+ {id:'L03',title:'列表与内存',en:'Lists',color:'#ffd966',
+  points:['数组是一整块连续内存，位置 i 的地址 = 起点 + i × 单个大小，所以 items[i] 是 O(1)','末尾便宜，开头昂贵：append / pop() 是 O(1)；insert(0,x) / pop(0) 是 O(n)','in、.index、.count、.remove 都是 O(n)；切片 a[b:c] 是 O(c-b)','b = a 不是复制，只是第二个名字；a[:] 才是复制','append / insert / remove 返回 None；pop 返回被删的元素','函数参数也是别名，函数能改动你的列表'],
+  traps:['numbers = numbers.append(5) 会把列表变成 None','循环里 insert(0,x) 整体变成 O(n²)','遍历列表时删除元素会漏掉元素','items[len(items)] 会 IndexError']},
+ {id:'L04',title:'字符串',en:'Strings',color:'#a3e635',
+  points:['字符串不可变：word[0]="b" 会 TypeError','字符串方法不修改原串，返回新串，必须保存：word = word.upper()','循环里用 + 拼接字符串是 O(n²)；用列表收集再 "".join 一次是 O(n)','split() 返回列表；join 的分隔符只出现在元素之间；find 找不到返回 -1','text[i]、len 是 O(1)；find、split、upper、replace 是 O(n)'],
+  traps:['调用字符串方法却不保存结果','if text.find("x"): 位置 0 被当成假，-1 被当成真，要写 != -1','循环里 text = text[1:] 每次都复制，整体 O(n²)']},
+ {id:'L05',title:'选择排序与冒泡排序',en:'Selection & Bubble sort',color:'#5eead4',
+  points:['选择排序：在未排序部分找最小值，换到下一个位置；左边已完成','冒泡排序：左到右比较相邻元素，左边更大就交换；一轮后最大值到末尾','冒泡的提前退出：一轮无交换说明已排序；有序列表只需一轮 n-1 次比较','比较次数最坏 n(n-1)/2；选择排序最多 n-1 次交换；冒泡最坏交换 n(n-1)/2','一行交换 a[i], a[j] = a[j], a[i]；print 只显示，return 才把值交出去','原地排序返回 None'],
+  traps:['swapped = False 只在外层循环前设置一次，必须每一轮开头重置','写成 numbers = bubble_sort(numbers)','"一轮后"和"一次交换后"是不同的答案','选择排序没有提前退出，任何列表比较次数相同']},
+ {id:'L06',title:'稳定性与内置函数',en:'Stability & built-ins',color:'#7dd3fc',
+  points:['稳定 = 相等的元素保持原先的相对顺序','冒泡排序稳定；选择排序不稳定；sorted() 和 .sort() 稳定','sorted() 返回新列表，原列表不变；.sort() 原地排序返回 None；都是 O(n log n)','reverse=True 从大到小','min() / max() 返回值不是位置，O(n)','插入排序不在 MCQ1 范围内'],
+  traps:['scores = scores.sort() 得到 None','以为 sorted(scores) 会改动 scores','以为 min() 返回位置','以为选择排序稳定']},
+ {id:'L07',title:'线性查找与二分查找',en:'Searching',color:'#a5b4fc',
+  points:['线性查找：逐个看，遇到第一个匹配就停；任何列表都能用；最坏 O(n)','return i 在循环里；return -1 在循环后','二分查找：看中间，丢掉一半；必须有序；O(log n)','循环三条规则：while low <= high；low = mid+1，high = mid-1；每轮都有变化保证结束','1,000 项约 10 次，1,000,000 项约 20 次','只搜一次就线性扫描；搜很多次才先排序'],
+  traps:['用 0 表示没找到（0 是真实位置）','把 return -1 放进循环的 else','直接用 -1 当位置，items[-1] 是最后一个，不报错','对无序列表用二分，会得到错误答案']},
+ {id:'L08',title:'双指针',en:'Two pointers',color:'#f0abfc',
+  points:['两种形状：首尾向中间；快慢指针（fast 每轮动，slow 只在保留值时动）','回文：left < right，比较值，不相等返回 False；"racecar" 只比较 3 次','remove_value：列表不变短，返回新长度，只有前 length 个有效','有序数对：和太小 left 上移，太大 right 下移，相等就返回；O(n)','无序列表先 sorted() 再扫描：O(n log n)；每轮至少动一个指针，所以最多 n 轮'],
+  traps:['写成 left <= right，会把同一个元素用两次','某个分支没有移动指针，导致死循环','比较下标 left != right 而不是比较值','remove_value 之后读取整个列表','在循环里排序']}
+];
+window.COMMON = ['Trace on paper. Do not trace in your head.  在纸上推演，别在脑子里。','Count the turns, not the loops you see.  数轮数，不要数循环的个数。','A list method changes the list and gives back None. A string method changes nothing and gives back a new string.  列表方法改列表返回 None；字符串方法不改原串，返回新串。'];

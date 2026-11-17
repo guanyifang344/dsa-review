@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.env
+.env.*
+
+# Keep the editable sources and bundler; skip intermediate build data.
+build/*
+!build/src/
+!build/bundle.py

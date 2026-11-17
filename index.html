@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DSA 复习道场 · MCQ1</title>
+<style>@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+:root{--bg:#06070d;--s1:#0c0e1b;--s2:#12152b;--s3:#1b1f40;--line:rgba(143,150,255,.15);--line2:rgba(143,150,255,.32);--ink:#eef0ff;--dim:#8a90bd;--violet:#8f7bff;--cyan:#2ef2d6;--pink:#ff3f8e;--amber:#ffb938;--sky:#4fb7ff;--rail:240px;--disp:"Avenir Next Condensed","DIN Condensed","Arial Narrow","PingFang SC","Hiragino Sans GB",sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--ui:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif}
+*{box-sizing:border-box}
+html{color-scheme:dark;scrollbar-color:#2a2f66 #06070d}
+html,body{margin:0}
+nav,pre,.tabs2{scrollbar-width:none}
+nav::-webkit-scrollbar,pre::-webkit-scrollbar,.tabs2::-webkit-scrollbar{display:none}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#06070d}::-webkit-scrollbar-thumb{background:#2a2f66;border-radius:6px}
+body{font-family:var(--ui);color:var(--ink);min-height:100vh;background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body:after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+#sky{position:fixed;inset:0;z-index:-2;overflow:hidden;background:linear-gradient(rgba(143,150,255,.05) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(143,150,255,.05) 1px,transparent 1px) 0 0/44px 44px;-webkit-mask-image:radial-gradient(ellipse at 60% 20%,#000 20%,transparent 78%);mask-image:radial-gradient(ellipse at 60% 20%,#000 20%,transparent 78%)}
+#sky:before,#sky:after{content:"";position:fixed;border-radius:50%;filter:blur(90px);opacity:.5;animation:drift 26s ease-in-out infinite alternate}
+#sky:before{width:560px;height:560px;left:18%;top:-220px;background:#5a3dff}
+#sky:after{width:480px;height:480px;right:-120px;top:30%;background:#00b8a6;opacity:.28;animation-duration:34s}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+#petals{display:none}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:800;letter-spacing:.005em}
+button{font-family:inherit}
+header#top{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:20;display:flex;flex-direction:column;gap:26px;padding:24px 16px 18px;background:linear-gradient(180deg,rgba(12,14,27,.92),rgba(6,7,13,.92));backdrop-filter:blur(12px);border-right:1px solid var(--line)}
+.brand{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center}
+.brand b{font-family:var(--disp);font-size:24px;line-height:1.05}
+.brand small{grid-column:2;color:var(--dim);font-family:var(--mono);font-size:11px}
+.logo{grid-row:span 2;width:40px;height:40px;border-radius:11px;position:relative;background:linear-gradient(145deg,#1d2150,#0c0e1b);box-shadow:inset 0 0 0 1px var(--line2),0 0 24px rgba(143,123,255,.35);font-size:0}
+.logo:before{content:"";position:absolute;left:9px;bottom:9px;width:5px;height:10px;border-radius:2px;background:var(--pink);box-shadow:8px -5px 0 var(--amber),16px -10px 0 var(--cyan)}
+nav{display:flex;flex-direction:column;gap:3px;flex:1}
+nav button{display:flex;align-items:center;gap:12px;border:0;background:transparent;padding:11px 13px;border-radius:10px;font-size:15px;font-weight:600;color:var(--dim);cursor:pointer;text-align:left;white-space:nowrap;transition:background .15s,color .15s}
+nav button svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+nav button:hover{background:var(--s2);color:var(--ink)}
+nav button.on{background:linear-gradient(90deg,rgba(143,123,255,.28),rgba(143,123,255,.06));color:#fff;box-shadow:inset 2px 0 0 var(--violet)}
+nav button.on svg{stroke:var(--cyan)}
+nav b.n{margin-left:auto;font-family:var(--mono);font-size:11px;background:var(--pink);color:#fff;border-radius:99px;padding:1px 7px}
+.hud{padding:13px 14px;border-radius:14px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line);display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.lv{font-family:var(--disp);font-size:26px;color:var(--amber);line-height:1}
+.xpbar{height:6px;border-radius:3px;background:#2a2f66;overflow:hidden}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));transition:width .6s}
+.hud .xp{grid-column:1/-1}
+main{max-width:1120px;margin:0 auto 0 var(--rail);padding:34px 38px 100px}
+.card{position:relative;background:linear-gradient(180deg,rgba(24,28,62,.55),rgba(12,14,27,.8));border-radius:16px;padding:22px;box-shadow:inset 0 0 0 1px var(--line),0 18px 40px -22px rgba(0,0,0,.8)}
+.card:before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(255,255,255,.22),transparent 38%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.btn{position:relative;border:0;font-size:15px;font-weight:700;cursor:pointer;padding:12px 22px;border-radius:11px;color:#fff;background:linear-gradient(180deg,#9c8bff,#7561f0);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 22px -6px rgba(117,97,240,.7);transition:transform .12s,box-shadow .2s,filter .2s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn.pink{background:linear-gradient(180deg,#ff6aa8,#ee2d7a);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 22px -6px rgba(255,63,142,.7)}
+.btn.gold{color:#2a1b00;background:linear-gradient(180deg,#ffd37a,#ffb02e);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 22px -6px rgba(255,185,56,.65)}
+.btn.ghost{color:var(--ink);background:var(--s2);box-shadow:inset 0 0 0 1px var(--line2)}
+.btn[disabled]{opacity:.38;cursor:not-allowed;filter:none;transform:none}
+:is(.btn,.opt,.chip,nav button,.dot,.lesson,.pk,.star,.flag,.seg button):focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.sp{flex:1}
+.mini{font-size:12px;color:var(--dim)}
+.sec{margin:38px 0 14px;font-size:28px;display:flex;align-items:baseline;gap:14px}
+.sec small{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:400}
+.sec:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+/* ---------- home ---------- */
+.stage{padding:0;overflow:hidden;background:radial-gradient(600px 300px at 80% 0,rgba(143,123,255,.28),transparent 70%),linear-gradient(180deg,#0f1230,#090b1a)}
+.stage .top{padding:30px 34px 6px}
+.stage h1{font-size:clamp(34px,4.6vw,60px);line-height:1.02}
+.stage h1 em{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--violet) 60%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stage p{margin:12px 0 0;color:var(--dim);max-width:52ch;line-height:1.75}
+.scope{margin:22px 34px 0;border-radius:14px;background:#04050c;box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.scope .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs2{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+.tabs2 button{border:0;background:transparent;color:var(--dim);font-size:13px;font-weight:600;padding:5px 11px;border-radius:7px;cursor:pointer}
+.tabs2 button.on{background:var(--s3);color:var(--cyan)}
+.ctl{display:flex;gap:4px}
+.ctl button{width:30px;height:28px;border:0;border-radius:7px;background:var(--s2);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.ctl button:hover{background:var(--s3)}
+.ctl svg{width:14px;height:14px;fill:currentColor}
+.plot{position:relative;height:190px;display:flex;align-items:flex-end;gap:8px;padding:28px 18px 26px;background:linear-gradient(rgba(143,150,255,.06) 1px,transparent 1px) 0 0/100% 38px}
+.plot i{position:relative;flex:1;border-radius:5px 5px 0 0;background:linear-gradient(180deg,#a090ff,#5844d8);transition:height .28s cubic-bezier(.3,1.4,.5,1),background .15s,box-shadow .15s}
+.plot i b{position:absolute;top:-20px;left:0;right:0;text-align:center;font:600 12px var(--mono);color:var(--dim)}
+.plot i u{position:absolute;bottom:-21px;left:0;right:0;text-align:center;text-decoration:none;font:700 11px var(--mono);color:var(--amber);white-space:nowrap}
+.plot i.cmp{background:linear-gradient(180deg,#ffd37a,#e79a14);box-shadow:0 0 26px rgba(255,185,56,.55)}
+.plot i.swp{background:linear-gradient(180deg,#ff7db3,#e01f6b);box-shadow:0 0 26px rgba(255,63,142,.6)}
+.plot i.ok{background:linear-gradient(180deg,#6bffe9,#0fb9a1);box-shadow:0 0 18px rgba(46,242,214,.35)}
+.plot i.dim{opacity:.3}
+.plot i.hit{background:linear-gradient(180deg,#6bffe9,#0fb9a1);box-shadow:0 0 28px rgba(46,242,214,.7)}
+.readout{display:flex;gap:22px;flex-wrap:wrap;padding:10px 16px;border-top:1px solid var(--line);font:12px var(--mono);color:var(--dim)}
+.readout b{color:var(--amber);font-weight:700}
+.readout .say{margin-left:auto;color:var(--ink)}
+.stage .row{padding:0 34px 28px;margin-top:22px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.kpi{padding:18px 20px}
+.kpi b{display:block;font-family:var(--disp);font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.kpi span{display:block;margin-top:6px;color:var(--dim);font-size:13px}
+.kpi b i{font-style:normal;font-size:20px;color:var(--dim)}
+/* ---------- level map ---------- */
+.map{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.lesson{cursor:pointer;padding:0;overflow:hidden;transition:transform .2s,box-shadow .2s;border:0;text-align:left;color:inherit;font:inherit}
+.lesson:hover{transform:translateY(-5px);box-shadow:inset 0 0 0 1px var(--c),0 22px 44px -18px var(--c)}
+.lesson .art{height:96px;position:relative;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 38%,#0c0e1b),#0c0e1b 80%);overflow:hidden}
+.lesson .art svg{position:absolute;left:8px;top:0;width:min(64%,170px);height:100%;stroke:var(--c);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.lesson .art .id{position:absolute;right:14px;bottom:8px;font-family:var(--disp);font-size:38px;line-height:1;color:var(--c);opacity:.9}
+.lesson .body{padding:14px 16px 16px}
+.lesson h3{font-size:20px;margin:0 0 3px}
+.lesson small{color:var(--dim);font-size:12px}
+.lesson .meter{display:flex;gap:3px;margin-top:12px}
+.lesson .meter i{flex:1;height:5px;border-radius:2px;background:var(--s3)}
+.lesson .meter i.on{background:var(--c)}
+.mantra{font-weight:600;line-height:1.7;padding:14px 18px;border-radius:12px;background:var(--s1);box-shadow:inset 3px 0 0 var(--amber),inset 0 0 0 1px var(--line);margin:10px 0}
+.mantra .zh{display:block;color:var(--dim);font-weight:400;font-size:14px;margin-top:2px}
+/* ---------- quiz ---------- */
+.prompt{font-size:18px;line-height:1.8;white-space:pre-wrap}
+.prompt code,.exp code,.mantra code{background:var(--s3);color:#ffd37a;border-radius:5px;padding:1px 6px;font:.88em var(--mono)}
+pre{position:relative;background:#04050c;border-radius:12px;padding:16px 18px 16px;overflow-x:auto;font-size:14px;line-height:1.7;margin:14px 0;white-space:pre;box-shadow:inset 0 0 0 1px var(--line);font-family:var(--mono);color:#d7dcff;border-top:2px solid var(--violet)}
+pre code{background:none;padding:0;color:inherit;font:inherit}
+.k-kw{color:#ff7ab8}.k-fn{color:#6fd0ff}.k-num{color:#ffc46b}.k-str{color:#7bf0c8}.k-cm{color:#5d6592;font-style:italic}.k-bi{color:#b9a8ff}
+.opts{display:grid;gap:10px;margin-top:18px}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.kbd{font:11px var(--mono);color:var(--dim);margin-left:10px}
+.kbd kbd{background:var(--s3);border-radius:4px;padding:1px 6px;color:var(--ink)}
+#toast{position:fixed;right:26px;bottom:28px;transform:translateY(24px);opacity:0;z-index:95;padding:11px 18px;border-radius:11px;font:700 13px var(--mono);color:#022a25;background:var(--cyan);box-shadow:0 14px 34px -8px rgba(46,242,214,.6);transition:.3s;pointer-events:none}
+#toast.show{opacity:1;transform:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
+.chip{border:0;background:var(--s1);border-radius:99px;padding:7px 15px;font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;box-shadow:inset 0 0 0 1px var(--line);transition:.15s}
+.chip:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2)}
+.chip.on{background:var(--violet);color:#fff;box-shadow:0 6px 18px -6px var(--violet)}
+/* ---------- exam ---------- */
+/* ---------- mistakes ---------- */
+.mistake{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:16px 18px}
+.mistake .main{flex:1;min-width:240px}
+.mistake .main .t{font-weight:600;line-height:1.6;white-space:pre-wrap;max-height:3.2em;overflow:hidden;margin-top:6px}
+.mistake .row{margin:0}
+.empty{text-align:center;padding:56px 20px;color:var(--dim)}
+.empty svg{width:84px;margin-bottom:10px;stroke:var(--cyan);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* ---------- stats ---------- */
+.radarbox{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:22px;align-items:center}
+.radar{width:100%;height:auto}
+.rowstat{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.rowstat:last-child{border:0}
+.rowstat .id{font:800 20px var(--disp)}
+.rowstat .bar{height:7px;border-radius:4px;background:var(--s3);overflow:hidden}
+.rowstat .bar i{display:block;height:100%;border-radius:4px}
+.weak{color:var(--pink);font-size:11px;font-family:var(--mono)}
+.badges{display:flex;gap:12px;flex-wrap:wrap}
+.badge{width:116px;text-align:center;padding:16px 8px 12px;border-radius:14px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line);font-size:12px;font-weight:600;color:var(--dim)}
+.badge i{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 8px;border-radius:12px;background:var(--s3);font-style:normal;font-size:22px;filter:grayscale(1);opacity:.4}
+.badge.on{color:var(--ink);box-shadow:inset 0 0 0 1px var(--amber),0 0 26px -10px var(--amber)}
+.badge.on i{filter:none;opacity:1;background:linear-gradient(135deg,#ffd37a,#ff9a3c);color:#2a1b00}
+/* ---------- cards ---------- */
+.sheet{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.sheet h2{font-size:34px;margin-bottom:2px}
+.sheet ul{padding:0;margin:12px 0 0;list-style:none;display:grid;gap:10px}
+.sheet li{position:relative;padding-left:22px;line-height:1.75}
+.sheet li:before{content:"";position:absolute;left:2px;top:.72em;width:8px;height:8px;border-radius:2px;background:var(--cyan);transform:rotate(45deg)}
+.sheet .trap li:before{background:var(--pink)}
+.sheet .trap{box-shadow:inset 0 0 0 1px rgba(255,63,142,.4),0 18px 40px -22px rgba(255,63,142,.45)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:1000px){.map{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}.sheet,.radarbox{grid-template-columns:1fr}}
+@media(max-width:820px){:root{--rail:0px}
+header#top{position:sticky;width:auto;bottom:auto;flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 14px;border-right:0;border-bottom:1px solid var(--line)}
+.brand small{display:none}.brand b{font-size:20px}.logo{width:32px;height:32px}.logo:before{left:6px;bottom:7px}
+nav{order:3;flex:1 1 100%;flex-direction:row;overflow-x:auto}
+nav button{padding:8px 12px}nav button span{display:inline}
+.hud{margin-left:auto;padding:6px 10px;grid-template-columns:auto 90px;grid-template-rows:auto}.hud .xp{display:none}
+main{margin:0 auto;padding:20px 14px 90px}.stage .top{padding:22px 18px 4px}.scope{margin:18px 14px 0}.stage .row{padding:0 18px 22px}
+.plot{height:150px;gap:5px;padding:26px 10px 24px}.map{grid-template-columns:1fr 1fr;gap:12px}.prompt{font-size:16px}.readout .say{margin-left:0}}
+@media(max-width:480px){.map{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}}
+/* ---------- guide ---------- */
+.tip{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;margin-bottom:16px;border-radius:12px;background:linear-gradient(90deg,rgba(255,185,56,.16),rgba(255,185,56,.04));box-shadow:inset 3px 0 0 var(--amber),inset 0 0 0 1px var(--line)}
+.tip .btn{padding:8px 16px;font-size:14px}
+.flow{display:grid;gap:4px;margin-top:10px}
+.step{display:grid;grid-template-columns:40px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border:0}
+.step .no{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;font:800 17px var(--disp);color:#04201d;background:var(--cyan)}
+.step p,.gp{margin:4px 0 0;color:var(--dim);line-height:1.75;font-size:14.5px}
+.step b{font-size:16px}
+.keyrow{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);color:var(--dim)}
+.keyrow:last-of-type{border:0}
+kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radius:5px;padding:2px 8px;box-shadow:0 2px 0 #0a0c20}
+@media(max-width:560px){.step{grid-template-columns:36px 1fr}.step .btn{grid-column:2;justify-self:start}.keyrow{grid-template-columns:1fr;gap:4px}}
+/* ---------- 快速复习 ---------- */
+.chip.fin:after{content:"✓";margin-left:6px;color:var(--cyan);font-weight:800}
+.chip.on.fin:after{color:#fff}
+.lessonbar{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
+.lessonbar .chip{flex:none;white-space:nowrap}
+.rvhead{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 22px;margin-bottom:16px;box-shadow:inset 0 0 0 1px var(--line),inset 0 3px 0 var(--c)}
+.rvhead h2{font-size:34px;color:var(--c);line-height:1.1}
+.seg{display:inline-flex;padding:3px;border-radius:10px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line)}
+.seg button{border:0;background:transparent;color:var(--dim);font-size:14px;font-weight:700;padding:7px 14px;border-radius:8px;cursor:pointer}
+.seg button.on{background:var(--violet);color:#fff}
+.lead{font-size:17px;line-height:1.85;margin:6px 0 22px;max-width:62ch;color:var(--ink)}
+.rvgrid{display:grid;grid-template-columns:190px minmax(0,1fr);gap:30px;align-items:start}
+.toc{position:sticky;top:22px;display:grid;gap:2px;padding-left:14px;border-left:1px solid var(--line)}
+.toc b{font-size:12px;color:var(--dim);margin-bottom:6px;font-family:var(--mono)}
+.toc a{color:var(--dim);text-decoration:none;font-size:14px;line-height:1.5;padding:5px 0;margin-left:-15px;padding-left:13px;border-left:2px solid transparent;transition:color .15s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--cyan);border-left-color:var(--cyan)}
+.rvbody{min-width:0;max-width:760px}
+.rsec{margin-bottom:34px;scroll-margin-top:20px}
+.rsec h3{font-size:28px;margin:0 0 12px;display:flex;align-items:center;gap:12px}
+.rsec h3:before{content:"";width:5px;height:24px;border-radius:3px;background:var(--c,var(--violet))}
+.rp{line-height:1.95;font-size:16px;margin:10px 0}
+.rh{font:800 18px var(--disp);margin:18px 0 6px;color:var(--amber)}
+.rl{padding:0;margin:10px 0;list-style:none;display:grid;gap:8px}
+.rl li{position:relative;padding-left:22px;line-height:1.85}
+.rl li:before{content:"";position:absolute;left:3px;top:.78em;width:7px;height:7px;border-radius:2px;background:var(--cyan);transform:rotate(45deg)}
+.trap .rl li:before{background:var(--pink)}
+.rf{margin:14px 0;padding:0}
+.rf figcaption,.dcap{font-size:13px;color:var(--dim);margin-top:7px}
+.rf pre{margin:0}
+.tw{overflow-x:auto;border-radius:12px;box-shadow:inset 0 0 0 1px var(--line)}
+.rt{width:100%;border-collapse:collapse;font-size:14.5px}
+.rt th{text-align:left;font-weight:700;color:var(--dim);background:var(--s1);padding:10px 14px;white-space:nowrap}
+.rt td{padding:10px 14px;border-top:1px solid var(--line);line-height:1.6;vertical-align:top}
+.rt tbody tr:hover td{background:rgba(143,123,255,.06)}
+.wr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.wr>div{border-radius:12px;padding:12px 14px;line-height:1.7;font-size:15px}
+.wr span{display:block;font:700 11px var(--mono);margin-bottom:4px}
+.wr .no{background:rgba(255,63,142,.1);box-shadow:inset 0 0 0 1px rgba(255,63,142,.4)}.wr .no span{color:var(--pink)}
+.wr .yes{background:rgba(46,242,214,.08);box-shadow:inset 0 0 0 1px rgba(46,242,214,.35)}.wr .yes span{color:var(--cyan)}
+.wr p{grid-column:1/-1;margin:0;font-size:13.5px;color:var(--dim);padding:0 4px}
+.callout{margin:16px 0;padding:14px 18px;border-radius:12px;line-height:1.85}
+.callout b{display:block;font-size:13px;margin-bottom:3px}
+.callout.exam{background:rgba(255,185,56,.09);box-shadow:inset 3px 0 0 var(--amber),inset 0 0 0 1px var(--line)}.callout.exam b{color:var(--amber)}
+.callout.key{font-weight:700;font-size:16.5px;background:linear-gradient(90deg,rgba(143,123,255,.2),rgba(143,123,255,.04));box-shadow:inset 3px 0 0 var(--violet)}
+.demo{margin:16px 0}.demo .scope{margin:0}
+.demo .plot{height:170px}
+.dname{font-size:13px;font-weight:700;color:var(--cyan);padding:0 6px}
+.rvfoot{display:flex;align-items:center;gap:10px;margin:30px 0 10px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+@media(max-width:1000px){.rvgrid{grid-template-columns:1fr}.toc{display:none}}
+@media(max-width:560px){.wr{grid-template-columns:1fr}.rvhead h2{font-size:28px}}
+/* ================= 练习 / 模拟考 (v2) ================= */
+.qwrap{max-width:820px;margin:0 auto}
+.qtop{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.qtitle{font-weight:700}
+.xbtn{border:0;background:var(--s1);color:var(--dim);font-size:13px;font-weight:600;padding:7px 14px;border-radius:9px;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}
+.xbtn:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2)}
+.combo{font:600 13px var(--mono);color:var(--dim);padding:5px 12px;border-radius:99px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line);transition:.2s}
+.combo b{color:var(--ink);font-size:15px}
+.combo.hot{color:#2a1b00;background:linear-gradient(135deg,#ffd37a,#ff9a3c);box-shadow:0 0 22px -4px var(--amber)}.combo.hot b{color:#2a1b00}
+.segs{display:flex;gap:4px;margin-bottom:16px}
+.segs i{flex:1;height:7px;border-radius:4px;background:var(--s3);transition:background .25s,box-shadow .25s}
+.segs i.cur{background:var(--lc,var(--violet));box-shadow:0 0 14px var(--lc,var(--violet))}
+.segs i.r{background:var(--cyan)}.segs i.w{background:var(--pink)}
+.segs.big i{height:12px;border-radius:6px}
+.qcard{position:relative;border-radius:20px;padding:26px 28px 22px;background:linear-gradient(180deg,rgba(26,31,70,.7),rgba(12,14,27,.92));box-shadow:inset 0 0 0 1px var(--line),0 30px 60px -34px rgba(0,0,0,.9);overflow:hidden}
+.qcard:before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--lc,var(--violet)),transparent 70%)}
+.qcard.rv{margin-top:14px}
+.qh{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.qno{font:900 40px/1 var(--disp);color:var(--lc,var(--ink))}
+.qno small{font-size:16px;color:var(--dim);font-weight:600}
+.qtags{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.qtopic{margin:14px 0 4px;font:600 12px var(--mono);color:var(--dim)}
+.pill{display:inline-block;padding:3px 10px;border-radius:6px;font:700 11px var(--mono);color:#fff;background:var(--violet)}
+.pill.ai{background:#e5317c}.pill.l09{background:#2a86d6}.pill.l05{background:#13a493}
+.pill.lz{background:transparent;color:var(--lc);box-shadow:inset 0 0 0 1px var(--lc)}
+.star,.flag{border:0;background:var(--s1);color:var(--dim);cursor:pointer;box-shadow:inset 0 0 0 1px var(--line);transition:.15s}
+.star{width:38px;height:38px;border-radius:10px;display:grid;place-items:center}
+.star svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+.star:hover{color:var(--amber)}
+.star.on{color:#2a1b00;background:var(--amber);box-shadow:0 0 18px -2px var(--amber)}.star.on svg{fill:currentColor}
+.flag{padding:8px 14px;border-radius:10px;font-size:13px;font-weight:600}
+.flag:hover{color:var(--ink)}.flag.on{color:#2a1b00;background:var(--amber)}
+.opts{display:grid;gap:11px;margin-top:20px}
+.opt{position:relative;display:flex;gap:16px;align-items:center;text-align:left;width:100%;border:0;background:var(--s1);border-radius:14px;padding:14px 16px;font-size:16px;line-height:1.6;color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1px var(--line);transition:transform .14s,box-shadow .14s,background .14s}
+.opt .ot{flex:1;min-width:0}
+.opt .k{flex:none;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font:800 15px var(--mono);background:var(--s3);color:var(--violet);transition:.14s}
+.opt:hover:not([disabled]):not(.sel){transform:translateX(5px);background:var(--s2);box-shadow:inset 0 0 0 1px var(--violet),0 0 26px -8px rgba(143,123,255,.7)}
+.opt:hover:not([disabled]) .k{background:var(--violet);color:#fff}
+.opt.sel{background:linear-gradient(90deg,rgba(143,123,255,.28),rgba(143,123,255,.08));box-shadow:inset 0 0 0 1.5px var(--violet)}
+.opt.sel .k{background:var(--violet);color:#fff}
+.opt.right{background:linear-gradient(90deg,rgba(46,242,214,.2),rgba(46,242,214,.04));box-shadow:inset 0 0 0 1.5px var(--cyan),0 0 32px -10px var(--cyan)}
+.opt.right .k{background:var(--cyan);color:#022a25}
+.opt.wrong{background:linear-gradient(90deg,rgba(255,63,142,.2),rgba(255,63,142,.04));box-shadow:inset 0 0 0 1.5px var(--pink),0 0 32px -10px var(--pink);animation:shake .38s}
+.opt.wrong .k{background:var(--pink);color:#fff}
+.opt.right .mk:after,.opt.wrong .mk:after{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;font:800 14px var(--ui)}
+.opt.right .mk:after{content:"✓";background:var(--cyan);color:#022a25}
+.opt.wrong .mk:after{content:"✕";background:var(--pink);color:#fff}
+.opt[disabled]:not(.right):not(.wrong){opacity:.45}
+.exp{margin-top:18px;padding:16px 18px;border-radius:14px;background:var(--s1);box-shadow:inset 3px 0 0 var(--violet),inset 0 0 0 1px var(--line);line-height:1.85;white-space:pre-wrap;animation:rise .3s}
+.exp.ok{box-shadow:inset 3px 0 0 var(--cyan),inset 0 0 0 1px var(--line)}.exp.no{box-shadow:inset 3px 0 0 var(--pink),inset 0 0 0 1px var(--line)}
+.eh{display:flex;align-items:center;gap:10px;margin-bottom:6px}.eh b{font-size:16px}
+.xp{font:700 12px var(--mono);padding:2px 9px;border-radius:99px;background:rgba(46,242,214,.15);color:var(--cyan)}.xp.miss{background:rgba(255,63,142,.15);color:var(--pink)}
+.qf{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.btn.big{padding:14px 30px;font-size:16px}
+/* done */
+.done{text-align:center;padding:34px 26px}
+.dmsg{font-size:42px;margin:4px 0 18px}
+.dstat{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;margin-bottom:22px}
+.ring{width:150px;height:150px}
+.rtrack{fill:none;stroke:var(--s3);stroke-width:9}
+.rval{fill:none;stroke-width:9;stroke-linecap:round;transition:stroke-dasharray .9s cubic-bezier(.3,.9,.3,1)}
+.rbig{fill:var(--ink);font:800 26px var(--disp)}.rsub{fill:var(--dim);font:11px var(--mono)}
+.dlist{display:grid;gap:12px;text-align:left}
+.dlist b{font:800 32px/1 var(--disp);font-variant-numeric:tabular-nums}.dlist b i{font-style:normal;font-size:16px;color:var(--dim)}
+.dlist span{display:block;color:var(--dim);font-size:12px;margin-top:2px}
+.dlist.wide{grid-template-columns:repeat(4,1fr);text-align:center;margin:18px 0 6px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dnote{color:var(--dim);margin:18px 0 4px}
+/* practice picker */
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px}
+.pk{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:0 12px;align-items:center;text-align:left;border:0;padding:14px;border-radius:14px;background:var(--s1);color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1px var(--line);transition:.15s}
+.pk .pi{grid-row:span 2;display:grid;place-items:center;width:42px;height:42px;border-radius:11px;font:900 20px var(--disp);color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 45%,transparent)}
+.pk b{font-size:14px;line-height:1.3}.pk small{color:var(--dim);font:11px var(--mono)}
+.pk:hover:not([disabled]){transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--c)}
+.pk.on{background:color-mix(in srgb,var(--c) 14%,var(--s1));box-shadow:inset 0 0 0 1.5px var(--c),0 12px 30px -14px var(--c)}
+.pk[disabled]{opacity:.35;cursor:not-allowed}
+.opts2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px}
+.seg{display:inline-flex;flex-wrap:wrap;padding:3px;border-radius:10px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line);margin-top:6px}
+.startbar{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.sn b{font:900 44px/1 var(--disp);margin-right:8px}.sn span{color:var(--dim);font-size:14px}
+/* exam */
+.examhero{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;padding:30px 32px;background:radial-gradient(500px 260px at 90% 20%,rgba(46,242,214,.14),transparent 70%),linear-gradient(180deg,rgba(26,31,70,.6),rgba(12,14,27,.9))}
+.eh1 h1{font-size:clamp(34px,4.4vw,56px);line-height:1.02}
+.eh1 p{color:var(--dim);line-height:1.85;max-width:50ch;margin:14px 0 4px}
+.eh2 .ring{width:170px;height:170px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:14px}
+.rules .card{padding:16px 18px}.rules b{display:block;font:800 28px/1 var(--disp);color:var(--cyan)}.rules span{display:block;color:var(--dim);font-size:13px;margin-top:6px;line-height:1.6}
+.hist{display:flex;align-items:flex-end;gap:12px;min-height:130px}
+.hb{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;width:46px;height:110px}
+.hb i{width:100%;border-radius:6px 6px 2px 2px;min-height:4px}.hb b{font:700 12px var(--mono);color:var(--dim)}
+.exwrap{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:22px;align-items:start}
+.sheetp{position:sticky;top:18px;padding:18px}
+.clock{display:grid;place-items:center;margin-bottom:6px}.clock .ring{width:140px;height:140px}
+.clock.low .rbig{fill:var(--pink)}.clock.low{animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.6}}
+.legend{display:flex;gap:12px;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0 12px}
+.legend .d{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--s3);margin-right:5px;vertical-align:-1px}
+.legend .d.done{background:var(--violet)}.legend .d.mk{background:var(--amber)}
+.grid33{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:0 0 16px}
+.dot{position:relative;aspect-ratio:1;border:0;border-radius:8px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line);font:700 12px var(--mono);color:var(--dim);cursor:pointer;transition:.12s}
+.dot:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2)}
+.dot.done{background:#2b2670;color:#fff;box-shadow:inset 0 0 0 1px var(--violet)}
+.dot.cur{box-shadow:inset 0 0 0 2px var(--cyan),0 0 14px -2px var(--cyan);color:#fff}
+.dot.mk:after{content:"";position:absolute;right:3px;top:3px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+/* report */
+.report{padding:32px 28px;text-align:center}
+.rk{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap}
+.rank{display:inline-grid;place-items:center;width:140px;height:140px;border-radius:50%;background:conic-gradient(from var(--a),var(--g),var(--violet),var(--cyan),var(--g));animation:spin 6s linear infinite}
+.rank span{display:grid;place-items:center;width:120px;height:120px;border-radius:50%;background:var(--s1);font:900 76px/1 var(--disp);color:var(--g)}
+@keyframes spin{to{--a:360deg}}
+.score{font:900 92px/1 var(--disp);font-variant-numeric:tabular-nums}
+.gl{font-weight:700;color:var(--dim);margin-top:2px}
+.rh2{font-size:22px;text-align:left;margin:22px 0 8px}
+.lrows{display:grid;gap:9px}
+.lrow{display:grid;grid-template-columns:44px 1fr 56px;gap:12px;align-items:center}
+.lrow .id{font:800 18px var(--disp);text-align:left}.lrow .bar{height:8px;border-radius:4px;background:var(--s3);overflow:hidden;margin:0}.lrow .bar i{display:block;height:100%;border-radius:4px}
+.lrow .lv2{font:600 12px var(--mono);color:var(--dim);text-align:right}
+@media(max-width:900px){.exwrap{grid-template-columns:1fr}.sheetp{position:static;order:-1}.grid33{grid-template-columns:repeat(11,1fr)}.examhero{grid-template-columns:1fr}.eh2{display:none}.opts2{grid-template-columns:1fr}.dlist.wide{grid-template-columns:repeat(2,1fr);row-gap:16px}}
+@media(max-width:560px){.qcard{padding:20px 16px 16px}.grid33{grid-template-columns:repeat(8,1fr)}.opt{gap:12px;padding:12px}.score{font-size:68px}.qno{font-size:32px}.dmsg{font-size:32px}.dstat{gap:18px}}
+</style>
+</head>
+<body>
+<div id="sky"></div>
+
+<header id="top">
+  <div class="brand"><span class="logo">&#9733;</span><b>DSA 复习道场</b><small>MCQ1 · L01–L08</small></div>
+  <nav id="nav"></nav>
+  <div class="hud" id="hud"></div>
+</header>
+<main id="app"></main>
+<div id="toast"></div>
+<script>window.QUESTIONS=[{"id": "l09-01", "lesson": "L01", "src": "l09", "prompt": "You play the guessing game: I think of a number between 1 and 1,000,000. You cut the range\nin half with each guess. In the worst case, about how many guesses do you need?", "options": ["1,000,000", "500,000", "20", "1,000"], "answer": 2, "exp": "Each guess throws away half of the numbers that are left. 1,000,000 halves down to 1\nin about 20 steps. Guessing one number at a time needs up to 1,000,000 guesses.\n\nRead again: L09 notes, section 3.", "zh": "每次将范围减半，约 20 次就能覆盖一百万种可能。", "topic": "算法与数据结构", "ref": "L09 notes, section 3.", "code": ""}, {"id": "l09-02", "lesson": "L01", "src": "l09", "prompt": "What is a **data structure**?", "options": ["A way of organising and storing data, so that we can use it efficiently", "Any program written in Python", "A list of steps that always finishes and is always correct", "The memory inside a computer"], "answer": 0, "exp": "C describes an **algorithm**, not a data structure. The two work together: halving\nonly works because the numbers are **in order**, and the order is the data structure.\n\nRead again: L09 notes, section 3.", "zh": "数据结构描述如何组织和储存数据，让操作更高效。", "topic": "算法与数据结构", "ref": "L09 notes, section 3.", "code": ""}, {"id": "l09-03", "lesson": "L02", "src": "l09", "prompt": "A function does `4n + 7` operations. What is its time complexity?", "options": ["`O(1)`", "`O(n)`", "`O(n²)`", "`O(log n)`"], "answer": 1, "exp": "Drop the constant factor `4`. Keep only the fastest-growing term: `n` grows, `7` does\nnot. So `4n + 7` is `O(n)`.\n\nRead again: L09 notes, section 4.", "zh": "忽略常数因子和常数项，4n + 7 的增长量级是 n。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-04", "lesson": "L02", "src": "l09", "prompt": "What is the time complexity of `three_each`?\n\n```python\ndef three_each(numbers):\n    count = 0\n    for number in numbers:\n        for i in range(3):\n            count = count + 1\n    return count\n```", "options": ["`O(n²)`", "`O(1)`", "`O(log n)`", "`O(n)`"], "answer": 3, "exp": "There is a loop inside a loop, but the inner loop always runs **3** times. Count the\nturns: `3 × n`. Drop the `3`: `O(n)`. A nested loop is `O(n²)` only when both loops grow\nwith `n`.\n\nRead again: L09 notes, section 4, \"Reading loops\".", "zh": "内层始终只有 3 次，总次数为 3n，因此是 O(n)。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4, \"Reading loops\".", "code": ""}, {"id": "l09-05", "lesson": "L02", "src": "l09", "prompt": "A function has a loop over `n` items. **Inside** that loop, there is a halving loop: it\nhalves a number until it reaches 1. What is the time complexity of the function?", "options": ["`O(n log n)`", "`O(log n)`", "`O(n)`", "`O(n²)`"], "answer": 0, "exp": "The outer loop runs `n` times. Each time, the halving loop runs about `log n` times.\nA loop inside a loop **multiplies**: `n × log n`.\n\nRead again: L09 notes, section 4.", "zh": "外层 n 次，每次内层约 log n 次，相乘得到 O(n log n)。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-06", "lesson": "L02", "src": "l09", "prompt": "What is the **space** complexity of `total`? Space complexity is the **extra** memory the\nfunction uses.\n\n```python\ndef total(numbers):\n    result = 0\n    for number in numbers:\n        result = result + number\n    return result\n```", "options": ["`O(n)`", "`O(1)`", "`O(n²)`", "`O(log n)`"], "answer": 1, "exp": "The function makes one variable, `result`, whatever the size of the list. The input\nlist does not count: you were given it. The **time** is `O(n)`, but the **space** is `O(1)`.\n\nRead again: L09 notes, section 4.", "zh": "只需固定数量的变量，额外空间 O(1)；输入列表不计入额外空间。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-07", "lesson": "L02", "src": "l09", "prompt": "A function is `O(n)`. You run it on 1,000 items, then on 2,000 items. What happens to the\nwork?", "options": ["It stays the same", "It goes up by one step", "It is about two times larger", "It is about four times larger"], "answer": 2, "exp": "`O(n)`: double the input, and the work doubles. A is `O(1)`, B is `O(log n)`, and D\nis `O(n²)`.\n\nRead again: L09 notes, section 4, the table of the five runtimes.", "zh": "线性增长：输入加倍，工作量约加倍。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4, the table of the five runtimes.", "code": ""}, {"id": "l09-08", "lesson": "L02", "src": "l09", "prompt": "Someone says: \"`contains` is `O(n)`.\" They do not say best, worst or average case. Which\ncase do they mean?", "options": ["The best case", "The average case", "All three cases at once", "The worst case"], "answer": 3, "exp": "When no case is named, we mean the **worst** case. It is a promise: the code is never\nslower than this.\n\nRead again: L09 notes, section 4.", "zh": "按本课程的约定，未说明情况时按最坏情况分析；Big-O 本身并不等于最坏情况。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-09", "lesson": "L03", "src": "l09", "prompt": "`items` is a list of `n` items. What does `items.pop(0)` cost?", "options": ["`O(1)`", "`O(log n)`", "`O(n)`", "`O(n²)`"], "answer": 2, "exp": "`pop(0)` removes the **first** item. Every other item then moves one place left. That\nis `n - 1` moves: `O(n)`. `pop()` with no position removes the last item, and nothing\nmoves: `O(1)`.\n\nRead again: L09 notes, section 5.", "zh": "删除头部需要把后面的元素前移，因此是 O(n)。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-10", "lesson": "L03", "src": "l09", "prompt": "What does this code print?\n\n```python\nitems = [5, 6, 7, 8]\nprint(items[len(items) - 1])\n```", "options": ["`8`", "`7`", "An `IndexError`", "`4`"], "answer": 0, "exp": "`len(items)` is 4. The positions are 0, 1, 2 and 3, so the last position is\n`4 - 1 = 3`. `items[3]` is `8`. `items[4]` would be an `IndexError`.\n\nRead again: L09 notes, section 5.", "zh": "长度为 4，最后一个索引是 3，读到 8。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-11", "lesson": "L03", "src": "l09", "prompt": "What does this code print?\n\n```python\na = [1, 2]\nb = a[:]\nb.append(3)\nprint(a)\n```", "options": ["`[1, 2, 3]`", "`None`", "`[3]`", "`[1, 2]`"], "answer": 3, "exp": "`a[:]` is a full slice: it makes a **copy**. So `b` is a different list, and\n`append` changes only `b`. With `b = a`, the answer would be `[1, 2, 3]`.\n\nRead again: L09 notes, section 5.", "zh": "切片创建了副本；修改 b 不会改变 a。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-12", "lesson": "L03", "src": "l09", "prompt": "What does this code print?\n\n```python\nnumbers = [3, 3, 5]\nfor number in numbers:\n    if number == 3:\n        numbers.remove(number)\nprint(numbers)\n```", "options": ["`[5]`", "`[3, 5]`", "`[3, 3, 5]`", "An error"], "answer": 1, "exp": "The loop reads position 0: a `3`, so it removes it. The list is now `[3, 5]`. The\nsecond `3` moved to position 0, but the loop goes on to position 1 and reads `5`. So it\nnever sees the second `3`. Do not remove items from a list while you loop over it.\n\nRead again: L09 notes, section 5.", "zh": "删除第一个 3 后，第二个 3 移到已经走过的位置，循环会跳过它。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-13", "lesson": "L04", "src": "l09", "prompt": "What happens when this code runs?\n\n```python\nword = \"Bat\"\nword[0] = \"C\"\nprint(word)\n```", "options": ["It prints `Cat`", "It prints `Bat`", "It gives a `TypeError`", "It prints `None`"], "answer": 2, "exp": "A string is **immutable**: it cannot change. You cannot change one character. Build\na new string instead: `word = \"C\" + word[1:]`.\n\nRead again: L09 notes, section 6.", "zh": "字符串不可变，不能对单个字符位置赋值。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-14", "lesson": "L04", "src": "l09", "prompt": "You build a string of `n` characters. Which way costs `O(n)`?", "options": ["Put the characters in a list, then call `\"\".join(...)` once", "Add each character with `result = result + letter`", "Add each character at the front of a list with `insert(0, letter)`", "Cut the first character off with `text = text[1:]` on each turn"], "answer": 0, "exp": "`join` copies each character once: `O(n)`. B copies the whole string on every `+`,\nand C and D move or copy everything on every turn: all three are `O(n²)`.\n\nRead again: L09 notes, section 6.", "zh": "按课程的复制成本模型，收集字符后一次 join 是线性的；其余方案反复移动或复制已有内容。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-15", "lesson": "L04", "src": "l09", "prompt": "What does this code print?\n\n```python\nwords = \"I like green tea\".split()\nprint(len(words))\n```", "options": ["`16`", "`1`", "`3`", "`4`"], "answer": 3, "exp": "`split()` cuts the string at each space and gives back a **list** of words:\n`[\"I\", \"like\", \"green\", \"tea\"]`. The list holds 4 words. 16 is the number of characters in\nthe string.\n\nRead again: L09 notes, section 6.", "zh": "split 得到四个单词，len 计算列表元素数。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-16", "lesson": "L04", "src": "l09", "prompt": "What does this code print?\n\n```python\ntext = \"xyz\"\nif text.find(\"x\"):\n    print(\"yes\")\nelse:\n    print(\"no\")\n```", "options": ["`yes`", "`no`", "`0`", "An error"], "answer": 1, "exp": "`\"x\"` is at position 0, so `find` gives back `0`. In an `if`, `0` counts as **false**,\nso the code prints `no`, even though `\"x\"` is there. Always compare with `-1`:\n`if text.find(\"x\") != -1:`.\n\nRead again: L09 notes, section 6.", "zh": "find 返回索引 0，而 0 在条件判断中为假，所以输出 no。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-17", "lesson": "L05", "src": "l09", "prompt": "Bubble sort runs on `[4, 2, 5, 1]`. What is the list after **one full pass**?", "options": ["`[2, 4, 1, 5]`", "`[2, 4, 5, 1]`", "`[1, 2, 4, 5]`", "`[1, 2, 5, 4]`"], "answer": 0, "exp": "Compare each pair of neighbours, from left to right:\n\n| Pair | Values | Action | The list after |\n| --- | --- | --- | --- |\n| 0 and 1 | 4 and 2 | swap | 2, 4, 5, 1 |\n| 1 and 2 | 4 and 5 | keep | 2, 4, 5, 1 |\n| 2 and 3 | 5 and 1 | swap | 2, 4, 1, 5 |\n\nB stops after one swap. C is the finished sort. D is selection sort's first pass.\n\nRead again: L09 notes, section 7.", "zh": "冒泡排序一整轮比较三对相邻元素，最终最大值 5 到达末尾。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": ""}, {"id": "l09-18", "lesson": "L05", "src": "l09", "prompt": "Selection sort runs on `[9, 4, 7, 1, 3]`. What is the list after **one pass**?", "options": ["`[4, 7, 1, 3, 9]`", "`[4, 9, 7, 1, 3]`", "`[1, 4, 7, 9, 3]`", "`[1, 3, 4, 7, 9]`"], "answer": 2, "exp": "The smallest value is `1`, at position 3. Selection sort swaps it with the item at\nposition 0, the `9`. Nothing else moves. A is bubble sort's first pass. D is the finished\nsort.\n\nRead again: L09 notes, section 7.", "zh": "先找到最小值 1，再与索引 0 的 9 交换；其他位置不动。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": ""}, {"id": "l09-19", "lesson": "L05", "src": "l09", "prompt": "Selection sort runs on a list of 10 items. What is the **largest** number of swaps it can\nmake?", "options": ["1", "9", "45", "100"], "answer": 1, "exp": "Selection sort makes at most one swap per pass, and there are `n - 1` passes: 9.\nThat is its one strength. Bubble sort can make up to `n(n - 1) / 2` swaps: 45.\n\nRead again: L09 notes, section 7.", "zh": "n - 1 轮，每轮至多交换一次；10 个元素至多交换 9 次。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": ""}, {"id": "l09-20", "lesson": "L05", "src": "l09", "prompt": "`bubble_sort(numbers)` sorts the list **in place**, like the one in the L05 notes. What does\nthis code print?\n\n```python\nnumbers = [3, 1, 2]\nnumbers = bubble_sort(numbers)\nprint(numbers)\n```", "options": ["`[1, 2, 3]`", "`[3, 1, 2]`", "`[3, 2, 1]`", "`None`"], "answer": 3, "exp": "An in-place sort changes the list and gives back `None`. The second line stores that\n`None` in `numbers`, and the sorted list is lost. Call the sort alone on its line:\n`bubble_sort(numbers)`.\n\nRead again: L09 notes, section 7.", "zh": "题目引用的课程函数没有返回值，赋值会把 numbers 设成 None；原地修改本身不决定返回值。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": "```python\ndef bubble_sort(numbers):\n    n = len(numbers)\n    for i in range(n - 1):\n        swapped = False                 # 1. the start of every pass\n        for j in range(n - 1 - i):\n            if numbers[j] > numbers[j + 1]:\n                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]\n                swapped = True          # 2. right after the swap\n        if not swapped:                 # 3. after the pass\n            return\n```"}, {"id": "l09-21", "lesson": "L06", "src": "l09", "prompt": "Which of these sorts is **not** stable?", "options": ["Selection sort", "Bubble sort", "`sorted()`", "`.sort()`"], "answer": 0, "exp": "Selection sort swaps two items that can be far apart, so an item can jump over an\nequal one. Bubble sort only swaps two neighbours when the left one is **bigger**, so equal\nitems never pass each other. Python's `sorted()` and `.sort()` are stable.\n\nRead again: L09 notes, section 8.", "zh": "课程中的选择排序会远距离交换，可能打乱相等元素的相对顺序。", "topic": "稳定性与内置函数", "ref": "L09 notes, section 8.", "code": ""}, {"id": "l09-22", "lesson": "L06", "src": "l09", "prompt": "What does this code print?\n\n```python\nscores = [3, 1, 2]\nscores = scores.sort()\nprint(scores)\n```", "options": ["`[1, 2, 3]`", "`[3, 1, 2]`", "`None`", "An error"], "answer": 2, "exp": "`.sort()` sorts the list in place and gives back `None`, like the sorts you wrote.\nWrite `scores.sort()` alone, or `in_order = sorted(scores)`.\n\nRead again: L09 notes, section 8.", "zh": ".sort() 修改原列表并返回 None；把返回值赋给 scores 后，它就变成 None。", "topic": "稳定性与内置函数", "ref": "L09 notes, section 8.", "code": ""}, {"id": "l09-23", "lesson": "L06", "src": "l09", "prompt": "What is the time complexity of Python's `sorted()` on `n` items?", "options": ["`O(n)`", "`O(n log n)`", "`O(n²)`", "`O(log n)`"], "answer": 1, "exp": "`sorted()` and `.sort()` are `O(n log n)`, even in the worst case, and they are\nstable. Selection sort and bubble sort are `O(n²)`. On 1,000 items, that is about 10,000 steps against\nabout 500,000.\n\nRead again: L09 notes, section 8.", "zh": "按最坏情况，Python 排序是 O(n log n)，并且稳定。", "topic": "稳定性与内置函数", "ref": "L09 notes, section 8.", "code": ""}, {"id": "l09-24", "lesson": "L07", "src": "l09", "prompt": "What does this code print?\n\n```python\ndef find_index(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n        else:\n            return -1\n\nprint(find_index([4, 9, 2], 9))\n```", "options": ["`1`", "`9`", "`None`", "`-1`"], "answer": 3, "exp": "`return -1` is **inside** the loop. At position 0, `4` is not `9`, so the `else` runs\nand the function returns `-1` at once. It never reaches position 1. `return -1` must go\n**after** the loop.\n\nRead again: L09 notes, section 9.", "zh": "第一次比较失败就进入 else 返回 -1，函数没有检查后面的 9。", "topic": "查找", "ref": "L09 notes, section 9.", "code": ""}, {"id": "l09-25", "lesson": "L07", "src": "l09", "prompt": "Linear search stops at the first match. This is the **early exit**. What does it change?", "options": ["The best case gets better. The worst case is still `O(n)`", "The worst case becomes `O(1)`", "Linear search becomes `O(log n)`", "Nothing at all"], "answer": 0, "exp": "With the early exit, a target in the first position takes 1 comparison. But a target\nin the last position, or not in the list, still takes `n`. So the search is faster in\npractice, and still `O(n)`.\n\nRead again: L09 notes, section 9.", "zh": "提前退出改善最好情况；最坏情况仍需要扫描 n 个元素。", "topic": "查找", "ref": "L09 notes, section 9.", "code": ""}, {"id": "l09-26", "lesson": "L07", "src": "l09", "prompt": "Binary search runs on `[2, 5, 8, 12, 16, 23, 38, 45, 56, 67]` and looks for `23`. How many\nvalues does it compare with `23`?", "options": ["1", "2", "3", "6"], "answer": 2, "exp": "| `low` | `high` | `mid` | `numbers[mid]` | What happens |\n| --- | --- | --- | --- | --- |\n| 0 | 9 | 4 | 16 | too small: `low = 5` |\n| 5 | 9 | 7 | 45 | too big: `high = 6` |\n| 5 | 6 | 5 | 23 | found: return `5` |\n\nLinear search would need 6 comparisons.\n\nRead again: L09 notes, section 9.", "zh": "依次查看索引 4、7、5，对应 16、45、23，一共三个值。", "topic": "查找", "ref": "L09 notes, section 9.", "code": "```python\ndef binary_search(numbers, target):\n    low = 0\n    high = len(numbers) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if numbers[mid] == target:\n            return mid\n        if numbers[mid] < target:\n            low = mid + 1                # the target is in the right half\n        else:\n            high = mid - 1               # the target is in the left half\n    return -1\n```"}, {"id": "l09-27", "lesson": "L07", "src": "l09", "prompt": "A list of 1,000,000 items is **not sorted**. You will search it only **once**. What is the\nbest choice?", "options": ["Sort it with `sorted()`, then use binary search", "Use linear search", "Use binary search at once, with no sort", "Sort it with selection sort, then use binary search"], "answer": 1, "exp": "One linear search costs at most 1,000,000 comparisons. Sorting costs about\n20,000,000 steps, more than the search it saves. C gives wrong answers on an unsorted list.\nSort once, search many: sorting first is only worth it when you search many times.\n\nRead again: L09 notes, section 9.", "zh": "只查一次时，线性扫描 O(n) 比先排序 O(n log n) 更划算。", "topic": "查找", "ref": "L09 notes, section 9.", "code": ""}, {"id": "l09-28", "lesson": "L08", "src": "l09", "prompt": "`remove_value` is the function from the L08 notes. What are the first two items of\n`numbers` after this code?\n\n```python\nnumbers = [2, 9, 2, 4]\nlength = remove_value(numbers, 2)\n```", "options": ["`2, 9`", "`4, 9`", "`2, 2`", "`9, 4`"], "answer": 3, "exp": "`fast` reads every value. Each value that is not `2` is copied to position `slow`,\nthen `slow` moves on. `9` goes to position 0 and `4` goes to position 1. `length` is `2`:\nthe answer is `numbers[0]` and `numbers[1]`. The kept values stay in their order.\n\nRead again: L09 notes, section 10.", "zh": "保留 9 和 4，依次写入索引 0、1；有效长度为 2。", "topic": "双指针", "ref": "L09 notes, section 10.", "code": "```python\ndef remove_value(numbers, unwanted):\n    slow = 0                             # where the next kept value goes\n    for fast in range(len(numbers)):\n        if numbers[fast] != unwanted:    # worth keeping?\n            numbers[slow] = numbers[fast]\n            slow = slow + 1              # one more value kept\n    return slow\n```"}, {"id": "l09-29", "lesson": "L08", "src": "l09", "prompt": "`find_pair_sorted` is the function from the L08 notes. What does this code print?\n\n```python\nprint(find_pair_sorted([1, 3, 4, 6, 9], 7))\n```", "options": ["`(1, 6)`", "`(3, 4)`", "`None`", "`(0, 3)`"], "answer": 0, "exp": "| `left` | `right` | Values | Sum | Move |\n| --- | --- | --- | --- | --- |\n| 0 | 4 | 1 + 9 | 10 | too big: `right` down |\n| 0 | 3 | 1 + 6 | 7 | found |\n\n`3 + 4` is also 7, but the walk finds `(1, 6)` first. D gives positions: the function\ngives back **values**.\n\nRead again: L09 notes, section 10.", "zh": "先看 1+9=10，右指针左移后 1+6=7，立即返回数值 (1, 6)。", "topic": "双指针", "ref": "L09 notes, section 10.", "code": "```python\ndef find_pair_sorted(numbers, target):\n    left = 0\n    right = len(numbers) - 1\n    while left < right:\n        total = numbers[left] + numbers[right]\n        if total == target:\n            return (numbers[left], numbers[right])\n        if total < target:\n            left = left + 1              # too small: a bigger left value\n        else:\n            right = right - 1            # too big: a smaller right value\n    return None\n```"}, {"id": "l09-30", "lesson": "L08", "src": "l09", "prompt": "Two pointers uses two indexes, but it is still `O(n)`, not `O(n²)`. Why?", "options": ["The pointers jump over half of the list on each turn", "The list is always sorted", "Each turn moves at least one pointer, and each pointer moves one way only", "Python runs the two pointers at the same time"], "answer": 2, "exp": "`left` only goes up and `right` only goes down. Together they cross the `n`\npositions once, so the loop runs at most `n` turns. A describes binary search, which is\n`O(log n)`.\n\nRead again: L09 notes, section 10.", "zh": "每轮至少一个指针单向前进，最多线性数量的步骤，不会为另一个指针反复重走。", "topic": "双指针", "ref": "L09 notes, section 10.", "code": ""}, {"id": "l05-01", "lesson": "L01", "src": "l05", "prompt": "Which one of these is an **algorithm**?", "options": ["Add a little salt until the soup tastes good.", "Look at each card from left to right. Stop at the first ace. If there is no ace, say \"no ace\".", "Keep guessing numbers at random until you find the right one.", "Any program written in Python."], "answer": 1, "exp": "An algorithm has steps anyone can follow **exactly**, it **always finishes**, and it is\n**correct** for every valid input. A needs judgement (\"tastes good\"). C may never finish. D is\nwrong because code is only one way to write an algorithm down, and a program can be wrong or\nnever finish.\n\nRead again: L01 notes, section 3.", "zh": "", "topic": "L05 小测", "ref": "L01 notes, section 3.", "code": ""}, {"id": "l05-02", "lesson": "L02", "src": "l05", "prompt": "Count one operation each time a line inside the function runs. The `for` line itself does not\ncount. **In the worst case**, how many operations does `count_big` do on a list of `n` numbers?\n\n```python\ndef count_big(numbers):\n    count = 0\n    for number in numbers:\n        if number > 10:\n            count = count + 1\n    return count\n```", "options": ["`n + 2`", "`2n`", "`n² + 2`", "`2n + 2`"], "answer": 3, "exp": "`count = 0` and `return count` run once each: 2. The `if` line runs once per item: `n`.\nIn the worst case every number is bigger than 10, so `count = count + 1` also runs `n` times.\nTotal: `2n + 2`. That is still `O(n)`.\n\nRead again: L02 notes, sections 2 and 4.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, sections 2 and 4.", "code": ""}, {"id": "l05-03", "lesson": "L02", "src": "l05", "prompt": "What is the time complexity of `halvings_for_each`?\n\n```python\ndef halvings_for_each(numbers):\n    steps = 0\n    for number in numbers:\n        size = len(numbers)\n        while size > 1:\n            size = size // 2\n            steps = steps + 1\n    return steps\n```", "options": ["`O(log n)`", "`O(n)`", "`O(n log n)`", "`O(n²)`"], "answer": 2, "exp": "The inner `while` loop halves `size`: `log n` turns. It sits **inside** a loop over `n`\nitems, and nested loops multiply: `n × log n`.\n\nCompare: a loop over `n` items, **then** a halving loop after it, is `n + log n`, so `O(n)`.\nInside multiplies. After adds.\n\nRead again: L02 notes, sections 7 and 8.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, sections 7 and 8.", "code": ""}, {"id": "l05-04", "lesson": "L02", "src": "l05", "prompt": "What is the **space** complexity of `squares`, the extra memory it uses?\n\n```python\ndef squares(numbers):\n    result = []\n    for number in numbers:\n        result.append(number * number)\n    return result\n```", "options": ["`O(1)`", "`O(n)`", "`O(log n)`", "`O(n²)`"], "answer": 1, "exp": "`result` grows by one item for each item of `numbers`, so it holds `n` items at the end.\nThe time is `O(n)` too, but time and space are two separate questions.\n\nRead again: L02 notes, section 3.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, section 3.", "code": ""}, {"id": "l05-05", "lesson": "L02", "src": "l05", "prompt": "An `O(n²)` function does about 100 operations on 10 items. About how many operations does\nit do on 100 items?", "options": ["1,000", "2,000", "10,000", "100,000"], "answer": 2, "exp": "The input is 10 times bigger, and `O(n²)` squares that: `10² = 100` times more\noperations. So `100 × 100 = 10,000`. An `O(n)` function would do only 10 times more.\n\nBig-O tells you how the **work** grows, never how many seconds it takes: the seconds depend\non the computer.\n\nRead again: L02 notes, sections 1 and 7.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, sections 1 and 7.", "code": ""}, {"id": "l05-06", "lesson": "L02", "src": "l05", "prompt": "What is the **worst case** of `has_negative`, and when does it happen?\n\n```python\ndef has_negative(numbers):\n    for number in numbers:\n        if number < 0:\n            return True\n    return False\n```", "options": ["`O(1)`, when the first number is negative", "`O(n)`, when the first number is negative", "`O(n²)`, when every number is negative", "`O(n)`, when no number is negative"], "answer": 3, "exp": "The loop stops at the first negative number. With no negative number, it looks at all\n`n` items, then returns `False`. A is the **best** case, not the worst.\n\nRead again: L02 notes, section 4.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, section 4.", "code": ""}, {"id": "l05-07", "lesson": "L03", "src": "l05", "prompt": "What is the time complexity of `total_of_rests`?\n\n```python\ndef total_of_rests(numbers):\n    total = 0\n    for i in range(len(numbers)):\n        rest = numbers[i:]\n        total = total + len(rest)\n    return total\n```", "options": ["`O(1)`", "`O(n)`", "`O(n log n)`", "`O(n²)`"], "answer": 3, "exp": "It looks like one loop, but `numbers[i:]` is a **slice**, and a slice copies its items.\nThe slices copy `n`, then `n - 1`, and so on down to 1 item: about `n² / 2` copies in total.\n\nRead again: L03 notes, section 4, and L04 notes, section 6.", "zh": "", "topic": "L05 小测", "ref": "L03 notes, section 4, and L04 notes, section 6.", "code": ""}, {"id": "l05-08", "lesson": "L03", "src": "l05", "prompt": "What does this code print?\n\n```python\nmarks = [4, 7, 9]\nfor mark in marks:\n    mark = mark + 1\nprint(marks)\n```", "options": ["`[4, 7, 9]`", "`[5, 8, 10]`", "`[5, 7, 9]`", "`None`"], "answer": 0, "exp": "`mark = mark + 1` changes the name `mark`, not the list. A loop over items cannot change\nthe list. To change it, loop over the positions: `marks[i] = marks[i] + 1`.\n\nRead again: L03 notes, section 6.", "zh": "", "topic": "L05 小测", "ref": "L03 notes, section 6.", "code": ""}, {"id": "l05-09", "lesson": "L03", "src": "l05", "prompt": "What does this code print?\n\n```python\na = [3, 1, 2]\nb = a[:]\nb.append(4)\nprint(a, b)\n```", "options": ["`[3, 1, 2, 4] [3, 1, 2, 4]`", "`[3, 1, 2] [3, 1, 2, 4]`", "`[3, 1, 2] None`", "`[3, 1, 2, 4] [3, 1, 2]`"], "answer": 1, "exp": "`a[:]` is a full slice, so `b` is a **new** list, a copy. Changing `b` does not change\n`a`. With `b = a` instead, both names would show `[3, 1, 2, 4]`: one list, two names.\n\nRead again: L03 notes, sections 4 and 6.", "zh": "", "topic": "L05 小测", "ref": "L03 notes, sections 4 and 6.", "code": ""}, {"id": "l05-10", "lesson": "L04", "src": "l05", "prompt": "What does this code print?\n\n```python\nprint(chr(ord(\"a\") + 2))\n```", "options": ["`c`", "`b`", "`99`", "A `TypeError`"], "answer": 0, "exp": "Read it from the inside out. First `ord(\"a\")`: 97. Then `+ 2`: 99. Then `chr(99)`, the\ncharacter for 99, which is `c`. The letters follow each other with no gaps, so you can do arithmetic with them.\n\nRead again: L04 notes, section 5.", "zh": "", "topic": "L05 小测", "ref": "L04 notes, section 5.", "code": ""}, {"id": "l05-11", "lesson": "L04", "src": "l05", "prompt": "What does this code print?\n\n```python\nparts = \"2026-11-07\".split(\"-\")\nprint(len(parts), parts[1])\n```", "options": ["`3 11`", "`2 11`", "`3 -`", "`10 11`"], "answer": 0, "exp": "`split(\"-\")` cuts the string at each `-` and gives back a **list** of 3 strings:\n`[\"2026\", \"11\", \"07\"]`. Position 1 is `\"11\"`. The `-` signs are not in the list.\n\nRead again: L04 notes, section 4.", "zh": "", "topic": "L05 小测", "ref": "L04 notes, section 4.", "code": ""}, {"id": "l05-12", "lesson": "L04", "src": "l05", "prompt": "`text` holds `n` characters. Which one of these is `O(1)`?", "options": ["`text.upper()`", "`\"x\" in text`", "`text[5]`", "`text.replace(\"a\", \"b\")`"], "answer": 2, "exp": "Reading one position is `O(1)`, as on a list. The others read the whole string, and\n`upper` and `replace` also build a new one: `O(n)`.\n\nRead again: L04 notes, \"What each operation costs\".", "zh": "", "topic": "L05 小测", "ref": "L04 notes, \"What each operation costs\".", "code": ""}, {"id": "ai-l01-01", "lesson": "L01", "src": "ai", "prompt": "Which of these is **not** required of an algorithm?", "options": ["It always finishes", "It is correct for every valid input", "It is written in Python", "Anyone can follow every step exactly"], "answer": 2, "exp": "", "zh": "算法不等于代码。Python 只是写下算法的一种方式，也可以用英文或流程图。", "topic": "算法的定义", "ref": "L01 notes", "code": ""}, {"id": "ai-l01-02", "lesson": "L01", "src": "ai", "prompt": "A student runs their method on one example and gets the right answer. What can you conclude?", "options": ["It is correct for every input", "It is correct for that example only", "It must be fast", "It is a data structure"], "answer": 1, "exp": "", "zh": "一个例子成立不代表对所有合法输入都正确。", "topic": "正确性", "ref": "L01 notes", "code": ""}, {"id": "ai-l01-03", "lesson": "L01", "src": "ai", "prompt": "I think of a number between 1 and 1,000,000,000. You halve the range with each guess. In the worst case, about how many guesses?", "options": ["10", "20", "30", "1,000"], "answer": 2, "exp": "", "zh": "2^30 约为 10 亿，所以约 30 次。每多一倍范围只多一次猜测。", "topic": "对半查找", "ref": "L01 notes", "code": ""}, {"id": "ai-l02-01", "lesson": "L02", "src": "ai", "prompt": "Count one operation per line run inside the function (the `for` line does not count). How many operations on a list of `n` numbers?\n\n```python\ndef add_all(numbers):\n    total = 0\n    for x in numbers:\n        total = total + x\n    return total\n```", "options": ["n", "n + 2", "2n + 2", "n²"], "answer": 1, "exp": "", "zh": "total = 0 一次，循环体 n 次，return 一次，共 n + 2。", "topic": "操作计数", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-02", "lesson": "L02", "src": "ai", "prompt": "What is the time complexity?\n\n```python\ndef f(numbers):\n    count = 0\n    for x in numbers:\n        for k in range(5):\n            count = count + 1\n    return count\n```", "options": ["O(1)", "O(n)", "O(n²)", "O(5n²)"], "answer": 1, "exp": "", "zh": "内层固定 5 次，总轮数 5n，所以是 O(n)。要数轮数，不要数页面上的循环个数。", "topic": "数轮数", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-03", "lesson": "L02", "src": "ai", "prompt": "An `O(n²)` function takes 2 seconds for 1,000 items. About how long for 2,000 items?", "options": ["4 seconds", "8 seconds", "2 seconds", "16 seconds"], "answer": 1, "exp": "", "zh": "n 翻倍，O(n²) 工作量变为 4 倍：2 × 4 = 8 秒。", "topic": "增长倍数", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-04", "lesson": "L02", "src": "ai", "prompt": "What is the time complexity?\n\n```python\ndef g(n):\n    for i in range(n):\n        j = 1\n        while j < n:\n            j = j * 2\n```", "options": ["O(log n)", "O(n)", "O(n log n)", "O(n²)"], "answer": 2, "exp": "", "zh": "内层 j 每次翻倍，约 log n 轮；外层 n 次，相乘得 n log n。", "topic": "嵌套对数循环", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-05", "lesson": "L02", "src": "ai", "prompt": "What is the **extra space** complexity?\n\n```python\ndef size_of_copy(numbers):\n    copy = numbers[:]\n    return len(copy)\n```", "options": ["O(1)", "O(log n)", "O(n)", "O(n²)"], "answer": 2, "exp": "", "zh": "numbers[:] 复制 n 个元素，额外空间 O(n)。输入本身不计入。", "topic": "空间复杂度", "ref": "L02 notes", "code": ""}, {"id": "ai-l03-01", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\na = [1, 2, 3]\nb = a\nb[0] = 9\nprint(a)\n```", "options": ["[1, 2, 3]", "[9, 2, 3]", "[9]", "Error"], "answer": 1, "exp": "", "zh": "b = a 没有复制，只是同一个列表的第二个名字。", "topic": "别名", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-02", "lesson": "L03", "src": "ai", "prompt": "`insert(0, x)` is called `n` times in a loop to build a list. What is the total time?", "options": ["O(1)", "O(n)", "O(n log n)", "O(n²)"], "answer": 3, "exp": "", "zh": "每次 insert(0, x) 要移动全部元素，O(n)，重复 n 次得 O(n²)。", "topic": "操作成本", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-03", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\nnums = [5, 6, 7]\nfirst = nums.pop(0)\nprint(first, nums)\n```", "options": ["5 [6, 7]", "5 [5, 6, 7]", "7 [5, 6]", "None [6, 7]"], "answer": 0, "exp": "", "zh": "pop(0) 删除并返回第一个元素 5，列表剩下 [6, 7]。", "topic": "pop 的返回值", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-04", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\nx = [1, 2]\ny = x.append(3)\nprint(y)\n```", "options": ["[1, 2, 3]", "3", "None", "Error"], "answer": 2, "exp": "", "zh": "append 修改列表但返回 None。", "topic": "append 返回 None", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-05", "lesson": "L03", "src": "ai", "prompt": "An array starts at address 1000 and each item takes 4 cells. At what address is position 6?", "options": ["1006", "1024", "1004", "1028"], "answer": 1, "exp": "", "zh": "1000 + 6 × 4 = 1024。", "topic": "地址计算", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-06", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\ndef add_one(items):\n    items.append(1)\n\nlst = [0]\nadd_one(lst)\nprint(lst)\n```", "options": ["[0]", "[1]", "[0, 1]", "None"], "answer": 2, "exp": "", "zh": "参数是同一个列表的第二个名字，函数里的 append 会改动原列表。", "topic": "函数参数是别名", "ref": "L03 notes", "code": ""}, {"id": "ai-l04-01", "lesson": "L04", "src": "ai", "prompt": "What happens?\n\n```python\nword = \"cat\"\nword[0] = \"b\"\n```", "options": ["word becomes \"bat\"", "TypeError", "IndexError", "Nothing happens"], "answer": 1, "exp": "", "zh": "字符串不可变，不能改单个字符，会报 TypeError。", "topic": "字符串不可变", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-02", "lesson": "L04", "src": "ai", "prompt": "What does this print?\n\n```python\ns = \"hi\"\ns.upper()\nprint(s)\n```", "options": ["HI", "hi", "None", "Error"], "answer": 1, "exp": "", "zh": "字符串方法返回新串，且这里没有保存，所以 s 不变。", "topic": "方法不修改原串", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-03", "lesson": "L04", "src": "ai", "prompt": "What does this print?\n\n```python\nprint(\"-\".join([\"a\", \"b\", \"c\"]))\n```", "options": ["-a-b-c-", "a-b-c", "abc", "a - b - c"], "answer": 1, "exp": "", "zh": "分隔符只出现在元素之间，不在两端。", "topic": "join 位置", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-04", "lesson": "L04", "src": "ai", "prompt": "`text = \"xyz\"`. What does `if text.find(\"x\"):` do?", "options": ["Runs the body, because x is found", "Does not run the body, because find returns 0", "Raises an error", "Runs the body, because 0 is true"], "answer": 1, "exp": "", "zh": "find 返回 0，0 视为假，所以不执行。应写 != -1。", "topic": "find 与 if", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-05", "lesson": "L04", "src": "ai", "prompt": "Building a string of `n` characters by `+` inside a loop costs:", "options": ["O(1)", "O(n)", "O(n log n)", "O(n²)"], "answer": 3, "exp": "", "zh": "每次 + 都复制已有内容，总复制约 n²/2。", "topic": "用 + 拼接成本", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-06", "lesson": "L04", "src": "ai", "prompt": "What does this print?\n\n```python\nprint(len(\"a b  c\".split()))\n```", "options": ["3", "4", "5", "6"], "answer": 0, "exp": "", "zh": "split() 不带参数，按任意连续空白切分，得到 3 个词。", "topic": "split", "ref": "L04 notes", "code": ""}, {"id": "ai-l05-01", "lesson": "L05", "src": "ai", "prompt": "Selection sort on `[3, 1, 2]`. What is the list after **one pass**?", "options": ["[1, 3, 2]", "[1, 2, 3]", "[3, 1, 2]", "[2, 1, 3]"], "answer": 0, "exp": "", "zh": "最小值 1 在位置 1，与位置 0 交换，得 [1, 3, 2]。", "topic": "一轮选择排序", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-02", "lesson": "L05", "src": "ai", "prompt": "Bubble sort on `[3, 1, 2]`. What is the list after **one pass**?", "options": ["[1, 2, 3]", "[1, 3, 2]", "[3, 1, 2]", "[2, 1, 3]"], "answer": 0, "exp": "", "zh": "[3,1,2] → 比较(3,1)交换 → [1,3,2] → 比较(3,2)交换 → [1,2,3]。最大值 3 一轮就沉到末尾。对比：选择排序一轮后是 [1,3,2]。", "topic": "一轮冒泡", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-03", "lesson": "L05", "src": "ai", "prompt": "Bubble sort with early exit runs on an already sorted list of 8 items. How many comparisons?", "options": ["7", "8", "28", "56"], "answer": 0, "exp": "", "zh": "一轮无交换就退出：n − 1 = 7 次比较。", "topic": "比较次数", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-04", "lesson": "L05", "src": "ai", "prompt": "Most swaps selection sort can make on 12 items:", "options": ["11", "12", "66", "144"], "answer": 0, "exp": "", "zh": "每轮至多一次交换，共 n − 1 = 11 轮。", "topic": "选择排序交换数", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-05", "lesson": "L05", "src": "ai", "prompt": "What does this print?\n\n```python\ndef show(x):\n    print(x)\n\nr = show(4)\nprint(r)\n```", "options": ["4 then 4", "4 then None", "None", "Error"], "answer": 1, "exp": "", "zh": "函数打印 4，但没有 return，返回 None。", "topic": "print 与 return", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-06", "lesson": "L05", "src": "ai", "prompt": "`a = [1, 2, 3]`. After `a[0], a[2] = a[2], a[0]`, what is `a`?", "options": ["[3, 2, 1]", "[1, 2, 1]", "[3, 2, 3]", "[1, 2, 3]"], "answer": 0, "exp": "", "zh": "右边先整体读取，再赋值，所以真正交换。", "topic": "一行交换", "ref": "L05 notes", "code": ""}, {"id": "ai-l06-01", "lesson": "L06", "src": "ai", "prompt": "Which sort is stable?", "options": ["Selection sort", "Bubble sort", "Neither", "Both"], "answer": 1, "exp": "", "zh": "冒泡只在左边严格更大时交换，相等元素不会越过彼此，所以稳定。选择排序不稳定。", "topic": "稳定性", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-02", "lesson": "L06", "src": "ai", "prompt": "Sort `(name, score)` by score with a **stable** sort: `[(\"A\",2),(\"B\",1),(\"C\",2)]`. Result?", "options": ["B, A, C", "B, C, A", "A, C, B", "A, B, C"], "answer": 0, "exp": "", "zh": "分数 1 的 B 在前；两个分数 2 的保持原顺序 A 在 C 前。", "topic": "稳定排序推演", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-03", "lesson": "L06", "src": "ai", "prompt": "What does this print?\n\n```python\na = [3, 1, 2]\nb = sorted(a)\nprint(a, b)\n```", "options": ["[1, 2, 3] [1, 2, 3]", "[3, 1, 2] [1, 2, 3]", "[3, 1, 2] None", "None [1, 2, 3]"], "answer": 1, "exp": "", "zh": "sorted 返回新列表，原列表不变。", "topic": "sorted 与 sort", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-04", "lesson": "L06", "src": "ai", "prompt": "What does this print?\n\n```python\na = [3, 1, 2]\nb = a.sort()\nprint(b)\n```", "options": ["[1, 2, 3]", "[3, 1, 2]", "None", "Error"], "answer": 2, "exp": "", "zh": ".sort() 原地排序，返回 None。", "topic": "sort 的返回值", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-05", "lesson": "L06", "src": "ai", "prompt": "`scores = [90, 75, 60]`. What does `min(scores)` give?", "options": ["2", "60", "75", "[60]"], "answer": 1, "exp": "", "zh": "min 返回值而不是位置。", "topic": "min 的返回", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-06", "lesson": "L06", "src": "ai", "prompt": "What does this print?\n\n```python\nprint(sorted([2, 9, 4], reverse=True))\n```", "options": ["[2, 4, 9]", "[9, 4, 2]", "[9, 2, 4]", "None"], "answer": 1, "exp": "", "zh": "reverse=True 从大到小。", "topic": "reverse", "ref": "L06 notes", "code": ""}, {"id": "ai-l07-01", "lesson": "L07", "src": "ai", "prompt": "What does this print?\n\n```python\ndef find_index(items, t):\n    for i in range(len(items)):\n        if items[i] == t:\n            return i\n    return -1\n\nprint(find_index([4, 9, 2, 9], 9))\n```", "options": ["1", "3", "2", "-1"], "answer": 0, "exp": "", "zh": "找到第一个 9 就返回，位置为 1。", "topic": "线性查找位置", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-02", "lesson": "L07", "src": "ai", "prompt": "Worst-case comparisons of binary search on 1,000 sorted items:", "options": ["about 10", "about 100", "about 500", "1,000"], "answer": 0, "exp": "", "zh": "2^10 = 1024，约 10 次。", "topic": "二分最坏次数", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-03", "lesson": "L07", "src": "ai", "prompt": "Binary search is run on an **unsorted** list. What may happen?", "options": ["It is just slower", "It can return -1 for a value that is in the list", "It always works", "It raises an error"], "answer": 1, "exp": "", "zh": "二分依赖有序，否则可能丢弃含目标的一半，给出错误答案。", "topic": "二分前提", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-04", "lesson": "L07", "src": "ai", "prompt": "Binary search for 7 in `[1, 3, 5, 7, 9]`. What is the first `mid` and its value?", "options": ["mid=2, value 5", "mid=1, value 3", "mid=3, value 7", "mid=4, value 9"], "answer": 0, "exp": "", "zh": "low=0, high=4, mid=2，值为 5。5 < 7 所以 low=3。", "topic": "二分 mid 推演", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-05", "lesson": "L07", "src": "ai", "prompt": "`spot = -1` is the result of a failed search in `names`. What does `names[spot]` give?", "options": ["Error", "None", "The last name", "The first name"], "answer": 2, "exp": "", "zh": "-1 在 Python 中是最后一个位置，不报错，所以先判断 != -1。", "topic": "-1 的陷阱", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-06", "lesson": "L07", "src": "ai", "prompt": "You search a 1,000,000-item unsorted list only **once**. Best choice?", "options": ["Sort, then binary search", "Linear search", "Binary search directly", "Neither works"], "answer": 1, "exp": "", "zh": "排序 O(n log n) 比一次线性扫描 O(n) 更贵；多次搜索才值得排序。", "topic": "一次搜索与多次搜索", "ref": "L07 notes", "code": ""}, {"id": "ai-l08-01", "lesson": "L08", "src": "ai", "prompt": "How many character comparisons does `reads_the_same(\"abcba\")` make (the two-pointer palindrome)?", "options": ["1", "2", "3", "5"], "answer": 1, "exp": "", "zh": "a-a、b-b，共 2 次；两指针在 c 相遇，不再比较。", "topic": "回文比较", "ref": "L08 notes", "code": ""}, {"id": "ai-l08-02", "lesson": "L08", "src": "ai", "prompt": "`numbers = [2, 0, 2, 3]`, `remove_value(numbers, 2)` returns?", "options": ["1", "2", "3", "4"], "answer": 1, "exp": "", "zh": "保留 0 和 3，共 2 个。返回的是新长度。", "topic": "慢快指针", "ref": "L08 notes", "code": ""}, {"id": "ai-l08-03", "lesson": "L08", "src": "ai", "prompt": "After `remove_value([2, 0, 2, 3], 2)`, what is `numbers`?", "options": ["[0, 3]", "[0, 3, 2, 3]", "[0, 3, 0, 3]", "[2, 0, 2, 3]"], "answer": 1, "exp": "", "zh": "0 写到位置 0，3 写到位置 1，后面保持原值：[0, 3, 2, 3]。列表不会变短。", "topic": "慢快指针后列表", "ref": "L08 notes", "code": ""}, {"id": "ai-l08-04", "lesson": "L08", "src": "ai", "prompt": "What does `find_pair_sorted([1, 4, 6, 9], 10)` return (the two-pointer function from the L08 notes)?", "options": ["(1, 9)", "(4, 6)", "None", "(9, 1)"], "answer": 0, "exp": "", "zh": "left=0,right=3，和为 10，立刻返回 (1, 9)。", "topic": "双指针移动", "ref": "L08 notes", "code": ""}, {"id": "ai-l08-05", "lesson": "L08", "src": "ai", "prompt": "Which bug does `while left <= right` cause in `find_pair_sorted([4], 8)`?", "options": ["Returns None", "Returns (4, 4), using one item twice", "Infinite loop", "IndexError"], "answer": 1, "exp": "", "zh": "指针相等时同一元素被用了两次。应使用 left < right。", "topic": "<= 的错误", "ref": "L08 notes", "code": ""}, {"id": "ai-l08-06", "lesson": "L08", "src": "ai", "prompt": "Unsorted list: use `sorted()` then two pointers to find a pair. Time complexity?", "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"], "answer": 1, "exp": "", "zh": "排序 O(n log n) + 扫描 O(n) = O(n log n)。", "topic": "总复杂度", "ref": "L08 notes", "code": ""}];
+</script>
+<script>window.LESSONS = [
+ {id:'L01',title:'算法与数据结构',en:'Algorithms & Data Structures',color:'#ff8fb1',
+  points:['算法 = 任何人都能严格照做的步骤 + 一定会结束 + 对所有合法输入都正确','算法不等于代码，代码只是写下算法的一种方式','数据结构 = 组织和存储数据的方式，让使用更高效','猜数字 1–1,000,000：逐个猜最坏 1,000,000 次，每次减半只要约 20 次'],
+  traps:['以为算法必须用编程语言写','"我的例子能跑通"不等于正确，必须对所有合法输入成立']},
+ {id:'L02',title:'复杂度与 Big-O',en:'Complexity & Big-O',color:'#ffb86b',
+  points:['五种增长，由慢到快：O(1) < O(log n) < O(n) < O(n log n) < O(n²)','化简两条规则：去掉常数系数；只留增长最快的项','先后两个循环相加，嵌套循环相乘','数"轮数"而不是数页面上的循环个数：内层固定 3 次仍是 O(n)','没说明情况时指最坏情况；空间复杂度只算额外内存，输入不算','n 翻倍：O(n) 变 2 倍，O(n²) 变 4 倍，O(log n) 只多一步'],
+  traps:['把 O(n) 当成"n 秒"，Big-O 没有单位','认为 O(2n) 和 O(n) 不同','空间复杂度把输入也算进去']},
+ {id:'L03',title:'列表与内存',en:'Lists',color:'#ffd966',
+  points:['数组是一整块连续内存，位置 i 的地址 = 起点 + i × 单个大小，所以 items[i] 是 O(1)','末尾便宜，开头昂贵：append / pop() 是 O(1)；insert(0,x) / pop(0) 是 O(n)','in、.index、.count、.remove 都是 O(n)；切片 a[b:c] 是 O(c-b)','b = a 不是复制，只是第二个名字；a[:] 才是复制','append / insert / remove 返回 None；pop 返回被删的元素','函数参数也是别名，函数能改动你的列表'],
+  traps:['numbers = numbers.append(5) 会把列表变成 None','循环里 insert(0,x) 整体变成 O(n²)','遍历列表时删除元素会漏掉元素','items[len(items)] 会 IndexError']},
+ {id:'L04',title:'字符串',en:'Strings',color:'#a3e635',
+  points:['字符串不可变：word[0]="b" 会 TypeError','字符串方法不修改原串，返回新串，必须保存：word = word.upper()','循环里用 + 拼接字符串是 O(n²)；用列表收集再 "".join 一次是 O(n)','split() 返回列表；join 的分隔符只出现在元素之间；find 找不到返回 -1','text[i]、len 是 O(1)；find、split、upper、replace 是 O(n)'],
+  traps:['调用字符串方法却不保存结果','if text.find("x"): 位置 0 被当成假，-1 被当成真，要写 != -1','循环里 text = text[1:] 每次都复制，整体 O(n²)']},
+ {id:'L05',title:'选择排序与冒泡排序',en:'Selection & Bubble sort',color:'#5eead4',
+  points:['选择排序：在未排序部分找最小值，换到下一个位置；左边已完成','冒泡排序：左到右比较相邻元素，左边更大就交换；一轮后最大值到末尾','冒泡的提前退出：一轮无交换说明已排序；有序列表只需一轮 n-1 次比较','比较次数最坏 n(n-1)/2；选择排序最多 n-1 次交换；冒泡最坏交换 n(n-1)/2','一行交换 a[i], a[j] = a[j], a[i]；print 只显示，return 才把值交出去','原地排序返回 None'],
+  traps:['swapped = False 只在外层循环前设置一次，必须每一轮开头重置','写成 numbers = bubble_sort(numbers)','"一轮后"和"一次交换后"是不同的答案','选择排序没有提前退出，任何列表比较次数相同']},
+ {id:'L06',title:'稳定性与内置函数',en:'Stability & built-ins',color:'#7dd3fc',
+  points:['稳定 = 相等的元素保持原先的相对顺序','冒泡排序稳定；选择排序不稳定；sorted() 和 .sort() 稳定','sorted() 返回新列表，原列表不变；.sort() 原地排序返回 None；都是 O(n log n)','reverse=True 从大到小','min() / max() 返回值不是位置，O(n)','插入排序不在 MCQ1 范围内'],
+  traps:['scores = scores.sort() 得到 None','以为 sorted(scores) 会改动 scores','以为 min() 返回位置','以为选择排序稳定']},
+ {id:'L07',title:'线性查找与二分查找',en:'Searching',color:'#a5b4fc',
+  points:['线性查找：逐个看，遇到第一个匹配就停；任何列表都能用；最坏 O(n)','return i 在循环里；return -1 在循环后','二分查找：看中间，丢掉一半；必须有序；O(log n)','循环三条规则：while low <= high；low = mid+1，high = mid-1；每轮都有变化保证结束','1,000 项约 10 次，1,000,000 项约 20 次','只搜一次就线性扫描；搜很多次才先排序'],
+  traps:['用 0 表示没找到（0 是真实位置）','把 return -1 放进循环的 else','直接用 -1 当位置，items[-1] 是最后一个，不报错','对无序列表用二分，会得到错误答案']},
+ {id:'L08',title:'双指针',en:'Two pointers',color:'#f0abfc',
+  points:['两种形状：首尾向中间；快慢指针（fast 每轮动，slow 只在保留值时动）','回文：left < right，比较值，不相等返回 False；"racecar" 只比较 3 次','remove_value：列表不变短，返回新长度，只有前 length 个有效','有序数对：和太小 left 上移，太大 right 下移，相等就返回；O(n)','无序列表先 sorted() 再扫描：O(n log n)；每轮至少动一个指针，所以最多 n 轮'],
+  traps:['写成 left <= right，会把同一个元素用两次','某个分支没有移动指针，导致死循环','比较下标 left != right 而不是比较值','remove_value 之后读取整个列表','在循环里排序']}
+];
+window.COMMON = ['Trace on paper. Do not trace in your head.  在纸上推演，别在脑子里。','Count the turns, not the loops you see.  数轮数，不要数循环的个数。','A list method changes the list and gives back None. A string method changes nothing and gives back a new string.  列表方法改列表返回 None；字符串方法不改原串，返回新串。'];
+</script>
+<script>// Building blocks for lesson write-ups. Each lesson file returns {lead, sections:[{id,title,blocks:[...]}]}.
+window.REVIEW = {};
+window.RV = {
+  P: text => ({t:'p', text}),                       // paragraph (supports `code` and **bold**)
+  H: text => ({t:'h', text}),                       // small sub-heading inside a section
+  LI: items => ({t:'list', items}),                 // bullet list
+  C: (code, cap) => ({t:'code', code, cap}),        // python code, highlighted
+  T: (head, rows, cap) => ({t:'table', head, rows, cap}),
+  W: (bad, good, why) => ({t:'wrong', bad, good, why}),   // wrong vs right, side by side
+  X: text => ({t:'exam', text}),                    // how it shows up in MCQ1
+  K: text => ({t:'key', text}),                     // one sentence to remember
+  D: (key, cap) => ({t:'demo', key, cap}),          // embedded step-through demo
+  S: (id, title, ...blocks) => ({id, title, blocks})
+};
+</script>
+<script>(function(){ const {P,H,LI,C,T,W,X,K,D,S} = RV;
+REVIEW.L01 = {
+ lead:'这一课只有两个概念：什么是算法，什么是数据结构。考试会问定义和判断，不要求写代码。',
+ sections:[
+  S('a','算法是什么',
+   P('算法是解决一个问题的**方法**。判断一个东西是不是算法，看三条：'),
+   LI(['**任何人都能严格照做每一步。** 不能有需要判断的步骤，比如"加一点盐"、"直到味道不错"。','**一定会结束。** 不能可能永远跑下去。','**对每一个合法输入都正确。** 不是只对你试过的那个例子正确。']),
+   T(['说法','是算法吗','原因'],[
+     ['"加一点盐直到汤好喝"','不是','需要主观判断，不是人人能照做'],
+     ['"从左到右看每张牌，遇到第一张 A 就停；没有 A 就说没有 A"','是','步骤明确、会结束、对任何牌堆都对'],
+     ['"随机猜数字直到猜对"','不是','可能永远猜不中，不保证结束'],
+     ['"任何一段 Python 程序"','不是','程序可能是错的，也可能永不结束']],'逐条检查'),
+   K('算法不等于代码。代码只是写下算法的一种方式，也可以用英文、流程图，甚至在脑子里执行。')),
+  S('b','数据结构是什么',
+   P('数据结构是**组织和存储数据**的方式，目的是让我们能高效地使用它。'),
+   P('同样一堆书，乱堆在地上，或者按字母排在书架上，书一本没变，找一本书要做的工作却差很多。'),
+   P('注意：数据结构不是"计算机的内存"，也不是"一种算法"。考试里这两个都是常见的干扰项。'),
+   X('定义题的干扰项常常是把"算法的定义"换到"数据结构"的位置。看到"一系列步骤、总会结束、总是正确"，选的是算法。')),
+  S('c','猜数字游戏',
+   P('我心里想一个 1 到 1,000,000 之间的数，你来猜。'),
+   T(['猜法','最坏情况'],[['从 1 开始，一个一个猜','1,000,000 次'],['每次把范围砍一半','约 20 次']],'同样的游戏，同样的回答'),
+   P('差了 50,000 倍的工作量。第二种方法能用，是因为数字**有顺序**：知道猜的数偏大，就可以把右半边整个扔掉。'),
+   LI(['范围缩小一半一次，约 20 次就到 1，因为 2 的 20 次方约等于 100 万。','范围扩大到 10 亿，也只要约 30 次。']),
+   P('这就是下面两个概念相互依赖的原因：对半砍依赖有序的数据结构，而把数据排好序，只有在能对半砍时才值得。'),
+   K('"能跑出正确答案"只是第一个问题。第二个问题是：它要做多少工作？')),
+  S('d','易错点',
+   W('算法必须用某种编程语言写出来','算法可以用任何方式写下来','代码只是表示算法的一种形式。'),
+   W('我的例子跑通了，所以它是对的','必须对每一个合法输入都对','一个例子正确不能证明正确。'),
+   X('典型题：给四句话，问哪一句是算法。逐条检查三个性质，排除需要判断的、可能不结束的，以及把"任何程序"当算法的。'))
+ ]};
+REVIEW.L02 = {
+ lead:'这一课是整个 MCQ1 的地基，后面每一课都用它给操作定价。先学会数操作，再学会化简和读循环。',
+ sections:[
+  S('a','Big-O 描述的是增长，不是秒数',
+   P('用秒表测速度测的是你的电脑，不是算法。同一段代码，换一台电脑，秒数就变了。所以我们改为数**操作次数**，再看它随输入大小 `n` 怎么增长。'),
+   LI(['**时间复杂度**：操作次数随 `n` 怎么增长。','**空间复杂度**：**额外**用了多少内存随 `n` 怎么增长。输入本身不算，因为那是别人给你的。']),
+   W('`O(n)` 就是 n 秒','`O(n)` 的意思是：输入翻倍，工作量大约翻倍','Big-O 没有单位，两个 `O(n)` 的程序秒数可以差一百倍。')),
+  S('b','数操作',
+   P('规则：函数里每一行每运行一次算一次操作，`for` 这一行本身不算。取最坏情况。'),
+   C("def count_big(numbers):\n    count = 0                     # 1 次\n    for number in numbers:\n        if number > 10:           # n 次\n            count = count + 1     # 最坏 n 次\n    return count                  # 1 次",'最坏情况：1 + n + n + 1 = 2n + 2'),
+   P('这个数是 `2n + 2`，再按下面两条规则化简，就是 `O(n)`。')),
+  S('c','化简的两条规则',
+   LI(['**去掉常数系数。** `2n` 变成 `n`，`4n²` 变成 `n²`。','**只留增长最快的项。** `n² + 5n + 3` 变成 `n²`。']),
+   T(['操作数','Big-O'],[['`2n + 2`','`O(n)`'],['`3n + 10`','`O(n)`'],['`n² + n`','`O(n²)`'],['`4n² + n + 9`','`O(n²)`'],['`500`','`O(1)`']]),
+   P('`O(2n)` 和 `O(n)` 是同一个复杂度，写作 `O(n)`。')),
+  S('d','五种增长，由慢到快',
+   T(['Big-O','名称','n 翻倍时','例子'],[
+     ['`O(1)`','常数','不变','`items[5]`'],
+     ['`O(log n)`','对数','只多一步','二分查找'],
+     ['`O(n)`','线性','翻倍','一层循环'],
+     ['`O(n log n)`','线性对数','比翻倍多一点','`sorted()`'],
+     ['`O(n²)`','平方','变成 4 倍','循环套循环']],'按这个顺序背，就同时记住了谁比谁差'),
+   P('`log n` 是把 `n` 对半砍到 1 需要的次数：1,000 约 10 次，1,000,000 约 20 次。'),
+   X('常见题：一个 `O(n²)` 的函数 1,000 项用 2 秒，2,000 项约几秒？答案是 8 秒，因为 n 翻倍，平方级工作量变成 4 倍。')),
+  S('e','怎么读循环',
+   T(['代码形状','Big-O','原因'],[
+     ['没有循环，或总是跑固定次数','`O(1)`','工作量不随 n 变'],
+     ['一层循环，n 项','`O(n)`','n 轮'],
+     ['两个循环一个接一个','`O(n)`','相加：n + n = 2n，去掉常数'],
+     ['循环套循环，都和 n 有关','`O(n²)`','相乘：n × n'],
+     ['每轮折半的循环','`O(log n)`','约 log n 轮'],
+     ['折半循环放在 n 次循环里面','`O(n log n)`','n × log n']]),
+   C("def three_each(numbers):\n    count = 0\n    for number in numbers:\n        for i in range(3):     # 内层永远只跑 3 次\n            count = count + 1\n    return count",'看起来是循环套循环，实际是 3 × n 轮，所以是 O(n)，不是 O(n²)'),
+   K('数轮数，不要数页面上有几个循环。内层固定次数不会让它变成平方。')),
+  S('f','时间和空间是两个问题',
+   C("# 时间 O(n)，空间 O(1)：只有一个变量\ndef total(numbers):\n    result = 0\n    for number in numbers:\n        result = result + number\n    return result\n\n# 时间 O(n)，空间 O(n)：造了一个 n 项的新列表\ndef double_all(numbers):\n    doubled = []\n    for number in numbers:\n        doubled.append(number * 2)\n    return doubled"),
+   P('两个函数都看每个元素一次，时间一样，但内存用量不同。完整回答要说明两样。')),
+  S('g','最好、最坏、平均',
+   C("def contains(numbers, target):\n    for number in numbers:\n        if number == target:\n            return True      # 可能提前结束\n    return False"),
+   T(['情况','什么时候','比较次数','Big-O'],[['最好','目标在第一个','1','`O(1)`'],['最坏','目标在最后，或不存在','`n`','`O(n)`'],['平均','目标在中间某处','约 `n / 2`','`O(n)`']]),
+   P('题目没说是哪种情况，就指**最坏情况**。它是一个保证：代码绝不会比这更慢。')),
+  S('h','易错点',
+   W('两个循环一前一后，所以是 `O(n²)`','一前一后是相加，`O(n)`；套在里面才相乘','要看内层这一行总共跑几次。'),
+   W('空间复杂度把输入列表也算进去','只算代码额外创造的内存','输入是别人给你的。'),
+   W('`O(2n)` 和 `O(n)` 不一样','它们是同一个复杂度','去掉常数系数。'),
+   X('选择题常给一段代码，问时间或空间复杂度。先找内层语句总共执行几次，再套化简规则；空间题只看新建了什么。'))
+ ]};
+})();
+</script>
+<script>(function(){ const {P,H,LI,C,T,W,X,K,D,S} = RV;
+REVIEW.L03 = {
+ lead:'这一课的考点集中在三件事：列表为什么"末尾便宜、开头贵"，`b = a` 不是复制，以及哪些方法返回 None。',
+ sections:[
+  S('a','数组是一整块连续内存',
+   P('数组占用一整块没有空隙的内存，所以电脑可以**直接算出**第 `i` 个元素的位置，不用查找：'),
+   C("地址(i) = 起点 + i × 单个元素大小\n\n例：起点 2000，每个元素占 8\n位置 5 的地址 = 2000 + 5 × 8 = 2040",'不需要搜索，所以 items[i] 是 O(1)'),
+   LI(['4 个元素的列表，位置是 0、1、2、3。最后一个位置是 `len(items) - 1`，也可以写 `-1`。','`items[len(items)]` 会报 `IndexError`。'])),
+  S('b','各个操作要多少钱',
+   T(['操作','成本','原因'],[
+     ['`items[i]`，`items[i] = v`','`O(1)`','算一次地址，读或写一次'],
+     ['`len(items)`','`O(1)`','长度是存好的'],
+     ['`append(v)`，`pop()`','`O(1)`','在末尾，什么都不用挪'],
+     ['`insert(0, v)`，`pop(0)`','`O(n)`','每个元素都要挪一格'],
+     ['`v in items`，`.index`，`.count`，`.remove`','`O(n)`','逐个检查'],
+     ['`items[a:b]`','`O(b - a)`','复制那么多元素到新列表'],
+     ['遍历 `items`','`O(n)`','每个元素一轮']]),
+   P('所以在循环里做 `n` 次 `insert(0, v)`，总成本是 `n × O(n) = O(n²)`；换成 `append` 就是 `O(n)`。'),
+   K('列表的末尾便宜，开头昂贵。开头操作要把其余元素都挪一格。')),
+  S('c','b = a 不是复制',
+   C("a = [1, 2, 3]\nb = a          # 一个列表，两个名字\nb.append(4)\nprint(a)       # -> [1, 2, 3, 4]",'改 b 就等于改 a'),
+   P('复制列表要用完整切片 `b = a[:]`。把列表传给函数也一样：参数是你那个列表的**第二个名字**，函数可以改动你的列表。'),
+   C("def add_one(items):\n    items.append(1)\n\nlst = [0]\nadd_one(lst)\nprint(lst)     # -> [0, 1]"),
+   C("first = [1, 2]\nsecond = first[:]   # 真正的复制\nsecond.append(3)\nprint(first)       # -> [1, 2]\nprint(second)      # -> [1, 2, 3]")),
+  S('d','方法返回什么',
+   T(['方法','改动列表吗','返回'],[['`append`，`insert`，`remove`','是','`None`'],['`pop()`，`pop(i)`','是','被删掉的那个元素']]),
+   C("scores = [4, 8, 6]\nsame = scores\nlast = same.pop()\nprint(last)     # -> 6\nprint(scores)   # -> [4, 8]\n\nx = [1, 2]\nprint(x.append(3))   # -> None",'scores 和 same 是同一个列表；pop 返回元素，append 返回 None'),
+   P('**原地**修改和**新建**列表是两种写函数的方式，要说明是哪一种。改某个位置的值要用位置遍历（`range(len(...))`）；只读值可以直接 `for number in numbers`。'),
+   C("values = [2, 5, 9]\nfor number in values:\n    number = number * 2   # 只改了名字 number，没改列表\nprint(values)             # -> [2, 5, 9]",'遍历元素不能改列表')),
+  S('e','易错点',
+   W('`numbers = numbers.append(5)`','`numbers.append(5)`，单独成行','append 返回 None，写成赋值会把列表弄丢。'),
+   W('在循环里反复 `insert(0, v)`','用 `append`，需要时最后再处理顺序','每次 insert(0, v) 都是 O(n)，整体 O(n²)。'),
+   W('遍历列表时删除元素','建一个新列表','边遍历边删会跳过元素：`[7, 7, 2]` 这样删掉所有 7，结果还剩 `[7, 2]`。'),
+   X('典型题：先让两个名字指向同一个列表，再 append 或 pop，问另一个名字看到什么。先画出"几个列表、几个名字"，答案就出来了。'))
+ ]};
+REVIEW.L04 = {
+ lead:'字符串和列表很像，但有一个根本区别：字符串不能改。这一条决定了方法怎么用，也决定了拼接字符串的成本。',
+ sections:[
+  S('a','字符串不可变',
+   P('字符串是字符的序列，位置、`len`、切片、循环都和列表一样。但它**不能改**：'),
+   C('word = "cat"\nword[0] = "b"     # TypeError：字符串不能修改单个字符','要得到新字符串，就新建一个'),
+   P('字符串方法**不修改**原来的字符串，而是**返回一个新字符串**，必须保存：'),
+   C('word = "dog"\nword.upper()          # 返回了 "DOG"，但没人保存\nprint(word)           # -> dog\nlouder = word.upper()\nprint(louder)         # -> DOG'),
+   T(['','`items.append(3)`','`text.upper()`'],[['改动原值吗','改','不改'],['返回','`None`','新字符串'],['正确用法','`items.append(3)`','`text = text.upper()`']],'列表方法和字符串方法正好相反')),
+  S('b','拼字符串的成本',
+   P('**不要在循环里用 `+` 拼字符串。** 每次 `+` 都新造一个字符串，并把之前的内容全部复制一遍。`n` 个字符就要复制 `1 + 2 + … + n` 次，约 `n² / 2`，是 `O(n²)`。1,000 个字符就是 500,500 次复制。'),
+   P('正确做法：把零件放进列表，最后用 `join` 一次拼起来。每个字符只复制一次，是 `O(n)`。'),
+   C('parts = []\nfor letter in "abc":\n    parts.append(letter.upper())\nprint("".join(parts))    # -> ABC','列表收集，一次 join'),
+   X('题目问"拼 n 个字符，哪种做法成本最低"。答 `append` 到列表再 `join`，不是循环里用 `+`。')),
+  S('c','split、join、find',
+   LI(['`split()` 在空格处切开，返回一个**列表**。','`join` 把分隔符放在零件**之间**，两端没有。','`find` 返回子串开始的位置，找不到返回 `-1`。']),
+   C('words = "the quick fox".split()\nprint(words)             # -> [\'the\', \'quick\', \'fox\']\nprint("-".join(words))   # -> the-quick-fox\nprint("the quick fox".find("quick"))   # -> 4\nprint("the quick fox".find("dog"))     # -> -1'),
+   C('print(len("a b  c".split()))   # -> 3','split() 不带参数时，连续空白算一个分隔')),
+  S('d','字符就是数字',
+   P('每个字符在电脑里有一个编号。`ord` 取编号，`chr` 反过来。小写字母 `a` 到 `z` 是 97 到 122，**连续**排列；大写 `A` 到 `Z` 是 65 到 90。'),
+   C('print(ord("a"))             # -> 97\nprint(chr(99))              # -> c\nprint(ord("c") - ord("a"))  # -> 2\nprint(chr(ord("a") + 2))    # -> c','由内向外读：先 ord，再加，再 chr。c 是字母表里 a 后面第 2 个'),
+   P('`isalnum()` 问"这个字符是字母或数字吗"，是返回 `True`；空格和符号返回 `False`。')),
+  S('e','各个操作的成本',
+   T(['操作','成本'],[
+     ['`text[i]`，`len(text)`','`O(1)`'],
+     ['`text[a:b]`','`O(b - a)`'],
+     ['`letter in text`，`text.find(part)`','`O(n)`'],
+     ['`split()`，`replace`，`upper`，`lower`，`strip`','`O(n)`'],
+     ['`"".join(parts)`','`O(n)`，n 是总长度'],
+     ['循环里用 `+` 拼接','**`O(n²)`**'],
+     ['循环里 `text = text[1:]`','**`O(n²)`**，每次切片都复制剩下的部分']])),
+  S('f','易错点',
+   W('`text.upper()` 之后直接用 `text`','`text = text.upper()`','字符串方法不改原串。'),
+   W('`if text.find("x"):`','`if text.find("x") != -1:`','`-1` 当作真，`0` 当作假：找不到时反而执行，在位置 0 找到时反而不执行。'),
+   W('循环里 `text = text[1:]` 一点点削','用一个位置变量往前走','每次切片都复制剩下的整段。'),
+   X('典型题：先给一段短代码，问最后打印什么，关键在"方法的结果有没有被保存"。'))
+ ]};
+})();
+</script>
+<script>(function(){ const {P,H,LI,C,T,W,X,K,D,S} = RV;
+REVIEW.L05 = {
+ lead:'两个排序都是 O(n²)，考试问的是：推演一轮后列表长什么样、比较和交换各多少次、冒泡的提前退出。下面的演示台可以直接看。',
+ sections:[
+  S('a','先搞清几个词',
+   LI(['**有序**：每个元素都小于或等于后一个。','**原地**：直接改传进来的列表，不新建列表。','**一行交换**：`a[i], a[j] = a[j], a[i]`。Python 先读完右边两个值，再赋值，所以不丢值。','**`return` 把值交出去，`print` 只是显示。** 没有 `return` 的函数返回 `None`，原地排序也返回 `None`。']),
+   C("a = [1, 2, 3]\na[0], a[2] = a[2], a[0]\nprint(a)    # -> [3, 2, 1]\n\ndef show(x):\n    print(x)       # 只是显示\n\nr = show(4)        # 屏幕上显示 4\nprint(r)           # -> None   (show 没有 return，所以 r 是 None)")),
+  S('b','选择排序',
+   P('**在没排序的部分里找最小值，换到下一个位置。重复。** 左边已经排好的部分以后不会再动。'),
+   C("def selection_sort(numbers):\n    for i in range(len(numbers) - 1):\n        smallest = i                      # 从位置 i 开始扫描\n        for j in range(i + 1, len(numbers)):\n            if numbers[j] < numbers[smallest]:\n                smallest = j\n        if smallest != i:                 # 本来就在位就不换\n            numbers[i], numbers[smallest] = numbers[smallest], numbers[i]"),
+   T(['轮','未排序部分里的最小值','交换','这一轮后'],[['1','`2`，在位置 3','位置 0 和 3','`[2, 3, 9, 7]`'],['2','`3`，在位置 1','不用换，已在位','`[2, 3, 9, 7]`'],['3','`7`，在位置 3','位置 2 和 3','`[2, 3, 7, 9]`']],'对 [7, 3, 9, 2] 的推演。一轮 = 一次扫描 + 至多一次交换'),
+   D('select','选择排序：黄色是正在比较，粉色是交换，青色是已排好'),
+   K('选择排序没有提前退出：不管列表什么样，比较次数都一样。它最多交换 n - 1 次。')),
+  S('c','冒泡排序',
+   P('**从左到右比较每一对相邻元素，左边更大就交换。** 一整轮之后，最大值到了末尾。'),
+   C("def bubble_sort(numbers):\n    n = len(numbers)\n    for i in range(n - 1):\n        swapped = False                 # 1. 每一轮开头重置\n        for j in range(n - 1 - i):\n            if numbers[j] > numbers[j + 1]:\n                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]\n                swapped = True          # 2. 交换之后立刻标记\n        if not swapped:                 # 3. 一轮结束后检查\n            return"),
+   T(['比较位置','数值','动作','之后'],[['0 和 1','5 和 1','交换','1, 5, 4, 2, 8'],['1 和 2','5 和 4','交换','1, 4, 5, 2, 8'],['2 和 3','5 和 2','交换','1, 4, 2, 5, 8'],['3 和 4','5 和 8','保持','1, 4, 2, 5, 8']],'对 [5, 1, 4, 2, 8] 的一轮'),
+   D('bubble','冒泡排序：看最大值怎样一轮一轮沉到末尾，以及没有交换时提前退出'),
+   P('**提前退出**：一轮没有任何交换，说明已经有序，函数直接结束。对已经有序的列表，冒泡只跑一轮，`n - 1` 次比较，是 `O(n)`。10 个有序元素是 9 次比较。')),
+  S('d','要花多少',
+   T(['','选择排序','冒泡排序（带提前退出）'],[
+     ['比较，最坏','`n(n-1)/2`，`O(n²)`','`n(n-1)/2`，`O(n²)`'],
+     ['比较，最好','`n(n-1)/2`，永远 `O(n²)`','`n - 1`，有序时 `O(n)`'],
+     ['交换，最坏','至多 `n - 1`，`O(n)`','`n(n-1)/2`，`O(n²)`'],
+     ['额外内存','`O(1)`','`O(1)`']]),
+   P('10 项时 `n(n-1)/2` 是 45，100 项是 4,950。项数多 10 倍，比较次数约多 100 倍。'),
+   X('常问：12 项的选择排序最多交换几次（11）；8 项有序列表的冒泡带提前退出比较几次（7）。')),
+  S('e','易错点',
+   W('"一轮后"和"一次交换后"答成一样','数清题目问的是几轮、几次交换','两轮就是两轮，不是一轮，也不是排完。'),
+   W('`swapped = False` 放在外层循环前面','每一轮开头都重置','否则前一轮的交换会让这一轮无法提前退出。'),
+   W('`numbers = bubble_sort(numbers)`','直接 `bubble_sort(numbers)`','原地排序返回 `None`。'),
+   W('一行交换写成两行','用 `a[i], a[j] = a[j], a[i]`','两行会丢掉第一个值，同一个值被复制两遍。'),
+   X('推演题：选择排序对 [6, 4, 8, 1, 5] 做两轮，结果 [1, 4, 8, 6, 5]。第二轮没有交换也算一轮。'))
+ ]};
+REVIEW.L06 = {
+ lead:'注意：**插入排序不考 MCQ1**，这里不讲它。L06 要考的是稳定性、sorted() 与 .sort() 的区别、min() 与 max()。',
+ sections:[
+  S('a','什么叫稳定',
+   P('排序是**稳定**的，当相等的元素排序后保持原来的先后顺序。元素有多个部分时它才有意义，比如 `(名字, 分数)`。按分数排序：'),
+   C('排序前:  ("Li", 90)   ("Mei", 90)   ("Wei", 75)\n\n稳定:    ("Wei", 75)   ("Li", 90)   ("Mei", 90)   # Li 仍在 Mei 前\n不稳定:  ("Wei", 75)   ("Mei", 90)   ("Li", 90)   # Li 和 Mei 换了顺序'),
+   T(['排序','稳定吗','原因'],[
+     ['冒泡排序','**是**','只有左边**严格更大**才交换，相等的元素不会互相越过'],
+     ['选择排序','**不是**','交换的两个元素可能隔得很远，一个元素可以跳过与它相等的另一个'],
+     ['`sorted()`，`.sort()`','**是**','Python 内置排序是稳定的']]),
+   P('手工求稳定结果的做法：按分数排；分数相同的，按原来的先后顺序放。'),
+   C('# 对 [("A",2), ("B",1), ("C",2)] 按分数稳定排序\n# 分数 1 的 B 最前；两个分数 2 的保持 A 在 C 前\n# 结果: B, A, C'),
+   X('"以下哪种排序不稳定？"答选择排序。需要推演的稳定结果题，就用上面的方法。')),
+  S('b','sorted() 和 .sort()',
+   C('scores = [90, 75, 90, 60]\nin_order = sorted(scores)     # 返回新列表\nprint(in_order)               # -> [60, 75, 90, 90]\nprint(scores)                 # -> [90, 75, 90, 60]\n\nscores.sort()                 # 原地排序\nprint(scores)                 # -> [60, 75, 90, 90]'),
+   T(['','`sorted(items)`','`items.sort()`'],[['改 `items` 吗','不改','改'],['返回','一个新的有序列表','`None`'],['正确写法','`in_order = sorted(items)`','`items.sort()`，单独一行'],['成本','`O(n log n)`，稳定','`O(n log n)`，稳定']]),
+   C('print(sorted([2, 9, 4], reverse=True))   # -> [9, 4, 2]','两个都支持 reverse=True，从大到小'),
+   C('letters = ["c", "a", "b"]\nfirst = sorted(letters)\nletters.sort(reverse=True)\nprint(first)      # -> [\'a\', \'b\', \'c\']\nprint(letters)    # -> [\'c\', \'b\', \'a\']'),
+   P('1,000 项时，`sorted()` 约 10,000 步，你自己写的 O(n²) 排序约 500,000 步。**真实代码里用 `sorted()`。**')),
+  S('c','min() 和 max()',
+   C('scores = [90, 75, 90, 60]\nprint(min(scores))   # -> 60\nprint(max(scores))   # -> 90'),
+   LI(['都只走一遍列表，是 `O(n)`。','返回的是**值**，不是位置。60 在位置 3，但 `min()` 给出 60。这就是选择排序要自己扫描"最小值所在位置"的原因。'])),
+  S('d','易错点',
+   W('`scores = scores.sort()`','`scores.sort()`，或 `ordered = sorted(scores)`','`.sort()` 返回 `None`，列表就丢了。'),
+   W('以为 `sorted(scores)` 会改 `scores`','它返回新列表，`scores` 不变','要用就保存返回值。'),
+   W('以为 `min()` 返回位置','`min()` 返回值','要位置得自己扫描。'),
+   W('认为选择排序稳定','选择排序不稳定，冒泡稳定','远距离交换会让相等的元素换序。'))
+ ]};
+})();
+</script>
+<script>(function(){ const {P,H,LI,C,T,W,X,K,D,S} = RV;
+REVIEW.L07 = {
+ lead:'线性查找什么列表都能用但慢；二分查找快得多，但前提是列表有序。考点包括 -1 的陷阱、二分循环的三条规则、几次比较。',
+ sections:[
+  S('a','线性查找',
+   P('**一个一个看，遇到第一个匹配就停。** 有序无序都能用。'),
+   C("def find_index(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i          # 找到了，立刻停\n    return -1                 # 循环走完才能说\"不在\"\n\nprint(find_index([4, 9, 2, 9], 9))   # -> 1\nprint(find_index([4, 9, 2], 7))      # -> -1"),
+   LI(['`return i` 在循环**里面**，一找到就停。','`return -1` 在循环**后面**。"不在"要检查完所有元素才成立。','**`-1` 表示没找到。** `0` 是真实的位置（第一个），所以不能用来表示没找到。','使用结果前先检查。`items[-1]` 是**最后一个**元素，Python 不会报错。']),
+   T(['情况','什么时候','比较次数'],[['最好','目标是第一个','1，`O(1)`'],['最坏','目标在最后或根本不在','`n`，`O(n)`'],['平均','随机位置','约 `n / 2`，`O(n)`']]),
+   P('提前退出让**最好**情况变好，**最坏**情况仍是 `O(n)`。')),
+  S('b','二分查找',
+   P('**看中间那个。太小就扔掉左半边，太大就扔掉右半边。重复。** 前提：列表已经有序。'),
+   C("def binary_search(numbers, target):\n    low = 0\n    high = len(numbers) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if numbers[mid] == target:\n            return mid\n        if numbers[mid] < target:\n            low = mid + 1        # 目标在右半边\n        else:\n            high = mid - 1       # 目标在左半边\n    return -1"),
+   D('binary','在 [2, 5, 8, 12, 16, 23, 38, 45, 56, 67] 里找 56：暗掉的部分是已经排除的'),
+   T(['步','`low`','`high`','`mid`','`numbers[mid]`','结果'],[['1','0','9','4','16','太小：`low = 5`'],['2','5','9','7','45','太小：`low = 8`'],['3','8','9','8','56','找到：返回 8']]),
+   P('值不在列表里时，`low` 会越过 `high`，循环结束，返回 `-1`。'),
+   H('循环的三条规则'),
+   LI(['`while low <= high`：两者相等时还剩一个没检查的元素。','`low = mid + 1` 和 `high = mid - 1`：`mid` 已经检查过了。','每一轮都有东西在变，所以循环一定结束。'])),
+  S('c','为什么是 O(log n)',
+   P('每次比较扔掉**一半**。线性查找是**走台阶**，每次排除一个；二分是**跳**，每次排除一半。'),
+   T(['元素个数','线性，最坏','二分，最坏'],[['1,000','1,000','约 10'],['1,000,000','1,000,000','约 20'],['1,000,000,000','1,000,000,000','约 30']]),
+   X('常考：1,000 项有序列表二分，最坏几次比较？约 10 次（2 的 10 次方是 1024）。')),
+  S('d','二分需要有序，值不值得排序',
+   P('对**无序**列表二分，得到的是**错误**答案，不是更慢：它可能对一个确实在列表里的值返回 `-1`。'),
+   P('先排序再查找：`sorted()` 是 `O(n log n)`，100 万项约 2,000 万步。'),
+   LI(['只查**一次**：直接线性查找更便宜，排序的钱都不值。','查**很多次**：排一次序，之后每次约 20 步。']),
+   K('排序一次，查找多次。')),
+  S('e','易错点',
+   W('用 `0` 表示没找到','用 `-1`','`0` 是第一个位置。'),
+   W('把 `return -1` 放在循环里的 `else`','放到循环外面','否则看完位置 0 就放弃了。'),
+   W('直接拿 `-1` 当位置用','先 `if spot != -1:` 再用','`names[-1]` 是最后一个名字，不会报错，但答案是错的。'),
+   W('对无序列表用二分','先 `sorted()`，或者改用线性查找','二分依赖有序。'),
+   X('推演题：对 [1, 3, 5, 7, 9] 找 7，第一个 mid 是 2，值是 5，太小，所以 low = 3。'))
+ ]};
+REVIEW.L08 = {
+ lead:'两个指针在同一个循环里按规则移动，把"循环套循环"的 O(n²) 变成 O(n)。分为从两头走和快慢指针两种形状。',
+ sections:[
+  S('a','指针是下标',
+   P('**指针**就是一个存着位置的变量。**双指针**指同一份数据上的两个下标，在**一个**循环里按规则移动。'),
+   T(['形状','起点','怎么走'],[['从两头走','`left` 在 0，`right` 在末尾','向中间靠，直到相遇'],['快慢指针','都在开头','`fast` 每轮都动，`slow` 只在保留一个值时才动']])),
+  S('b','从两头走：回文与反转',
+   C("def reads_the_same(word):\n    left = 0\n    right = len(word) - 1\n    while left < right:\n        if word[left] != word[right]:   # 一对不同就够了\n            return False\n        left = left + 1                 # 两个指针每步都要动\n        right = right - 1\n    return True"),
+   P('`\"racecar\"`：比较 r–r、a–a、c–c，然后两个指针都在 `e` 上，`left < right` 为假，停。7 个字母只比较 **3** 次。中间那个字母不用比，因为它一定等于自己。'),
+   P('`\"abcba\"`：比较 a–a、b–b，共 **2** 次。'),
+   LI(['这里用 `<` 不用 `<=`：指针相遇的那个元素不用检查。二分查找相反，它必须用 `<=`。','同样的走法也能原地**反转**列表：交换两个元素，再移动两个指针。','注意区分：`while` 条件被检查的次数，不等于字符比较的次数。']),
+   X('"racecar 一共比较几次"是常见的陷阱题，答案 3，不是 7，也不是 4。')),
+  S('c','快慢指针：原地删除',
+   C("def remove_value(numbers, unwanted):\n    slow = 0                             # 下一个保留的值该放哪\n    for fast in range(len(numbers)):\n        if numbers[fast] != unwanted:    # 值得保留吗\n            numbers[slow] = numbers[fast]\n            slow = slow + 1              # 又保留了一个\n    return slow\n\nnumbers = [3, 0, 3, 5, 3, 7]\nprint(remove_value(numbers, 3))   # -> 3\nprint(numbers)                    # -> [0, 5, 7, 5, 3, 7]"),
+   T(['`fast`','`numbers[fast]`','保留吗','写入','`slow` 之后'],[['0','3','否','—','0'],['1','0','是','`numbers[0] = 0`','1'],['2','3','否','—','1'],['3','5','是','`numbers[1] = 5`','2'],['4','3','否','—','2'],['5','7','是','`numbers[2] = 7`','3']]),
+   P('**列表不会变短**，函数返回的是**新长度**。有效答案是 `numbers[0]` 到 `numbers[length - 1]`，后面的忽略。')),
+  S('d','有序列表里找两数之和',
+   P('列表有序时，`left` 在开头，`right` 在末尾，把两个值相加：'),
+   T(['和','怎么动'],[['太小','`left` 往右：换一个更大的左值'],['太大','`right` 往左：换一个更小的右值'],['相等','找到了，停']]),
+   C("def find_pair_sorted(numbers, target):\n    left = 0\n    right = len(numbers) - 1\n    while left < right:\n        total = numbers[left] + numbers[right]\n        if total == target:\n            return (numbers[left], numbers[right])\n        if total < target:\n            left = left + 1\n        else:\n            right = right - 1\n    return None\n\nprint(find_pair_sorted([1, 2, 3, 5, 6, 8, 9, 11], 15))   # -> (6, 9)"),
+   D('pair','在 [1, 2, 3, 5, 6, 8, 9, 11] 里找和为 15 的两个数：6 步找到 (6, 9)'),
+   P('每对都检查要用循环套循环，`O(n²)`；双指针只要一个循环，`O(n)`。**列表必须有序**，否则没有"该动哪个指针"的规则。无序就先 `sorted()` 再走，总共 `O(n log n)`。')),
+  S('e','为什么是 O(n)',
+   LI(['每一轮至少动一个指针。','每个指针只往一个方向走：`left` 只增，`right` 只减。','两个指针合起来最多走 `n` 个位置。']),
+   P('所以循环最多 `n` 轮，是 `O(n)`。二分查找的 `low` 和 `high` 也是两个指针，但它们是**跳**过一半，所以是 `O(log n)`。'),
+   T(['问题','时间','额外内存'],[['回文，双指针','`O(n)`','`O(1)`'],['原地反转列表','`O(n)`','`O(1)`'],['原地删除，快慢指针','`O(n)`','`O(1)`'],['找数对，每对都查','`O(n²)`','`O(1)`'],['有序列表找数对，双指针','`O(n)`','`O(1)`'],['无序列表：先排序再走','`O(n log n)`','`O(n)`，`sorted()` 造了新列表']])),
+  S('f','易错点',
+   W('`while left <= right`','`while left < right`','相等时同一个元素被用了两次：`find_pair_sorted([4], 8)` 会返回 `(4, 4)`。'),
+   W('`if` 的某个分支没有移动任何指针','每个分支都要动至少一个指针','否则下一轮和这一轮一模一样，死循环。'),
+   W('比较下标：`left != right`','比较值：`word[left] != word[right]`','回文要比较字符本身。'),
+   W('`remove_value` 之后读整个列表','只读 `numbers[0]` 到 `numbers[length - 1]`','后面是旧值，不属于答案。'),
+   W('在循环里排序','在循环前排一次','排序成本很高，不该每轮重复。'))
+ ]};
+})();
+</script>
+<script>(function(){
+const Q = window.QUESTIONS, L = window.LESSONS;
+const $ = s => document.querySelector(s);
+const KEY = 'dsa-review-v1';
+let S = JSON.parse(localStorage.getItem(KEY) || 'null') || {att:{}, mistakes:{}, star:{}, xp:0, streakBest:0, exams:[], seen:{}};
+const save = () => localStorage.setItem(KEY, JSON.stringify(S));
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const byId = {}; Q.forEach(q => byId[q.id] = q);
+const srcName = {l09:'L09 示范题', l05:'L05 小测', ai:'AI 生成'};
+const level = () => Math.floor(Math.sqrt(S.xp / 20)) + 1;
+const pct = (a,b) => b ? Math.round(a/b*100) : 0;
+const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+function toast(t){ const e=$('#toast'); e.textContent=t; e.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>e.classList.remove('show'),1800); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+
+// ---- Python syntax highlighting (tokenised on raw text, then escaped) ----
+const KW = new Set('def return for in if else elif while and or not import from break continue pass'.split(' '));
+const CONST = new Set(['True','False','None']);
+const BI = new Set('print range len sorted min max sum list str int abs'.split(' '));
+function highlight(code){
+  const re = /(#[^\n]*)|("[^"\n]*"|'[^'\n]*')|\b(\d+)\b|\b([A-Za-z_]\w*)\b(\s*\()?/g;
+  let out = '', last = 0, m;
+  while((m = re.exec(code))){
+    out += esc(code.slice(last, m.index)); last = re.lastIndex;
+    if(m[1]) out += `<span class="k-cm">${esc(m[1])}</span>`;
+    else if(m[2]) out += `<span class="k-str">${esc(m[2])}</span>`;
+    else if(m[3]) out += `<span class="k-num">${m[3]}</span>`;
+    else { const w = m[4], call = m[5] || '';
+      if(KW.has(w)) out += `<span class="k-kw">${w}</span>${call}`;
+      else if(CONST.has(w)) out += `<span class="k-num">${w}</span>${call}`;
+      else if(BI.has(w)) out += `<span class="k-bi">${w}</span>${call}`;
+      else if(call) out += `<span class="k-fn">${w}</span>${call}`;
+      else out += w; }
+  }
+  return out + esc(code.slice(last));
+}
+// minimal markdown: ```code``` blocks, `inline`, **bold**
+function md(s){
+  const parts = s.split(/```(?:python)?\n?/);
+  return parts.map((p,i) => i%2 ? '<pre><code>'+highlight(p.replace(/\n$/,''))+'</code></pre>'
+    : esc(p).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>')).join('');
+}
+
+// ---- icons (stroke, 24px grid) ----
+const IC = {
+ home:'<path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',
+ practice:'<path d="M4 17l6-6-6-6M12 19h8"/>',
+ exam:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>',
+ mistakes:'<path d="M5 3h11l3 3v15H5zM9 11l6 6M15 11l-6 6"/>',
+ stats:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+ review:'<path d="M4 4h11a3 3 0 013 3v13H7a3 3 0 01-3-3zM8 9h6M8 13h6"/>',
+ guide:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 115 0c0 1.8-2.5 2-2.5 4M12 17h.01"/>'
+};
+const ico = k => `<svg viewBox="0 0 24 24">${IC[k]}</svg>`;
+// ---- one small line illustration per lesson ----
+const ART = {
+ L01:'<path d="M12 70h26l8-30 10 44 10-34 8 20h26"/><circle cx="124" cy="62" r="6"/>',
+ L02:'<path d="M10 82C40 82 60 78 80 62S120 18 150 10"/><path d="M10 82C50 82 100 80 150 76" opacity=".5"/><path d="M10 82C60 70 110 40 150 36" opacity=".5"/>',
+ L03:'<rect x="12" y="46" width="26" height="26"/><rect x="38" y="46" width="26" height="26"/><rect x="64" y="46" width="26" height="26"/><rect x="90" y="46" width="26" height="26" stroke-dasharray="4 4"/><path d="M25 36v10M51 36v10"/>',
+ L04:'<path d="M14 40h18M14 56h30M14 72h22"/><path d="M62 38c10-6 20-6 26 0M62 54c14-8 30-8 40 0M62 70c10-6 24-6 32 0"/><path d="M118 36v44"/>',
+ L05:'<path d="M18 80V56M42 80V36M66 80V66M90 80V26M114 80V46"/><path d="M42 22l24 0M60 16l6 6-6 6" />',
+ L06:'<circle cx="40" cy="48" r="16"/><circle cx="40" cy="48" r="5"/><path d="M70 48h50M108 38l12 10-12 10"/>',
+ L07:'<circle cx="52" cy="46" r="20"/><path d="M67 62l22 22"/><path d="M110 28v56M110 56h30"/>',
+ L08:'<path d="M12 62h136"/><circle cx="34" cy="62" r="8"/><circle cx="126" cy="62" r="8"/><path d="M48 44l14 0M112 44l-14 0M56 38l6 6-6 6M104 38l-6 6 6 6"/>'
+};
+const LCOL = {L01:'#ff5ea8',L02:'#ffa23a',L03:'#ffd54a',L04:'#9be84a',L05:'#2ef2d6',L06:'#4fb7ff',L07:'#8f7bff',L08:'#e27bff'};
+
+// ---- algorithm stage: four step-able visual demos ----
+const DEMOS = {
+ bubble:{name:'冒泡排序', data:[5,1,4,2,8,3,7,6], *run(a, ev){
+   const n=a.length; let c=0,s=0;
+   for(let i=0;i<n-1;i++){ let sw=false;
+     for(let j=0;j<n-1-i;j++){ c++; yield ev({cmp:[j,j+1],ptr:{j:j},c,s,say:`比较 a[${j}]=${a[j]} 与 a[${j+1}]=${a[j+1]}`});
+       if(a[j]>a[j+1]){ [a[j],a[j+1]]=[a[j+1],a[j]]; s++; sw=true; yield ev({swp:[j,j+1],ptr:{j:j},c,s,say:'左边更大，交换'}); } }
+     yield ev({done:range(n-1-i,n),c,s,say:`第 ${i+1} 轮结束，最大值沉到末尾`}); if(!sw){ yield ev({done:range(0,n),c,s,say:'这一轮没有交换，说明已经有序，提前退出'}); return; } }
+   yield ev({done:range(0,n),c,s,say:'排序完成'}); }},
+ select:{name:'选择排序', data:[6,3,8,2,7,4,5,1], *run(a, ev){
+   const n=a.length; let c=0,s=0;
+   for(let i=0;i<n-1;i++){ let m=i;
+     for(let j=i+1;j<n;j++){ c++; yield ev({cmp:[m,j],ptr:{i:i,m:m,j:j},done:range(0,i),c,s,say:`扫描 a[${j}]=${a[j]}，目前最小值 a[${m}]=${a[m]}`}); if(a[j]<a[m]) m=j; }
+     if(m!==i){ [a[i],a[m]]=[a[m],a[i]]; s++; yield ev({swp:[i,m],ptr:{i:i},done:range(0,i),c,s,say:`把最小值换到位置 ${i}`}); }
+     else yield ev({ptr:{i:i},done:range(0,i+1),c,s,say:`位置 ${i} 已经是最小值，不用交换`}); }
+   yield ev({done:range(0,n),c,s,say:'排序完成。交换最多 n-1 次'}); }},
+ binary:{name:'二分查找', data:[2,5,8,12,16,23,38,45,56,67], target:56, *run(a, ev, t){
+   let lo=0,hi=a.length-1,c=0;
+   while(lo<=hi){ const mid=(lo+hi)>>1; c++;
+     yield ev({cmp:[mid],ptr:{low:lo,mid:mid,high:hi},fade:[0,lo,hi+1,a.length],c,s:0,say:`mid=${mid}，a[mid]=${a[mid]}，目标 ${t}`});
+     if(a[mid]===t){ yield ev({hit:[mid],c,s:0,say:`找到了，位置 ${mid}，共比较 ${c} 次`}); return; }
+     if(a[mid]<t){ lo=mid+1; } else { hi=mid-1; } }
+   yield ev({c,s:0,say:'返回 -1'}); }},
+ pair:{name:'双指针求和', data:[1,2,3,5,6,8,9,11], target:15, *run(a, ev, t){
+   let l=0,r=a.length-1,c=0;
+   while(l<r){ const sum=a[l]+a[r]; c++;
+     yield ev({cmp:[l,r],ptr:{left:l,right:r},fade:[0,l,r+1,a.length],c,s:0,say:`${a[l]} + ${a[r]} = ${sum}，目标 ${t}`});
+     if(sum===t){ yield ev({hit:[l,r],c,s:0,say:`找到 (${a[l]}, ${a[r]})，共 ${c} 步`}); return; }
+     if(sum<t){ l++; } else { r--; } }
+   yield ev({c,s:0,say:'没有这样的数对，返回 None'}); }}
+};
+function range(a,b){ const o=[]; for(let i=a;i<b;i++) o.push(i); return o; }
+let stage = null;
+function stageLoad(key){
+  const d = DEMOS[key]; const arr = d.data.slice();
+  const frames = []; const snap = o => { frames.push(Object.assign({arr:arr.slice()}, o)); return 0; };
+  const it = d.run(arr, snap, d.target); while(!it.next().done){}
+  stage = {key, frames, i:0, playing:true, timer:null, base:d.data.slice(), target:d.target};
+  stageDraw(); stagePlay();
+}
+function stageDraw(){
+  const box = $('#plot'); if(!box || !stage) return; const f = stage.frames[stage.i] || {arr:stage.base};
+  const mx = Math.max(...stage.base);
+  const has = (k,i) => f[k] && f[k].includes(i);
+  const ptr = {}; Object.entries(f.ptr||{}).forEach(([k,v]) => { (ptr[v] = ptr[v] || []).push(k); });
+  box.innerHTML = f.arr.map((v,i) => {
+    const cls = [has('swp',i)?'swp':'', has('cmp',i)&&!has('swp',i)?'cmp':'', has('hit',i)?'hit':'', has('done',i)?'ok':'',
+      f.fade && (i<f.fade[1]||i>=f.fade[2]) ? 'dim':''].join(' ');
+    return `<i class="${cls}" style="height:${v/mx*100}%"><b>${v}</b>${ptr[i]?`<u>${ptr[i].join(' · ')}</u>`:''}</i>`; }).join('');
+  $('#readout').innerHTML = `<span>步骤 <b>${stage.i+1}</b>/${stage.frames.length}</span><span>比较 <b>${f.c||0}</b></span>${stage.key==='bubble'||stage.key==='select'?`<span>交换 <b>${f.s||0}</b></span>`:''}${stage.target!==undefined?`<span>目标 <b>${stage.target}</b></span>`:''}<span class="say">${f.say||''}</span>`;
+  const p = $('#pp'); if(p) p.innerHTML = stage.playing ? '<svg viewBox="0 0 16 16"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg>' : '<svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>';
+}
+function stagePlay(){
+  clearInterval(stage.timer); if(!stage.playing || reduceMotion()) { stage.playing = stage.playing && !reduceMotion(); stageDraw(); return; }
+  stage.timer = setInterval(() => { if(!$('#plot')){ clearInterval(stage.timer); return; }
+    if(stage.i < stage.frames.length-1){ stage.i++; stageDraw(); }
+    else { stage.playing = false; clearInterval(stage.timer); stageDraw(); } }, 620);
+}
+function stageStep(d){ if(!stage) return; stage.playing = false; clearInterval(stage.timer); stage.i = Math.max(0, Math.min(stage.frames.length-1, stage.i+d)); stageDraw(); }
+function stageToggle(){ if(!stage) return; if(!stage.playing){ if(stage.i>=stage.frames.length-1) stage.i=0; stage.playing = true; stagePlay(); } else { stage.playing = false; clearInterval(stage.timer); } stageDraw(); }
+
+function addXp(n){ const before=level(); S.xp+=n; save(); if(level()>before) toast('升级！Lv.'+level()); hud(); }
+function record(q, ok, redo){
+  const a = S.att[q.id] || (S.att[q.id] = {r:0,w:0});
+  ok ? a.r++ : a.w++; a.last = ok; a.t = Date.now();
+  if(!ok){ S.mistakes[q.id] = {t:Date.now()}; }
+  else if(redo && S.mistakes[q.id]){ delete S.mistakes[q.id]; }
+  save();
+}
+function hud(){
+  const lv = level(), cur = 20*(lv-1)*(lv-1), nxt = 20*lv*lv;
+  $('#hud').innerHTML = `<span class="lv">Lv.${lv}</span><div class="xpbar"><i style="width:${Math.min(100,(S.xp-cur)/(nxt-cur)*100)}%"></i></div><span class="xp">${S.xp} / ${nxt} XP</span>`;
+}
+const TABS = [['home','道场'],['practice','练习'],['exam','模拟考'],['mistakes','错题本'],['stats','看板'],['review','快速复习'],['guide','使用教程']];
+let tab = 'home', ctx = {};
+function nav(){
+  const nm = Object.keys(S.mistakes).length;
+  $('#nav').innerHTML = TABS.map(([k,n]) => `<button class="${tab===k?'on':''}" data-t="${k}">${ico(k)}<span>${n}</span>${k==='mistakes'&&nm?`<b class="n">${nm}</b>`:''}</button>`).join('');
+  $('#nav').querySelectorAll('button').forEach(b => b.onclick = () => go(b.dataset.t));
+}
+function go(t, c){ if(ctx.timer){clearInterval(ctx.timer);} if(stage){clearInterval(stage.timer);} document.onkeydown=null; tab=t; ctx=c||{}; nav(); window.scrollTo(0,0); VIEWS[t](); }
+function lessonStat(id){
+  const qs = Q.filter(q => q.lesson===id); let done=0, right=0, tried=0;
+  qs.forEach(q => { const a=S.att[q.id]; if(a){ done++; tried+=a.r+a.w; right+=a.r; } });
+  const okNow = qs.filter(q => S.att[q.id] && S.att[q.id].last).length;
+  return {total:qs.length, done, okNow, acc:pct(right,tried), tried};
+}
+const VIEWS = {};
+VIEWS.home = function(){
+  const total = Q.length, done = Object.keys(S.att).length, wrong = Object.keys(S.mistakes).length;
+  $('#app').innerHTML = `${S.seen.guide?'':`<div class="tip"><span><b>第一次使用？</b>1 分钟看懂每个页面怎么用。</span><span class="sp"></span><button class="btn gold" id="tg">看教程</button><button class="btn ghost" id="tx">不再提示</button></div>`}
+  <section class="card stage"><div class="top"><h1>先在纸上推演，<em>再选答案</em></h1>
+    <p>${total} 道题覆盖 L01 到 L08。答错的题自动进错题本，模拟考按真实卷面计时。下面的演示台可以单步看四种算法怎么跑。</p></div>
+    <div class="scope"><div class="bar"><div class="tabs2" id="dtabs">${Object.entries(DEMOS).map(([k,d])=>`<button data-k="${k}">${d.name}</button>`).join('')}</div>
+      <div class="ctl"><button id="pv" aria-label="上一步"><svg viewBox="0 0 16 16"><path d="M12 2v12L4 8zM3 2h2v12H3z"/></svg></button><button id="pp" aria-label="播放或暂停"></button><button id="nx" aria-label="下一步"><svg viewBox="0 0 16 16"><path d="M4 2v12l8-6zM11 2h2v12h-2z"/></svg></button><button id="rs" aria-label="重播"><svg viewBox="0 0 16 16"><path d="M8 2a6 6 0 11-6 6h2a4 4 0 104-4v3L4 3.5 8 0z"/></svg></button></div></div>
+      <div class="plot" id="plot"></div><div class="readout" id="readout"></div></div>
+    <div class="row"><button class="btn gold" id="b1">开始练习</button><button class="btn ghost" id="b2">45 分钟模拟考</button>${wrong?`<button class="btn pink" id="b3">重做错题（${wrong}）</button>`:''}</div></section>
+  <div class="kpis"><div class="card kpi"><b>${done}<i> / ${total}</i></b><span>已做题目</span></div><div class="card kpi"><b>${pct(Object.values(S.att).reduce((a,x)=>a+x.r,0),Object.values(S.att).reduce((a,x)=>a+x.r+x.w,0))}<i>%</i></b><span>总正确率</span></div><div class="card kpi"><b>${wrong}</b><span>错题本</span></div><div class="card kpi"><b>${S.exams.length?Math.max(...S.exams.map(e=>e.score)):'—'}</b><span>模拟考最高分</span></div></div>
+  <h2 class="sec">关卡地图<small>点一课开始练习</small></h2><div class="map" id="ls"></div>
+  <h2 class="sec">考前三句话</h2>${COMMON.map(t=>{const[e,z]=t.split('  ');return `<div class="mantra">${esc(e)}<span class="zh">${esc(z||'')}</span></div>`}).join('')}`;
+  if($('#tg')){ $('#tg').onclick = () => go('guide'); $('#tx').onclick = () => { S.seen.guide = true; save(); go('home'); }; }
+  $('#b1').onclick = () => go('practice'); $('#b2').onclick = () => go('exam'); if($('#b3')) $('#b3').onclick = () => go('mistakes');
+  document.querySelectorAll('#dtabs button').forEach(b => b.onclick = () => { stageLoad(b.dataset.k); markTab(); });
+  const markTab = () => document.querySelectorAll('#dtabs button').forEach(b => b.classList.toggle('on', b.dataset.k===stage.key));
+  $('#pv').onclick = () => stageStep(-1); $('#nx').onclick = () => stageStep(1); $('#pp').onclick = stageToggle; $('#rs').onclick = () => { stageLoad(stage.key); };
+  stageLoad('bubble'); markTab();
+  $('#ls').innerHTML = L.map(l => { const s = lessonStat(l.id), c = LCOL[l.id];
+    const segs = Array.from({length:10},(_,i)=>`<i class="${i < Math.round(s.okNow/s.total*10)?'on':''}"></i>`).join('');
+    return `<button class="card lesson" data-l="${l.id}" style="--c:${c}"><div class="art"><svg viewBox="0 0 160 96" preserveAspectRatio="xMinYMid meet">${ART[l.id]}</svg><span class="id">${l.id}</span></div>
+    <div class="body"><h3>${l.title}</h3><small>${s.done}/${s.total} 题 · ${s.tried?'正确率 '+s.acc+'%':'未开始'}</small><div class="meter">${segs}</div></div></button>`; }).join('');
+  document.querySelectorAll('.lesson').forEach(e => e.onclick = () => go('practice', {lesson:e.dataset.l}));
+};
+
+const pill = q => `<span class="pill ${q.src}">${srcName[q.src]}</span><span class="pill lz" style="--lc:${LCOL[q.lesson]}">${q.lesson}</span>`;
+const expText = q => ((q.zh?'【中文】'+q.zh+'\n':'')+(q.exp||'')).trim();
+const pad = n => String(n).padStart(2,'0');
+const STAR = '<svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>';
+// donut: frac 0..1, centre label + sub label
+const ring = (frac, col, big, sub) => `<svg class="ring" viewBox="0 0 120 120" role="img" aria-label="${big} ${sub}"><circle cx="60" cy="60" r="52" class="rtrack"/><circle cx="60" cy="60" r="52" class="rval" transform="rotate(-90 60 60)" style="stroke:${col};stroke-dasharray:${(326.7*Math.max(0,Math.min(1,frac))).toFixed(1)} 326.7"/><text x="60" y="64" text-anchor="middle" class="rbig">${big}</text><text x="60" y="84" text-anchor="middle" class="rsub">${sub}</text></svg>`;
+function runQuiz(list, opt){
+  let i = 0, combo = 0, best = 0, right = 0, gained = 0; const wrongIds = [], marks = list.map(()=>'');
+  const exit = () => opt.back ? go('review',{l:opt.back.l}) : opt.redo ? go('mistakes') : go('practice',ctx);
+  function show(){
+    if(i >= list.length) return finish();
+    const q = list[i], col = LCOL[q.lesson]; let picked = null;
+    $('#app').innerHTML = `<div class="qwrap" style="--lc:${col}">
+    <div class="qtop"><button class="xbtn" id="qx">退出</button><span class="qtitle">${opt.title}</span><span class="sp"></span><span class="combo ${combo>=2?'hot':''}">连击 <b>×${combo}</b></span></div>
+    <div class="segs">${list.map((_,k)=>`<i class="${k===i?'cur':marks[k]}"></i>`).join('')}</div>
+    <article class="qcard"><div class="qh"><span class="qno">${pad(i+1)}<small> / ${pad(list.length)}</small></span><span class="qtags">${pill(q)}</span><button class="star ${S.star[q.id]?'on':''}" id="st" aria-label="标记这道题" aria-pressed="${!!S.star[q.id]}">${STAR}</button></div>
+    <div class="qtopic">${q.topic}</div><div class="prompt">${md(q.prompt)}</div>
+    <div class="opts">${q.options.map((o,k)=>`<button class="opt" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span><span class="mk"></span></button>`).join('')}</div>
+    <div id="fb"></div>
+    <div class="qf"><span class="kbd"><kbd>1</kbd>–<kbd>4</kbd> 选择 <kbd>Enter</kbd> 下一题</span><span class="sp"></span><button class="btn" id="nx" disabled>${i+1===list.length?'完成':'下一题'}</button></div></article></div>`;
+    $('#qx').onclick = exit;
+    $('#st').onclick = () => { S.star[q.id] ? delete S.star[q.id] : S.star[q.id]=true; save(); $('#st').classList.toggle('on', !!S.star[q.id]); $('#st').setAttribute('aria-pressed', !!S.star[q.id]); };
+    const choose = k => {
+      if(picked!==null || k>=q.options.length) return; picked = k; const ok = k===q.answer; let gain = 0;
+      document.querySelectorAll('.opt').forEach((x,n) => { x.disabled = true; if(n===q.answer) x.classList.add('right'); else if(n===k) x.classList.add('wrong'); });
+      record(q, ok, opt.redo); marks[i] = ok ? 'r' : 'w';
+      if(ok){ right++; combo++; best = Math.max(best, combo); if(combo>S.streakBest){S.streakBest=combo;save();} gain = 10 + Math.min(combo,5)*2; gained += gain; addXp(gain); if(combo>=3) toast(combo+' 连击'); }
+      else { combo = 0; wrongIds.push(q.id); }
+      $('#fb').innerHTML = `<div class="exp ${ok?'ok':'no'}"><div class="eh"><b>${ok?'答对了':'正确答案是 '+'ABCD'[q.answer]}</b>${ok?`<span class="xp">+${gain} XP</span>`:'<span class="xp miss">已加入错题本</span>'}</div>${md(expText(q))}</div>`;
+      document.querySelector('.combo').innerHTML = `连击 <b>×${combo}</b>`; document.querySelector('.combo').classList.toggle('hot', combo>=2);
+      $('#nx').disabled = false; $('#nx').focus(); nav();
+    };
+    document.querySelectorAll('.opt').forEach(b => b.onclick = () => choose(+b.dataset.k));
+    $('#nx').onclick = () => { i++; show(); };
+    document.onkeydown = e => { if(e.target.tagName==='INPUT') return; if('1234'.includes(e.key)) choose(+e.key-1); else if(e.key==='Enter' && picked!==null && document.activeElement.id!=='nx'){ i++; show(); } };
+  }
+  function finish(){
+    document.onkeydown = null; const acc = pct(right,list.length);
+    const col = acc>=80?'var(--cyan)':acc>=60?'var(--amber)':'var(--pink)';
+    const msg = acc===100?'全部答对':acc>=80?'掌握得不错':acc>=60?'还差一点':'这一块要重点复习';
+    $('#app').innerHTML = `<div class="qwrap"><div class="card done"><div class="mini">${opt.title}完成</div><h2 class="dmsg">${msg}</h2>
+    <div class="dstat">${ring(right/list.length,col,right+' / '+list.length,'答对')}<div class="dlist"><div><b>${acc}<i>%</i></b><span>正确率</span></div><div><b>×${best}</b><span>本轮最高连击</span></div><div><b>+${gained}</b><span>获得经验值</span></div></div></div>
+    <div class="segs big">${marks.map(m=>`<i class="${m}"></i>`).join('')}</div>
+    <p class="dnote">${wrongIds.length?`${wrongIds.length} 道错题已进入错题本。`:'这一轮没有错题。'}</p>
+    <div class="row" style="justify-content:center"><button class="btn" id="a1">${opt.back?'换一组题':opt.redo?'再做一遍':'再来一轮'}</button>${wrongIds.length&&!opt.redo?'<button class="btn pink" id="a2">去错题本</button>':''}${opt.back?'<button class="btn gold" id="a4">回到本课</button>':''}<button class="btn ghost" id="a3">回道场</button></div></div></div>`;
+    $('#a1').onclick = () => opt.back ? go('review',{l:opt.back.l}) : go(tab, ctx);
+    if($('#a2')) $('#a2').onclick = () => go('mistakes'); $('#a3').onclick = () => go('home'); if($('#a4')) $('#a4').onclick = () => go('review',{l:opt.back.l});
+  }
+  show();
+}
+VIEWS.practice = function(){
+  const f = ctx.lesson || 'all', src = ctx.src || 'all', mode = ctx.mode || 'new';
+  const pool = Q.filter(q => (f==='all'||q.lesson===f) && (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id]));
+  const cnt = id => Q.filter(q => q.lesson===id && (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id])).length;
+  const seg = (arr, cur, key) => `<div class="seg">${arr.map(([v,n])=>`<button class="${cur===v?'on':''}" data-k="${key}" data-v="${v}">${n}</button>`).join('')}</div>`;
+  const n = Math.min(pool.length, 15);
+  $('#app').innerHTML = `<h2 class="sec">自由练习<small>选一课，或者全部混着做</small></h2>
+  <div class="pick"><button class="pk ${f==='all'?'on':''}" data-v="all" style="--c:#8f7bff"><span class="pi">全</span><b>全部课程</b><small>${cnt_all()} 题</small></button>
+  ${L.map(l=>`<button class="pk ${f===l.id?'on':''}" data-v="${l.id}" style="--c:${LCOL[l.id]}" ${cnt(l.id)?'':'disabled'}><span class="pi">${l.id.slice(1)}</span><b>${l.title}</b><small>${cnt(l.id)} 题</small></button>`).join('')}</div>
+  <div class="card opts2"><div><div class="mini">题目来源</div>${seg([['all','全部'],['l09','L09 示范题'],['l05','L05 小测'],['ai','AI 生成']],src,'src')}</div>
+  <div><div class="mini">范围</div>${seg([['new','没做过的'],['all','全部题目'],['star','已标记']],mode,'mode')}</div></div>
+  <div class="startbar card"><div class="sn">${pool.length?`<b>${n}</b><span>题 · 本轮从 ${pool.length} 道符合条件的题里随机抽取</span>`:'<span>没有符合条件的题。换一个范围，或者选"全部题目"。</span>'}</div><span class="sp"></span><button class="btn gold big" id="go" ${pool.length?'':'disabled'}>开始练习</button></div>`;
+  function cnt_all(){ return Q.filter(q => (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id])).length; }
+  document.querySelectorAll('.pk').forEach(c => c.onclick = () => go('practice',{lesson:c.dataset.v,src,mode}));
+  document.querySelectorAll('.seg button').forEach(c => c.onclick = () => { const o = {lesson:f,src,mode}; o[c.dataset.k]=c.dataset.v; go('practice',o); });
+  $('#go').onclick = () => runQuiz(shuffle(pool).slice(0,15), {title:f==='all'?'综合练习':f+' 练习'});
+};
+const EXAM_MS = 45*60*1000;
+const grade = s => s>=90?['S','出色','var(--amber)']:s>=80?['A','很好','var(--cyan)']:s>=70?['B','良好','var(--sky,#4fb7ff)']:s>=60?['C','及格','var(--violet)']:['D','需要加强','var(--pink)'];
+VIEWS.exam = function(){
+  if(ctx.paper) return examRun();
+  const last = S.exams[S.exams.length-1], best = S.exams.length ? Math.max(...S.exams.map(e=>e.score)) : null;
+  $('#app').innerHTML = `<h2 class="sec">MCQ1 模拟考<small>按真实卷面</small></h2>
+  <div class="examhero card"><div class="eh1"><h1>45 分钟<br>33 道选择题</h1><p>四选一，每题 3 分，另送 1 分，满分 100。答错和空白都是 0 分，所以每题都要写一个答案。交卷前不显示对错。</p>
+  <div class="row"><button class="btn gold big" id="s">开始考试</button>${last?`<span class="mini">上次 ${last.score} 分 · 最高 ${best} 分</span>`:''}</div></div>
+  <div class="eh2">${ring(1,'var(--cyan)','45:00','倒计时')}</div></div>
+  <div class="rules"><div class="card"><b>33</b><span>题，从全部 ${Q.length} 道题里随机抽取</span></div><div class="card"><b>3 + 1</b><span>每题 3 分，另送 1 分</span></div><div class="card"><b>80 秒</b><span>平均每题的时间。卡住超过 90 秒就标记，先往下做</span></div><div class="card"><b>可回头</b><span>用右侧答题卡跳题，标记过的题有黄点</span></div></div>
+  <h2 class="sec">历史成绩</h2><div class="card hist">${S.exams.length?S.exams.slice(-8).map(e=>{const g=grade(e.score);return `<div class="hb" title="${e.score} 分"><i style="height:${e.score}%;background:${g[2]}"></i><b>${e.score}</b></div>`}).join(''):'<span class="mini">还没有成绩。完成一次模拟考后，这里会显示最近 8 次的分数。</span>'}</div>`;
+  $('#s').onclick = () => go('exam', {paper:shuffle(Q).slice(0,33), ans:{}, mark:{}, cur:0, end:Date.now()+EXAM_MS});
+};
+function examRun(){
+  const c = ctx, P = c.paper;
+  const clock = () => { const left = Math.max(0, c.end-Date.now()); return {left, txt:Math.floor(left/60000)+':'+pad(Math.floor(left/1000)%60), frac:left/EXAM_MS}; };
+  function draw(){
+    const q = P[c.cur], tk = clock(), answered = Object.keys(c.ans).length, mk = Object.keys(c.mark).filter(k=>c.mark[k]).length;
+    $('#app').innerHTML = `<div class="exwrap"><div class="exmain">
+      <div class="qtop"><span class="qtitle">第 <b>${c.cur+1}</b> 题 / 33</span><span class="sp"></span><span class="mini">已答 ${answered} · 标记 ${mk} · 未答 ${33-answered}</span></div>
+      <article class="qcard"><div class="qh"><span class="qno">${pad(c.cur+1)}<small> / 33</small></span><span class="qtags"><span class="pill lz" style="--lc:${LCOL[q.lesson]}">${q.lesson}</span></span><button class="flag ${c.mark[c.cur]?'on':''}" id="mk" aria-pressed="${!!c.mark[c.cur]}">${c.mark[c.cur]?'已标记':'标记，稍后检查'}</button></div>
+      <div class="prompt">${md(q.prompt)}</div><div class="opts">${q.options.map((o,k)=>`<button class="opt ${c.ans[c.cur]===k?'sel':''}" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span></button>`).join('')}</div>
+      <div class="qf"><button class="btn ghost" id="pv" ${c.cur?'':'disabled'}>上一题</button><span class="kbd"><kbd>1</kbd>–<kbd>4</kbd> 作答 <kbd>←</kbd><kbd>→</kbd> 切题</span><span class="sp"></span><button class="btn" id="nx" ${c.cur<32?'':'disabled'}>下一题</button></div></article></div>
+      <aside class="sheetp card"><div class="clock ${tk.left<5*60000?'low':''}" id="clock">${ring(tk.frac,tk.left<5*60000?'var(--pink)':'var(--cyan)',tk.txt,'剩余时间')}</div>
+      <div class="legend"><span><i class="d done"></i>已答</span><span><i class="d"></i>未答</span><span><i class="d mk"></i>标记</span></div>
+      <div class="grid33">${P.map((p,k)=>`<button class="dot ${c.ans[k]!==undefined?'done':''} ${k===c.cur?'cur':''} ${c.mark[k]?'mk':''}" data-k="${k}" aria-label="第 ${k+1} 题">${k+1}</button>`).join('')}</div>
+      <button class="btn pink" id="sub" style="width:100%">交卷</button></aside></div>`;
+    document.querySelectorAll('.opt').forEach(b => b.onclick = () => { c.ans[c.cur] = +b.dataset.k; draw(); });
+    document.querySelectorAll('.dot').forEach(b => b.onclick = () => { c.cur = +b.dataset.k; draw(); });
+    $('#pv').onclick = () => { c.cur--; draw(); }; $('#nx').onclick = () => { c.cur++; draw(); };
+    $('#mk').onclick = () => { c.mark[c.cur] = !c.mark[c.cur]; draw(); };
+    $('#sub').onclick = () => { const blank = 33-Object.keys(c.ans).length; if(!blank || confirm('还有 '+blank+' 题没有作答，空白按答错算。确定交卷吗？')) submit(); };
+    document.onkeydown = e => { if('1234'.includes(e.key)){ c.ans[c.cur] = +e.key-1; draw(); } else if(e.key==='ArrowRight' && c.cur<32){ c.cur++; draw(); } else if(e.key==='ArrowLeft' && c.cur>0){ c.cur--; draw(); } };
+  }
+  function submit(){
+    clearInterval(c.timer); document.onkeydown = null; let ok = 0; const wrong = [], per = {};
+    P.forEach((q,k) => { const hit = c.ans[k]===q.answer; record(q, hit); const p = per[q.lesson] || (per[q.lesson] = {n:0,r:0}); p.n++; if(hit){ ok++; p.r++; } else wrong.push(k); });
+    const score = ok*3+1, used = Math.min(EXAM_MS, EXAM_MS-Math.max(0,c.end-Date.now())), g = grade(score), blank = 33-Object.keys(c.ans).length;
+    S.exams.push({t:Date.now(), score, ok}); addXp(ok*5+20); save();
+    const rows = L.filter(l=>per[l.id]).map(l=>{const p=per[l.id],a=pct(p.r,p.n);return `<div class="lrow"><span class="id" style="color:${LCOL[l.id]}">${l.id}</span><div class="bar"><i style="width:${a}%;background:${LCOL[l.id]}"></i></div><span class="lv2">${p.r} / ${p.n}</span></div>`}).join('');
+    $('#app').innerHTML = `<div class="qwrap"><div class="card report"><div class="rk" style="--g:${g[2]}"><div class="rank"><span>${g[0]}</span></div><div><div class="mini">总分</div><div class="score" style="color:${g[2]}">${score}</div><div class="gl">${g[1]}</div></div></div>
+    <div class="dlist wide"><div><b>${ok}<i> / 33</i></b><span>答对</span></div><div><b>${33-ok-blank}</b><span>答错</span></div><div><b>${blank}</b><span>空白</span></div><div><b>${Math.floor(used/60000)}<i> 分</i></b><span>用时</span></div></div>
+    <h3 class="rh2">各课表现</h3><div class="lrows">${rows}</div>
+    <p class="dnote">${wrong.length?`答错和空白的 ${wrong.length} 题已收入错题本。`:'全部答对。'}</p>
+    <div class="row" style="justify-content:center"><button class="btn pink" id="r1" ${wrong.length?'':'disabled'}>看错题解析</button><button class="btn" id="r3">再考一次</button><button class="btn ghost" id="r2">回道场</button></div></div><div id="rev"></div></div>`;
+    $('#r2').onclick = () => go('home'); $('#r3').onclick = () => go('exam');
+    $('#r1').onclick = () => { $('#rev').innerHTML = wrong.map(k => { const q=P[k], a=c.ans[k];
+      return `<article class="qcard rv"><div class="qh"><span class="qno">${pad(k+1)}</span><span class="qtags">${pill(q)}</span></div><div class="mini" style="margin:4px 0 10px">你的答案 <b style="color:var(--pink)">${a===undefined?'未答':'ABCD'[a]}</b> · 正确答案 <b style="color:var(--cyan)">${'ABCD'[q.answer]}</b></div><div class="prompt">${md(q.prompt)}</div><div class="opts">${q.options.map((o,n)=>`<div class="opt ${n===q.answer?'right':n===a?'wrong':''}"><span class="k">${'ABCD'[n]}</span><span class="ot">${md(o)}</span></div>`).join('')}</div><div class="exp no">${md(expText(q))}</div></article>`; }).join(''); $('#rev').scrollIntoView({behavior:'smooth'}); };
+    nav();
+  }
+  c.timer = setInterval(() => { const tk = clock(); if(tk.left<=0){ clearInterval(c.timer); toast('时间到，自动交卷'); submit(); return; }
+    const el = $('#clock'); if(el){ el.innerHTML = ring(tk.frac, tk.left<5*60000?'var(--pink)':'var(--cyan)', tk.txt, '剩余时间'); el.classList.toggle('low', tk.left<5*60000); } }, 1000);
+  draw();
+}
+
+VIEWS.mistakes = function(){
+  const f = ctx.lesson || 'all';
+  const ids = Object.keys(S.mistakes).filter(id => byId[id] && (f==='all'||byId[id].lesson===f)).sort((a,b) => S.mistakes[b].t - S.mistakes[a].t);
+  const chips = [['all','全部']].concat(L.map(l=>[l.id,l.id])).map(([v,n]) => `<button class="chip ${f===v?'on':''}" data-v="${v}">${n}</button>`).join('');
+  if(!Object.keys(S.mistakes).length){
+    $('#app').innerHTML = `<h2 class="sec">错题本</h2><div class="card empty"><svg viewBox="0 0 24 24">${IC.mistakes}</svg><p>错题本是空的。去练习或模拟考，答错的题会自动收进这里。</p><button class="btn" id="g">去练习</button></div>`;
+    $('#g').onclick = () => go('practice'); return; }
+  $('#app').innerHTML = `<h2 class="sec">错题本<small>${Object.keys(S.mistakes).length} 题</small></h2><div class="chips">${chips}</div>
+  <div class="row" style="margin:0 0 16px"><button class="btn pink" id="rd" ${ids.length?'':'disabled'}>重做这 ${ids.length} 题</button><span class="mini">重做时答对的题会移出错题本</span></div>
+  <div class="grid">${ids.map(id => { const q=byId[id], a=S.att[id]||{r:0,w:0};
+    return `<div><div class="card mistake"><div class="main"><div class="mini">${pill(q)} ${q.topic} · 错 ${a.w} 次，对 ${a.r} 次</div><div class="t">${esc(q.prompt.replace(/\`\`\`(python)?/g,''))}</div></div>
+    <div class="row"><button class="btn ghost" data-v="${id}">看解析</button><button class="btn ghost" data-d="${id}">移出</button></div></div><div id="det-${id}"></div></div>`; }).join('')}</div>`;
+  document.querySelectorAll('.chip').forEach(c => c.onclick = () => go('mistakes',{lesson:c.dataset.v}));
+  $('#rd').onclick = () => runQuiz(shuffle(ids.map(i=>byId[i])), {title:'错题重做', redo:true});
+  document.querySelectorAll('[data-v].btn').forEach(b => b.onclick = () => { const q=byId[b.dataset.v], d=$('#det-'+q.id);
+    d.innerHTML = d.innerHTML ? '' : `<div class="card" style="margin-top:8px"><div class="prompt">${md(q.prompt)}</div><div class="opts">${q.options.map((o,k)=>`<div class="opt ${k===q.answer?'right':''}"><span class="k">${'ABCD'[k]}</span><span>${md(o)}</span></div>`).join('')}</div><div class="exp">${md(expText(q))}</div></div>`; });
+  document.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { delete S.mistakes[b.dataset.d]; save(); go('mistakes',ctx); });
+};
+function radar(vals){
+  const n = vals.length, cx = 150, cy = 150, R = 110, pt = (i,r) => { const a = -Math.PI/2 + i*2*Math.PI/n; return [cx+Math.cos(a)*R*r, cy+Math.sin(a)*R*r]; };
+  const ring = r => vals.map((_,i)=>pt(i,r).join(',')).join(' ');
+  const shape = vals.map((v,i)=>pt(i,Math.max(.04,v.v/100)).join(',')).join(' ');
+  return `<svg class="radar" viewBox="0 0 300 300" role="img" aria-label="各课正确率雷达图">
+  <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ef2d6" stop-opacity=".55"/><stop offset="1" stop-color="#8f7bff" stop-opacity=".55"/></linearGradient></defs>
+  ${[.25,.5,.75,1].map(r=>`<polygon points="${ring(r)}" fill="none" stroke="rgba(143,150,255,.2)"/>`).join('')}
+  ${vals.map((_,i)=>`<line x1="${cx}" y1="${cy}" x2="${pt(i,1)[0]}" y2="${pt(i,1)[1]}" stroke="rgba(143,150,255,.14)"/>`).join('')}
+  <polygon points="${shape}" fill="url(#rg)" stroke="#2ef2d6" stroke-width="2" stroke-linejoin="round"/>
+  ${vals.map((v,i)=>{const p=pt(i,Math.max(.04,v.v/100)),t=pt(i,1.2);return `<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${LCOL[v.id]}"/><text x="${t[0]}" y="${t[1]}" fill="#8a90bd" font-size="12" font-family="ui-monospace,Menlo,monospace" text-anchor="middle" dominant-baseline="middle">${v.id}</text>`}).join('')}</svg>`;
+}
+VIEWS.stats = function(){
+  const total = Q.length, done = Object.keys(S.att).length;
+  let r=0,w=0; Object.values(S.att).forEach(a => {r+=a.r; w+=a.w;});
+  const st = L.map(l => ({l, s:lessonStat(l.id), wr:Q.filter(q=>q.lesson===l.id && S.mistakes[q.id]).length}));
+  const rows = st.map(({l,s,wr}) => `<div class="rowstat"><span class="id" style="color:${LCOL[l.id]}">${l.id}</span><div><div style="font-weight:600">${l.title}</div><div class="bar" style="margin-top:6px"><i style="width:${s.tried?s.acc:0}%;background:${LCOL[l.id]}"></i></div><div class="mini" style="margin-top:5px">已做 ${s.done}/${s.total} · 错题本 ${wr}${s.tried&&s.acc<70?' <span class="weak">薄弱，优先复习</span>':''}</div></div><b style="font:800 24px var(--disp)">${s.tried?s.acc+'%':'—'}</b></div>`).join('');
+  const bd = [['初学者',()=>done>=1,'✿'],['十题斩',()=>done>=10,'⚔'],['半程',()=>done>=Q.length/2,'☄'],['全题库',()=>done>=Q.length,'♛'],['连击 5',()=>S.streakBest>=5,'✦'],['完成模拟考',()=>S.exams.length>=1,'✎'],['S 级',()=>S.exams.some(e=>e.score>=90),'★'],['错题清零',()=>done>=20&&!Object.keys(S.mistakes).length,'✚']];
+  $('#app').innerHTML = `<h2 class="sec">学习看板</h2><div class="kpis"><div class="card kpi"><b>${pct(r,r+w)}<i>%</i></b><span>总正确率</span></div><div class="card kpi"><b>${done}<i> / ${total}</i></b><span>覆盖题目</span></div><div class="card kpi"><b>Lv.${level()}</b><span>${S.xp} XP</span></div><div class="card kpi"><b>${S.exams.length?Math.max(...S.exams.map(e=>e.score)):'—'}</b><span>模拟考最高分</span></div></div>
+  <h2 class="sec">分课掌握</h2><div class="card radarbox">${radar(st.map(({l,s})=>({id:l.id,v:s.tried?s.acc:0})))}<div>${rows}</div></div>
+  <h2 class="sec">模拟考记录</h2><div class="card">${S.exams.length?S.exams.slice().reverse().map(e=>`<div class="rowstat" style="grid-template-columns:90px 1fr"><b style="font:800 26px var(--disp)">${e.score} 分</b><span class="mini">答对 ${e.ok} / 33 · ${new Date(e.t).toLocaleString()}</span></div>`).join(''):'<span class="mini">还没有记录。完成一次模拟考后会显示在这里。</span>'}</div>
+  <h2 class="sec">成就</h2><div class="badges">${bd.map(([n,f,i])=>`<div class="badge ${f()?'on':''}"><i>${i}</i>${n}</div>`).join('')}</div>
+  <div class="row"><button class="btn ghost" id="rs">清空所有记录</button></div>`;
+  $('#rs').onclick = () => { if(confirm('确定清空全部答题记录、错题本和经验值吗？')){ localStorage.removeItem(KEY); location.reload(); } };
+};
+
+// ---- 快速复习: per-lesson walkthrough ----
+function rvBlock(b, uid){
+  switch(b.t){
+    case 'p': return `<p class="rp">${md(b.text)}</p>`;
+    case 'h': return `<h4 class="rh">${md(b.text)}</h4>`;
+    case 'list': return `<ul class="rl">${b.items.map(x=>`<li>${md(x)}</li>`).join('')}</ul>`;
+    case 'code': return `<figure class="rf"><pre><code>${highlight(b.code)}</code></pre>${b.cap?`<figcaption>${md(b.cap)}</figcaption>`:''}</figure>`;
+    case 'table': return `<figure class="rf"><div class="tw"><table class="rt"><thead><tr>${b.head.map(h=>`<th>${md(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map(c=>`<td>${md(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${b.cap?`<figcaption>${md(b.cap)}</figcaption>`:''}</figure>`;
+    case 'wrong': return `<div class="wr"><div class="no"><span>不要这样</span>${md(b.bad)}</div><div class="yes"><span>应该这样</span>${md(b.good)}</div><p>${md(b.why)}</p></div>`;
+    case 'exam': return `<div class="callout exam"><b>考试怎么考</b>${md(b.text)}</div>`;
+    case 'key': return `<div class="callout key">${md(b.text)}</div>`;
+    case 'demo': return `<div class="demo" data-demo="${b.key}"><div class="scope"><div class="bar"><span class="dname">${DEMOS[b.key].name}</span><span class="sp"></span><div class="ctl"><button data-a="pv" aria-label="上一步"><svg viewBox="0 0 16 16"><path d="M12 2v12L4 8zM3 2h2v12H3z"/></svg></button><button data-a="pp" aria-label="播放或暂停"></button><button data-a="nx" aria-label="下一步"><svg viewBox="0 0 16 16"><path d="M4 2v12l8-6zM11 2h2v12h-2z"/></svg></button><button data-a="rs" aria-label="重播"><svg viewBox="0 0 16 16"><path d="M8 2a6 6 0 11-6 6h2a4 4 0 104-4v3L4 3.5 8 0z"/></svg></button></div></div><div class="plot"></div><div class="readout"></div></div>${b.cap?`<figcaption class="dcap">${md(b.cap)}</figcaption>`:''}</div>`;
+  }
+  return '';
+}
+function rvPrep(){ if(!S.rv) S.rv = {}; return S.rv; }
+// each embedded demo gets its own tiny player (paused at step 1 until pressed)
+function rvMountDemos(){
+  document.querySelectorAll('.demo').forEach(root => {
+    const key = root.dataset.demo, d = DEMOS[key], arr = d.data.slice(), frames = [];
+    const it = d.run(arr, o => { frames.push(Object.assign({arr:arr.slice()}, o)); return 0; }, d.target); while(!it.next().done){}
+    const st = {i:0, playing:false, timer:null}, mx = Math.max(...d.data);
+    const plot = root.querySelector('.plot'), ro = root.querySelector('.readout'), pp = root.querySelector('[data-a=pp]');
+    const draw = () => {
+      const f = frames[st.i], has = (k,i) => f[k] && f[k].includes(i), ptr = {};
+      Object.entries(f.ptr||{}).forEach(([k,v]) => { (ptr[v] = ptr[v] || []).push(k); });
+      plot.innerHTML = f.arr.map((v,i) => { const cls = [has('swp',i)?'swp':'', has('cmp',i)&&!has('swp',i)?'cmp':'', has('hit',i)?'hit':'', has('done',i)?'ok':'', f.fade&&(i<f.fade[1]||i>=f.fade[2])?'dim':''].join(' ');
+        return `<i class="${cls}" style="height:${v/mx*100}%"><b>${v}</b>${ptr[i]?`<u>${ptr[i].join(' · ')}</u>`:''}</i>`; }).join('');
+      ro.innerHTML = `<span>步骤 <b>${st.i+1}</b>/${frames.length}</span><span>比较 <b>${f.c||0}</b></span>${key==='bubble'||key==='select'?`<span>交换 <b>${f.s||0}</b></span>`:''}${d.target!==undefined?`<span>目标 <b>${d.target}</b></span>`:''}<span class="say">${f.say||''}</span>`;
+      pp.innerHTML = st.playing ? '<svg viewBox="0 0 16 16"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg>' : '<svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>';
+    };
+    const stop = () => { st.playing = false; clearInterval(st.timer); };
+    const play = () => { if(st.i>=frames.length-1) st.i = 0; st.playing = true; clearInterval(st.timer);
+      if(reduceMotion()){ st.playing = false; return; }
+      st.timer = setInterval(() => { if(!document.body.contains(root)){ clearInterval(st.timer); return; } if(st.i<frames.length-1){ st.i++; draw(); } else { stop(); draw(); } }, 620); };
+    root.querySelector('[data-a=pv]').onclick = () => { stop(); st.i = Math.max(0, st.i-1); draw(); };
+    root.querySelector('[data-a=nx]').onclick = () => { stop(); st.i = Math.min(frames.length-1, st.i+1); draw(); };
+    root.querySelector('[data-a=rs]').onclick = () => { stop(); st.i = 0; draw(); play(); draw(); };
+    pp.onclick = () => { if(st.playing) stop(); else play(); draw(); };
+    draw();
+  });
+}
+
+VIEWS.review = function(){
+  const rv = rvPrep(), id = ctx.l || 'L01', mode = ctx.mode || 'full';
+  const l = L.find(x => x.id===id), R = REVIEW[id], c = LCOL[id], idx = L.findIndex(x => x.id===id);
+  const done = rv[id] && rv[id].done;
+  const chips = L.map(x => `<button class="chip ${x.id===id?'on':''} ${rv[x.id]&&rv[x.id].done?'fin':''}" data-v="${x.id}" style="--c:${LCOL[x.id]}">${x.id} ${x.title}</button>`).join('');
+  const reviewed = L.filter(x => rv[x.id] && rv[x.id].done).length;
+  const full = () => `<p class="lead">${md(R.lead)}</p>
+    <div class="rvgrid"><aside class="toc" aria-label="本课目录"><b>本课目录</b>${R.sections.map(s=>`<a href="#rv-${s.id}" data-sec="${s.id}">${s.title}</a>`).join('')}</aside>
+    <div class="rvbody">${R.sections.map(s=>`<section id="rv-${s.id}" class="rsec"><h3 style="--c:${c}">${s.title}</h3>${s.blocks.map(b=>rvBlock(b)).join('')}</section>`).join('')}
+    <section class="rsec" id="rv-quiz"><h3 style="--c:${c}">本课自测</h3><p class="rp">4 道题，答完立刻看解析，答错的会进错题本。</p><div class="row" style="margin-top:8px"><button class="btn" id="qz">开始自测</button><span class="mini">${Q.filter(q=>q.lesson===id).length} 道本课题目</span></div></section></div></div>`;
+  const quick = () => `<div class="grid g2"><div class="card" style="box-shadow:inset 0 0 0 1px var(--line),inset 0 3px 0 ${c}"><h3 style="font-size:26px;color:${c}">必须掌握</h3><ul class="rl">${l.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>
+    <div class="card trap"><h3 style="font-size:26px;color:var(--pink)">易错点</h3><ul class="rl">${l.traps.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`;
+  $('#app').innerHTML = `<h2 class="sec">快速复习<small>已复习 ${reviewed} / 8 课</small></h2>
+  <div class="chips lessonbar">${chips}</div>
+  <div class="rvhead card" style="--c:${c}"><div><div class="mini">${l.en}</div><h2>${l.id}　${l.title}</h2></div><span class="sp"></span>
+    <div class="seg"><button class="${mode==='full'?'on':''}" data-m="full">完整详解</button><button class="${mode==='quick'?'on':''}" data-m="quick">一分钟速览</button></div></div>
+  <div id="rvc">${mode==='full'?full():quick()}</div>
+  <div class="rvfoot"><button class="btn ghost" id="pv" ${idx?'':'disabled'}>上一课</button><span class="sp"></span><button class="btn ${done?'ghost':'gold'}" id="dn">${done?'✓ 已复习（点击取消）':'标记为已复习'}</button><span class="sp"></span><button class="btn ghost" id="nx" ${idx<L.length-1?'':'disabled'}>下一课</button></div>
+  ${mode==='full'?'':`<div class="row"><button class="btn" id="pr">练习 ${l.id}</button></div>`}
+  <h2 class="sec">考前三句话</h2>${COMMON.map(t=>{const[e,z]=t.split('  ');return `<div class="mantra">${esc(e)}<span class="zh">${esc(z||'')}</span></div>`}).join('')}
+  <p class="mini">依据 L09 复习笔记和各课笔记整理。插入排序不在 MCQ1 范围内。</p>`;
+  document.querySelectorAll('.lessonbar .chip').forEach(b => b.onclick = () => go('review',{l:b.dataset.v,mode}));
+  document.querySelectorAll('.seg button').forEach(b => b.onclick = () => go('review',{l:id,mode:b.dataset.m}));
+  $('#pv').onclick = () => go('review',{l:L[idx-1].id,mode}); $('#nx').onclick = () => go('review',{l:L[idx+1].id,mode});
+  $('#dn').onclick = () => { rv[id] = {done:!done, t:Date.now()}; save(); if(!done) toast(id+' 已标记为已复习'); go('review',ctx); };
+  if($('#pr')) $('#pr').onclick = () => go('practice',{lesson:id,mode:'all'});
+  if(mode==='full'){
+    rvMountDemos();
+    $('#qz').onclick = () => { const pool = Q.filter(q=>q.lesson===id); runQuiz(shuffle(pool).slice(0,4), {title:id+' 自测', back:{l:id}}); };
+    const links = [...document.querySelectorAll('.toc a')];
+    links.forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById('rv-'+a.dataset.sec).scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}); });
+    if('IntersectionObserver' in window){
+      const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ links.forEach(a => a.classList.toggle('on', 'rv-'+a.dataset.sec===e.target.id)); } }), {rootMargin:'-20% 0px -70% 0px'});
+      document.querySelectorAll('.rsec').forEach(s => io.observe(s));
+    }
+  }
+};
+
+VIEWS.guide = function(){
+  S.seen.guide = true; save();
+  const flow = [
+    ['先读快速复习','在"快速复习"里按课读详解，带代码和推演表，有的课还能单步看算法演示。读完点"标记为已复习"。','review'],
+    ['按课练习','在"练习"里选一课，默认只出没做过的题。每题选完立刻看到对错和解析，不用等做完整套。','practice'],
+    ['清空错题本','答错的题自动进"错题本"。点"重做"，答对的题会被移出，直到清空。','mistakes'],
+    ['看看板找薄弱课','"看板"里的雷达图和正确率条会标出薄弱的课，回头对这些课多练一轮。','stats'],
+    ['考前两天模拟考','在"模拟考"里完整做一次 33 题 45 分钟。交卷后看错题解析，错题会自动收进错题本。','exam']
+  ];
+  const pages = [
+    ['道场','首页。演示台可以单步看冒泡排序、选择排序、二分查找和双指针求和；下面的关卡地图点一课就开始练习。'],
+    ['练习','按课程、题目来源和范围筛选，每轮最多 15 题。"已标记"可以只做你标过的题。'],
+    ['模拟考','交卷前不显示对错。右上角倒计时少于 5 分钟会变粉色，时间到自动交卷。'],
+    ['错题本','可以按课筛选、展开看解析、单题移出，或整批重做。'],
+    ['看板','总正确率、每课正确率、模拟考记录和成就徽章。'],
+    ['快速复习','每课一份详解：讲解、代码、推演、成本表、易错点，末尾有 4 道自测。右上角可切换"一分钟速览"，考前最后一遍用。']
+  ];
+  const keys = [['1 2 3 4','选择 A / B / C / D（练习和模拟考）'],['Enter','答完后进入下一题（练习）'],['← →','上一题 / 下一题（模拟考）']];
+  const src = [['L09 示范题','L09-quiz.md 里的 30 道题，原题原解析，另加中文讲解。'],['L05 小测','L05-quiz.md 里覆盖 L01 到 L04 的 12 道题。'],['AI 生成','我按 L09 的题型补出的 44 道，每课都有，解析为中文。不是真题。']];
+  $('#app').innerHTML = `<h2 class="sec">使用教程<small>约 1 分钟</small></h2>
+  <div class="card"><h3 style="font-size:26px">推荐的复习顺序</h3><div class="flow">${flow.map(([t,d,k],i)=>`<div class="step"><span class="no">${i+1}</span><div><b>${t}</b><p>${d}</p></div><button class="btn ghost" data-go="${k}">打开</button></div>`).join('')}</div></div>
+  <h2 class="sec">每个页面做什么</h2><div class="grid g2">${pages.map(([t,d])=>`<div class="card"><h3 style="font-size:22px">${t}</h3><p class="gp">${d}</p></div>`).join('')}</div>
+  <h2 class="sec">快捷键</h2><div class="card">${keys.map(([k,d])=>`<div class="keyrow"><span>${k.split(' ').map(x=>`<kbd>${x}</kbd>`).join(' ')}</span><span>${d}</span></div>`).join('')}</div>
+  <h2 class="sec">题目来源</h2><div class="card">${src.map(([n,d])=>`<div class="keyrow"><span class="pill ${n.startsWith('L09')?'l09':n.startsWith('L05')?'l05':'ai'}">${n}</span><span>${d}</span></div>`).join('')}<p class="mini" style="margin-bottom:0">题库只含 L01 到 L08，不含插入排序和 L10，与 MCQ1 范围一致。</p></div>
+  <h2 class="sec">关于记录</h2><div class="card"><p class="gp" style="margin-top:0">答题记录、错题本、经验值和模拟考成绩都保存在当前浏览器里，不会上传。换浏览器或清除网站数据会丢失。想重新开始，可以在"看板"底部点"清空所有记录"。</p><p class="gp" style="margin-bottom:0">经验值只是做题的反馈：答对得 10 分，连击有加成，模拟考按答对数加分。它不代表考试水平，看正确率更准。</p></div>
+  <div class="row"><button class="btn gold" id="gs">开始练习</button><button class="btn ghost" id="gh">回道场</button></div>`;
+  document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+  $('#gs').onclick = () => go('practice'); $('#gh').onclick = () => go('home');
+};
+hud(); go('home');
+if(window.__TEST) eval(window.__TEST);
+
+})();</script>
+</body>
+</html>
