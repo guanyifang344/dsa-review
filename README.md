@@ -27,3 +27,16 @@ python3 build/bundle.py
 提交并推送 `main` 分支后，GitHub Pages 会自动更新。Pages 的发布源为 `main` 分支根目录。
 
 答题记录、错题、经验值和模拟考成绩保存在当前浏览器的本地存储中，不会上传到 GitHub。不同设备或浏览器的记录不会自动同步。
+
+## 访问统计
+
+网站已接入独立的 Google Analytics 4 资源「DSA 复习道场」。
+
+- [实时人数看板](https://analytics.google.com/analytics/web/#/a415703526p564789803/realtime/overview)
+- [统计首页](https://analytics.google.com/analytics/web/#/a415703526p564789803/reports/intelligenthome)
+- 媒体资源 ID：`564789803`
+- 衡量 ID：`G-QN2CVEXD93`
+- Google 代码：`GTM-T89HXRCQ`
+- 报告时区：中国时间（UTC+8）
+
+查看看板需要登录拥有此资源权限的 Google 账号。统计包含访问人数、来源和设备等基础数据，不包含浏览器内的具体答题记录、错题或成绩。新数据从统计代码上线后开始收集。
