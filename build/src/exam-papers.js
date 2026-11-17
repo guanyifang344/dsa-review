@@ -998,5 +998,505 @@ window.EXAM_PAPERS = [
         "exp": "Decreasing the right value can reduce the sum."
       }
     ]
+  },
+  {
+    "title": "炼狱",
+    "questions": [
+      {
+        "id": "exam-inferno-01",
+        "lesson": "L01",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "An algorithm returns the correct answer whenever it terminates, but may loop forever on some valid inputs. Which property is missing?",
+        "options": [
+          "Correctness on terminating runs",
+          "A programming language",
+          "A data structure",
+          "Termination"
+        ],
+        "answer": 3,
+        "exp": "算法可能不结束，因此缺少终止性。"
+      },
+      {
+        "id": "exam-inferno-02",
+        "lesson": "L01",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "A proposed algorithm says “repeat until the result is good enough” without defining good enough. What is the main issue?",
+        "options": [
+          "It cannot use a list",
+          "Its output must be a number",
+          "The steps are ambiguous",
+          "It always takes quadratic time"
+        ],
+        "answer": 2,
+        "exp": "没有定义判断标准，步骤不够明确。"
+      },
+      {
+        "id": "exam-inferno-03",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "How many times does the inner statement run? `for i in range(n): for j in range(i): work()`",
+        "options": [
+          "2n",
+          "n(n-1)/2",
+          "n² exactly",
+          "n(n+1)/2"
+        ],
+        "answer": 1,
+        "exp": "次数为 0+1+…+(n−1)，即 n(n−1)/2。"
+      },
+      {
+        "id": "exam-inferno-04",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is the time complexity of `i = 1; while i < n: i *= 2`?",
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "O(n²)",
+          "O(1) for all n"
+        ],
+        "answer": 0,
+        "exp": "每轮 i 加倍，约需 log₂n 轮。"
+      },
+      {
+        "id": "exam-inferno-05",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "An algorithm runs a loop n times, and each iteration performs a binary search on n sorted items. What is the total time?",
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "O(n² log n)",
+          "O(n log n)"
+        ],
+        "answer": 3,
+        "exp": "每次二分 O(log n)，重复 n 次得到 O(n log n)。"
+      },
+      {
+        "id": "exam-inferno-06",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is the asymptotic time of 5n² + 100n + 9?",
+        "options": [
+          "O(log n)",
+          "O(n³) as the tightest listed bound",
+          "O(n²)",
+          "O(n)"
+        ],
+        "answer": 2,
+        "exp": "最高阶 n² 主导增长；常数系数不改变阶。"
+      },
+      {
+        "id": "exam-inferno-07",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "A list has n elements. A loop compares every distinct unordered pair once. How many comparisons?",
+        "options": [
+          "2ⁿ",
+          "n(n-1)/2",
+          "n²",
+          "n(n+1)/2"
+        ],
+        "answer": 1,
+        "exp": "每个元素与其后的元素比较，总数为 n(n−1)/2。"
+      },
+      {
+        "id": "exam-inferno-08",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is printed? `a=[1,2]; b=a; b[0]=9; print(a)`",
+        "options": [
+          "[9, 2]",
+          "[1, 2]",
+          "[1, 9]",
+          "[9, 1, 2]"
+        ],
+        "answer": 0,
+        "exp": "a 和 b 引用同一个列表，修改 b 也改变 a。"
+      },
+      {
+        "id": "exam-inferno-09",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is printed? `a=[1,2]; b=a[:]; b.append(3); print(a)`",
+        "options": [
+          "[1, 2, 3]",
+          "[3, 1, 2]",
+          "None",
+          "[1, 2]"
+        ],
+        "answer": 3,
+        "exp": "切片 a[:] 创建一个新的列表，append 不改变 a。"
+      },
+      {
+        "id": "exam-inferno-10",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is the value of `[10,20,30,40,50][1:5:2]`?",
+        "options": [
+          "[10, 30, 50]",
+          "[20, 40, 50]",
+          "[20, 40]",
+          "[20, 30, 40]"
+        ],
+        "answer": 2,
+        "exp": "起点为索引 1，步长 2，取索引 1 和 3，不含终点 5。"
+      },
+      {
+        "id": "exam-inferno-11",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is printed? `a=[3,1,2]; x=a.sort(); print(x)`",
+        "options": [
+          "3",
+          "None",
+          "[1, 2, 3]",
+          "[3, 1, 2]"
+        ],
+        "answer": 1,
+        "exp": "list.sort 原地排序并返回 None。"
+      },
+      {
+        "id": "exam-inferno-12",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "For `a=[4,8,12]`, which expression raises IndexError?",
+        "options": [
+          "a[len(a)]",
+          "a[-1]",
+          "a[0]",
+          "a[len(a)-1]"
+        ],
+        "answer": 0,
+        "exp": "列表长度为 3，合法正索引最大为 2，a[3] 越界。"
+      },
+      {
+        "id": "exam-inferno-13",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is the value of `[1,2,3,4][::-1]`?",
+        "options": [
+          "[1, 2, 3, 4]",
+          "[]",
+          "[3, 2, 1]",
+          "[4, 3, 2, 1]"
+        ],
+        "answer": 3,
+        "exp": "负步长从尾向头遍历，产生反序列表。"
+      },
+      {
+        "id": "exam-inferno-14",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is printed? `s='banana'; s.replace('a','o'); print(s)`",
+        "options": [
+          "bananaNone",
+          "An error",
+          "banana",
+          "bonono"
+        ],
+        "answer": 2,
+        "exp": "字符串不可变，replace 返回新字符串；没有赋值给 s。"
+      },
+      {
+        "id": "exam-inferno-15",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is the value of `'abcdef'[-5:-1:2]`?",
+        "options": [
+          "'df'",
+          "'bd'",
+          "'bcde'",
+          "'ac'"
+        ],
+        "answer": 1,
+        "exp": "负索引对应起点 1、终点 5，步长 2，因此取索引 1 和 3。"
+      },
+      {
+        "id": "exam-inferno-16",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Which statement raises an error for `s='abc'`?",
+        "options": [
+          "s[0] = 'A'",
+          "s = s.upper()",
+          "x = s[-1]",
+          "s = s + 'd'"
+        ],
+        "answer": 0,
+        "exp": "字符串不可变，不能对单个字符索引赋值。"
+      },
+      {
+        "id": "exam-inferno-17",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "What is the value of `len('a b') + len('')`?",
+        "options": [
+          "2",
+          "4",
+          "1",
+          "3"
+        ],
+        "answer": 3,
+        "exp": "空格也是字符，空字符串长度为 0。"
+      },
+      {
+        "id": "exam-inferno-18",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Using ascending bubble sort, after one full left-to-right pass over [4, 1, 3, 2], what is the list?",
+        "options": [
+          "[4, 1, 2, 3]",
+          "[3, 1, 2, 4]",
+          "[1, 3, 2, 4]",
+          "[1, 2, 3, 4]"
+        ],
+        "answer": 2,
+        "exp": "依次比较交换，最大值 4 移到末尾；其余元素未必已排好。"
+      },
+      {
+        "id": "exam-inferno-19",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Using ascending selection sort on [4, 2, 3, 1], what is the array after the first swap?",
+        "options": [
+          "[4, 2, 1, 3]",
+          "[1, 2, 3, 4]",
+          "[2, 4, 3, 1]",
+          "[1, 4, 2, 3]"
+        ],
+        "answer": 1,
+        "exp": "首轮选最小值 1，与索引 0 的 4 交换。"
+      },
+      {
+        "id": "exam-inferno-20",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "A basic selection sort scans the unsorted tail for each position. How many comparisons for 5 items?",
+        "options": [
+          "10",
+          "5",
+          "20",
+          "25"
+        ],
+        "answer": 0,
+        "exp": "比较次数为 4+3+2+1=10。"
+      },
+      {
+        "id": "exam-inferno-21",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "A bubble sort swaps only when left > right. What happens to equal elements?",
+        "options": [
+          "They are always reversed",
+          "One is removed",
+          "They are always swapped",
+          "Their relative order is preserved"
+        ],
+        "answer": 3,
+        "exp": "严格大于时才交换，相等元素不会互相跨越，因此稳定。"
+      },
+      {
+        "id": "exam-inferno-22",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "A bubble sort performs a complete pass with zero swaps. What can be concluded?",
+        "options": [
+          "The list is in descending order",
+          "The list has one element",
+          "The list is sorted in nondecreasing order",
+          "All elements are distinct"
+        ],
+        "answer": 2,
+        "exp": "没有逆序的相邻对，表示列表已非降序排列。"
+      },
+      {
+        "id": "exam-inferno-23",
+        "lesson": "L06",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Stable sort by score ascending: [(A,2),(B,1),(C,2),(D,1)]. Which result is possible?",
+        "options": [
+          "(A,2),(C,2),(B,1),(D,1)",
+          "(B,1),(D,1),(A,2),(C,2)",
+          "(D,1),(B,1),(A,2),(C,2)",
+          "(B,1),(D,1),(C,2),(A,2)"
+        ],
+        "answer": 1,
+        "exp": "同分时保留原有相对次序：B 在 D 前，A 在 C 前。"
+      },
+      {
+        "id": "exam-inferno-24",
+        "lesson": "L06",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Given `a=[3,1,2]; b=sorted(a)`, which is true?",
+        "options": [
+          "a is [3,1,2] and b is [1,2,3]",
+          "Both a and b are [1,2,3]",
+          "a is None",
+          "b is None"
+        ],
+        "answer": 0,
+        "exp": "sorted 返回新列表，原列表保持不变。"
+      },
+      {
+        "id": "exam-inferno-25",
+        "lesson": "L06",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "After `a=[2,1]; b=a; a.sort()`, what is b?",
+        "options": [
+          "[2, 1]",
+          "None",
+          "[1]",
+          "[1, 2]"
+        ],
+        "answer": 3,
+        "exp": "a 和 b 引用同一列表，原地排序两者都可见。"
+      },
+      {
+        "id": "exam-inferno-26",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Binary search uses inclusive bounds `lo=0, hi=7` and `mid=(lo+hi)//2`. If the middle value is below the target, what is the new lo?",
+        "options": [
+          "5",
+          "7",
+          "4",
+          "3"
+        ],
+        "answer": 2,
+        "exp": "mid=3；中间值过小，索引 0 至 3 均可排除，lo=4。"
+      },
+      {
+        "id": "exam-inferno-27",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "For a sorted array of 16 distinct values, what is the maximum number of comparisons in a standard binary search for an absent target?",
+        "options": [
+          "8",
+          "5",
+          "4",
+          "16"
+        ],
+        "answer": 1,
+        "exp": "最坏情况下候选区间可经历 16→8→4→2→1，最多 5 次比较。"
+      },
+      {
+        "id": "exam-inferno-28",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Why is `lo = mid` unsafe in inclusive-bound binary search when the middle value is below the target?",
+        "options": [
+          "The search may never shrink when lo equals mid",
+          "It always skips the target",
+          "It sorts the array",
+          "It makes the middle value larger"
+        ],
+        "answer": 0,
+        "exp": "当 lo 与 mid 相等时，lo 不变会造成死循环，应使用 mid+1。"
+      },
+      {
+        "id": "exam-inferno-29",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "Which operation can linear search perform correctly without sorting first?",
+        "options": [
+          "Discard half after every comparison",
+          "Guarantee O(log n) worst-case time",
+          "Find the insertion index for binary search without comparison",
+          "Find whether an arbitrary target occurs in an unsorted list"
+        ],
+        "answer": 3,
+        "exp": "线性查找逐项检查，不要求输入有序。"
+      },
+      {
+        "id": "exam-inferno-30",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "In sorted [1,2,4,7,11], target 9: which first move follows a sum that is too large?",
+        "options": [
+          "Move both pointers inward",
+          "Stop because no pair exists",
+          "Move the right pointer from 11 to 7",
+          "Move the left pointer from 1 to 2"
+        ],
+        "answer": 2,
+        "exp": "首对 1+11=12，大于 9；右指针左移以减小和。"
+      },
+      {
+        "id": "exam-inferno-31",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "For sorted [-3,-1,2,4,8], target 1, which pair is found by opposite-end two pointers?",
+        "options": [
+          "(-3,8)",
+          "(-3,4)",
+          "(-1,4)",
+          "(2,4)"
+        ],
+        "answer": 1,
+        "exp": "先算 −3+8=5，右指针左移得到 −3+4=1。"
+      },
+      {
+        "id": "exam-inferno-32",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "For sorted [2,3,5] and target 4, why must a standard two-pointer method stop when left equals right?",
+        "options": [
+          "The same element cannot be used twice when two distinct indices are required",
+          "The array becomes unsorted",
+          "A match is guaranteed",
+          "The sum cannot be computed"
+        ],
+        "answer": 0,
+        "exp": "题目要求两个不同索引时，指针相遇就不能再组成有效元素对。"
+      },
+      {
+        "id": "exam-inferno-33",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "炼狱挑战",
+        "prompt": "For sorted [1,1,2,3] and target 2, may two pointers use both ones?",
+        "options": [
+          "No, equal values can never form a pair",
+          "Only if the list has unique values",
+          "Only after removing duplicates",
+          "Yes, they occupy distinct indices"
+        ],
+        "answer": 3,
+        "exp": "两个数的值可以相同，只要它们位于不同索引。"
+      }
+    ]
   }
 ];
