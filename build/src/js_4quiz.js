@@ -14,7 +14,7 @@ function runQuiz(list, opt){
     <div class="qtop"><button class="xbtn" id="qx">退出</button><span class="qtitle">${opt.title}</span><span class="sp"></span><span class="combo ${combo>=2?'hot':''}">连击 <b>×${combo}</b></span></div>
     <div class="segs">${list.map((_,k)=>`<i class="${k===i?'cur':marks[k]}"></i>`).join('')}</div>
     <article class="qcard"><div class="qh"><span class="qno">${pad(i+1)}<small> / ${pad(list.length)}</small></span><span class="qtags">${pill(q)}</span><button class="star ${S.star[q.id]?'on':''}" id="st" aria-label="标记这道题" aria-pressed="${!!S.star[q.id]}">${STAR}</button></div>
-    <div class="qtopic">${q.topic}</div><div class="prompt">${md(q.prompt)}</div>
+    <div class="qtopic">${q.topic}</div><div class="prompt">${md(q.prompt)}</div>${refCode(q)}
     <div class="opts">${q.options.map((o,k)=>`<button class="opt" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span><span class="mk"></span></button>`).join('')}</div>
     <div id="fb"></div>
     <div class="qf"><span class="kbd"><kbd>1</kbd>–<kbd>4</kbd> 选择 <kbd>Enter</kbd> 下一题</span><span class="sp"></span><button class="btn" id="nx" disabled>${i+1===list.length?'完成':'下一题'}</button></div></article></div>`;
@@ -87,7 +87,7 @@ function examRun(){
     $('#app').innerHTML = `<div class="exwrap"><div class="exmain">
       <div class="qtop"><span class="qtitle">${c.paperTitle} · 第 <b>${c.cur+1}</b> 题 / 33</span><span class="sp"></span><span class="mini">已答 ${answered} · 标记 ${mk} · 未答 ${33-answered}</span></div>
       <article class="qcard"><div class="qh"><span class="qno">${pad(c.cur+1)}<small> / 33</small></span><span class="qtags"><span class="pill lz" style="--lc:${LCOL[q.lesson]}">${q.lesson}</span></span><button class="flag ${c.mark[c.cur]?'on':''}" id="mk" aria-pressed="${!!c.mark[c.cur]}">${c.mark[c.cur]?'已标记':'标记，稍后检查'}</button></div>
-      <div class="prompt">${md(q.prompt)}</div><div class="opts">${q.options.map((o,k)=>`<button class="opt ${c.ans[c.cur]===k?'sel':''}" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span></button>`).join('')}</div>
+      <div class="prompt">${md(q.prompt)}</div>${refCode(q)}<div class="opts">${q.options.map((o,k)=>`<button class="opt ${c.ans[c.cur]===k?'sel':''}" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span></button>`).join('')}</div>
       <div class="qf"><button class="btn ghost" id="pv" ${c.cur?'':'disabled'}>上一题</button><span class="kbd"><kbd>1</kbd>–<kbd>4</kbd> 作答 <kbd>←</kbd><kbd>→</kbd> 切题</span><span class="sp"></span><button class="btn" id="nx" ${c.cur<32?'':'disabled'}>下一题</button></div></article></div>
       <aside class="sheetp card"><div class="clock ${tk.left<5*60000?'low':''}" id="clock">${ring(tk.frac,tk.left<5*60000?'var(--pink)':'var(--cyan)',tk.txt,'剩余时间')}</div>
       <div class="legend"><span><i class="d done"></i>已答</span><span><i class="d"></i>未答</span><span><i class="d mk"></i>标记</span></div>
@@ -113,7 +113,7 @@ function examRun(){
     <div class="row" style="justify-content:center"><button class="btn pink" id="r1" ${wrong.length?'':'disabled'}>看错题解析</button><button class="btn" id="r3">再考一次</button><button class="btn ghost" id="r2">回道场</button></div></div><div id="rev"></div></div>`;
     $('#r2').onclick = () => go('home'); $('#r3').onclick = () => go('exam');
     $('#r1').onclick = () => { $('#rev').innerHTML = wrong.map(k => { const q=P[k], a=c.ans[k];
-      return `<article class="qcard rv"><div class="qh"><span class="qno">${pad(k+1)}</span><span class="qtags">${pill(q)}</span></div><div class="mini" style="margin:4px 0 10px">你的答案 <b style="color:var(--pink)">${a===undefined?'未答':'ABCD'[a]}</b> · 正确答案 <b style="color:var(--cyan)">${'ABCD'[q.answer]}</b></div><div class="prompt">${md(q.prompt)}</div><div class="opts">${q.options.map((o,n)=>`<div class="opt ${n===q.answer?'right':n===a?'wrong':''}"><span class="k">${'ABCD'[n]}</span><span class="ot">${md(o)}</span></div>`).join('')}</div><div class="exp no">${md(expText(q))}</div></article>`; }).join(''); $('#rev').scrollIntoView({behavior:'smooth'}); };
+      return `<article class="qcard rv"><div class="qh"><span class="qno">${pad(k+1)}</span><span class="qtags">${pill(q)}</span></div><div class="mini" style="margin:4px 0 10px">你的答案 <b style="color:var(--pink)">${a===undefined?'未答':'ABCD'[a]}</b> · 正确答案 <b style="color:var(--cyan)">${'ABCD'[q.answer]}</b></div><div class="prompt">${md(q.prompt)}</div>${refCode(q)}<div class="opts">${q.options.map((o,n)=>`<div class="opt ${n===q.answer?'right':n===a?'wrong':''}"><span class="k">${'ABCD'[n]}</span><span class="ot">${md(o)}</span></div>`).join('')}</div><div class="exp no">${md(expText(q))}</div></article>`; }).join(''); $('#rev').scrollIntoView({behavior:'smooth'}); };
     nav();
   }
   c.timer = setInterval(() => { const tk = clock(); if(tk.left<=0){ clearInterval(c.timer); toast('时间到，自动交卷'); submit(); return; }

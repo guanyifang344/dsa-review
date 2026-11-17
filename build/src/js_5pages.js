@@ -13,7 +13,7 @@ VIEWS.mistakes = function(){
   document.querySelectorAll('.chip').forEach(c => c.onclick = () => go('mistakes',{lesson:c.dataset.v}));
   $('#rd').onclick = () => runQuiz(shuffle(ids.map(i=>byId[i])), {title:'错题重做', redo:true});
   document.querySelectorAll('[data-v].btn').forEach(b => b.onclick = () => { const q=byId[b.dataset.v], d=$('#det-'+q.id);
-    d.innerHTML = d.innerHTML ? '' : `<div class="card" style="margin-top:8px"><div class="prompt">${md(q.prompt)}</div><div class="opts">${q.options.map((o,k)=>`<div class="opt ${k===q.answer?'right':''}"><span class="k">${'ABCD'[k]}</span><span>${md(o)}</span></div>`).join('')}</div><div class="exp">${md(expText(q))}</div></div>`; });
+    d.innerHTML = d.innerHTML ? '' : `<div class="card" style="margin-top:8px"><div class="prompt">${md(q.prompt)}</div>${refCode(q)}<div class="opts">${q.options.map((o,k)=>`<div class="opt ${k===q.answer?'right':''}"><span class="k">${'ABCD'[k]}</span><span>${md(o)}</span></div>`).join('')}</div><div class="exp">${md(expText(q))}</div></div>`; });
   document.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { delete S.mistakes[b.dataset.d]; save(); go('mistakes',ctx); });
 };
 function radar(vals){
