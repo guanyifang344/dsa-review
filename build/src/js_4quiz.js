@@ -72,11 +72,12 @@ VIEWS.exam = function(){
   const last = S.exams[S.exams.length-1], best = S.exams.length ? Math.max(...S.exams.map(e=>e.score)) : null;
   $('#app').innerHTML = `<h2 class="sec">MCQ1 模拟考<small>按真实卷面</small></h2>
   <div class="examhero card"><div class="eh1"><h1>45 分钟<br>33 道选择题</h1><p>四选一，每题 3 分，另送 1 分，满分 100。答错和空白都是 0 分，所以每题都要写一个答案。交卷前不显示对错。</p>
-  <div class="row"><button class="btn gold big" id="s">开始考试</button>${last?`<span class="mini">上次 ${last.score} 分 · 最高 ${best} 分</span>`:''}</div></div>
+  <div class="row">${last?`<span class="mini">上次 ${last.score} 分 · 最高 ${best} 分</span>`:''}</div></div>
   <div class="eh2">${ring(1,'var(--cyan)','45:00','倒计时')}</div></div>
-  <div class="rules"><div class="card"><b>33</b><span>题，从全部 ${Q.length} 道题里随机抽取</span></div><div class="card"><b>3 + 1</b><span>每题 3 分，另送 1 分</span></div><div class="card"><b>80 秒</b><span>平均每题的时间。卡住超过 90 秒就标记，先往下做</span></div><div class="card"><b>可回头</b><span>用右侧答题卡跳题，标记过的题有黄点</span></div></div>
+  <h2 class="sec">选择模拟试卷<small>固定试卷 · 不与练习题混合</small></h2><div class="grid g2">${window.EXAM_PAPERS.map((p,i)=>`<div class="card"><h3>${p.title}</h3><p class="mini">33 题 · 45 分钟 · 覆盖 L01–L08</p><button class="btn gold" data-paper="${i}">选择并开始</button></div>`).join('')}</div>
+  <div class="rules"><div class="card"><b>33</b><span>题，每套试卷题目和顺序固定</span></div><div class="card"><b>3 + 1</b><span>每题 3 分，另送 1 分</span></div><div class="card"><b>80 秒</b><span>平均每题的时间。卡住超过 90 秒就标记，先往下做</span></div><div class="card"><b>可回头</b><span>用右侧答题卡跳题，标记过的题有黄点</span></div></div>
   <h2 class="sec">历史成绩</h2><div class="card hist">${S.exams.length?S.exams.slice(-8).map(e=>{const g=grade(e.score);return `<div class="hb" title="${e.score} 分"><i style="height:${e.score}%;background:${g[2]}"></i><b>${e.score}</b></div>`}).join(''):'<span class="mini">还没有成绩。完成一次模拟考后，这里会显示最近 8 次的分数。</span>'}</div>`;
-  $('#s').onclick = () => go('exam', {paper:shuffle(Q).slice(0,33), ans:{}, mark:{}, cur:0, end:Date.now()+EXAM_MS});
+  document.querySelectorAll('[data-paper]').forEach(b => b.onclick = () => { const p=window.EXAM_PAPERS[+b.dataset.paper]; go('exam', {paper:p.questions, paperTitle:p.title, ans:{}, mark:{}, cur:0, end:Date.now()+EXAM_MS}); });
 };
 function examRun(){
   const c = ctx, P = c.paper;
@@ -84,7 +85,7 @@ function examRun(){
   function draw(){
     const q = P[c.cur], tk = clock(), answered = Object.keys(c.ans).length, mk = Object.keys(c.mark).filter(k=>c.mark[k]).length;
     $('#app').innerHTML = `<div class="exwrap"><div class="exmain">
-      <div class="qtop"><span class="qtitle">第 <b>${c.cur+1}</b> 题 / 33</span><span class="sp"></span><span class="mini">已答 ${answered} · 标记 ${mk} · 未答 ${33-answered}</span></div>
+      <div class="qtop"><span class="qtitle">${c.paperTitle} · 第 <b>${c.cur+1}</b> 题 / 33</span><span class="sp"></span><span class="mini">已答 ${answered} · 标记 ${mk} · 未答 ${33-answered}</span></div>
       <article class="qcard"><div class="qh"><span class="qno">${pad(c.cur+1)}<small> / 33</small></span><span class="qtags"><span class="pill lz" style="--lc:${LCOL[q.lesson]}">${q.lesson}</span></span><button class="flag ${c.mark[c.cur]?'on':''}" id="mk" aria-pressed="${!!c.mark[c.cur]}">${c.mark[c.cur]?'已标记':'标记，稍后检查'}</button></div>
       <div class="prompt">${md(q.prompt)}</div><div class="opts">${q.options.map((o,k)=>`<button class="opt ${c.ans[c.cur]===k?'sel':''}" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span></button>`).join('')}</div>
       <div class="qf"><button class="btn ghost" id="pv" ${c.cur?'':'disabled'}>上一题</button><span class="kbd"><kbd>1</kbd>–<kbd>4</kbd> 作答 <kbd>←</kbd><kbd>→</kbd> 切题</span><span class="sp"></span><button class="btn" id="nx" ${c.cur<32?'':'disabled'}>下一题</button></div></article></div>
@@ -101,14 +102,14 @@ function examRun(){
   }
   function submit(){
     clearInterval(c.timer); document.onkeydown = null; let ok = 0; const wrong = [], per = {};
-    P.forEach((q,k) => { const hit = c.ans[k]===q.answer; record(q, hit); const p = per[q.lesson] || (per[q.lesson] = {n:0,r:0}); p.n++; if(hit){ ok++; p.r++; } else wrong.push(k); });
+    P.forEach((q,k) => { const hit = c.ans[k]===q.answer; const p = per[q.lesson] || (per[q.lesson] = {n:0,r:0}); p.n++; if(hit){ ok++; p.r++; } else wrong.push(k); });
     const score = ok*3+1, used = Math.min(EXAM_MS, EXAM_MS-Math.max(0,c.end-Date.now())), g = grade(score), blank = 33-Object.keys(c.ans).length;
-    S.exams.push({t:Date.now(), score, ok}); addXp(ok*5+20); save();
+    S.exams.push({t:Date.now(), score, ok, paper:c.paperTitle}); addXp(ok*5+20); save();
     const rows = L.filter(l=>per[l.id]).map(l=>{const p=per[l.id],a=pct(p.r,p.n);return `<div class="lrow"><span class="id" style="color:${LCOL[l.id]}">${l.id}</span><div class="bar"><i style="width:${a}%;background:${LCOL[l.id]}"></i></div><span class="lv2">${p.r} / ${p.n}</span></div>`}).join('');
     $('#app').innerHTML = `<div class="qwrap"><div class="card report"><div class="rk" style="--g:${g[2]}"><div class="rank"><span>${g[0]}</span></div><div><div class="mini">总分</div><div class="score" style="color:${g[2]}">${score}</div><div class="gl">${g[1]}</div></div></div>
     <div class="dlist wide"><div><b>${ok}<i> / 33</i></b><span>答对</span></div><div><b>${33-ok-blank}</b><span>答错</span></div><div><b>${blank}</b><span>空白</span></div><div><b>${Math.floor(used/60000)}<i> 分</i></b><span>用时</span></div></div>
     <h3 class="rh2">各课表现</h3><div class="lrows">${rows}</div>
-    <p class="dnote">${wrong.length?`答错和空白的 ${wrong.length} 题已收入错题本。`:'全部答对。'}</p>
+    <p class="dnote">${wrong.length?`答错和空白共 ${wrong.length} 题，可在此查看解析。`:'全部答对。'}</p>
     <div class="row" style="justify-content:center"><button class="btn pink" id="r1" ${wrong.length?'':'disabled'}>看错题解析</button><button class="btn" id="r3">再考一次</button><button class="btn ghost" id="r2">回道场</button></div></div><div id="rev"></div></div>`;
     $('#r2').onclick = () => go('home'); $('#r3').onclick = () => go('exam');
     $('#r1').onclick = () => { $('#rev').innerHTML = wrong.map(k => { const q=P[k], a=c.ans[k];

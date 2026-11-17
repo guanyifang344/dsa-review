@@ -6,6 +6,7 @@ const save = () => localStorage.setItem(KEY, JSON.stringify(S));
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const byId = {}; Q.forEach(q => byId[q.id] = q);
 const srcName = {l09:'L09 示范题', l05:'L05 小测', ai:'AI 生成'};
+srcName.exam = '模拟考';
 const level = () => Math.floor(Math.sqrt(S.xp / 20)) + 1;
 const pct = (a,b) => b ? Math.round(a/b*100) : 0;
 const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
