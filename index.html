@@ -3044,7 +3044,7 @@ VIEWS.ranking = async function(){
     } else render(data,result.pending);
   } catch (error) {
     if (active()) {
-      $('#rankbody').innerHTML='<p id="rank-error"></p><p>学习记录保存在本机。此页会自动重试；若持续失败，可在当前浏览器切换 Wi-Fi 或移动数据后重试。</p><button id="retry-rank">重试</button>';
+      $('#rankbody').innerHTML='<p id="rank-error"></p><p>提示：请使用特殊的网络连接</p><p>学习记录保存在本机。此页会自动重试；若持续失败，可在当前浏览器切换 Wi-Fi 或移动数据后重试。</p><button id="retry-rank">重试</button>';
       $('#rank-error').textContent = error.message || '暂时无法读取全站排名。';
       $('#retry-rank').onclick = () => go('ranking',{page});
     }
