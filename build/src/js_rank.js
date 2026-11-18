@@ -1,4 +1,4 @@
-const rankApi = 'https://dsa-dojo-rank.awake-lily-0010.chatgpt.site';
+const rankApi = 'https://dsa-dojo-rank.a0806263626.workers.dev';
 const playerKey = 'dsa-dojo-player-v1';
 const readPlayer = () => JSON.parse(localStorage.getItem(playerKey) || 'null');
 const storePlayer = p => localStorage.setItem(playerKey,JSON.stringify(p));
