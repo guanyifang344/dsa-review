@@ -1,4 +1,4 @@
-function addXp(n){ const before=level(); S.xp+=n; save(); if(level()>before) toast('升级！Lv.'+level()); hud(); }
+function addXp(n){ const before=level(); S.xp+=n; save(); if(level()>before) toast('升级！Lv.'+level()); hud(); scheduleRankSync(); }
 function record(q, ok, redo){
   const mcq1 = Boolean(byId[q.id]);
   const attempts = mcq1 ? S.att : (S.practiceAtt ||= {});
@@ -14,7 +14,7 @@ function hud(){
   const lv = level(), cur = 20*(lv-1)*(lv-1), nxt = 20*lv*lv;
   $('#hud').innerHTML = `<span class="lv">Lv.${lv}</span><div class="xpbar"><i style="width:${Math.min(100,(S.xp-cur)/(nxt-cur)*100)}%"></i></div><span class="xp">${S.xp} / ${nxt} XP</span>`;
 }
-const TABS = [['home','道场'],['practice','练习'],['exam','模拟考'],['mistakes','错题本'],['stats','看板'],['review','快速复习'],['guide','使用教程']];
+const TABS = [['home','道场'],['practice','练习'],['exam','模拟考'],['mistakes','错题本'],['stats','看板'],['ranking','排行榜'],['review','快速复习'],['guide','使用教程']];
 let tab = 'home', ctx = {};
 function nav(){
   const nm = Object.keys(S.mistakes).length;

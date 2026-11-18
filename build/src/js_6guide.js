@@ -22,11 +22,11 @@ VIEWS.guide = function(){
   <h2 class="sec">每个页面做什么</h2><div class="grid g2">${pages.map(([t,d])=>`<div class="card"><h3 style="font-size:22px">${t}</h3><p class="gp">${d}</p></div>`).join('')}</div>
   <h2 class="sec">快捷键</h2><div class="card">${keys.map(([k,d])=>`<div class="keyrow"><span>${k.split(' ').map(x=>`<kbd>${x}</kbd>`).join(' ')}</span><span>${d}</span></div>`).join('')}</div>
   <h2 class="sec">题目来源</h2><div class="card">${src.map(([n,d])=>`<div class="keyrow"><span class="pill ${n.startsWith('L09')?'l09':n.startsWith('L05')?'l05':'ai'}">${n}</span><span>${d}</span></div>`).join('')}<p class="mini" style="margin-bottom:0">MCQ1 范围为 L01 到 L08，插入排序除外。</p></div>
-  <h2 class="sec">关于记录</h2><div class="card"><p class="gp" style="margin-top:0">答题记录、错题本、经验值和模拟考成绩都保存在当前浏览器里，不会上传。换浏览器或清除网站数据会丢失。想重新开始，可以在"看板"底部点"清空所有记录"。</p><p class="gp" style="margin-bottom:0">经验值只是做题的反馈：答对得 10 分，连击有加成，模拟考按答对数加分。它不代表考试水平，看正确率更准。</p></div>
+  <h2 class="sec">关于记录</h2><div class="card"><p class="gp" style="margin-top:0">昵称和总经验值会同步至公开排行榜。答题明细、错题本和模拟考成绩保存在当前浏览器。换浏览器或清除网站数据会丢失。想重新开始，可以在"看板"底部点"清空所有记录"。</p><p class="gp" style="margin-bottom:0">经验值只是做题的反馈：答对得 10 分，连击有加成，模拟考按答对数加分。它不代表考试水平，看正确率更准。</p></div>
   <p class="mini">本站使用 Google Analytics 统计访问人数、访问来源和设备等使用情况。具体答题记录、错题与成绩仅保存在当前浏览器中。</p>
   <div class="row"><button class="btn gold" id="gs">开始练习</button><button class="btn ghost" id="gh">回道场</button></div>`;
   document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   $('#gs').onclick = () => go('practice'); $('#gh').onclick = () => go('home');
 };
-hud(); go('home');
+startPlayer();
 if(window.__TEST) eval(window.__TEST);

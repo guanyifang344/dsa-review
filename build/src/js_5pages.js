@@ -38,5 +38,5 @@ VIEWS.stats = function(){
   <h2 class="sec">模拟考记录</h2><div class="card">${S.exams.length?S.exams.slice().reverse().map(e=>`<div class="rowstat" style="grid-template-columns:90px 1fr"><b style="font:800 26px var(--disp)">${e.score} 分</b><span class="mini">答对 ${e.ok} / 33 · ${new Date(e.t).toLocaleString()}</span></div>`).join(''):'<span class="mini">还没有记录。完成一次模拟考后会显示在这里。</span>'}</div>
   <h2 class="sec">成就</h2><div class="badges">${bd.map(([n,f,i])=>`<div class="badge ${f()?'on':''}"><i>${i}</i>${n}</div>`).join('')}</div>
   <div class="row"><button class="btn ghost" id="rs">清空所有记录</button></div>`;
-  $('#rs').onclick = () => { if(confirm('确定清空全部答题记录、错题本和经验值吗？')){ localStorage.removeItem(KEY); location.reload(); } };
+  $('#rs').onclick = () => { if(confirm('确定移除自己的排名，并清空此浏览器的答题记录、错题本和经验值吗？')){ resetPlayer(); } };
 };

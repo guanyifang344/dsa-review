@@ -346,3 +346,64 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
 .refcode .rc-h{display:flex;align-items:baseline;gap:10px;padding:9px 16px;font:700 12px var(--mono);color:var(--violet);border-bottom:1px solid var(--line)}
 .refcode .rc-h small{color:var(--dim);font-weight:400}
 .refcode pre{margin:0;border-radius:0;box-shadow:none;border-top:0;background:#04050c}
+
+/* The players' register */
+:root{--register-navy:#102236;--register-paper:#f0e9d9;--register-ink:#252920;--register-brass:#b79a61;--register-wine:#6b2934;--register-serif:Georgia,"Songti SC","STSong","SimSun",serif}
+body.enrolling{background:#0d1926}
+.enrolling #top,.enrolling #sky{display:none}
+.enrolling main{display:grid;align-content:center;min-height:100svh;max-width:940px;margin:0 auto;padding:30px clamp(16px,5vw,64px)}
+.entry-card,.rank-cover,.rank-paper{border:1px solid #9d8355;box-shadow:0 20px 60px #080d1438}
+.entry-art,.rank-cover{background-color:#101f32;background-image:url("assets/capitol-engraving.jpg");background-size:cover;background-position:center 28%}
+.entry-art{height:clamp(168px,26vh,275px);border-bottom:4px double var(--register-brass)}
+.entry-form,.rank-paper{background:linear-gradient(115deg,#faf5e8,var(--register-paper) 62%,#e5dac4);color:var(--register-ink)}
+.entry-form{padding:clamp(24px,4vw,48px) clamp(22px,6vw,74px)}
+.register-label{color:#74582d;font:600 12px/1.5 var(--ui);letter-spacing:.19em}
+.entry-form h1,.rank-cover h1,.rank-toolbar h2{font-family:var(--register-serif);font-weight:700}
+.entry-form h1{margin:7px 0 8px;font-size:clamp(32px,5vw,49px);letter-spacing:.035em}
+.entry-form p{margin:0 0 24px;color:#514f47;line-height:1.8}
+.entry-form label{display:block;font-size:14px;font-weight:700;margin-bottom:8px}
+.entry-form input{width:100%;font:inherit;color:#1c2831;background:#fffcf4;border:1px solid #988767;border-radius:3px;padding:13px 15px}
+.entry-form input:focus-visible,.rank-paper button:focus-visible,.register-button:focus-visible{outline:3px solid #8e7142;outline-offset:3px}
+.register-note{font-size:13px;line-height:1.6;color:#5c5548;margin:8px 0 20px}
+.register-button{width:100%;padding:14px 20px;background:var(--register-wine);color:#fff6e4;border:1px solid #5d2933;font:700 16px var(--ui);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.register-button:hover{background:#52232b}
+.rank-cover{position:relative;isolation:isolate;display:flex;align-items:end;min-height:clamp(210px,26vw,330px);padding:clamp(23px,4vw,48px);border-bottom:4px double var(--register-brass);color:#fcf3df}
+.rank-cover:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0d1b2bf0,transparent 80%);z-index:-1}
+.rank-cover .register-label{color:#e4c992}
+.rank-cover h1{font-size:clamp(36px,6vw,66px);letter-spacing:.06em;margin:9px 0}
+.rank-cover p{font-size:14px;color:#e4d9c4;margin:0}
+.rank-paper{padding:clamp(16px,3vw,32px);border-top:0}
+.my-standing{display:flex;align-items:center;gap:clamp(14px,5vw,56px);padding:0 0 23px;border-bottom:3px double #ada088}
+.my-standing>div{min-width:0}
+.my-standing small{display:block;color:#665c4c;font-size:12px;margin-bottom:6px}
+.my-standing b,.my-standing strong{display:block;font-family:var(--register-serif);overflow-wrap:anywhere}
+.my-standing strong{font-size:clamp(22px,3vw,34px);color:var(--register-wine)}
+.rank-toolbar,.rank-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 0 12px}
+.rank-toolbar h2{font-size:clamp(18px,3vw,27px)}
+.rank-toolbar h2 small{font:400 12px var(--ui);color:#665c4c}
+.rank-paper button{background:transparent;color:#433b31;border:1px solid #a99b82;padding:6px 12px;cursor:pointer}
+.rank-paper button:disabled{opacity:.45}
+.rank-table{width:100%;border-collapse:collapse;table-layout:fixed;color:var(--register-ink);font-variant-numeric:tabular-nums}
+.rank-table th,.rank-table td{text-align:left;padding:13px 6px;border-bottom:1px solid #cfc2aa;overflow-wrap:anywhere}
+.rank-table thead th{color:#625540;border-block:1px solid #98876b;font-size:12px}
+.rank-table th:first-child{width:15%}.rank-table th:nth-child(2){width:42%}
+.rank-table tr>:last-child{text-align:right}
+.rank-table tbody td:first-child{font:700 20px var(--register-serif);color:#68532c}
+.rank-table .rank-me{background:#ded1b945}.rank-table small{font-size:10px;color:var(--register-wine);white-space:nowrap}
+nav button[data-t="ranking"] svg{stroke:#cfb379}
+@media(max-width:600px){.rank-cover{background-position:66% top}.entry-art{background-position:70% top}.rank-table th,.rank-table td{padding:12px 4px;font-size:13px}.rank-table thead th{font-size:12px}.my-standing{flex-wrap:wrap}.my-standing b{font-size:14px}}
+
+/* Shared club stationery: ink, parchment, oxblood, brass. */
+:root{--bg:#0c1721;--s1:#14212d;--s2:#1c2d3a;--s3:#2c3b46;--ink:#f3eddd;--dim:#b1b2aa;--violet:#c2aa79;--amber:#ddbe83;--cyan:#91c1ae;--pink:#de9c9d;--line:#a7957035;--line2:#a7957066;--disp:var(--register-serif)}
+header#top{background:linear-gradient(150deg,#182a3a,#0d1925 80%);border-color:#8c795457}
+#sky{background:repeating-linear-gradient(90deg,transparent 0 59px,#a88d5d0b 60px);mask-image:none;-webkit-mask-image:none}
+#sky:before,#sky:after{animation:none;opacity:.12;background:#a29572}
+.logo{border-radius:5px;border:1px solid #a79162;background:#15283a;box-shadow:inset 0 0 0 3px #172534}
+.logo:before{background:#9f8352;box-shadow:8px -5px 0 #d4bd8e,16px -10px 0 #f2e2bc}
+nav button.on{background:#35404a;color:#f7edda;box-shadow:inset 2px 0 0 #cdb784}
+.card{background:linear-gradient(140deg,#192936ed,#101e2bf2);border-radius:9px}
+.btn{background:linear-gradient(#81414c,#63313b);color:#fff5e3;box-shadow:inset 0 1px #ab6d73,0 3px 12px #06091055;border-radius:6px}
+.btn.gold{background:linear-gradient(#ddc695,#c3a778);color:#28241f}
+.btn.ghost{background:#1c2933;color:#e2dac9}
+.btn.pink{background:#713842;color:#fff4e7}
+.hud{border-radius:6px}.xpbar i{background:linear-gradient(90deg,#8e724b,#e1ca99)}

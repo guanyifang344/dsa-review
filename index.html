@@ -363,6 +363,67 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
 .refcode .rc-h{display:flex;align-items:baseline;gap:10px;padding:9px 16px;font:700 12px var(--mono);color:var(--violet);border-bottom:1px solid var(--line)}
 .refcode .rc-h small{color:var(--dim);font-weight:400}
 .refcode pre{margin:0;border-radius:0;box-shadow:none;border-top:0;background:#04050c}
+
+/* The players' register */
+:root{--register-navy:#102236;--register-paper:#f0e9d9;--register-ink:#252920;--register-brass:#b79a61;--register-wine:#6b2934;--register-serif:Georgia,"Songti SC","STSong","SimSun",serif}
+body.enrolling{background:#0d1926}
+.enrolling #top,.enrolling #sky{display:none}
+.enrolling main{display:grid;align-content:center;min-height:100svh;max-width:940px;margin:0 auto;padding:30px clamp(16px,5vw,64px)}
+.entry-card,.rank-cover,.rank-paper{border:1px solid #9d8355;box-shadow:0 20px 60px #080d1438}
+.entry-art,.rank-cover{background-color:#101f32;background-image:url("assets/capitol-engraving.jpg");background-size:cover;background-position:center 28%}
+.entry-art{height:clamp(168px,26vh,275px);border-bottom:4px double var(--register-brass)}
+.entry-form,.rank-paper{background:linear-gradient(115deg,#faf5e8,var(--register-paper) 62%,#e5dac4);color:var(--register-ink)}
+.entry-form{padding:clamp(24px,4vw,48px) clamp(22px,6vw,74px)}
+.register-label{color:#74582d;font:600 12px/1.5 var(--ui);letter-spacing:.19em}
+.entry-form h1,.rank-cover h1,.rank-toolbar h2{font-family:var(--register-serif);font-weight:700}
+.entry-form h1{margin:7px 0 8px;font-size:clamp(32px,5vw,49px);letter-spacing:.035em}
+.entry-form p{margin:0 0 24px;color:#514f47;line-height:1.8}
+.entry-form label{display:block;font-size:14px;font-weight:700;margin-bottom:8px}
+.entry-form input{width:100%;font:inherit;color:#1c2831;background:#fffcf4;border:1px solid #988767;border-radius:3px;padding:13px 15px}
+.entry-form input:focus-visible,.rank-paper button:focus-visible,.register-button:focus-visible{outline:3px solid #8e7142;outline-offset:3px}
+.register-note{font-size:13px;line-height:1.6;color:#5c5548;margin:8px 0 20px}
+.register-button{width:100%;padding:14px 20px;background:var(--register-wine);color:#fff6e4;border:1px solid #5d2933;font:700 16px var(--ui);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.register-button:hover{background:#52232b}
+.rank-cover{position:relative;isolation:isolate;display:flex;align-items:end;min-height:clamp(210px,26vw,330px);padding:clamp(23px,4vw,48px);border-bottom:4px double var(--register-brass);color:#fcf3df}
+.rank-cover:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0d1b2bf0,transparent 80%);z-index:-1}
+.rank-cover .register-label{color:#e4c992}
+.rank-cover h1{font-size:clamp(36px,6vw,66px);letter-spacing:.06em;margin:9px 0}
+.rank-cover p{font-size:14px;color:#e4d9c4;margin:0}
+.rank-paper{padding:clamp(16px,3vw,32px);border-top:0}
+.my-standing{display:flex;align-items:center;gap:clamp(14px,5vw,56px);padding:0 0 23px;border-bottom:3px double #ada088}
+.my-standing>div{min-width:0}
+.my-standing small{display:block;color:#665c4c;font-size:12px;margin-bottom:6px}
+.my-standing b,.my-standing strong{display:block;font-family:var(--register-serif);overflow-wrap:anywhere}
+.my-standing strong{font-size:clamp(22px,3vw,34px);color:var(--register-wine)}
+.rank-toolbar,.rank-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 0 12px}
+.rank-toolbar h2{font-size:clamp(18px,3vw,27px)}
+.rank-toolbar h2 small{font:400 12px var(--ui);color:#665c4c}
+.rank-paper button{background:transparent;color:#433b31;border:1px solid #a99b82;padding:6px 12px;cursor:pointer}
+.rank-paper button:disabled{opacity:.45}
+.rank-table{width:100%;border-collapse:collapse;table-layout:fixed;color:var(--register-ink);font-variant-numeric:tabular-nums}
+.rank-table th,.rank-table td{text-align:left;padding:13px 6px;border-bottom:1px solid #cfc2aa;overflow-wrap:anywhere}
+.rank-table thead th{color:#625540;border-block:1px solid #98876b;font-size:12px}
+.rank-table th:first-child{width:15%}.rank-table th:nth-child(2){width:42%}
+.rank-table tr>:last-child{text-align:right}
+.rank-table tbody td:first-child{font:700 20px var(--register-serif);color:#68532c}
+.rank-table .rank-me{background:#ded1b945}.rank-table small{font-size:10px;color:var(--register-wine);white-space:nowrap}
+nav button[data-t="ranking"] svg{stroke:#cfb379}
+@media(max-width:600px){.rank-cover{background-position:66% top}.entry-art{background-position:70% top}.rank-table th,.rank-table td{padding:12px 4px;font-size:13px}.rank-table thead th{font-size:12px}.my-standing{flex-wrap:wrap}.my-standing b{font-size:14px}}
+
+/* Shared club stationery: ink, parchment, oxblood, brass. */
+:root{--bg:#0c1721;--s1:#14212d;--s2:#1c2d3a;--s3:#2c3b46;--ink:#f3eddd;--dim:#b1b2aa;--violet:#c2aa79;--amber:#ddbe83;--cyan:#91c1ae;--pink:#de9c9d;--line:#a7957035;--line2:#a7957066;--disp:var(--register-serif)}
+header#top{background:linear-gradient(150deg,#182a3a,#0d1925 80%);border-color:#8c795457}
+#sky{background:repeating-linear-gradient(90deg,transparent 0 59px,#a88d5d0b 60px);mask-image:none;-webkit-mask-image:none}
+#sky:before,#sky:after{animation:none;opacity:.12;background:#a29572}
+.logo{border-radius:5px;border:1px solid #a79162;background:#15283a;box-shadow:inset 0 0 0 3px #172534}
+.logo:before{background:#9f8352;box-shadow:8px -5px 0 #d4bd8e,16px -10px 0 #f2e2bc}
+nav button.on{background:#35404a;color:#f7edda;box-shadow:inset 2px 0 0 #cdb784}
+.card{background:linear-gradient(140deg,#192936ed,#101e2bf2);border-radius:9px}
+.btn{background:linear-gradient(#81414c,#63313b);color:#fff5e3;box-shadow:inset 0 1px #ab6d73,0 3px 12px #06091055;border-radius:6px}
+.btn.gold{background:linear-gradient(#ddc695,#c3a778);color:#28241f}
+.btn.ghost{background:#1c2933;color:#e2dac9}
+.btn.pink{background:#713842;color:#fff4e7}
+.hud{border-radius:6px}.xpbar i{background:linear-gradient(90deg,#8e724b,#e1ca99)}
 </style>
 </head>
 <body>
@@ -2449,6 +2510,7 @@ const refCode = q => q.code ? `<div class="refcode"><div class="rc-h"><span>题�
 
 // ---- icons (stroke, 24px grid) ----
 const IC = {
+ ranking:'<path d="M7 3h10v6a5 5 0 01-10 0zM7 5H3v2a4 4 0 004 4m10-6h4v2a4 4 0 01-4 4M12 14v5m-5 2h10"/>',
  home:'<path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',
  practice:'<path d="M4 17l6-6-6-6M12 19h8"/>',
  exam:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>',
@@ -2532,7 +2594,7 @@ function stagePlay(){
 function stageStep(d){ if(!stage) return; stage.playing = false; clearInterval(stage.timer); stage.i = Math.max(0, Math.min(stage.frames.length-1, stage.i+d)); stageDraw(); }
 function stageToggle(){ if(!stage) return; if(!stage.playing){ if(stage.i>=stage.frames.length-1) stage.i=0; stage.playing = true; stagePlay(); } else { stage.playing = false; clearInterval(stage.timer); } stageDraw(); }
 
-function addXp(n){ const before=level(); S.xp+=n; save(); if(level()>before) toast('升级！Lv.'+level()); hud(); }
+function addXp(n){ const before=level(); S.xp+=n; save(); if(level()>before) toast('升级！Lv.'+level()); hud(); scheduleRankSync(); }
 function record(q, ok, redo){
   const mcq1 = Boolean(byId[q.id]);
   const attempts = mcq1 ? S.att : (S.practiceAtt ||= {});
@@ -2548,7 +2610,7 @@ function hud(){
   const lv = level(), cur = 20*(lv-1)*(lv-1), nxt = 20*lv*lv;
   $('#hud').innerHTML = `<span class="lv">Lv.${lv}</span><div class="xpbar"><i style="width:${Math.min(100,(S.xp-cur)/(nxt-cur)*100)}%"></i></div><span class="xp">${S.xp} / ${nxt} XP</span>`;
 }
-const TABS = [['home','道场'],['practice','练习'],['exam','模拟考'],['mistakes','错题本'],['stats','看板'],['review','快速复习'],['guide','使用教程']];
+const TABS = [['home','道场'],['practice','练习'],['exam','模拟考'],['mistakes','错题本'],['stats','看板'],['ranking','排行榜'],['review','快速复习'],['guide','使用教程']];
 let tab = 'home', ctx = {};
 function nav(){
   const nm = Object.keys(S.mistakes).length;
@@ -2767,7 +2829,7 @@ VIEWS.stats = function(){
   <h2 class="sec">模拟考记录</h2><div class="card">${S.exams.length?S.exams.slice().reverse().map(e=>`<div class="rowstat" style="grid-template-columns:90px 1fr"><b style="font:800 26px var(--disp)">${e.score} 分</b><span class="mini">答对 ${e.ok} / 33 · ${new Date(e.t).toLocaleString()}</span></div>`).join(''):'<span class="mini">还没有记录。完成一次模拟考后会显示在这里。</span>'}</div>
   <h2 class="sec">成就</h2><div class="badges">${bd.map(([n,f,i])=>`<div class="badge ${f()?'on':''}"><i>${i}</i>${n}</div>`).join('')}</div>
   <div class="row"><button class="btn ghost" id="rs">清空所有记录</button></div>`;
-  $('#rs').onclick = () => { if(confirm('确定清空全部答题记录、错题本和经验值吗？')){ localStorage.removeItem(KEY); location.reload(); } };
+  $('#rs').onclick = () => { if(confirm('确定移除自己的排名，并清空此浏览器的答题记录、错题本和经验值吗？')){ resetPlayer(); } };
 };
 
 // ---- 快速复习: per-lesson walkthrough ----
@@ -2855,6 +2917,110 @@ VIEWS.review = function(){
   }
 };
 
+const rankApi = 'https://dsa-dojo-rank.awake-lily-0010.chatgpt.site';
+const playerKey = 'dsa-dojo-player-v1';
+const readPlayer = () => JSON.parse(localStorage.getItem(playerKey) || 'null');
+const storePlayer = p => localStorage.setItem(playerKey,JSON.stringify(p));
+const validName = value => value.length > 0 && [...value].length <= 20 && !/[\p{Cc}\p{Cf}]/u.test(value);
+const rankLock = action => navigator.locks ? navigator.locks.request(playerKey, action) : action();
+let rankTimer, rankRequest = 0;
+async function rankFetch(path, body) {
+  const response = await fetch(rankApi+path, {
+    method:body ? 'POST' : 'GET', body:body ? JSON.stringify(body) : undefined,
+    credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(12000)
+  });
+  if (!response.ok) throw new Error('排行榜暂时无法连接');
+  return response.json();
+}
+async function syncRank() {
+  return rankLock(async () => {
+    const p = readPlayer();
+    if (!p) return;
+    const xp = Math.max(S.xp, JSON.parse(localStorage.getItem(KEY) || '{}').xp || 0);
+    if (p.id && p.synced >= xp) return;
+    const row = await rankFetch('/sync',{key:p.key,nickname:p.nickname,xp});
+    if (!Number.isInteger(row.id) || !Number.isSafeInteger(row.xp)) throw new Error('同步失败');
+    if (readPlayer()?.key === p.key) storePlayer({...p,id:row.id,synced:row.xp});
+  });
+}
+function scheduleRankSync() {
+  clearTimeout(rankTimer);
+  rankTimer = setTimeout(() => syncRank().catch(() => {}),600);
+}
+async function resetPlayer() {
+  clearTimeout(rankTimer);
+  try {
+    await rankLock(async () => {
+      const p = readPlayer();
+      if (p) await rankFetch('/remove',{key:p.key});
+      localStorage.removeItem(playerKey);
+      localStorage.removeItem(KEY);
+    });
+    location.reload();
+  } catch {toast('未能移除排名，请联网后重试。');}
+}
+function startPlayer() {
+  const p = readPlayer();
+  if (p && validName(p.nickname)) {
+    document.body.classList.remove('enrolling');
+    hud(); go('home'); scheduleRankSync();
+    return;
+  }
+  document.body.classList.add('enrolling');
+  $('#app').innerHTML = `<article class="entry-card">
+    <div class="entry-art" aria-hidden="true"></div>
+    <section class="entry-form"><div class="register-label">DSA · 玩家名册</div>
+    <h1>签下你的昵称</h1><p>这个名字将与你的等级和经验值一起出现在全站排行榜。</p>
+    <form id="enroll"><label for="nickname">玩家昵称</label>
+    <input id="nickname" name="nickname" autocomplete="nickname" required placeholder="输入 1 至 20 个字符" aria-describedby="name-note">
+    <div id="name-note" class="register-note" role="status">${S.xp ? '已读到本机的 '+S.xp+' XP，登记后计入排名。':'学习进度保存在当前浏览器。'}</div>
+    <button class="register-button">登记并进入道场 <span aria-hidden="true">→</span></button></form></section></article>`;
+  $('#enroll').onsubmit = async e => {
+    e.preventDefault();
+    const nickname = $('#nickname').value.trim();
+    if (!validName(nickname)) { $('#name-note').textContent='请输入 1 至 20 个可见字符。'; $('#nickname').focus(); return; }
+    try {
+      await rankLock(() => {
+        if (readPlayer()) return;
+        const key = Array.from(crypto.getRandomValues(new Uint8Array(32)), b=>b.toString(16).padStart(2,'0')).join('');
+        storePlayer({key,nickname,id:null,synced:null});
+      });
+      startPlayer();
+    } catch { $('#name-note').textContent='无法保存昵称，请允许浏览器存储后重试。'; }
+  };
+}
+window.addEventListener('online',scheduleRankSync);
+window.addEventListener('storage', e => {
+  if (e.key === playerKey && (!e.newValue || !e.oldValue)) location.reload();
+});
+setInterval(() => { if (!document.hidden && readPlayer()) scheduleRankSync(); },30000);
+VIEWS.ranking = async function(){
+  const request = ++rankRequest, page = ctx.page || 1, p = readPlayer();
+  const title = '<header class="rank-cover"><div><div class="register-label">DSA · 经验名册</div><h1>排行榜</h1><p>按累计经验排列，同分并列。</p></div></header>';
+  $('#app').innerHTML = title+'<section class="rank-paper" id="rankbody" aria-live="polite">正在读取全站排名…</section>';
+  const active = () => tab==='ranking' && request===rankRequest;
+  try {
+    await syncRank();
+    const data = await rankFetch('/board?page='+page+'&player='+readPlayer().id);
+    if (!active()) return;
+    const me = data.mine;
+    const fmt = n=>Number(n).toLocaleString('zh-CN');
+    const rows = data.rows.map(row => `<tr class="${row.id===me?.id?'rank-me':''}"><td>${fmt(row.place)}</td><th scope="row">${esc(row.nickname)}${row.id===me?.id?' <small>我</small>':''}</th><td>Lv. ${Math.floor(Math.sqrt(row.xp/20))+1}</td><td>${fmt(row.xp)}</td></tr>`).join('');
+    $('#rankbody').innerHTML = `<div class="my-standing"><div><small>我的名次</small><strong>${me?'第 '+fmt(me.place)+' 名':'等待同步'}</strong></div><div><small>玩家</small><b>${esc(p.nickname)}</b></div><div><small>累计经验</small><b>${fmt(me?.xp ?? S.xp)} XP</b></div></div>
+    <div class="rank-toolbar"><h2>全站名册 <small>${fmt(data.total)} 位玩家</small></h2><button id="rank-refresh">刷新</button></div>
+    <table class="rank-table"><thead><tr><th>名次</th><th>昵称</th><th>等级</th><th>经验值</th></tr></thead><tbody>${rows}</tbody></table>
+    ${data.total>50 || page>1 ? '<div class="rank-pager"><button id="prev-rank" '+(page===1?'disabled':'')+'>上一页</button><span>第 '+page+' 页</span><button id="next-rank" '+(page*50>=data.total?'disabled':'')+'>下一页</button></div>':''}`;
+    $('#rank-refresh').onclick = () => go('ranking',{page});
+    if ($('#prev-rank')) $('#prev-rank').onclick = () => go('ranking',{page:page-1});
+    if ($('#next-rank')) $('#next-rank').onclick = () => go('ranking',{page:page+1});
+  } catch {
+    if (active()) {
+      $('#rankbody').innerHTML='<p>暂时无法读取全站排名。本机经验已保留，联网后会再次同步。</p><button id="retry-rank">重试</button>';
+      $('#retry-rank').onclick = () => go('ranking',{page});
+    }
+  }
+};
+
 VIEWS.guide = function(){
   S.seen.guide = true; save();
   const flow = [
@@ -2879,13 +3045,13 @@ VIEWS.guide = function(){
   <h2 class="sec">每个页面做什么</h2><div class="grid g2">${pages.map(([t,d])=>`<div class="card"><h3 style="font-size:22px">${t}</h3><p class="gp">${d}</p></div>`).join('')}</div>
   <h2 class="sec">快捷键</h2><div class="card">${keys.map(([k,d])=>`<div class="keyrow"><span>${k.split(' ').map(x=>`<kbd>${x}</kbd>`).join(' ')}</span><span>${d}</span></div>`).join('')}</div>
   <h2 class="sec">题目来源</h2><div class="card">${src.map(([n,d])=>`<div class="keyrow"><span class="pill ${n.startsWith('L09')?'l09':n.startsWith('L05')?'l05':'ai'}">${n}</span><span>${d}</span></div>`).join('')}<p class="mini" style="margin-bottom:0">MCQ1 范围为 L01 到 L08，插入排序除外。</p></div>
-  <h2 class="sec">关于记录</h2><div class="card"><p class="gp" style="margin-top:0">答题记录、错题本、经验值和模拟考成绩都保存在当前浏览器里，不会上传。换浏览器或清除网站数据会丢失。想重新开始，可以在"看板"底部点"清空所有记录"。</p><p class="gp" style="margin-bottom:0">经验值只是做题的反馈：答对得 10 分，连击有加成，模拟考按答对数加分。它不代表考试水平，看正确率更准。</p></div>
+  <h2 class="sec">关于记录</h2><div class="card"><p class="gp" style="margin-top:0">昵称和总经验值会同步至公开排行榜。答题明细、错题本和模拟考成绩保存在当前浏览器。换浏览器或清除网站数据会丢失。想重新开始，可以在"看板"底部点"清空所有记录"。</p><p class="gp" style="margin-bottom:0">经验值只是做题的反馈：答对得 10 分，连击有加成，模拟考按答对数加分。它不代表考试水平，看正确率更准。</p></div>
   <p class="mini">本站使用 Google Analytics 统计访问人数、访问来源和设备等使用情况。具体答题记录、错题与成绩仅保存在当前浏览器中。</p>
   <div class="row"><button class="btn gold" id="gs">开始练习</button><button class="btn ghost" id="gh">回道场</button></div>`;
   document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   $('#gs').onclick = () => go('practice'); $('#gh').onclick = () => go('home');
 };
-hud(); go('home');
+startPlayer();
 if(window.__TEST) eval(window.__TEST);
 
 })();</script>

@@ -1,5 +1,6 @@
 // ---- icons (stroke, 24px grid) ----
 const IC = {
+ ranking:'<path d="M7 3h10v6a5 5 0 01-10 0zM7 5H3v2a4 4 0 004 4m10-6h4v2a4 4 0 01-4 4M12 14v5m-5 2h10"/>',
  home:'<path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',
  practice:'<path d="M4 17l6-6-6-6M12 19h8"/>',
  exam:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>',
