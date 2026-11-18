@@ -377,6 +377,139 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
 <div id="toast"></div>
 <script>window.QUESTIONS=[{"id": "l09-01", "lesson": "L01", "src": "l09", "prompt": "You play the guessing game: I think of a number between 1 and 1,000,000. You cut the range\nin half with each guess. In the worst case, about how many guesses do you need?", "options": ["1,000,000", "500,000", "20", "1,000"], "answer": 2, "exp": "Each guess throws away half of the numbers that are left. 1,000,000 halves down to 1\nin about 20 steps. Guessing one number at a time needs up to 1,000,000 guesses.\n\nRead again: L09 notes, section 3.", "zh": "每次将范围减半，约 20 次就能覆盖一百万种可能。", "topic": "算法与数据结构", "ref": "L09 notes, section 3.", "code": ""}, {"id": "l09-02", "lesson": "L01", "src": "l09", "prompt": "What is a **data structure**?", "options": ["A way of organising and storing data, so that we can use it efficiently", "Any program written in Python", "A list of steps that always finishes and is always correct", "The memory inside a computer"], "answer": 0, "exp": "C describes an **algorithm**, not a data structure. The two work together: halving\nonly works because the numbers are **in order**, and the order is the data structure.\n\nRead again: L09 notes, section 3.", "zh": "数据结构描述如何组织和储存数据，让操作更高效。", "topic": "算法与数据结构", "ref": "L09 notes, section 3.", "code": ""}, {"id": "l09-03", "lesson": "L02", "src": "l09", "prompt": "A function does `4n + 7` operations. What is its time complexity?", "options": ["`O(1)`", "`O(n)`", "`O(n²)`", "`O(log n)`"], "answer": 1, "exp": "Drop the constant factor `4`. Keep only the fastest-growing term: `n` grows, `7` does\nnot. So `4n + 7` is `O(n)`.\n\nRead again: L09 notes, section 4.", "zh": "忽略常数因子和常数项，4n + 7 的增长量级是 n。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-04", "lesson": "L02", "src": "l09", "prompt": "What is the time complexity of `three_each`?\n\n```python\ndef three_each(numbers):\n    count = 0\n    for number in numbers:\n        for i in range(3):\n            count = count + 1\n    return count\n```", "options": ["`O(n²)`", "`O(1)`", "`O(log n)`", "`O(n)`"], "answer": 3, "exp": "There is a loop inside a loop, but the inner loop always runs **3** times. Count the\nturns: `3 × n`. Drop the `3`: `O(n)`. A nested loop is `O(n²)` only when both loops grow\nwith `n`.\n\nRead again: L09 notes, section 4, \"Reading loops\".", "zh": "内层始终只有 3 次，总次数为 3n，因此是 O(n)。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4, \"Reading loops\".", "code": ""}, {"id": "l09-05", "lesson": "L02", "src": "l09", "prompt": "A function has a loop over `n` items. **Inside** that loop, there is a halving loop: it\nhalves a number until it reaches 1. What is the time complexity of the function?", "options": ["`O(n log n)`", "`O(log n)`", "`O(n)`", "`O(n²)`"], "answer": 0, "exp": "The outer loop runs `n` times. Each time, the halving loop runs about `log n` times.\nA loop inside a loop **multiplies**: `n × log n`.\n\nRead again: L09 notes, section 4.", "zh": "外层 n 次，每次内层约 log n 次，相乘得到 O(n log n)。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-06", "lesson": "L02", "src": "l09", "prompt": "What is the **space** complexity of `total`? Space complexity is the **extra** memory the\nfunction uses.\n\n```python\ndef total(numbers):\n    result = 0\n    for number in numbers:\n        result = result + number\n    return result\n```", "options": ["`O(n)`", "`O(1)`", "`O(n²)`", "`O(log n)`"], "answer": 1, "exp": "The function makes one variable, `result`, whatever the size of the list. The input\nlist does not count: you were given it. The **time** is `O(n)`, but the **space** is `O(1)`.\n\nRead again: L09 notes, section 4.", "zh": "只需固定数量的变量，额外空间 O(1)；输入列表不计入额外空间。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-07", "lesson": "L02", "src": "l09", "prompt": "A function is `O(n)`. You run it on 1,000 items, then on 2,000 items. What happens to the\nwork?", "options": ["It stays the same", "It goes up by one step", "It is about two times larger", "It is about four times larger"], "answer": 2, "exp": "`O(n)`: double the input, and the work doubles. A is `O(1)`, B is `O(log n)`, and D\nis `O(n²)`.\n\nRead again: L09 notes, section 4, the table of the five runtimes.", "zh": "线性增长：输入加倍，工作量约加倍。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4, the table of the five runtimes.", "code": ""}, {"id": "l09-08", "lesson": "L02", "src": "l09", "prompt": "Someone says: \"`contains` is `O(n)`.\" They do not say best, worst or average case. Which\ncase do they mean?", "options": ["The best case", "The average case", "All three cases at once", "The worst case"], "answer": 3, "exp": "When no case is named, we mean the **worst** case. It is a promise: the code is never\nslower than this.\n\nRead again: L09 notes, section 4.", "zh": "按本课程的约定，未说明情况时按最坏情况分析；Big-O 本身并不等于最坏情况。", "topic": "复杂度与 Big-O", "ref": "L09 notes, section 4.", "code": ""}, {"id": "l09-09", "lesson": "L03", "src": "l09", "prompt": "`items` is a list of `n` items. What does `items.pop(0)` cost?", "options": ["`O(1)`", "`O(log n)`", "`O(n)`", "`O(n²)`"], "answer": 2, "exp": "`pop(0)` removes the **first** item. Every other item then moves one place left. That\nis `n - 1` moves: `O(n)`. `pop()` with no position removes the last item, and nothing\nmoves: `O(1)`.\n\nRead again: L09 notes, section 5.", "zh": "删除头部需要把后面的元素前移，因此是 O(n)。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-10", "lesson": "L03", "src": "l09", "prompt": "What does this code print?\n\n```python\nitems = [5, 6, 7, 8]\nprint(items[len(items) - 1])\n```", "options": ["`8`", "`7`", "An `IndexError`", "`4`"], "answer": 0, "exp": "`len(items)` is 4. The positions are 0, 1, 2 and 3, so the last position is\n`4 - 1 = 3`. `items[3]` is `8`. `items[4]` would be an `IndexError`.\n\nRead again: L09 notes, section 5.", "zh": "长度为 4，最后一个索引是 3，读到 8。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-11", "lesson": "L03", "src": "l09", "prompt": "What does this code print?\n\n```python\na = [1, 2]\nb = a[:]\nb.append(3)\nprint(a)\n```", "options": ["`[1, 2, 3]`", "`None`", "`[3]`", "`[1, 2]`"], "answer": 3, "exp": "`a[:]` is a full slice: it makes a **copy**. So `b` is a different list, and\n`append` changes only `b`. With `b = a`, the answer would be `[1, 2, 3]`.\n\nRead again: L09 notes, section 5.", "zh": "切片创建了副本；修改 b 不会改变 a。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-12", "lesson": "L03", "src": "l09", "prompt": "What does this code print?\n\n```python\nnumbers = [3, 3, 5]\nfor number in numbers:\n    if number == 3:\n        numbers.remove(number)\nprint(numbers)\n```", "options": ["`[5]`", "`[3, 5]`", "`[3, 3, 5]`", "An error"], "answer": 1, "exp": "The loop reads position 0: a `3`, so it removes it. The list is now `[3, 5]`. The\nsecond `3` moved to position 0, but the loop goes on to position 1 and reads `5`. So it\nnever sees the second `3`. Do not remove items from a list while you loop over it.\n\nRead again: L09 notes, section 5.", "zh": "删除第一个 3 后，第二个 3 移到已经走过的位置，循环会跳过它。", "topic": "列表与内存", "ref": "L09 notes, section 5.", "code": ""}, {"id": "l09-13", "lesson": "L04", "src": "l09", "prompt": "What happens when this code runs?\n\n```python\nword = \"Bat\"\nword[0] = \"C\"\nprint(word)\n```", "options": ["It prints `Cat`", "It prints `Bat`", "It gives a `TypeError`", "It prints `None`"], "answer": 2, "exp": "A string is **immutable**: it cannot change. You cannot change one character. Build\na new string instead: `word = \"C\" + word[1:]`.\n\nRead again: L09 notes, section 6.", "zh": "字符串不可变，不能对单个字符位置赋值。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-14", "lesson": "L04", "src": "l09", "prompt": "You build a string of `n` characters. Which way costs `O(n)`?", "options": ["Put the characters in a list, then call `\"\".join(...)` once", "Add each character with `result = result + letter`", "Add each character at the front of a list with `insert(0, letter)`", "Cut the first character off with `text = text[1:]` on each turn"], "answer": 0, "exp": "`join` copies each character once: `O(n)`. B copies the whole string on every `+`,\nand C and D move or copy everything on every turn: all three are `O(n²)`.\n\nRead again: L09 notes, section 6.", "zh": "按课程的复制成本模型，收集字符后一次 join 是线性的；其余方案反复移动或复制已有内容。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-15", "lesson": "L04", "src": "l09", "prompt": "What does this code print?\n\n```python\nwords = \"I like green tea\".split()\nprint(len(words))\n```", "options": ["`16`", "`1`", "`3`", "`4`"], "answer": 3, "exp": "`split()` cuts the string at each space and gives back a **list** of words:\n`[\"I\", \"like\", \"green\", \"tea\"]`. The list holds 4 words. 16 is the number of characters in\nthe string.\n\nRead again: L09 notes, section 6.", "zh": "split 得到四个单词，len 计算列表元素数。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-16", "lesson": "L04", "src": "l09", "prompt": "What does this code print?\n\n```python\ntext = \"xyz\"\nif text.find(\"x\"):\n    print(\"yes\")\nelse:\n    print(\"no\")\n```", "options": ["`yes`", "`no`", "`0`", "An error"], "answer": 1, "exp": "`\"x\"` is at position 0, so `find` gives back `0`. In an `if`, `0` counts as **false**,\nso the code prints `no`, even though `\"x\"` is there. Always compare with `-1`:\n`if text.find(\"x\") != -1:`.\n\nRead again: L09 notes, section 6.", "zh": "find 返回索引 0，而 0 在条件判断中为假，所以输出 no。", "topic": "字符串", "ref": "L09 notes, section 6.", "code": ""}, {"id": "l09-17", "lesson": "L05", "src": "l09", "prompt": "Bubble sort runs on `[4, 2, 5, 1]`. What is the list after **one full pass**?", "options": ["`[2, 4, 1, 5]`", "`[2, 4, 5, 1]`", "`[1, 2, 4, 5]`", "`[1, 2, 5, 4]`"], "answer": 0, "exp": "Compare each pair of neighbours, from left to right:\n\n| Pair | Values | Action | The list after |\n| --- | --- | --- | --- |\n| 0 and 1 | 4 and 2 | swap | 2, 4, 5, 1 |\n| 1 and 2 | 4 and 5 | keep | 2, 4, 5, 1 |\n| 2 and 3 | 5 and 1 | swap | 2, 4, 1, 5 |\n\nB stops after one swap. C is the finished sort. D is selection sort's first pass.\n\nRead again: L09 notes, section 7.", "zh": "冒泡排序一整轮比较三对相邻元素，最终最大值 5 到达末尾。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": ""}, {"id": "l09-18", "lesson": "L05", "src": "l09", "prompt": "Selection sort runs on `[9, 4, 7, 1, 3]`. What is the list after **one pass**?", "options": ["`[4, 7, 1, 3, 9]`", "`[4, 9, 7, 1, 3]`", "`[1, 4, 7, 9, 3]`", "`[1, 3, 4, 7, 9]`"], "answer": 2, "exp": "The smallest value is `1`, at position 3. Selection sort swaps it with the item at\nposition 0, the `9`. Nothing else moves. A is bubble sort's first pass. D is the finished\nsort.\n\nRead again: L09 notes, section 7.", "zh": "先找到最小值 1，再与索引 0 的 9 交换；其他位置不动。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": ""}, {"id": "l09-19", "lesson": "L05", "src": "l09", "prompt": "Selection sort runs on a list of 10 items. What is the **largest** number of swaps it can\nmake?", "options": ["1", "9", "45", "100"], "answer": 1, "exp": "Selection sort makes at most one swap per pass, and there are `n - 1` passes: 9.\nThat is its one strength. Bubble sort can make up to `n(n - 1) / 2` swaps: 45.\n\nRead again: L09 notes, section 7.", "zh": "n - 1 轮，每轮至多交换一次；10 个元素至多交换 9 次。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": ""}, {"id": "l09-20", "lesson": "L05", "src": "l09", "prompt": "`bubble_sort(numbers)` sorts the list **in place**, like the one in the L05 notes. What does\nthis code print?\n\n```python\nnumbers = [3, 1, 2]\nnumbers = bubble_sort(numbers)\nprint(numbers)\n```", "options": ["`[1, 2, 3]`", "`[3, 1, 2]`", "`[3, 2, 1]`", "`None`"], "answer": 3, "exp": "An in-place sort changes the list and gives back `None`. The second line stores that\n`None` in `numbers`, and the sorted list is lost. Call the sort alone on its line:\n`bubble_sort(numbers)`.\n\nRead again: L09 notes, section 7.", "zh": "题目引用的课程函数没有返回值，赋值会把 numbers 设成 None；原地修改本身不决定返回值。", "topic": "选择与冒泡排序", "ref": "L09 notes, section 7.", "code": "```python\ndef bubble_sort(numbers):\n    n = len(numbers)\n    for i in range(n - 1):\n        swapped = False                 # 1. the start of every pass\n        for j in range(n - 1 - i):\n            if numbers[j] > numbers[j + 1]:\n                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]\n                swapped = True          # 2. right after the swap\n        if not swapped:                 # 3. after the pass\n            return\n```"}, {"id": "l09-21", "lesson": "L06", "src": "l09", "prompt": "Which of these sorts is **not** stable?", "options": ["Selection sort", "Bubble sort", "`sorted()`", "`.sort()`"], "answer": 0, "exp": "Selection sort swaps two items that can be far apart, so an item can jump over an\nequal one. Bubble sort only swaps two neighbours when the left one is **bigger**, so equal\nitems never pass each other. Python's `sorted()` and `.sort()` are stable.\n\nRead again: L09 notes, section 8.", "zh": "课程中的选择排序会远距离交换，可能打乱相等元素的相对顺序。", "topic": "稳定性与内置函数", "ref": "L09 notes, section 8.", "code": ""}, {"id": "l09-22", "lesson": "L06", "src": "l09", "prompt": "What does this code print?\n\n```python\nscores = [3, 1, 2]\nscores = scores.sort()\nprint(scores)\n```", "options": ["`[1, 2, 3]`", "`[3, 1, 2]`", "`None`", "An error"], "answer": 2, "exp": "`.sort()` sorts the list in place and gives back `None`, like the sorts you wrote.\nWrite `scores.sort()` alone, or `in_order = sorted(scores)`.\n\nRead again: L09 notes, section 8.", "zh": ".sort() 修改原列表并返回 None；把返回值赋给 scores 后，它就变成 None。", "topic": "稳定性与内置函数", "ref": "L09 notes, section 8.", "code": ""}, {"id": "l09-23", "lesson": "L06", "src": "l09", "prompt": "What is the time complexity of Python's `sorted()` on `n` items?", "options": ["`O(n)`", "`O(n log n)`", "`O(n²)`", "`O(log n)`"], "answer": 1, "exp": "`sorted()` and `.sort()` are `O(n log n)`, even in the worst case, and they are\nstable. Selection sort and bubble sort are `O(n²)`. On 1,000 items, that is about 10,000 steps against\nabout 500,000.\n\nRead again: L09 notes, section 8.", "zh": "按最坏情况，Python 排序是 O(n log n)，并且稳定。", "topic": "稳定性与内置函数", "ref": "L09 notes, section 8.", "code": ""}, {"id": "l09-24", "lesson": "L07", "src": "l09", "prompt": "What does this code print?\n\n```python\ndef find_index(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n        else:\n            return -1\n\nprint(find_index([4, 9, 2], 9))\n```", "options": ["`1`", "`9`", "`None`", "`-1`"], "answer": 3, "exp": "`return -1` is **inside** the loop. At position 0, `4` is not `9`, so the `else` runs\nand the function returns `-1` at once. It never reaches position 1. `return -1` must go\n**after** the loop.\n\nRead again: L09 notes, section 9.", "zh": "第一次比较失败就进入 else 返回 -1，函数没有检查后面的 9。", "topic": "查找", "ref": "L09 notes, section 9.", "code": ""}, {"id": "l09-25", "lesson": "L07", "src": "l09", "prompt": "Linear search stops at the first match. This is the **early exit**. What does it change?", "options": ["The best case gets better. The worst case is still `O(n)`", "The worst case becomes `O(1)`", "Linear search becomes `O(log n)`", "Nothing at all"], "answer": 0, "exp": "With the early exit, a target in the first position takes 1 comparison. But a target\nin the last position, or not in the list, still takes `n`. So the search is faster in\npractice, and still `O(n)`.\n\nRead again: L09 notes, section 9.", "zh": "提前退出改善最好情况；最坏情况仍需要扫描 n 个元素。", "topic": "查找", "ref": "L09 notes, section 9.", "code": ""}, {"id": "l09-26", "lesson": "L07", "src": "l09", "prompt": "Binary search runs on `[2, 5, 8, 12, 16, 23, 38, 45, 56, 67]` and looks for `23`. How many\nvalues does it compare with `23`?", "options": ["1", "2", "3", "6"], "answer": 2, "exp": "| `low` | `high` | `mid` | `numbers[mid]` | What happens |\n| --- | --- | --- | --- | --- |\n| 0 | 9 | 4 | 16 | too small: `low = 5` |\n| 5 | 9 | 7 | 45 | too big: `high = 6` |\n| 5 | 6 | 5 | 23 | found: return `5` |\n\nLinear search would need 6 comparisons.\n\nRead again: L09 notes, section 9.", "zh": "依次查看索引 4、7、5，对应 16、45、23，一共三个值。", "topic": "查找", "ref": "L09 notes, section 9.", "code": "```python\ndef binary_search(numbers, target):\n    low = 0\n    high = len(numbers) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if numbers[mid] == target:\n            return mid\n        if numbers[mid] < target:\n            low = mid + 1                # the target is in the right half\n        else:\n            high = mid - 1               # the target is in the left half\n    return -1\n```"}, {"id": "l09-27", "lesson": "L07", "src": "l09", "prompt": "A list of 1,000,000 items is **not sorted**. You will search it only **once**. What is the\nbest choice?", "options": ["Sort it with `sorted()`, then use binary search", "Use linear search", "Use binary search at once, with no sort", "Sort it with selection sort, then use binary search"], "answer": 1, "exp": "One linear search costs at most 1,000,000 comparisons. Sorting costs about\n20,000,000 steps, more than the search it saves. C gives wrong answers on an unsorted list.\nSort once, search many: sorting first is only worth it when you search many times.\n\nRead again: L09 notes, section 9.", "zh": "只查一次时，线性扫描 O(n) 比先排序 O(n log n) 更划算。", "topic": "查找", "ref": "L09 notes, section 9.", "code": ""}, {"id": "l09-28", "lesson": "L08", "src": "l09", "prompt": "`remove_value` is the function from the L08 notes. What are the first two items of\n`numbers` after this code?\n\n```python\nnumbers = [2, 9, 2, 4]\nlength = remove_value(numbers, 2)\n```", "options": ["`2, 9`", "`4, 9`", "`2, 2`", "`9, 4`"], "answer": 3, "exp": "`fast` reads every value. Each value that is not `2` is copied to position `slow`,\nthen `slow` moves on. `9` goes to position 0 and `4` goes to position 1. `length` is `2`:\nthe answer is `numbers[0]` and `numbers[1]`. The kept values stay in their order.\n\nRead again: L09 notes, section 10.", "zh": "保留 9 和 4，依次写入索引 0、1；有效长度为 2。", "topic": "双指针", "ref": "L09 notes, section 10.", "code": "```python\ndef remove_value(numbers, unwanted):\n    slow = 0                             # where the next kept value goes\n    for fast in range(len(numbers)):\n        if numbers[fast] != unwanted:    # worth keeping?\n            numbers[slow] = numbers[fast]\n            slow = slow + 1              # one more value kept\n    return slow\n```"}, {"id": "l09-29", "lesson": "L08", "src": "l09", "prompt": "`find_pair_sorted` is the function from the L08 notes. What does this code print?\n\n```python\nprint(find_pair_sorted([1, 3, 4, 6, 9], 7))\n```", "options": ["`(1, 6)`", "`(3, 4)`", "`None`", "`(0, 3)`"], "answer": 0, "exp": "| `left` | `right` | Values | Sum | Move |\n| --- | --- | --- | --- | --- |\n| 0 | 4 | 1 + 9 | 10 | too big: `right` down |\n| 0 | 3 | 1 + 6 | 7 | found |\n\n`3 + 4` is also 7, but the walk finds `(1, 6)` first. D gives positions: the function\ngives back **values**.\n\nRead again: L09 notes, section 10.", "zh": "先看 1+9=10，右指针左移后 1+6=7，立即返回数值 (1, 6)。", "topic": "双指针", "ref": "L09 notes, section 10.", "code": "```python\ndef find_pair_sorted(numbers, target):\n    left = 0\n    right = len(numbers) - 1\n    while left < right:\n        total = numbers[left] + numbers[right]\n        if total == target:\n            return (numbers[left], numbers[right])\n        if total < target:\n            left = left + 1              # too small: a bigger left value\n        else:\n            right = right - 1            # too big: a smaller right value\n    return None\n```"}, {"id": "l09-30", "lesson": "L08", "src": "l09", "prompt": "Two pointers uses two indexes, but it is still `O(n)`, not `O(n²)`. Why?", "options": ["The pointers jump over half of the list on each turn", "The list is always sorted", "Each turn moves at least one pointer, and each pointer moves one way only", "Python runs the two pointers at the same time"], "answer": 2, "exp": "`left` only goes up and `right` only goes down. Together they cross the `n`\npositions once, so the loop runs at most `n` turns. A describes binary search, which is\n`O(log n)`.\n\nRead again: L09 notes, section 10.", "zh": "每轮至少一个指针单向前进，最多线性数量的步骤，不会为另一个指针反复重走。", "topic": "双指针", "ref": "L09 notes, section 10.", "code": ""}, {"id": "l05-01", "lesson": "L01", "src": "l05", "prompt": "Which one of these is an **algorithm**?", "options": ["Add a little salt until the soup tastes good.", "Look at each card from left to right. Stop at the first ace. If there is no ace, say \"no ace\".", "Keep guessing numbers at random until you find the right one.", "Any program written in Python."], "answer": 1, "exp": "An algorithm has steps anyone can follow **exactly**, it **always finishes**, and it is\n**correct** for every valid input. A needs judgement (\"tastes good\"). C may never finish. D is\nwrong because code is only one way to write an algorithm down, and a program can be wrong or\nnever finish.\n\nRead again: L01 notes, section 3.", "zh": "", "topic": "L05 小测", "ref": "L01 notes, section 3.", "code": ""}, {"id": "l05-02", "lesson": "L02", "src": "l05", "prompt": "Count one operation each time a line inside the function runs. The `for` line itself does not\ncount. **In the worst case**, how many operations does `count_big` do on a list of `n` numbers?\n\n```python\ndef count_big(numbers):\n    count = 0\n    for number in numbers:\n        if number > 10:\n            count = count + 1\n    return count\n```", "options": ["`n + 2`", "`2n`", "`n² + 2`", "`2n + 2`"], "answer": 3, "exp": "`count = 0` and `return count` run once each: 2. The `if` line runs once per item: `n`.\nIn the worst case every number is bigger than 10, so `count = count + 1` also runs `n` times.\nTotal: `2n + 2`. That is still `O(n)`.\n\nRead again: L02 notes, sections 2 and 4.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, sections 2 and 4.", "code": ""}, {"id": "l05-03", "lesson": "L02", "src": "l05", "prompt": "What is the time complexity of `halvings_for_each`?\n\n```python\ndef halvings_for_each(numbers):\n    steps = 0\n    for number in numbers:\n        size = len(numbers)\n        while size > 1:\n            size = size // 2\n            steps = steps + 1\n    return steps\n```", "options": ["`O(log n)`", "`O(n)`", "`O(n log n)`", "`O(n²)`"], "answer": 2, "exp": "The inner `while` loop halves `size`: `log n` turns. It sits **inside** a loop over `n`\nitems, and nested loops multiply: `n × log n`.\n\nCompare: a loop over `n` items, **then** a halving loop after it, is `n + log n`, so `O(n)`.\nInside multiplies. After adds.\n\nRead again: L02 notes, sections 7 and 8.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, sections 7 and 8.", "code": ""}, {"id": "l05-04", "lesson": "L02", "src": "l05", "prompt": "What is the **space** complexity of `squares`, the extra memory it uses?\n\n```python\ndef squares(numbers):\n    result = []\n    for number in numbers:\n        result.append(number * number)\n    return result\n```", "options": ["`O(1)`", "`O(n)`", "`O(log n)`", "`O(n²)`"], "answer": 1, "exp": "`result` grows by one item for each item of `numbers`, so it holds `n` items at the end.\nThe time is `O(n)` too, but time and space are two separate questions.\n\nRead again: L02 notes, section 3.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, section 3.", "code": ""}, {"id": "l05-05", "lesson": "L02", "src": "l05", "prompt": "An `O(n²)` function does about 100 operations on 10 items. About how many operations does\nit do on 100 items?", "options": ["1,000", "2,000", "10,000", "100,000"], "answer": 2, "exp": "The input is 10 times bigger, and `O(n²)` squares that: `10² = 100` times more\noperations. So `100 × 100 = 10,000`. An `O(n)` function would do only 10 times more.\n\nBig-O tells you how the **work** grows, never how many seconds it takes: the seconds depend\non the computer.\n\nRead again: L02 notes, sections 1 and 7.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, sections 1 and 7.", "code": ""}, {"id": "l05-06", "lesson": "L02", "src": "l05", "prompt": "What is the **worst case** of `has_negative`, and when does it happen?\n\n```python\ndef has_negative(numbers):\n    for number in numbers:\n        if number < 0:\n            return True\n    return False\n```", "options": ["`O(1)`, when the first number is negative", "`O(n)`, when the first number is negative", "`O(n²)`, when every number is negative", "`O(n)`, when no number is negative"], "answer": 3, "exp": "The loop stops at the first negative number. With no negative number, it looks at all\n`n` items, then returns `False`. A is the **best** case, not the worst.\n\nRead again: L02 notes, section 4.", "zh": "", "topic": "L05 小测", "ref": "L02 notes, section 4.", "code": ""}, {"id": "l05-07", "lesson": "L03", "src": "l05", "prompt": "What is the time complexity of `total_of_rests`?\n\n```python\ndef total_of_rests(numbers):\n    total = 0\n    for i in range(len(numbers)):\n        rest = numbers[i:]\n        total = total + len(rest)\n    return total\n```", "options": ["`O(1)`", "`O(n)`", "`O(n log n)`", "`O(n²)`"], "answer": 3, "exp": "It looks like one loop, but `numbers[i:]` is a **slice**, and a slice copies its items.\nThe slices copy `n`, then `n - 1`, and so on down to 1 item: about `n² / 2` copies in total.\n\nRead again: L03 notes, section 4, and L04 notes, section 6.", "zh": "", "topic": "L05 小测", "ref": "L03 notes, section 4, and L04 notes, section 6.", "code": ""}, {"id": "l05-08", "lesson": "L03", "src": "l05", "prompt": "What does this code print?\n\n```python\nmarks = [4, 7, 9]\nfor mark in marks:\n    mark = mark + 1\nprint(marks)\n```", "options": ["`[4, 7, 9]`", "`[5, 8, 10]`", "`[5, 7, 9]`", "`None`"], "answer": 0, "exp": "`mark = mark + 1` changes the name `mark`, not the list. A loop over items cannot change\nthe list. To change it, loop over the positions: `marks[i] = marks[i] + 1`.\n\nRead again: L03 notes, section 6.", "zh": "", "topic": "L05 小测", "ref": "L03 notes, section 6.", "code": ""}, {"id": "l05-09", "lesson": "L03", "src": "l05", "prompt": "What does this code print?\n\n```python\na = [3, 1, 2]\nb = a[:]\nb.append(4)\nprint(a, b)\n```", "options": ["`[3, 1, 2, 4] [3, 1, 2, 4]`", "`[3, 1, 2] [3, 1, 2, 4]`", "`[3, 1, 2] None`", "`[3, 1, 2, 4] [3, 1, 2]`"], "answer": 1, "exp": "`a[:]` is a full slice, so `b` is a **new** list, a copy. Changing `b` does not change\n`a`. With `b = a` instead, both names would show `[3, 1, 2, 4]`: one list, two names.\n\nRead again: L03 notes, sections 4 and 6.", "zh": "", "topic": "L05 小测", "ref": "L03 notes, sections 4 and 6.", "code": ""}, {"id": "l05-10", "lesson": "L04", "src": "l05", "prompt": "What does this code print?\n\n```python\nprint(chr(ord(\"a\") + 2))\n```", "options": ["`c`", "`b`", "`99`", "A `TypeError`"], "answer": 0, "exp": "Read it from the inside out. First `ord(\"a\")`: 97. Then `+ 2`: 99. Then `chr(99)`, the\ncharacter for 99, which is `c`. The letters follow each other with no gaps, so you can do arithmetic with them.\n\nRead again: L04 notes, section 5.", "zh": "", "topic": "L05 小测", "ref": "L04 notes, section 5.", "code": ""}, {"id": "l05-11", "lesson": "L04", "src": "l05", "prompt": "What does this code print?\n\n```python\nparts = \"2026-11-07\".split(\"-\")\nprint(len(parts), parts[1])\n```", "options": ["`3 11`", "`2 11`", "`3 -`", "`10 11`"], "answer": 0, "exp": "`split(\"-\")` cuts the string at each `-` and gives back a **list** of 3 strings:\n`[\"2026\", \"11\", \"07\"]`. Position 1 is `\"11\"`. The `-` signs are not in the list.\n\nRead again: L04 notes, section 4.", "zh": "", "topic": "L05 小测", "ref": "L04 notes, section 4.", "code": ""}, {"id": "l05-12", "lesson": "L04", "src": "l05", "prompt": "`text` holds `n` characters. Which one of these is `O(1)`?", "options": ["`text.upper()`", "`\"x\" in text`", "`text[5]`", "`text.replace(\"a\", \"b\")`"], "answer": 2, "exp": "Reading one position is `O(1)`, as on a list. The others read the whole string, and\n`upper` and `replace` also build a new one: `O(n)`.\n\nRead again: L04 notes, \"What each operation costs\".", "zh": "", "topic": "L05 小测", "ref": "L04 notes, \"What each operation costs\".", "code": ""}, {"id": "ai-l01-01", "lesson": "L01", "src": "ai", "prompt": "Which of these is **not** required of an algorithm?", "options": ["It always finishes", "It is correct for every valid input", "It is written in Python", "Anyone can follow every step exactly"], "answer": 2, "exp": "", "zh": "算法不等于代码。Python 只是写下算法的一种方式，也可以用英文或流程图。", "topic": "算法的定义", "ref": "L01 notes", "code": ""}, {"id": "ai-l01-02", "lesson": "L01", "src": "ai", "prompt": "A student runs their method on one example and gets the right answer. What can you conclude?", "options": ["It is correct for every input", "It is correct for that example only", "It must be fast", "It is a data structure"], "answer": 1, "exp": "", "zh": "一个例子成立不代表对所有合法输入都正确。", "topic": "正确性", "ref": "L01 notes", "code": ""}, {"id": "ai-l01-03", "lesson": "L01", "src": "ai", "prompt": "I think of a number between 1 and 1,000,000,000. You halve the range with each guess. In the worst case, about how many guesses?", "options": ["10", "20", "30", "1,000"], "answer": 2, "exp": "", "zh": "2^30 约为 10 亿，所以约 30 次。每多一倍范围只多一次猜测。", "topic": "对半查找", "ref": "L01 notes", "code": ""}, {"id": "ai-l02-01", "lesson": "L02", "src": "ai", "prompt": "Count one operation per line run inside the function (the `for` line does not count). How many operations on a list of `n` numbers?\n\n```python\ndef add_all(numbers):\n    total = 0\n    for x in numbers:\n        total = total + x\n    return total\n```", "options": ["n", "n + 2", "2n + 2", "n²"], "answer": 1, "exp": "", "zh": "total = 0 一次，循环体 n 次，return 一次，共 n + 2。", "topic": "操作计数", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-02", "lesson": "L02", "src": "ai", "prompt": "What is the time complexity?\n\n```python\ndef f(numbers):\n    count = 0\n    for x in numbers:\n        for k in range(5):\n            count = count + 1\n    return count\n```", "options": ["O(1)", "O(n)", "O(n²)", "O(5n²)"], "answer": 1, "exp": "", "zh": "内层固定 5 次，总轮数 5n，所以是 O(n)。要数轮数，不要数页面上的循环个数。", "topic": "数轮数", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-03", "lesson": "L02", "src": "ai", "prompt": "An `O(n²)` function takes 2 seconds for 1,000 items. About how long for 2,000 items?", "options": ["4 seconds", "8 seconds", "2 seconds", "16 seconds"], "answer": 1, "exp": "", "zh": "n 翻倍，O(n²) 工作量变为 4 倍：2 × 4 = 8 秒。", "topic": "增长倍数", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-04", "lesson": "L02", "src": "ai", "prompt": "What is the time complexity?\n\n```python\ndef g(n):\n    for i in range(n):\n        j = 1\n        while j < n:\n            j = j * 2\n```", "options": ["O(log n)", "O(n)", "O(n log n)", "O(n²)"], "answer": 2, "exp": "", "zh": "内层 j 每次翻倍，约 log n 轮；外层 n 次，相乘得 n log n。", "topic": "嵌套对数循环", "ref": "L02 notes", "code": ""}, {"id": "ai-l02-05", "lesson": "L02", "src": "ai", "prompt": "What is the **extra space** complexity?\n\n```python\ndef size_of_copy(numbers):\n    copy = numbers[:]\n    return len(copy)\n```", "options": ["O(1)", "O(log n)", "O(n)", "O(n²)"], "answer": 2, "exp": "", "zh": "numbers[:] 复制 n 个元素，额外空间 O(n)。输入本身不计入。", "topic": "空间复杂度", "ref": "L02 notes", "code": ""}, {"id": "ai-l03-01", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\na = [1, 2, 3]\nb = a\nb[0] = 9\nprint(a)\n```", "options": ["[1, 2, 3]", "[9, 2, 3]", "[9]", "Error"], "answer": 1, "exp": "", "zh": "b = a 没有复制，只是同一个列表的第二个名字。", "topic": "别名", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-02", "lesson": "L03", "src": "ai", "prompt": "`insert(0, x)` is called `n` times in a loop to build a list. What is the total time?", "options": ["O(1)", "O(n)", "O(n log n)", "O(n²)"], "answer": 3, "exp": "", "zh": "每次 insert(0, x) 要移动全部元素，O(n)，重复 n 次得 O(n²)。", "topic": "操作成本", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-03", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\nnums = [5, 6, 7]\nfirst = nums.pop(0)\nprint(first, nums)\n```", "options": ["5 [6, 7]", "5 [5, 6, 7]", "7 [5, 6]", "None [6, 7]"], "answer": 0, "exp": "", "zh": "pop(0) 删除并返回第一个元素 5，列表剩下 [6, 7]。", "topic": "pop 的返回值", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-04", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\nx = [1, 2]\ny = x.append(3)\nprint(y)\n```", "options": ["[1, 2, 3]", "3", "None", "Error"], "answer": 2, "exp": "", "zh": "append 修改列表但返回 None。", "topic": "append 返回 None", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-05", "lesson": "L03", "src": "ai", "prompt": "An array starts at address 1000 and each item takes 4 cells. At what address is position 6?", "options": ["1006", "1024", "1004", "1028"], "answer": 1, "exp": "", "zh": "1000 + 6 × 4 = 1024。", "topic": "地址计算", "ref": "L03 notes", "code": ""}, {"id": "ai-l03-06", "lesson": "L03", "src": "ai", "prompt": "What does this print?\n\n```python\ndef add_one(items):\n    items.append(1)\n\nlst = [0]\nadd_one(lst)\nprint(lst)\n```", "options": ["[0]", "[1]", "[0, 1]", "None"], "answer": 2, "exp": "", "zh": "参数是同一个列表的第二个名字，函数里的 append 会改动原列表。", "topic": "函数参数是别名", "ref": "L03 notes", "code": ""}, {"id": "ai-l04-01", "lesson": "L04", "src": "ai", "prompt": "What happens?\n\n```python\nword = \"cat\"\nword[0] = \"b\"\n```", "options": ["word becomes \"bat\"", "TypeError", "IndexError", "Nothing happens"], "answer": 1, "exp": "", "zh": "字符串不可变，不能改单个字符，会报 TypeError。", "topic": "字符串不可变", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-02", "lesson": "L04", "src": "ai", "prompt": "What does this print?\n\n```python\ns = \"hi\"\ns.upper()\nprint(s)\n```", "options": ["HI", "hi", "None", "Error"], "answer": 1, "exp": "", "zh": "字符串方法返回新串，且这里没有保存，所以 s 不变。", "topic": "方法不修改原串", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-03", "lesson": "L04", "src": "ai", "prompt": "What does this print?\n\n```python\nprint(\"-\".join([\"a\", \"b\", \"c\"]))\n```", "options": ["-a-b-c-", "a-b-c", "abc", "a - b - c"], "answer": 1, "exp": "", "zh": "分隔符只出现在元素之间，不在两端。", "topic": "join 位置", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-04", "lesson": "L04", "src": "ai", "prompt": "`text = \"xyz\"`. What does `if text.find(\"x\"):` do?", "options": ["Runs the body, because x is found", "Does not run the body, because find returns 0", "Raises an error", "Runs the body, because 0 is true"], "answer": 1, "exp": "", "zh": "find 返回 0，0 视为假，所以不执行。应写 != -1。", "topic": "find 与 if", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-05", "lesson": "L04", "src": "ai", "prompt": "Building a string of `n` characters by `+` inside a loop costs:", "options": ["O(1)", "O(n)", "O(n log n)", "O(n²)"], "answer": 3, "exp": "", "zh": "每次 + 都复制已有内容，总复制约 n²/2。", "topic": "用 + 拼接成本", "ref": "L04 notes", "code": ""}, {"id": "ai-l04-06", "lesson": "L04", "src": "ai", "prompt": "What does this print?\n\n```python\nprint(len(\"a b  c\".split()))\n```", "options": ["3", "4", "5", "6"], "answer": 0, "exp": "", "zh": "split() 不带参数，按任意连续空白切分，得到 3 个词。", "topic": "split", "ref": "L04 notes", "code": ""}, {"id": "ai-l05-01", "lesson": "L05", "src": "ai", "prompt": "Selection sort on `[3, 1, 2]`. What is the list after **one pass**?", "options": ["[1, 3, 2]", "[1, 2, 3]", "[3, 1, 2]", "[2, 1, 3]"], "answer": 0, "exp": "", "zh": "最小值 1 在位置 1，与位置 0 交换，得 [1, 3, 2]。", "topic": "一轮选择排序", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-02", "lesson": "L05", "src": "ai", "prompt": "Bubble sort on `[3, 1, 2]`. What is the list after **one pass**?", "options": ["[1, 2, 3]", "[1, 3, 2]", "[3, 1, 2]", "[2, 1, 3]"], "answer": 0, "exp": "", "zh": "[3,1,2] → 比较(3,1)交换 → [1,3,2] → 比较(3,2)交换 → [1,2,3]。最大值 3 一轮就沉到末尾。对比：选择排序一轮后是 [1,3,2]。", "topic": "一轮冒泡", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-03", "lesson": "L05", "src": "ai", "prompt": "Bubble sort with early exit runs on an already sorted list of 8 items. How many comparisons?", "options": ["7", "8", "28", "56"], "answer": 0, "exp": "", "zh": "一轮无交换就退出：n − 1 = 7 次比较。", "topic": "比较次数", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-04", "lesson": "L05", "src": "ai", "prompt": "Most swaps selection sort can make on 12 items:", "options": ["11", "12", "66", "144"], "answer": 0, "exp": "", "zh": "每轮至多一次交换，共 n − 1 = 11 轮。", "topic": "选择排序交换数", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-05", "lesson": "L05", "src": "ai", "prompt": "What does this print?\n\n```python\ndef show(x):\n    print(x)\n\nr = show(4)\nprint(r)\n```", "options": ["4 then 4", "4 then None", "None", "Error"], "answer": 1, "exp": "", "zh": "函数打印 4，但没有 return，返回 None。", "topic": "print 与 return", "ref": "L05 notes", "code": ""}, {"id": "ai-l05-06", "lesson": "L05", "src": "ai", "prompt": "`a = [1, 2, 3]`. After `a[0], a[2] = a[2], a[0]`, what is `a`?", "options": ["[3, 2, 1]", "[1, 2, 1]", "[3, 2, 3]", "[1, 2, 3]"], "answer": 0, "exp": "", "zh": "右边先整体读取，再赋值，所以真正交换。", "topic": "一行交换", "ref": "L05 notes", "code": ""}, {"id": "ai-l06-01", "lesson": "L06", "src": "ai", "prompt": "Which sort is stable?", "options": ["Selection sort", "Bubble sort", "Neither", "Both"], "answer": 1, "exp": "", "zh": "冒泡只在左边严格更大时交换，相等元素不会越过彼此，所以稳定。选择排序不稳定。", "topic": "稳定性", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-02", "lesson": "L06", "src": "ai", "prompt": "Sort `(name, score)` by score with a **stable** sort: `[(\"A\",2),(\"B\",1),(\"C\",2)]`. Result?", "options": ["B, A, C", "B, C, A", "A, C, B", "A, B, C"], "answer": 0, "exp": "", "zh": "分数 1 的 B 在前；两个分数 2 的保持原顺序 A 在 C 前。", "topic": "稳定排序推演", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-03", "lesson": "L06", "src": "ai", "prompt": "What does this print?\n\n```python\na = [3, 1, 2]\nb = sorted(a)\nprint(a, b)\n```", "options": ["[1, 2, 3] [1, 2, 3]", "[3, 1, 2] [1, 2, 3]", "[3, 1, 2] None", "None [1, 2, 3]"], "answer": 1, "exp": "", "zh": "sorted 返回新列表，原列表不变。", "topic": "sorted 与 sort", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-04", "lesson": "L06", "src": "ai", "prompt": "What does this print?\n\n```python\na = [3, 1, 2]\nb = a.sort()\nprint(b)\n```", "options": ["[1, 2, 3]", "[3, 1, 2]", "None", "Error"], "answer": 2, "exp": "", "zh": ".sort() 原地排序，返回 None。", "topic": "sort 的返回值", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-05", "lesson": "L06", "src": "ai", "prompt": "`scores = [90, 75, 60]`. What does `min(scores)` give?", "options": ["2", "60", "75", "[60]"], "answer": 1, "exp": "", "zh": "min 返回值而不是位置。", "topic": "min 的返回", "ref": "L06 notes", "code": ""}, {"id": "ai-l06-06", "lesson": "L06", "src": "ai", "prompt": "What does this print?\n\n```python\nprint(sorted([2, 9, 4], reverse=True))\n```", "options": ["[2, 4, 9]", "[9, 4, 2]", "[9, 2, 4]", "None"], "answer": 1, "exp": "", "zh": "reverse=True 从大到小。", "topic": "reverse", "ref": "L06 notes", "code": ""}, {"id": "ai-l07-01", "lesson": "L07", "src": "ai", "prompt": "What does this print?\n\n```python\ndef find_index(items, t):\n    for i in range(len(items)):\n        if items[i] == t:\n            return i\n    return -1\n\nprint(find_index([4, 9, 2, 9], 9))\n```", "options": ["1", "3", "2", "-1"], "answer": 0, "exp": "", "zh": "找到第一个 9 就返回，位置为 1。", "topic": "线性查找位置", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-02", "lesson": "L07", "src": "ai", "prompt": "Worst-case comparisons of binary search on 1,000 sorted items:", "options": ["about 10", "about 100", "about 500", "1,000"], "answer": 0, "exp": "", "zh": "2^10 = 1024，约 10 次。", "topic": "二分最坏次数", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-03", "lesson": "L07", "src": "ai", "prompt": "Binary search is run on an **unsorted** list. What may happen?", "options": ["It is just slower", "It can return -1 for a value that is in the list", "It always works", "It raises an error"], "answer": 1, "exp": "", "zh": "二分依赖有序，否则可能丢弃含目标的一半，给出错误答案。", "topic": "二分前提", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-04", "lesson": "L07", "src": "ai", "prompt": "Binary search for 7 in `[1, 3, 5, 7, 9]`. What is the first `mid` and its value?", "options": ["mid=2, value 5", "mid=1, value 3", "mid=3, value 7", "mid=4, value 9"], "answer": 0, "exp": "", "zh": "low=0, high=4, mid=2，值为 5。5 < 7 所以 low=3。", "topic": "二分 mid 推演", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-05", "lesson": "L07", "src": "ai", "prompt": "`spot = -1` is the result of a failed search in `names`. What does `names[spot]` give?", "options": ["Error", "None", "The last name", "The first name"], "answer": 2, "exp": "", "zh": "-1 在 Python 中是最后一个位置，不报错，所以先判断 != -1。", "topic": "-1 的陷阱", "ref": "L07 notes", "code": ""}, {"id": "ai-l07-06", "lesson": "L07", "src": "ai", "prompt": "You search a 1,000,000-item unsorted list only **once**. Best choice?", "options": ["Sort, then binary search", "Linear search", "Binary search directly", "Neither works"], "answer": 1, "exp": "", "zh": "排序 O(n log n) 比一次线性扫描 O(n) 更贵；多次搜索才值得排序。", "topic": "一次搜索与多次搜索", "ref": "L07 notes", "code": ""}, {"id": "ai-l08-01", "lesson": "L08", "src": "ai", "prompt": "How many character comparisons does `reads_the_same(\"abcba\")` make (the two-pointer palindrome)?", "options": ["1", "2", "3", "5"], "answer": 1, "exp": "", "zh": "a-a、b-b，共 2 次；两指针在 c 相遇，不再比较。", "topic": "回文比较", "ref": "L08 notes", "code": "```python\ndef reads_the_same(word):\n    left = 0\n    right = len(word) - 1\n    while left < right:\n        if word[left] != word[right]:\n            return False\n        left = left + 1\n        right = right - 1\n    return True\n```"}, {"id": "ai-l08-02", "lesson": "L08", "src": "ai", "prompt": "`numbers = [2, 0, 2, 3]`, `remove_value(numbers, 2)` returns?", "options": ["1", "2", "3", "4"], "answer": 1, "exp": "", "zh": "保留 0 和 3，共 2 个。返回的是新长度。", "topic": "慢快指针", "ref": "L08 notes", "code": "```python\ndef remove_value(numbers, unwanted):\n    slow = 0                             # where the next kept value goes\n    for fast in range(len(numbers)):\n        if numbers[fast] != unwanted:    # worth keeping?\n            numbers[slow] = numbers[fast]\n            slow = slow + 1              # one more value kept\n    return slow\n```"}, {"id": "ai-l08-03", "lesson": "L08", "src": "ai", "prompt": "After `remove_value([2, 0, 2, 3], 2)`, what is `numbers`?", "options": ["[0, 3]", "[0, 3, 2, 3]", "[0, 3, 0, 3]", "[2, 0, 2, 3]"], "answer": 1, "exp": "", "zh": "0 写到位置 0，3 写到位置 1，后面保持原值：[0, 3, 2, 3]。列表不会变短。", "topic": "慢快指针后列表", "ref": "L08 notes", "code": "```python\ndef remove_value(numbers, unwanted):\n    slow = 0                             # where the next kept value goes\n    for fast in range(len(numbers)):\n        if numbers[fast] != unwanted:    # worth keeping?\n            numbers[slow] = numbers[fast]\n            slow = slow + 1              # one more value kept\n    return slow\n```"}, {"id": "ai-l08-04", "lesson": "L08", "src": "ai", "prompt": "What does `find_pair_sorted([1, 4, 6, 9], 10)` return (the two-pointer function from the L08 notes)?", "options": ["(1, 9)", "(4, 6)", "None", "(9, 1)"], "answer": 0, "exp": "", "zh": "left=0,right=3，和为 10，立刻返回 (1, 9)。", "topic": "双指针移动", "ref": "L08 notes", "code": "```python\ndef find_pair_sorted(numbers, target):\n    left = 0\n    right = len(numbers) - 1\n    while left < right:\n        total = numbers[left] + numbers[right]\n        if total == target:\n            return (numbers[left], numbers[right])\n        if total < target:\n            left = left + 1              # too small: a bigger left value\n        else:\n            right = right - 1            # too big: a smaller right value\n    return None\n```"}, {"id": "ai-l08-05", "lesson": "L08", "src": "ai", "prompt": "Which bug does `while left <= right` cause in `find_pair_sorted([4], 8)`?", "options": ["Returns None", "Returns (4, 4), using one item twice", "Infinite loop", "IndexError"], "answer": 1, "exp": "", "zh": "指针相等时同一元素被用了两次。应使用 left < right。", "topic": "<= 的错误", "ref": "L08 notes", "code": "```python\ndef find_pair_sorted(numbers, target):\n    left = 0\n    right = len(numbers) - 1\n    while left < right:\n        total = numbers[left] + numbers[right]\n        if total == target:\n            return (numbers[left], numbers[right])\n        if total < target:\n            left = left + 1              # too small: a bigger left value\n        else:\n            right = right - 1            # too big: a smaller right value\n    return None\n```"}, {"id": "ai-l08-06", "lesson": "L08", "src": "ai", "prompt": "Unsorted list: use `sorted()` then two pointers to find a pair. Time complexity?", "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"], "answer": 1, "exp": "", "zh": "排序 O(n log n) + 扫描 O(n) = O(n log n)。", "topic": "总复杂度", "ref": "L08 notes", "code": ""}];
 </script>
+<script>window.L10_PRACTICE = {
+  lesson: {
+    id: 'L10',
+    title: '栈',
+    en: 'Stacks',
+    color: '#6ee7b7',
+    points: [
+      '后进先出（LIFO）：最后压入的元素最先弹出。用 Python 列表的末尾当栈顶。',
+      'push 用 append(x)，pop 用 pop()，peek 用 [-1]，判空和取大小用 len。末尾 append 是均摊 O(1)。',
+      '括号匹配：左括号入栈；右括号先查栈是否为空，再弹栈核对类型；扫描完还要检查栈为空。',
+      '撤销、退格和消除相邻重复字符都可以用栈。每次处理最近保留的元素。',
+      '函数调用压入栈帧，返回时弹出。读 traceback 从最下面开始：异常、触发行、调用者。'
+    ],
+    traps: [
+      'pop() 会删掉栈顶，[-1] 只读取。空栈执行这两种操作都会抛出 IndexError。',
+      '用 insert(0, x) 或 pop(0) 会移动元素。n 次入栈加 n 次出栈需要 O(n²)。',
+      '括号数量相等也可能嵌套错误，例如 ([)]。空栈遇到右括号和扫描结束时仍有左括号也应返回 False。',
+      'None 可以作为普通元素入栈。栈可能为空时，先判空。'
+    ]
+  },
+  questions: [
+    {
+      id: 'l10-r1-01', topic: '后进先出与栈顶',
+      prompt: 'What does this code print?\n\n```python\nstack = ["x", "y"]\nstack.append("z")\nremoved = stack.pop()\nprint(removed, stack[-1], len(stack))\n```',
+      options: ['`x z 2`', '`z y 2`', '`z y 1`', '`y z 2`'],
+      answer: 1,
+      zh: '`z` 最后入栈，所以先被弹出。随后 `stack[-1]` 读取 `y`，此时栈仍为 `["x", "y"]`，长度为 2。'
+    },
+    {
+      id: 'l10-r1-02', topic: '栈操作与复杂度',
+      prompt: 'A Python list stores the top of a stack at its end. Which statement is correct for a non-empty stack?',
+      options: [
+        '`items[-1]` removes and returns the top item.',
+        '`items.pop()` shifts all remaining items one position.',
+        '`len(items)` scans the whole stack.',
+        '`items.append(x)` pushes `x` in amortized `O(1)` time.'
+      ],
+      answer: 3,
+      zh: '`append(x)` 在末尾压入一个元素，偶尔扩容的成本摊到多次操作后，每次均摊 `O(1)`。`[-1]` 读取栈顶，`pop()` 弹出末尾元素，`len` 直接读取长度。'
+    },
+    {
+      id: 'l10-r1-03', topic: '列表首端的代价',
+      prompt: 'Starting from an empty list, a stack uses `insert(0, x)` to push and `pop(0)` to pop. It pushes all `n` items and then pops all `n` items. What is the tightest time bound?',
+      options: ['`O(1)`', '`O(n)`', '`O(n²)`', '`O(n log n)`'],
+      answer: 2,
+      zh: '在位置 0 插入或删除时，需要搬动剩余元素。入栈阶段的移动次数为 `0 + 1 + … + (n - 1)`，出栈阶段同样是这个数量级，总时间为 `O(n²)`。'
+    },
+    {
+      id: 'l10-r1-04', topic: '空栈与特殊值',
+      prompt: 'A wrapper returns `None` when asked to pop an empty stack. The stack accepts any Python value. Why is the wrapper ambiguous?',
+      options: [
+        'A successful pop can also return `None`.',
+        'An empty Python list has length `None`.',
+        'All successful pops return `None`.',
+        'Pushing `None` makes the stack empty.'
+      ],
+      answer: 0,
+      zh: '栈中可以存放 `None`，弹出这个元素得到的也是 `None`。Python 的 `list.pop()` 在空列表上会抛出 `IndexError`，调用前可以先检查长度。'
+    },
+    {
+      id: 'l10-r1-05', topic: '括号按栈顶匹配',
+      prompt: 'A bracket checker scans `([)]` from left to right. When does it first detect a problem?',
+      options: [
+        'At `[`, because it opens before `(` closes.',
+        'At `)`, because the stack is empty.',
+        'At `)`, because the top of the stack is `[`.',
+        'At the end, when an unmatched `[` remains.'
+      ],
+      answer: 2,
+      zh: '读到 `)` 前栈中从底到顶是 `(`、`[`。`)` 必须与栈顶配对，遇到 `[` 就应判定失败。'
+    },
+    {
+      id: 'l10-r1-06', topic: '扫描结束后的判空',
+      prompt: 'The input contains only round brackets. Which input incorrectly returns `True`?\n\n```python\ndef balanced(text):\n    stack = []\n    for ch in text:\n        if ch == "(":\n            stack.append(ch)\n        elif not stack:\n            return False\n        else:\n            stack.pop()\n    return True\n```',
+      options: ['`"()"`', '`")("`', '`""`', '`"(()"`'],
+      answer: 3,
+      zh: '`"(()"` 扫描完还剩一个左括号，循环中却没有遇到空栈弹出。最后应写 `return len(stack) == 0`。'
+    },
+    {
+      id: 'l10-r1-07', topic: '调用栈与栈帧',
+      prompt: '`outer()` calls `middle()`, which calls `inner()`. Immediately after `inner()` returns and before `middle()` returns, what happens?',
+      options: [
+        'Execution resumes in `middle()`, with the `middle()` frame at the top.',
+        'Execution resumes in `outer()`, with the `inner()` frame at the top.',
+        'The `outer()` frame is popped first.',
+        'All three function frames are popped at once.'
+      ],
+      answer: 0,
+      zh: '`inner()` 返回时弹出自己的栈帧，控制流回到调用它的 `middle()`。此时 `middle()` 在栈顶，`outer()` 还在等待。'
+    },
+    {
+      id: 'l10-r1-08', topic: '读 traceback',
+      prompt: 'Which line raises the exception shown here?\n\n```\nTraceback (most recent call last):\n  File "app.py", line 14, in <module>\n    undo([])\n  File "app.py", line 9, in undo\n    return take_last(history)\n  File "app.py", line 4, in take_last\n    return items.pop()\nIndexError: pop from empty list\n```',
+      options: [
+        'Line 14, in the module.',
+        'Line 4, inside `take_last`.',
+        'Line 9, inside `undo`.',
+        'The traceback has no line number for the exception.'
+      ],
+      answer: 1,
+      zh: '最后一行给出异常类型和信息。它上方最靠近的栈帧指向实际触发异常的语句，第 4 行 `items.pop()`。继续向上可看到调用路径。'
+    },
+    {
+      id: 'l10-r1-09', topic: '撤销与列表副本',
+      prompt: 'An undo function must return a new list and leave the caller’s history unchanged. Which line should replace `...`?\n\n```python\ndef undo(history, times):\n    stack = ...\n    for _ in range(times):\n        if not stack:\n            break\n        stack.pop()\n    return stack\n```',
+      options: ['`stack = history`', '`stack = []`', '`stack = history[:]`', '`stack = history[-1:]`'],
+      answer: 2,
+      zh: '`history[:]` 复制整个列表。随后在副本上弹栈，调用方的列表保持原状。`stack = history` 让两个名字指向同一个列表。'
+    },
+    {
+      id: 'l10-r1-10', topic: '退格模拟',
+      prompt: 'Each letter is pushed onto the stack. A `#` pops one letter if the stack is non-empty and is ignored otherwise. What is left after processing `"#ab###cd#e"`?',
+      options: ['`["c", "e"]`', '`["d", "e"]`', '`["a", "c", "e"]`', '`[]`'],
+      answer: 0,
+      zh: '开头的退格被忽略。`ab###` 先弹出 `b` 和 `a`，第三次退格遇到空栈。`cd#e` 弹出 `d` 后压入 `e`，留下 `["c", "e"]`。'
+    },
+    {
+      id: 'l10-r1-11', topic: '消除相邻重复字符',
+      prompt: 'What does `remove_pairs("azxxzy")` return?\n\n```python\ndef remove_pairs(text):\n    stack = []\n    for ch in text:\n        if stack and stack[-1] == ch:\n            stack.pop()\n        else:\n            stack.append(ch)\n    return stack\n```',
+      options: ['`["a", "z", "z", "y"]`', '`["a", "z", "y"]`', '`[]`', '`["a", "y"]`'],
+      answer: 3,
+      zh: '两个 `x` 抵消后，栈恢复为 `["a", "z"]`。接着读到第二个 `z`，又弹出栈顶的 `z`，最后压入 `y`。'
+    },
+    {
+      id: 'l10-r1-12', topic: '补齐圆括号',
+      prompt: 'What is the minimum number of brackets to insert to make `")(()"` balanced?',
+      options: ['0', '2', '1', '3'],
+      answer: 1,
+      zh: '开头的 `)` 缺一个在它之前的 `(`，结尾仍有一个 `(` 未配对，需要再补一个 `)`。两边各需要一次插入，共 2 次。'
+    }
+  ].map(q => ({...q, lesson: 'L10', src: 'ai'}))
+};
+</script>
 <script>window.EXAM_PAPERS = [
   {
     "title": "模拟试卷 一",
@@ -2210,7 +2343,65 @@ REVIEW.L08 = {
 })();
 </script>
 <script>(function(){
+  const {P, LI, C, T, K, S} = RV;
+  REVIEW.L10 = {
+    lead: '栈按照后进先出（LIFO）的顺序处理数据。用 Python 列表的末尾当栈顶，可以解决撤销、退格、括号匹配等问题。Python 的函数调用也按栈的顺序进行。',
+    sections: [
+      S('operations', '栈顶与五种操作',
+        P('用列表 `["a", "b", "c"]` 表示栈时，右侧的 `"c"` 是栈顶。先 `pop()` 会拿走 `"c"`，随后 `[-1]` 会读到 `"b"`，栈依然保留 `["a", "b"]`。'),
+        T(['操作', '用法', '结果', '时间'], [
+          ['push', '`stack.append(x)`', '将 `x` 压到栈顶，返回 `None`', '均摊 `O(1)`'],
+          ['pop', '`stack.pop()`', '移除并返回栈顶元素', '`O(1)`'],
+          ['peek', '`stack[-1]`', '读取栈顶元素', '`O(1)`'],
+          ['is_empty', '`len(stack) == 0`', '检查栈是否为空', '`O(1)`'],
+          ['size', '`len(stack)`', '返回当前元素个数', '`O(1)`']
+        ], '课程把末尾操作按常数时间计算。列表偶尔扩容，所以 append 的 O(1) 是均摊成本。'),
+        P('在列表首端执行 `insert(0, x)` 或 `pop(0)` 需要移动元素。连续压入 `n` 项再全部弹出，用列表末尾总共是 `O(n)`，用首端总共是 `O(n²)`。保存 `n` 项需要 `O(n)` 空间。'),
+        K('空栈没有栈顶。对空列表用 `pop()` 或 `[-1]` 会抛出 `IndexError`，先判空再操作。栈里可以存 `None`，所以用 `None` 表示弹出失败会和有效元素混淆。')),
+      S('brackets', '括号匹配',
+        P('从左向右扫描。左括号入栈。遇到右括号时，先检查栈非空，再弹出最近一个待配对的左括号并核对类型。可以忽略括号以外的字符。'),
+        T(['输入', '扫描过程', '结果'], [
+          ['`([])`', '先压入 `(`、`[`，再由 `]`、`)` 依次弹出', '匹配'],
+          ['`([)]`', '读到 `)` 时，栈顶是 `[`', '类型不匹配'],
+          ['`)`', '读到 `)` 时，栈为空', '右括号没有配对'],
+          ['`([]`', '扫描结束后，栈里还剩 `(`', '左括号没有配对']
+        ]),
+        C(`def round_balanced(text):
+    stack = []
+    for ch in text:  # 输入只含 ( 和 )
+        if ch == "(":
+            stack.append(ch)
+        elif not stack:
+            return False
+        else:
+            stack.pop()
+    return len(stack) == 0`),
+        P('扫描 `n` 个字符需要 `O(n)` 时间。最坏情况下全是左括号，需要 `O(n)` 额外空间。'),
+        K('扩展题：要算最少补几个圆括号，可以在循环中数没配对的右括号，最后加上栈里剩余的左括号数。')),
+      S('applications', '撤销、退格与相邻消除',
+        LI([
+          '**撤销**：弹出最近的操作。需要返回新列表时，先用 `history[:]` 复制，弹到空栈就停。',
+          '**退格**：字母入栈。`#` 删除栈顶字母，空栈时跳过。例如 `"a##b"` 最后得到 `["b"]`。',
+          '**相邻消除**：当新字符与栈顶相同，弹出栈顶并跳过新字符，否则入栈。先判空，再比较。'
+        ]),
+        P('例如 `"abbaca"` 里，第二个 `b` 弹出第一个 `b`，栈顶重新变成 `a`。后面的 `a` 又与它抵消，最后留下 `["c", "a"]`。')),
+      S('call-stack', '调用栈与 traceback',
+        P('每次函数调用都会压入一个栈帧，保存这次调用的参数、局部变量和返回位置。栈顶是正在执行的函数。返回时弹出当前栈帧，调用者从原来的调用处继续。'),
+        T(['事件', '栈底 → 栈顶'], [
+          ['`outer()` 调用 `inner()`', '`outer → inner`'],
+          ['`inner()` 返回', '`outer`']
+        ], '表中只展示两个函数的栈帧。'),
+        P('Python traceback 常带有 `most recent call last`。从屏幕底部往上读，先看最后一行的异常信息，再看最近的栈帧定位触发行，继续向上找调用者。'),
+        K('调试逻辑错误时，可以在循环中打印步骤号和当前栈。栈意外变短时，检查是否把读取栈顶写成了弹出栈顶。'))
+    ]
+  };
+})();
+</script>
+<script>(function(){
 const Q = window.QUESTIONS, L = window.LESSONS;
+const {lesson: l10Lesson, questions: l10Questions} = window.L10_PRACTICE;
+const studyLessons = [...L, l10Lesson];
+const practiceQuestions = [...Q, ...l10Questions];
 const $ = s => document.querySelector(s);
 const KEY = 'dsa-review-v1';
 let S = JSON.parse(localStorage.getItem(KEY) || 'null') || {att:{}, mistakes:{}, star:{}, xp:0, streakBest:0, exams:[], seen:{}};
@@ -2278,7 +2469,7 @@ const ART = {
  L07:'<circle cx="52" cy="46" r="20"/><path d="M67 62l22 22"/><path d="M110 28v56M110 56h30"/>',
  L08:'<path d="M12 62h136"/><circle cx="34" cy="62" r="8"/><circle cx="126" cy="62" r="8"/><path d="M48 44l14 0M112 44l-14 0M56 38l6 6-6 6M104 38l-6 6 6 6"/>'
 };
-const LCOL = {L01:'#ff5ea8',L02:'#ffa23a',L03:'#ffd54a',L04:'#9be84a',L05:'#2ef2d6',L06:'#4fb7ff',L07:'#8f7bff',L08:'#e27bff'};
+const LCOL = {L01:'#ff5ea8',L02:'#ffa23a',L03:'#ffd54a',L04:'#9be84a',L05:'#2ef2d6',L06:'#4fb7ff',L07:'#8f7bff',L08:'#e27bff',[l10Lesson.id]:l10Lesson.color};
 
 // ---- algorithm stage: four step-able visual demos ----
 const DEMOS = {
@@ -2343,11 +2534,15 @@ function stageToggle(){ if(!stage) return; if(!stage.playing){ if(stage.i>=stage
 
 function addXp(n){ const before=level(); S.xp+=n; save(); if(level()>before) toast('升级！Lv.'+level()); hud(); }
 function record(q, ok, redo){
-  const a = S.att[q.id] || (S.att[q.id] = {r:0,w:0});
+  const mcq1 = Boolean(byId[q.id]);
+  const attempts = mcq1 ? S.att : (S.practiceAtt ||= {});
+  const a = attempts[q.id] || (attempts[q.id] = {r:0,w:0});
   ok ? a.r++ : a.w++; a.last = ok; a.t = Date.now();
-  if(!ok){ S.mistakes[q.id] = {t:Date.now()}; }
-  else if(redo && S.mistakes[q.id]){ delete S.mistakes[q.id]; }
+  const filedMistake = mcq1 && !ok;
+  if(filedMistake){ S.mistakes[q.id] = {t:Date.now()}; }
+  else if(ok && redo && S.mistakes[q.id]){ delete S.mistakes[q.id]; }
   save();
+  return filedMistake;
 }
 function hud(){
   const lv = level(), cur = 20*(lv-1)*(lv-1), nxt = 20*lv*lv;
@@ -2400,7 +2595,8 @@ const STAR = '<svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.
 // donut: frac 0..1, centre label + sub label
 const ring = (frac, col, big, sub) => `<svg class="ring" viewBox="0 0 120 120" role="img" aria-label="${big} ${sub}"><circle cx="60" cy="60" r="52" class="rtrack"/><circle cx="60" cy="60" r="52" class="rval" transform="rotate(-90 60 60)" style="stroke:${col};stroke-dasharray:${(326.7*Math.max(0,Math.min(1,frac))).toFixed(1)} 326.7"/><text x="60" y="64" text-anchor="middle" class="rbig">${big}</text><text x="60" y="84" text-anchor="middle" class="rsub">${sub}</text></svg>`;
 function runQuiz(list, opt){
-  let i = 0, combo = 0, best = 0, right = 0, gained = 0; const wrongIds = [], marks = list.map(()=>'');
+  let i = 0, combo = 0, best = 0, right = 0, gained = 0, filedMistakes = 0;
+  const marks = list.map(()=>'');
   const exit = () => opt.back ? go('review',{l:opt.back.l}) : opt.redo ? go('mistakes') : go('practice',ctx);
   function show(){
     if(i >= list.length) return finish();
@@ -2418,10 +2614,11 @@ function runQuiz(list, opt){
     const choose = k => {
       if(picked!==null || k>=q.options.length) return; picked = k; const ok = k===q.answer; let gain = 0;
       document.querySelectorAll('.opt').forEach((x,n) => { x.disabled = true; if(n===q.answer) x.classList.add('right'); else if(n===k) x.classList.add('wrong'); });
-      record(q, ok, opt.redo); marks[i] = ok ? 'r' : 'w';
+      const filedMistake = record(q, ok, opt.redo);
+      marks[i] = ok ? 'r' : 'w';
       if(ok){ right++; combo++; best = Math.max(best, combo); if(combo>S.streakBest){S.streakBest=combo;save();} gain = 10 + Math.min(combo,5)*2; gained += gain; addXp(gain); if(combo>=3) toast(combo+' 连击'); }
-      else { combo = 0; wrongIds.push(q.id); }
-      $('#fb').innerHTML = `<div class="exp ${ok?'ok':'no'}"><div class="eh"><b>${ok?'答对了':'正确答案是 '+'ABCD'[q.answer]}</b>${ok?`<span class="xp">+${gain} XP</span>`:'<span class="xp miss">已加入错题本</span>'}</div>${md(expText(q))}</div>`;
+      else { combo = 0; if(filedMistake) filedMistakes++; }
+      $('#fb').innerHTML = `<div class="exp ${ok?'ok':'no'}"><div class="eh"><b>${ok?'答对了':'正确答案是 '+'ABCD'[q.answer]}</b>${ok?`<span class="xp">+${gain} XP</span>`:filedMistake?'<span class="xp miss">已加入错题本</span>':''}</div>${md(expText(q))}</div>`;
       document.querySelector('.combo').innerHTML = `连击 <b>×${combo}</b>`; document.querySelector('.combo').classList.toggle('hot', combo>=2);
       $('#nx').disabled = false; $('#nx').focus(); nav();
     };
@@ -2431,16 +2628,21 @@ function runQuiz(list, opt){
   }
   function finish(){
     document.onkeydown = null; const acc = pct(right,list.length);
+    const wrong = list.length - right;
+    const summary = [
+      filedMistakes && `${filedMistakes} 道错题已进入错题本。`,
+      wrong > filedMistakes && `L10 答错 ${wrong - filedMistakes} 道题。`
+    ].filter(Boolean).join(' ') || '这一轮没有错题。';
     const col = acc>=80?'var(--cyan)':acc>=60?'var(--amber)':'var(--pink)';
     const msg = acc===100?'全部答对':acc>=80?'掌握得不错':acc>=60?'还差一点':'这一块要重点复习';
     $('#app').innerHTML = `<div class="qwrap"><div class="card done"><div class="mini">${opt.title}完成</div><h2 class="dmsg">${msg}</h2>
     <div class="dstat">${ring(right/list.length,col,right+' / '+list.length,'答对')}<div class="dlist"><div><b>${acc}<i>%</i></b><span>正确率</span></div><div><b>×${best}</b><span>本轮最高连击</span></div><div><b>+${gained}</b><span>获得经验值</span></div></div></div>
     <div class="segs big">${marks.map(m=>`<i class="${m}"></i>`).join('')}</div>
-    <p class="dnote">${wrongIds.length?`${wrongIds.length} 道错题已进入错题本。`:'这一轮没有错题。'}</p>
-    <div class="row" style="justify-content:center"><button class="btn" id="a1">${opt.back?'换一组题':opt.redo?'再做一遍':'再来一轮'}</button>${wrongIds.length&&!opt.redo?'<button class="btn pink" id="a2">去错题本</button>':''}${opt.back?'<button class="btn gold" id="a4">回到本课</button>':''}<button class="btn ghost" id="a3">回道场</button></div></div></div>`;
+    <p class="dnote">${summary}</p>
+    <div class="row" style="justify-content:center"><button class="btn" id="a1">${opt.back?'换一组题':opt.redo?'再做一遍':'再来一轮'}</button>${filedMistakes&&!opt.redo?'<button class="btn pink" id="a2">去错题本</button>':''}${opt.back?'<button class="btn gold" id="a4">回到本课</button>':''}<button class="btn ghost" id="a3">回道场</button></div></div></div>`;
     $('#a1').onclick = () => {
       if(opt.back){
-        const pool = Q.filter(q => q.lesson===opt.back.l);
+        const pool = practiceQuestions.filter(q => q.lesson===opt.back.l);
         runQuiz(shuffle(pool).slice(0,4), opt);
       } else if(opt.redo){
         runQuiz(shuffle(list), opt);
@@ -2452,17 +2654,19 @@ function runQuiz(list, opt){
 }
 VIEWS.practice = function(){
   const f = ctx.lesson || 'all', src = ctx.src || 'all', mode = ctx.mode || 'new';
-  const pool = Q.filter(q => (f==='all'||q.lesson===f) && (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id]));
-  const cnt = id => Q.filter(q => q.lesson===id && (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id])).length;
+  const matching = practiceQuestions.filter(q => (src==='all'||q.src===src)
+    && (mode!=='new' || !(S.att[q.id] || S.practiceAtt?.[q.id]))
+    && (mode!=='star' || S.star[q.id]));
+  const pool = f==='all' ? matching : matching.filter(q => q.lesson===f);
+  const cnt = id => matching.filter(q => q.lesson===id).length;
   const seg = (arr, cur, key) => `<div class="seg">${arr.map(([v,n])=>`<button class="${cur===v?'on':''}" data-k="${key}" data-v="${v}">${n}</button>`).join('')}</div>`;
   const n = Math.min(pool.length, 15);
-  $('#app').innerHTML = `<h2 class="sec">自由练习<small>选一课，或者全部混着做</small></h2>
-  <div class="pick"><button class="pk ${f==='all'?'on':''}" data-v="all" style="--c:#8f7bff"><span class="pi">全</span><b>全部课程</b><small>${cnt_all()} 题</small></button>
-  ${L.map(l=>`<button class="pk ${f===l.id?'on':''}" data-v="${l.id}" style="--c:${LCOL[l.id]}" ${cnt(l.id)?'':'disabled'}><span class="pi">${l.id.slice(1)}</span><b>${l.title}</b><small>${cnt(l.id)} 题</small></button>`).join('')}</div>
+  $('#app').innerHTML = `<h2 class="sec">自由练习<small>${f===l10Lesson.id?'L10 · MCQ1 范围外':'选一课，或者全部混着做'}</small></h2>
+  <div class="pick"><button class="pk ${f==='all'?'on':''}" data-v="all" style="--c:#8f7bff"><span class="pi">全</span><b>全部课程</b><small>${matching.length} 题</small></button>
+  ${studyLessons.map(l=>`<button class="pk ${f===l.id?'on':''}" data-v="${l.id}" style="--c:${LCOL[l.id]}" ${cnt(l.id)?'':'disabled'}><span class="pi">${l.id.slice(1)}</span><b>${l.title}</b><small>${cnt(l.id)} 题</small></button>`).join('')}</div>
   <div class="card opts2"><div><div class="mini">题目来源</div>${seg([['all','全部'],['l09','L09 示范题'],['l05','L05 小测'],['ai','AI 生成']],src,'src')}</div>
   <div><div class="mini">范围</div>${seg([['new','没做过的'],['all','全部题目'],['star','已标记']],mode,'mode')}</div></div>
   <div class="startbar card"><div class="sn">${pool.length?`<b>${n}</b><span>题 · 本轮从 ${pool.length} 道符合条件的题里随机抽取</span>`:'<span>没有符合条件的题。换一个范围，或者选"全部题目"。</span>'}</div><span class="sp"></span><button class="btn gold big" id="go" ${pool.length?'':'disabled'}>开始练习</button></div>`;
-  function cnt_all(){ return Q.filter(q => (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id])).length; }
   document.querySelectorAll('.pk').forEach(c => c.onclick = () => go('practice',{lesson:c.dataset.v,src,mode}));
   document.querySelectorAll('.seg button').forEach(c => c.onclick = () => { const o = {lesson:f,src,mode}; o[c.dataset.k]=c.dataset.v; go('practice',o); });
   $('#go').onclick = () => runQuiz(shuffle(pool).slice(0,15), {title:f==='all'?'综合练习':f+' 练习'});
@@ -2528,7 +2732,7 @@ VIEWS.mistakes = function(){
   const ids = Object.keys(S.mistakes).filter(id => byId[id] && (f==='all'||byId[id].lesson===f)).sort((a,b) => S.mistakes[b].t - S.mistakes[a].t);
   const chips = [['all','全部']].concat(L.map(l=>[l.id,l.id])).map(([v,n]) => `<button class="chip ${f===v?'on':''}" data-v="${v}">${n}</button>`).join('');
   if(!Object.keys(S.mistakes).length){
-    $('#app').innerHTML = `<h2 class="sec">错题本</h2><div class="card empty"><svg viewBox="0 0 24 24">${IC.mistakes}</svg><p>错题本是空的。练习答错的题会自动收进这里。</p><button class="btn" id="g">去练习</button></div>`;
+    $('#app').innerHTML = `<h2 class="sec">错题本</h2><div class="card empty"><svg viewBox="0 0 24 24">${IC.mistakes}</svg><p>错题本是空的。MCQ1 范围内的练习错题会自动收进这里。</p><button class="btn" id="g">去练习</button></div>`;
     $('#g').onclick = () => go('practice'); return; }
   $('#app').innerHTML = `<h2 class="sec">错题本<small>${Object.keys(S.mistakes).length} 题</small></h2><div class="chips">${chips}</div>
   <div class="row" style="margin:0 0 16px"><button class="btn pink" id="rd" ${ids.length?'':'disabled'}>重做这 ${ids.length} 题</button><span class="mini">重做时答对的题会移出错题本</span></div>
@@ -2611,33 +2815,37 @@ function rvMountDemos(){
 
 VIEWS.review = function(){
   const rv = rvPrep(), id = ctx.l || 'L01', mode = ctx.mode || 'full';
-  const l = L.find(x => x.id===id), R = REVIEW[id], c = LCOL[id], idx = L.findIndex(x => x.id===id);
+  const idx = studyLessons.findIndex(x => x.id===id), l = studyLessons[idx], R = REVIEW[id], c = LCOL[id];
+  const pool = practiceQuestions.filter(q => q.lesson===id);
+  const isL10 = id===l10Lesson.id;
   const done = rv[id] && rv[id].done;
-  const chips = L.map(x => `<button class="chip ${x.id===id?'on':''} ${rv[x.id]&&rv[x.id].done?'fin':''}" data-v="${x.id}" style="--c:${LCOL[x.id]}">${x.id} ${x.title}</button>`).join('');
-  const reviewed = L.filter(x => rv[x.id] && rv[x.id].done).length;
+  const chips = studyLessons.map(x => `<button class="chip ${x.id===id?'on':''} ${rv[x.id]&&rv[x.id].done?'fin':''}" data-v="${x.id}" style="--c:${LCOL[x.id]}">${x.id} ${x.title}</button>`).join('');
+  const reviewed = studyLessons.filter(x => rv[x.id] && rv[x.id].done).length;
   const full = () => `<p class="lead">${md(R.lead)}</p>
     <div class="rvgrid"><aside class="toc" aria-label="本课目录"><b>本课目录</b>${R.sections.map(s=>`<a href="#rv-${s.id}" data-sec="${s.id}">${s.title}</a>`).join('')}</aside>
     <div class="rvbody">${R.sections.map(s=>`<section id="rv-${s.id}" class="rsec"><h3 style="--c:${c}">${s.title}</h3>${s.blocks.map(b=>rvBlock(b)).join('')}</section>`).join('')}
-    <section class="rsec" id="rv-quiz"><h3 style="--c:${c}">本课自测</h3><p class="rp">4 道题，答完立刻看解析，答错的会进错题本。</p><div class="row" style="margin-top:8px"><button class="btn" id="qz">开始自测</button><span class="mini">${Q.filter(q=>q.lesson===id).length} 道本课题目</span></div></section></div></div>`;
+    <section class="rsec" id="rv-quiz"><h3 style="--c:${c}">本课自测</h3><p class="rp">${isL10?'4 道题，每题答完立刻看解析。':'4 道题，答完立刻看解析，答错的会进错题本。'}</p><div class="row" style="margin-top:8px"><button class="btn" id="qz">开始自测</button><span class="mini">${pool.length} 道本课题目</span></div></section></div></div>`;
   const quick = () => `<div class="grid g2"><div class="card" style="box-shadow:inset 0 0 0 1px var(--line),inset 0 3px 0 ${c}"><h3 style="font-size:26px;color:${c}">必须掌握</h3><ul class="rl">${l.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>
     <div class="card trap"><h3 style="font-size:26px;color:var(--pink)">易错点</h3><ul class="rl">${l.traps.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`;
-  $('#app').innerHTML = `<h2 class="sec">快速复习<small>已复习 ${reviewed} / 8 课</small></h2>
+  $('#app').innerHTML = `<h2 class="sec">快速复习<small>已复习 ${reviewed} / ${studyLessons.length} 课</small></h2>
   <div class="chips lessonbar">${chips}</div>
-  <div class="rvhead card" style="--c:${c}"><div><div class="mini">${l.en}</div><h2>${l.id}　${l.title}</h2></div><span class="sp"></span>
+  <div class="rvhead card" style="--c:${c}"><div><div class="mini">${l.en}${isL10?' · MCQ1 范围外':''}</div><h2>${l.id}　${l.title}</h2></div><span class="sp"></span>
     <div class="seg"><button class="${mode==='full'?'on':''}" data-m="full">完整详解</button><button class="${mode==='quick'?'on':''}" data-m="quick">一分钟速览</button></div></div>
   <div id="rvc">${mode==='full'?full():quick()}</div>
-  <div class="rvfoot"><button class="btn ghost" id="pv" ${idx?'':'disabled'}>上一课</button><span class="sp"></span><button class="btn ${done?'ghost':'gold'}" id="dn">${done?'✓ 已复习（点击取消）':'标记为已复习'}</button><span class="sp"></span><button class="btn ghost" id="nx" ${idx<L.length-1?'':'disabled'}>下一课</button></div>
+  <div class="rvfoot"><button class="btn ghost" id="pv" ${idx?'':'disabled'}>上一课</button><span class="sp"></span><button class="btn ${done?'ghost':'gold'}" id="dn">${done?'✓ 已复习（点击取消）':'标记为已复习'}</button><span class="sp"></span><button class="btn ghost" id="nx" ${idx<studyLessons.length-1?'':'disabled'}>下一课</button></div>
   ${mode==='full'?'':`<div class="row"><button class="btn" id="pr">练习 ${l.id}</button></div>`}
-  <h2 class="sec">考前三句话</h2>${COMMON.map(t=>{const[e,z]=t.split('  ');return `<div class="mantra">${esc(e)}<span class="zh">${esc(z||'')}</span></div>`}).join('')}
-  <p class="mini">依据 L09 复习笔记和各课笔记整理。插入排序不在 MCQ1 范围内。</p>`;
+  ${isL10?'<p class="mini">依据 L10 课程笔记和练习册整理。</p>':`<h2 class="sec">考前三句话</h2>${COMMON.map(t=>{const[e,z]=t.split('  ');return `<div class="mantra">${esc(e)}<span class="zh">${esc(z||'')}</span></div>`}).join('')}
+  <p class="mini">依据 L09 复习笔记和各课笔记整理。插入排序不在 MCQ1 范围内。</p>`}`;
+  const bar = $('.lessonbar'), selected = $('.lessonbar .on');
+  bar.scrollLeft = Math.max(0, selected.getBoundingClientRect().right - bar.getBoundingClientRect().right);
   document.querySelectorAll('.lessonbar .chip').forEach(b => b.onclick = () => go('review',{l:b.dataset.v,mode}));
   document.querySelectorAll('.seg button').forEach(b => b.onclick = () => go('review',{l:id,mode:b.dataset.m}));
-  $('#pv').onclick = () => go('review',{l:L[idx-1].id,mode}); $('#nx').onclick = () => go('review',{l:L[idx+1].id,mode});
+  $('#pv').onclick = () => go('review',{l:studyLessons[idx-1].id,mode}); $('#nx').onclick = () => go('review',{l:studyLessons[idx+1].id,mode});
   $('#dn').onclick = () => { rv[id] = {done:!done, t:Date.now()}; save(); if(!done) toast(id+' 已标记为已复习'); go('review',ctx); };
   if($('#pr')) $('#pr').onclick = () => go('practice',{lesson:id,mode:'all'});
   if(mode==='full'){
     rvMountDemos();
-    $('#qz').onclick = () => { const pool = Q.filter(q=>q.lesson===id); runQuiz(shuffle(pool).slice(0,4), {title:id+' 自测', back:{l:id}}); };
+    $('#qz').onclick = () => runQuiz(shuffle(pool).slice(0,4), {title:id+' 自测', back:{l:id}});
     const links = [...document.querySelectorAll('.toc a')];
     links.forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById('rv-'+a.dataset.sec).scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}); });
     if('IntersectionObserver' in window){
@@ -2652,7 +2860,7 @@ VIEWS.guide = function(){
   const flow = [
     ['先读快速复习','在"快速复习"里按课读详解，带代码和推演表，有的课还能单步看算法演示。读完点"标记为已复习"。','review'],
     ['按课练习','在"练习"里选一课，默认只出没做过的题。每题选完立刻看到对错和解析，不用等做完整套。','practice'],
-    ['清空错题本','答错的题自动进"错题本"。点"重做"，答对的题会被移出，直到清空。','mistakes'],
+    ['清空错题本','MCQ1 范围内答错的练习题自动进"错题本"。点"重做"，答对的题会被移出，直到清空。','mistakes'],
     ['看看板找薄弱课','"看板"里的雷达图和正确率条会标出薄弱的课，回头对这些课多练一轮。','stats'],
     ['考前两天模拟考','在"模拟考"里选一套固定试卷，完成 33 题 45 分钟。交卷后在结果页查看错题解析。','exam']
   ];
@@ -2665,12 +2873,12 @@ VIEWS.guide = function(){
     ['快速复习','每课一份详解：讲解、代码、推演、成本表、易错点，末尾有 4 道自测。右上角可切换"一分钟速览"，考前最后一遍用。']
   ];
   const keys = [['1 2 3 4','选择 A / B / C / D（练习和模拟考）'],['Enter','答完后进入下一题（练习）'],['← →','上一题 / 下一题（模拟考）']];
-  const src = [['L09 示范题','L09-quiz.md 里的 30 道题，原题原解析，另加中文讲解。'],['L05 小测','L05-quiz.md 里覆盖 L01 到 L04 的 12 道题。'],['AI 生成','我按 L09 的题型补出的 44 道，每课都有，解析为中文。不是真题。']];
+  const src = [['L09 示范题','L09-quiz.md 里的 30 道题，原题原解析，另加中文讲解。'],['L05 小测','L05-quiz.md 里覆盖 L01 到 L04 的 12 道题。'],['AI 生成','参照 L09 题型编写的补充练习，配有中文解析。']];
   $('#app').innerHTML = `<h2 class="sec">使用教程<small>约 1 分钟</small></h2>
   <div class="card"><h3 style="font-size:26px">推荐的复习顺序</h3><div class="flow">${flow.map(([t,d,k],i)=>`<div class="step"><span class="no">${i+1}</span><div><b>${t}</b><p>${d}</p></div><button class="btn ghost" data-go="${k}">打开</button></div>`).join('')}</div></div>
   <h2 class="sec">每个页面做什么</h2><div class="grid g2">${pages.map(([t,d])=>`<div class="card"><h3 style="font-size:22px">${t}</h3><p class="gp">${d}</p></div>`).join('')}</div>
   <h2 class="sec">快捷键</h2><div class="card">${keys.map(([k,d])=>`<div class="keyrow"><span>${k.split(' ').map(x=>`<kbd>${x}</kbd>`).join(' ')}</span><span>${d}</span></div>`).join('')}</div>
-  <h2 class="sec">题目来源</h2><div class="card">${src.map(([n,d])=>`<div class="keyrow"><span class="pill ${n.startsWith('L09')?'l09':n.startsWith('L05')?'l05':'ai'}">${n}</span><span>${d}</span></div>`).join('')}<p class="mini" style="margin-bottom:0">题库只含 L01 到 L08，不含插入排序和 L10，与 MCQ1 范围一致。</p></div>
+  <h2 class="sec">题目来源</h2><div class="card">${src.map(([n,d])=>`<div class="keyrow"><span class="pill ${n.startsWith('L09')?'l09':n.startsWith('L05')?'l05':'ai'}">${n}</span><span>${d}</span></div>`).join('')}<p class="mini" style="margin-bottom:0">MCQ1 范围为 L01 到 L08，插入排序除外。</p></div>
   <h2 class="sec">关于记录</h2><div class="card"><p class="gp" style="margin-top:0">答题记录、错题本、经验值和模拟考成绩都保存在当前浏览器里，不会上传。换浏览器或清除网站数据会丢失。想重新开始，可以在"看板"底部点"清空所有记录"。</p><p class="gp" style="margin-bottom:0">经验值只是做题的反馈：答对得 10 分，连击有加成，模拟考按答对数加分。它不代表考试水平，看正确率更准。</p></div>
   <p class="mini">本站使用 Google Analytics 统计访问人数、访问来源和设备等使用情况。具体答题记录、错题与成绩仅保存在当前浏览器中。</p>
   <div class="row"><button class="btn gold" id="gs">开始练习</button><button class="btn ghost" id="gh">回道场</button></div>`;

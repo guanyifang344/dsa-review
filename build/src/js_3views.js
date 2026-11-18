@@ -1,10 +1,14 @@
 function addXp(n){ const before=level(); S.xp+=n; save(); if(level()>before) toast('升级！Lv.'+level()); hud(); }
 function record(q, ok, redo){
-  const a = S.att[q.id] || (S.att[q.id] = {r:0,w:0});
+  const mcq1 = Boolean(byId[q.id]);
+  const attempts = mcq1 ? S.att : (S.practiceAtt ||= {});
+  const a = attempts[q.id] || (attempts[q.id] = {r:0,w:0});
   ok ? a.r++ : a.w++; a.last = ok; a.t = Date.now();
-  if(!ok){ S.mistakes[q.id] = {t:Date.now()}; }
-  else if(redo && S.mistakes[q.id]){ delete S.mistakes[q.id]; }
+  const filedMistake = mcq1 && !ok;
+  if(filedMistake){ S.mistakes[q.id] = {t:Date.now()}; }
+  else if(ok && redo && S.mistakes[q.id]){ delete S.mistakes[q.id]; }
   save();
+  return filedMistake;
 }
 function hud(){
   const lv = level(), cur = 20*(lv-1)*(lv-1), nxt = 20*lv*lv;

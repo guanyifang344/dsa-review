@@ -5,7 +5,8 @@ const STAR = '<svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.
 // donut: frac 0..1, centre label + sub label
 const ring = (frac, col, big, sub) => `<svg class="ring" viewBox="0 0 120 120" role="img" aria-label="${big} ${sub}"><circle cx="60" cy="60" r="52" class="rtrack"/><circle cx="60" cy="60" r="52" class="rval" transform="rotate(-90 60 60)" style="stroke:${col};stroke-dasharray:${(326.7*Math.max(0,Math.min(1,frac))).toFixed(1)} 326.7"/><text x="60" y="64" text-anchor="middle" class="rbig">${big}</text><text x="60" y="84" text-anchor="middle" class="rsub">${sub}</text></svg>`;
 function runQuiz(list, opt){
-  let i = 0, combo = 0, best = 0, right = 0, gained = 0; const wrongIds = [], marks = list.map(()=>'');
+  let i = 0, combo = 0, best = 0, right = 0, gained = 0, filedMistakes = 0;
+  const marks = list.map(()=>'');
   const exit = () => opt.back ? go('review',{l:opt.back.l}) : opt.redo ? go('mistakes') : go('practice',ctx);
   function show(){
     if(i >= list.length) return finish();
@@ -23,10 +24,11 @@ function runQuiz(list, opt){
     const choose = k => {
       if(picked!==null || k>=q.options.length) return; picked = k; const ok = k===q.answer; let gain = 0;
       document.querySelectorAll('.opt').forEach((x,n) => { x.disabled = true; if(n===q.answer) x.classList.add('right'); else if(n===k) x.classList.add('wrong'); });
-      record(q, ok, opt.redo); marks[i] = ok ? 'r' : 'w';
+      const filedMistake = record(q, ok, opt.redo);
+      marks[i] = ok ? 'r' : 'w';
       if(ok){ right++; combo++; best = Math.max(best, combo); if(combo>S.streakBest){S.streakBest=combo;save();} gain = 10 + Math.min(combo,5)*2; gained += gain; addXp(gain); if(combo>=3) toast(combo+' 连击'); }
-      else { combo = 0; wrongIds.push(q.id); }
-      $('#fb').innerHTML = `<div class="exp ${ok?'ok':'no'}"><div class="eh"><b>${ok?'答对了':'正确答案是 '+'ABCD'[q.answer]}</b>${ok?`<span class="xp">+${gain} XP</span>`:'<span class="xp miss">已加入错题本</span>'}</div>${md(expText(q))}</div>`;
+      else { combo = 0; if(filedMistake) filedMistakes++; }
+      $('#fb').innerHTML = `<div class="exp ${ok?'ok':'no'}"><div class="eh"><b>${ok?'答对了':'正确答案是 '+'ABCD'[q.answer]}</b>${ok?`<span class="xp">+${gain} XP</span>`:filedMistake?'<span class="xp miss">已加入错题本</span>':''}</div>${md(expText(q))}</div>`;
       document.querySelector('.combo').innerHTML = `连击 <b>×${combo}</b>`; document.querySelector('.combo').classList.toggle('hot', combo>=2);
       $('#nx').disabled = false; $('#nx').focus(); nav();
     };
@@ -36,16 +38,21 @@ function runQuiz(list, opt){
   }
   function finish(){
     document.onkeydown = null; const acc = pct(right,list.length);
+    const wrong = list.length - right;
+    const summary = [
+      filedMistakes && `${filedMistakes} 道错题已进入错题本。`,
+      wrong > filedMistakes && `L10 答错 ${wrong - filedMistakes} 道题。`
+    ].filter(Boolean).join(' ') || '这一轮没有错题。';
     const col = acc>=80?'var(--cyan)':acc>=60?'var(--amber)':'var(--pink)';
     const msg = acc===100?'全部答对':acc>=80?'掌握得不错':acc>=60?'还差一点':'这一块要重点复习';
     $('#app').innerHTML = `<div class="qwrap"><div class="card done"><div class="mini">${opt.title}完成</div><h2 class="dmsg">${msg}</h2>
     <div class="dstat">${ring(right/list.length,col,right+' / '+list.length,'答对')}<div class="dlist"><div><b>${acc}<i>%</i></b><span>正确率</span></div><div><b>×${best}</b><span>本轮最高连击</span></div><div><b>+${gained}</b><span>获得经验值</span></div></div></div>
     <div class="segs big">${marks.map(m=>`<i class="${m}"></i>`).join('')}</div>
-    <p class="dnote">${wrongIds.length?`${wrongIds.length} 道错题已进入错题本。`:'这一轮没有错题。'}</p>
-    <div class="row" style="justify-content:center"><button class="btn" id="a1">${opt.back?'换一组题':opt.redo?'再做一遍':'再来一轮'}</button>${wrongIds.length&&!opt.redo?'<button class="btn pink" id="a2">去错题本</button>':''}${opt.back?'<button class="btn gold" id="a4">回到本课</button>':''}<button class="btn ghost" id="a3">回道场</button></div></div></div>`;
+    <p class="dnote">${summary}</p>
+    <div class="row" style="justify-content:center"><button class="btn" id="a1">${opt.back?'换一组题':opt.redo?'再做一遍':'再来一轮'}</button>${filedMistakes&&!opt.redo?'<button class="btn pink" id="a2">去错题本</button>':''}${opt.back?'<button class="btn gold" id="a4">回到本课</button>':''}<button class="btn ghost" id="a3">回道场</button></div></div></div>`;
     $('#a1').onclick = () => {
       if(opt.back){
-        const pool = Q.filter(q => q.lesson===opt.back.l);
+        const pool = practiceQuestions.filter(q => q.lesson===opt.back.l);
         runQuiz(shuffle(pool).slice(0,4), opt);
       } else if(opt.redo){
         runQuiz(shuffle(list), opt);
@@ -57,17 +64,19 @@ function runQuiz(list, opt){
 }
 VIEWS.practice = function(){
   const f = ctx.lesson || 'all', src = ctx.src || 'all', mode = ctx.mode || 'new';
-  const pool = Q.filter(q => (f==='all'||q.lesson===f) && (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id]));
-  const cnt = id => Q.filter(q => q.lesson===id && (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id])).length;
+  const matching = practiceQuestions.filter(q => (src==='all'||q.src===src)
+    && (mode!=='new' || !(S.att[q.id] || S.practiceAtt?.[q.id]))
+    && (mode!=='star' || S.star[q.id]));
+  const pool = f==='all' ? matching : matching.filter(q => q.lesson===f);
+  const cnt = id => matching.filter(q => q.lesson===id).length;
   const seg = (arr, cur, key) => `<div class="seg">${arr.map(([v,n])=>`<button class="${cur===v?'on':''}" data-k="${key}" data-v="${v}">${n}</button>`).join('')}</div>`;
   const n = Math.min(pool.length, 15);
-  $('#app').innerHTML = `<h2 class="sec">自由练习<small>选一课，或者全部混着做</small></h2>
-  <div class="pick"><button class="pk ${f==='all'?'on':''}" data-v="all" style="--c:#8f7bff"><span class="pi">全</span><b>全部课程</b><small>${cnt_all()} 题</small></button>
-  ${L.map(l=>`<button class="pk ${f===l.id?'on':''}" data-v="${l.id}" style="--c:${LCOL[l.id]}" ${cnt(l.id)?'':'disabled'}><span class="pi">${l.id.slice(1)}</span><b>${l.title}</b><small>${cnt(l.id)} 题</small></button>`).join('')}</div>
+  $('#app').innerHTML = `<h2 class="sec">自由练习<small>${f===l10Lesson.id?'L10 · MCQ1 范围外':'选一课，或者全部混着做'}</small></h2>
+  <div class="pick"><button class="pk ${f==='all'?'on':''}" data-v="all" style="--c:#8f7bff"><span class="pi">全</span><b>全部课程</b><small>${matching.length} 题</small></button>
+  ${studyLessons.map(l=>`<button class="pk ${f===l.id?'on':''}" data-v="${l.id}" style="--c:${LCOL[l.id]}" ${cnt(l.id)?'':'disabled'}><span class="pi">${l.id.slice(1)}</span><b>${l.title}</b><small>${cnt(l.id)} 题</small></button>`).join('')}</div>
   <div class="card opts2"><div><div class="mini">题目来源</div>${seg([['all','全部'],['l09','L09 示范题'],['l05','L05 小测'],['ai','AI 生成']],src,'src')}</div>
   <div><div class="mini">范围</div>${seg([['new','没做过的'],['all','全部题目'],['star','已标记']],mode,'mode')}</div></div>
   <div class="startbar card"><div class="sn">${pool.length?`<b>${n}</b><span>题 · 本轮从 ${pool.length} 道符合条件的题里随机抽取</span>`:'<span>没有符合条件的题。换一个范围，或者选"全部题目"。</span>'}</div><span class="sp"></span><button class="btn gold big" id="go" ${pool.length?'':'disabled'}>开始练习</button></div>`;
-  function cnt_all(){ return Q.filter(q => (src==='all'||q.src===src) && (mode!=='new' || !S.att[q.id]) && (mode!=='star' || S.star[q.id])).length; }
   document.querySelectorAll('.pk').forEach(c => c.onclick = () => go('practice',{lesson:c.dataset.v,src,mode}));
   document.querySelectorAll('.seg button').forEach(c => c.onclick = () => { const o = {lesson:f,src,mode}; o[c.dataset.k]=c.dataset.v; go('practice',o); });
   $('#go').onclick = () => runQuiz(shuffle(pool).slice(0,15), {title:f==='all'?'综合练习':f+' 练习'});

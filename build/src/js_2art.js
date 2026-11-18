@@ -20,7 +20,7 @@ const ART = {
  L07:'<circle cx="52" cy="46" r="20"/><path d="M67 62l22 22"/><path d="M110 28v56M110 56h30"/>',
  L08:'<path d="M12 62h136"/><circle cx="34" cy="62" r="8"/><circle cx="126" cy="62" r="8"/><path d="M48 44l14 0M112 44l-14 0M56 38l6 6-6 6M104 38l-6 6 6 6"/>'
 };
-const LCOL = {L01:'#ff5ea8',L02:'#ffa23a',L03:'#ffd54a',L04:'#9be84a',L05:'#2ef2d6',L06:'#4fb7ff',L07:'#8f7bff',L08:'#e27bff'};
+const LCOL = {L01:'#ff5ea8',L02:'#ffa23a',L03:'#ffd54a',L04:'#9be84a',L05:'#2ef2d6',L06:'#4fb7ff',L07:'#8f7bff',L08:'#e27bff',[l10Lesson.id]:l10Lesson.color};
 
 // ---- algorithm stage: four step-able visual demos ----
 const DEMOS = {

@@ -3,7 +3,7 @@ VIEWS.mistakes = function(){
   const ids = Object.keys(S.mistakes).filter(id => byId[id] && (f==='all'||byId[id].lesson===f)).sort((a,b) => S.mistakes[b].t - S.mistakes[a].t);
   const chips = [['all','全部']].concat(L.map(l=>[l.id,l.id])).map(([v,n]) => `<button class="chip ${f===v?'on':''}" data-v="${v}">${n}</button>`).join('');
   if(!Object.keys(S.mistakes).length){
-    $('#app').innerHTML = `<h2 class="sec">错题本</h2><div class="card empty"><svg viewBox="0 0 24 24">${IC.mistakes}</svg><p>错题本是空的。练习答错的题会自动收进这里。</p><button class="btn" id="g">去练习</button></div>`;
+    $('#app').innerHTML = `<h2 class="sec">错题本</h2><div class="card empty"><svg viewBox="0 0 24 24">${IC.mistakes}</svg><p>错题本是空的。MCQ1 范围内的练习错题会自动收进这里。</p><button class="btn" id="g">去练习</button></div>`;
     $('#g').onclick = () => go('practice'); return; }
   $('#app').innerHTML = `<h2 class="sec">错题本<small>${Object.keys(S.mistakes).length} 题</small></h2><div class="chips">${chips}</div>
   <div class="row" style="margin:0 0 16px"><button class="btn pink" id="rd" ${ids.length?'':'disabled'}>重做这 ${ids.length} 题</button><span class="mini">重做时答对的题会移出错题本</span></div>

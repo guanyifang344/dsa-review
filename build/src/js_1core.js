@@ -1,4 +1,7 @@
 const Q = window.QUESTIONS, L = window.LESSONS;
+const {lesson: l10Lesson, questions: l10Questions} = window.L10_PRACTICE;
+const studyLessons = [...L, l10Lesson];
+const practiceQuestions = [...Q, ...l10Questions];
 const $ = s => document.querySelector(s);
 const KEY = 'dsa-review-v1';
 let S = JSON.parse(localStorage.getItem(KEY) || 'null') || {att:{}, mistakes:{}, star:{}, xp:0, streakBest:0, exams:[], seen:{}};
