@@ -48,14 +48,12 @@ function startPlayer() {
     return;
   }
   document.body.classList.add('enrolling');
-  $('#app').innerHTML = `<article class="entry-card">
-    <div class="entry-art" aria-hidden="true"></div>
-    <section class="entry-form"><div class="register-label">DSA · 玩家名册</div>
-    <h1>签下你的昵称</h1><p>这个名字将与你的等级和经验值一起出现在全站排行榜。</p>
+  $('#app').innerHTML = `<section class="card entry-form">
+    <h1>输入你的昵称</h1><p>这个名字将与你的等级和经验值一起出现在全站排行榜。</p>
     <form id="enroll"><label for="nickname">玩家昵称</label>
     <input id="nickname" name="nickname" autocomplete="nickname" required placeholder="输入 1 至 20 个字符" aria-describedby="name-note">
-    <div id="name-note" class="register-note" role="status">${S.xp ? '已读到本机的 '+S.xp+' XP，登记后计入排名。':'学习进度保存在当前浏览器。'}</div>
-    <button class="register-button">登记并进入道场 <span aria-hidden="true">→</span></button></form></section></article>`;
+    <div id="name-note" class="mini" role="status">${S.xp ? '已读到本机的 '+S.xp+' XP，登记后计入排名。':'学习进度保存在当前浏览器。'}</div>
+    <button class="btn">登记并进入道场 <span aria-hidden="true">→</span></button></form></section>`;
   $('#enroll').onsubmit = async e => {
     e.preventDefault();
     const nickname = $('#nickname').value.trim();
