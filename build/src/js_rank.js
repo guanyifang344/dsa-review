@@ -6,12 +6,28 @@ const validName = value => value.length > 0 && [...value].length <= 20 && !/[\p{
 const rankLock = action => navigator.locks ? navigator.locks.request(playerKey, action) : action();
 let rankTimer, rankRequest = 0;
 async function rankFetch(path, body) {
-  const response = await fetch(rankApi+path, {
-    method:body ? 'POST' : 'GET', body:body ? JSON.stringify(body) : undefined,
-    credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(12000)
+  const controller = typeof AbortController === 'function' ? new AbortController() : null;
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => {
+      reject(new Error('排行榜服务响应超时。'));
+      controller?.abort();
+    },12000);
   });
-  if (!response.ok) throw new Error('排行榜暂时无法连接');
-  return response.json();
+  async function send() {
+    let response;
+    try {
+      response = await fetch(rankApi+path, {
+        method:body ? 'POST' : 'GET', body:body ? JSON.stringify(body) : undefined,
+        credentials:'omit', cache:'no-store', signal:controller?.signal
+      });
+    } catch { throw new Error('当前浏览器未能连接到排行榜服务。'); }
+    if (!response.ok) throw new Error('排行榜服务返回 HTTP '+response.status+'。');
+    try { return await response.json(); }
+    catch { throw new Error('排行榜服务返回了无法读取的数据。'); }
+  }
+  try { return await Promise.race([send(),timeout]); }
+  finally { clearTimeout(timer); }
 }
 async function syncRank() {
   return rankLock(async () => {
@@ -68,33 +84,45 @@ function startPlayer() {
     } catch { $('#name-note').textContent='无法保存昵称，请允许浏览器存储后重试。'; }
   };
 }
-window.addEventListener('online',scheduleRankSync);
+function recoverRanking() {
+  if (document.hidden || !readPlayer()) return;
+  if (tab==='ranking' && ($('#retry-rank') || $('#rank-pending'))) VIEWS.ranking();
+  else scheduleRankSync();
+}
+window.addEventListener('online',recoverRanking);
+document.addEventListener('visibilitychange',recoverRanking);
 window.addEventListener('storage', e => {
   if (e.key === playerKey && (!e.newValue || !e.oldValue)) location.reload();
 });
-setInterval(() => { if (!document.hidden && readPlayer()) scheduleRankSync(); },30000);
+setInterval(recoverRanking,30000);
 VIEWS.ranking = async function(){
   const request = ++rankRequest, page = ctx.page || 1, p = readPlayer();
   const title = '<header class="rank-cover"><div><div class="register-label">DSA · 经验名册</div><h1>排行榜</h1><p>按累计经验排列，同分并列。</p></div></header>';
   $('#app').innerHTML = title+'<section class="rank-paper" id="rankbody" aria-live="polite">正在读取全站排名…</section>';
   const active = () => tab==='ranking' && request===rankRequest;
   try {
-    await syncRank();
-    const data = await rankFetch('/board?page='+page+'&player='+readPlayer().id);
+    let pending = false;
+    try { await syncRank(); } catch { pending = true; }
+    if (!active()) return;
+    const player = readPlayer();
+    if (!player) return;
+    const data = await rankFetch('/board?page='+page+'&player='+(player.id || 0));
     if (!active()) return;
     const me = data.mine;
     const fmt = n=>Number(n).toLocaleString('zh-CN');
     const rows = data.rows.map(row => `<tr class="${row.id===me?.id?'rank-me':''}"><td>${fmt(row.place)}</td><th scope="row">${esc(row.nickname)}${row.id===me?.id?' <small>我</small>':''}</th><td>Lv. ${Math.floor(Math.sqrt(row.xp/20))+1}</td><td>${fmt(row.xp)}</td></tr>`).join('');
     $('#rankbody').innerHTML = `<div class="my-standing"><div><small>我的名次</small><strong>${me?'第 '+fmt(me.place)+' 名':'等待同步'}</strong></div><div><small>玩家</small><b>${esc(p.nickname)}</b></div><div><small>累计经验</small><b>${fmt(me?.xp ?? S.xp)} XP</b></div></div>
+    ${pending ? '<p id="rank-pending" role="status">本机经验待同步，以下为服务器当前排名。</p>' : ''}
     <div class="rank-toolbar"><h2>全站名册 <small>${fmt(data.total)} 位玩家</small></h2><button id="rank-refresh">刷新</button></div>
     <table class="rank-table"><thead><tr><th>名次</th><th>昵称</th><th>等级</th><th>经验值</th></tr></thead><tbody>${rows}</tbody></table>
     ${data.total>50 || page>1 ? '<div class="rank-pager"><button id="prev-rank" '+(page===1?'disabled':'')+'>上一页</button><span>第 '+page+' 页</span><button id="next-rank" '+(page*50>=data.total?'disabled':'')+'>下一页</button></div>':''}`;
     $('#rank-refresh').onclick = () => go('ranking',{page});
     if ($('#prev-rank')) $('#prev-rank').onclick = () => go('ranking',{page:page-1});
     if ($('#next-rank')) $('#next-rank').onclick = () => go('ranking',{page:page+1});
-  } catch {
+  } catch (error) {
     if (active()) {
-      $('#rankbody').innerHTML='<p>暂时无法读取全站排名。本机经验已保留，联网后会再次同步。</p><button id="retry-rank">重试</button>';
+      $('#rankbody').innerHTML='<p id="rank-error"></p><p>本机经验已保留。此页会自动重试。</p><button id="retry-rank">重试</button>';
+      $('#rank-error').textContent = error.message || '暂时无法读取全站排名。';
       $('#retry-rank').onclick = () => go('ranking',{page});
     }
   }
