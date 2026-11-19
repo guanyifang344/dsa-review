@@ -17,15 +17,12 @@
 </script>
 <link rel="stylesheet" href="assets/portal.css">
 </head>
-<body>
-<header><a class="brand" href="./"><span class="seal" aria-hidden="true">學</span> 学习中心</a></header>
-<main>
-<section class="cover"><div class="cover-title"><h1>学习中心</h1><div class="ornament" aria-hidden="true">◆</div></div>
-<div class="engraving" aria-hidden="true"></div></section>
-<section class="menu" aria-label="功能选择">
-<details><summary>选择学习<span class="plus" aria-hidden="true"></span></summary>
-<a class="course" href="study.html">算法与数据结构<span aria-hidden="true">→</span></a></details>
-<a class="option" href="gpa.html">当前绩点查询<span class="arrow" aria-hidden="true">→</span></a>
-</section></main>
-</body>
-</html>
+<body><header><a class="brand" href="./"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>学习中心</a><span id="identity" hidden></span></header><main><section class="hero"><img class="photo" src="assets/glass-book.jpg" width="1536" height="1024" alt="" fetchpriority="high"><div class="intro"><h1>学习中心</h1>
+ <form id="enroll"><label for="nickname">怎么称呼你？</label>
+ <div class="field"><input id="nickname" name="nickname" autocomplete="nickname" required placeholder="输入昵称" aria-describedby="note"><button aria-label="保存昵称">→</button></div>
+ <p role="status" id="note"></p></form></div></section>
+ <section class="menu" aria-label="功能选择">
+ <details><summary><span class="icon book" aria-hidden="true">◫</span><span>选择学习<small>算法与数据结构</small></span><span aria-hidden="true" class="action toggle"></span></summary>
+ <a href="study.html" class="course">进入算法与数据结构 <span>→</span></a></details>
+ <a class="option" href="gpa.html"><span class="icon chart" aria-hidden="true"><i></i><i></i><i></i></span><span>当前绩点查询<small>筹备中</small></span><span aria-hidden="true" class="action">↗</span></a></section>
+ </main><script src="assets/player.js"></script><script src="assets/portal.js"></script></body></html>

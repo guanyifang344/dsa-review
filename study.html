@@ -3054,6 +3054,12 @@ REVIEW.L08 = {
 })();
 </script>
 <script>(function(){
+const playerKey = 'dsa-dojo-player-v1';
+const readPlayer = () => JSON.parse(localStorage.getItem(playerKey) || 'null');
+const storePlayer = p => localStorage.setItem(playerKey,JSON.stringify(p));
+const validName = value => typeof value === "string" && value.length > 0 && [...value].length <= 20 && !/[\p{Cc}\p{Cf}]/u.test(value);
+const rankLock = action => navigator.locks ? navigator.locks.request(playerKey, action) : action();
+
 const Q = window.QUESTIONS, L = window.LESSONS;
 const {lesson: l10Lesson, questions: l10Questions} = window.L10_PRACTICE;
 const studyLessons = [...L, l10Lesson];
@@ -3573,11 +3579,6 @@ VIEWS.review = function(){
 };
 
 const rankApi = 'https://dsa-dojo-rank.awake-lily-0010.chatgpt.site';
-const playerKey = 'dsa-dojo-player-v1';
-const readPlayer = () => JSON.parse(localStorage.getItem(playerKey) || 'null');
-const storePlayer = p => localStorage.setItem(playerKey,JSON.stringify(p));
-const validName = value => value.length > 0 && [...value].length <= 20 && !/[\p{Cc}\p{Cf}]/u.test(value);
-const rankLock = action => navigator.locks ? navigator.locks.request(playerKey, action) : action();
 let rankTimer, rankRequest = 0;
 async function rankFetch(path, body) {
   const controller = typeof AbortController === 'function' ? new AbortController() : null;
@@ -3638,26 +3639,7 @@ function startPlayer() {
     hud(); go('home'); scheduleRankSync();
     return;
   }
-  document.body.classList.add('enrolling');
-  $('#app').innerHTML = `<section class="card entry-form">
-    <h1>输入你的昵称</h1><p>这个名字将与你的等级和经验值一起出现在全站排行榜。</p>
-    <form id="enroll"><label for="nickname">玩家昵称</label>
-    <input id="nickname" name="nickname" autocomplete="nickname" required placeholder="输入 1 至 20 个字符" aria-describedby="name-note">
-    <div id="name-note" class="mini" role="status">${S.xp ? '已读到本机的 '+S.xp+' XP，登记后计入排名。':'学习进度保存在当前浏览器。'}</div>
-    <button class="btn">登记并进入道场 <span aria-hidden="true">→</span></button></form></section>`;
-  $('#enroll').onsubmit = async e => {
-    e.preventDefault();
-    const nickname = $('#nickname').value.trim();
-    if (!validName(nickname)) { $('#name-note').textContent='请输入 1 至 20 个可见字符。'; $('#nickname').focus(); return; }
-    try {
-      await rankLock(() => {
-        if (readPlayer()) return;
-        const key = Array.from(crypto.getRandomValues(new Uint8Array(32)), b=>b.toString(16).padStart(2,'0')).join('');
-        storePlayer({key,nickname,id:null,synced:null});
-      });
-      startPlayer();
-    } catch { $('#name-note').textContent='无法保存昵称，请允许浏览器存储后重试。'; }
-  };
+  location.replace('./?next=study');
 }
 function recoverRanking() {
   if (document.hidden || !readPlayer()) return;
