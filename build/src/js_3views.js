@@ -32,7 +32,8 @@ const VIEWS = {};
 VIEWS.home = function(){
   const total = Q.length, done = Object.keys(S.att).length, wrong = Object.keys(S.mistakes).length;
   $('#app').innerHTML = `${S.seen.guide?'':`<div class="tip"><span><b>第一次使用？</b>1 分钟看懂每个页面怎么用。</span><span class="sp"></span><button class="btn gold" id="tg">看教程</button><button class="btn ghost" id="tx">不再提示</button></div>`}
-  <section class="card stage"><div class="top"><h1>先在纸上推演，<em>再选答案</em></h1>
+  <section class="card stage"><div class="top"><h1>算法与<em>数据结构</em></h1>
+    <p class="course-subtitle" lang="en">Algorithms and Data Structures</p>
     <p>${total} 道练习题覆盖 L01 到 L08。练习错题自动进错题本；模拟考有 ${window.EXAM_PAPERS.length} 套独立试卷，按真实卷面计时。下面的演示台可以单步看四种算法怎么跑。</p></div>
     <div class="scope"><div class="bar"><div class="tabs2" id="dtabs">${Object.entries(DEMOS).map(([k,d])=>`<button data-k="${k}">${d.name}</button>`).join('')}</div>
       <div class="ctl"><button id="pv" aria-label="上一步"><svg viewBox="0 0 16 16"><path d="M12 2v12L4 8zM3 2h2v12H3z"/></svg></button><button id="pp" aria-label="播放或暂停"></button><button id="nx" aria-label="下一步"><svg viewBox="0 0 16 16"><path d="M4 2v12l8-6zM11 2h2v12h-2z"/></svg></button><button id="rs" aria-label="重播"><svg viewBox="0 0 16 16"><path d="M8 2a6 6 0 11-6 6h2a4 4 0 104-4v3L4 3.5 8 0z"/></svg></button></div></div>
