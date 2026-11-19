@@ -59,7 +59,7 @@ function startPlayer() {
     hud(); go('home'); scheduleRankSync();
     return;
   }
-  location.replace('./?next=study');
+  location.replace('welcome.html?next=study');
 }
 function recoverRanking() {
   if (document.hidden || !readPlayer()) return;

@@ -47,3 +47,31 @@ small{display:block;font-size:13px;color:#636c79;font-weight:400;margin-top:5px}
  form{margin-top:17px}.menu{grid-template-columns:1fr;gap:10px;margin-top:12px}
  summary,.option{min-height:84px;font-size:20px;padding:15px 18px}.icon{width:43px;height:43px}
 }
+
+/* Academy identity and the first-visit spread */
+body{max-width:1490px}
+.brand{letter-spacing:-.045em;font-size:20px}
+.brand .mark{color:#394559}
+header{height:clamp(64px,6vw,88px)}
+.wordmark{font-family:"Helvetica Neue",Arial,sans-serif;font-size:clamp(70px,7.7vw,118px);font-weight:540;letter-spacing:-.077em;line-height:.92}
+.welcome{display:grid;grid-template-columns:1.12fr 1fr;min-height:clamp(500px,68vh,680px);overflow:hidden;background:#fff;border-radius:28px;box-shadow:0 22px 66px -38px #5467805e,inset 0 0 0 1px #dde2e8}
+.still{position:relative;overflow:hidden;background:#d6dde3;min-height:100%}
+.still img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:71% center}
+.welcome-panel{width:min(100%,490px);padding:clamp(26px,4.8vw,70px);margin:auto}
+.welcome-panel h1{font-size:clamp(36px,3.65vw,58px);letter-spacing:-.055em;line-height:1.16}
+.welcome-panel form{margin-top:42px}
+.welcome-panel label{font-size:14px;color:#484e58;font-weight:600}
+.welcome-panel input{display:block;width:100%;padding:15px 16px;border-radius:13px;border:1px solid #bdc5cf;background:#fafbfd;color:#20252c;font-size:16px}
+.welcome-panel button{margin-top:18px;width:100%;min-height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;border-radius:13px;font-size:16px;font-weight:550;background:#242931}
+.welcome-panel button:hover{background:#394252}
+#note:empty{display:none}
+#note{color:#923a32}
+.course{min-height:48px}
+@media(max-width:680px){
+ .welcome{grid-template-columns:1fr;min-height:0;border-radius:22px}
+ .still{min-height:0;height:clamp(190px,60vw,320px)}
+ .still img{object-position:70% 60%}
+ .welcome-panel{padding:32px 24px 34px}
+ .welcome-panel form{margin-top:26px}
+ .wordmark{font-size:clamp(58px,14vw,84px)}
+}

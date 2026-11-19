@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN" data-page="welcome" hidden>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>欢迎 · Plato's Academy</title>
+<!-- Google Analytics: DSA 复习道场 (G-QN2CVEXD93) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T89HXRCQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('set', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+  gtag('js', new Date());
+</script>
+<link rel="stylesheet" href="assets/portal.css">
+<script defer src="assets/player.js"></script>
+<script defer src="assets/portal.js"></script>
+</head>
+<body><header><a class="brand" href="./"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Plato's Academy</a><span id="identity" hidden></span></header><main class="welcome">
+  <div class="still"><img src="assets/glass-book.jpg" alt="" width="1536" height="1024"></div>
+  <section class="welcome-panel">
+    <h1>怎么称呼你？</h1>
+    <form id="enroll">
+      <label for="nickname">你的昵称</label>
+      <input id="nickname" name="nickname" autocomplete="nickname" required placeholder="输入昵称" aria-describedby="note">
+      <p role="status" id="note"></p>
+      <button>继续<span aria-hidden="true">→</span></button>
+    </form>
+  </section>
+</main></body></html>
