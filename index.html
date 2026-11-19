@@ -297,7 +297,7 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
 .qf{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
 .btn.big{padding:14px 30px;font-size:16px}
 /* done */
-.done{text-align:center;padding:34px 26px}
+.card.done{text-align:center;padding:34px 26px}
 .dmsg{font-size:42px;margin:4px 0 18px}
 .dstat{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;margin-bottom:22px}
 .ring{width:150px;height:150px}
@@ -332,15 +332,17 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
 .hb{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;width:46px;height:110px}
 .hb i{width:100%;border-radius:6px 6px 2px 2px;min-height:4px}.hb b{font:700 12px var(--mono);color:var(--dim)}
 .exwrap{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:22px;align-items:start}
+.exmain,.sheetp{min-width:0}
+.sheet-toggle,.clock-inline{display:none}
 .sheetp{position:sticky;top:18px;padding:18px}
 .clock{display:grid;place-items:center;margin-bottom:6px}.clock .ring{width:140px;height:140px}
 .clock.low .rbig{fill:var(--pink)}.clock.low{animation:blink 1s infinite}
 @keyframes blink{50%{opacity:.6}}
 .legend{display:flex;gap:12px;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0 12px}
 .legend .d{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--s3);margin-right:5px;vertical-align:-1px}
-.legend .d.done{background:var(--violet)}.legend .d.mk{background:var(--amber)}
-.grid33{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:0 0 16px}
-.dot{position:relative;aspect-ratio:1;border:0;border-radius:8px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line);font:700 12px var(--mono);color:var(--dim);cursor:pointer;transition:.12s}
+.legend .d.answered{background:var(--violet)}.legend .d.mk{background:var(--amber)}
+.grid33{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:0 0 16px}
+.dot{position:relative;aspect-ratio:1;min-width:0;padding:0;border:0;border-radius:8px;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line);font:700 12px var(--mono);color:var(--dim);cursor:pointer;transition:.12s}
 .dot:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2)}
 .dot.done{background:#2b2670;color:#fff;box-shadow:inset 0 0 0 1px var(--violet)}
 .dot.cur{box-shadow:inset 0 0 0 2px var(--cyan),0 0 14px -2px var(--cyan);color:#fff}
@@ -358,8 +360,26 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
 .lrow{display:grid;grid-template-columns:44px 1fr 56px;gap:12px;align-items:center}
 .lrow .id{font:800 18px var(--disp);text-align:left}.lrow .bar{height:8px;border-radius:4px;background:var(--s3);overflow:hidden;margin:0}.lrow .bar i{display:block;height:100%;border-radius:4px}
 .lrow .lv2{font:600 12px var(--mono);color:var(--dim);text-align:right}
-@media(max-width:900px){.exwrap{grid-template-columns:1fr}.sheetp{position:static;order:-1}.grid33{grid-template-columns:repeat(11,1fr)}.examhero{grid-template-columns:1fr}.eh2{display:none}.opts2{grid-template-columns:1fr}.dlist.wide{grid-template-columns:repeat(2,1fr);row-gap:16px}}
-@media(max-width:560px){.qcard{padding:20px 16px 16px}.grid33{grid-template-columns:repeat(8,1fr)}.opt{gap:12px;padding:12px}.score{font-size:68px}.qno{font-size:32px}.dmsg{font-size:32px}.dstat{gap:18px}}
+@media(max-width:900px){
+.exwrap{grid-template-columns:minmax(0,1fr);gap:14px}
+.sheetp{position:static;order:-1;padding:10px 12px}
+.sheet-bar{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.sheet-bar .clock{margin:0}
+.sheet-bar .ring{display:none}
+.clock-inline{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--dim)}
+.clock-inline strong{font:700 18px var(--mono);color:var(--cyan)}
+.clock.low .clock-inline strong{color:var(--pink)}
+.sheet-toggle{display:block;padding:8px 12px;min-height:44px;white-space:nowrap;font-size:14px}
+.sheetp:not(.sheet-open) .sheet-controls{display:none}
+.grid33{grid-template-columns:repeat(auto-fit,minmax(44px,1fr))}
+.exmain .qtop{flex-wrap:wrap;gap:4px 12px}
+.exmain .qtop>.sp,.exmain .qf>.kbd,.exmain .qf>.sp{display:none}
+.exmain .qf>.btn{flex:1;white-space:nowrap;padding-inline:12px;min-height:44px}
+.exmain .prompt,.exmain .ot{overflow-wrap:anywhere}
+.exmain pre{overflow-wrap:normal}
+.exmain .flag{min-height:44px}
+.examhero{grid-template-columns:1fr}.eh2{display:none}.opts2{grid-template-columns:1fr}.dlist.wide{grid-template-columns:repeat(2,1fr);row-gap:16px}}
+@media(max-width:560px){.qcard{padding:20px 16px 16px}.opt{gap:12px;padding:12px}.score{font-size:68px}.qno{font-size:32px}.dmsg{font-size:32px}.dstat{gap:18px}}
 .refcode{margin:16px 0 4px;border-radius:14px;background:rgba(143,123,255,.07);box-shadow:inset 0 0 0 1px var(--line2);overflow:hidden}
 .refcode .rc-h{display:flex;align-items:baseline;gap:10px;padding:9px 16px;font:700 12px var(--mono);color:var(--violet);border-bottom:1px solid var(--line)}
 .refcode .rc-h small{color:var(--dim);font-weight:400}
@@ -406,6 +426,18 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
 .rank-table tbody td:first-child{font:700 20px var(--register-serif);color:#68532c}
 .rank-table .rank-me{background:#ded1b945}.rank-table small{font-size:10px;color:var(--register-wine);white-space:nowrap}
 @media(max-width:600px){.rank-cover{background-position:66% top}.rank-table th,.rank-table td{padding:12px 4px;font-size:13px}.rank-table thead th{font-size:12px}.my-standing{flex-wrap:wrap}.my-standing b{font-size:14px}}
+
+.glossary-find{display:grid;gap:7px;margin-bottom:16px;max-width:440px}
+.glossary-find label{font-weight:700}
+.glossary-find input{width:100%;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--s1);color:var(--ink);font:inherit;font-size:16px}
+.glossary-find input:focus-visible{outline:2px solid #2ef2d6;outline-offset:2px}
+.glossary-groups{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));align-items:start}
+.glossary-group{min-width:0}
+.glossary-group h3{color:var(--cyan);margin-bottom:8px}
+.glossary-group dl,.glossary-term dd{margin:0}
+.glossary-term{border-top:1px solid var(--line);padding:12px 0;overflow-wrap:anywhere}
+.glossary-term dt{font:700 15px/1.5 var(--mono);margin-bottom:4px}
+.glossary-term dd p{color:var(--dim);font-size:14px;line-height:1.65;margin:3px 0 0}
 </style>
 </head>
 <body>
@@ -2631,6 +2663,54 @@ window.RV = {
   D: (key, cap) => ({t:'demo', key, cap}),          // embedded step-through demo
   S: (id, title, ...blocks) => ({id, title, blocks})
 };
+
+window.REVIEW_GLOSSARY = [
+  ['读题与代码追踪', [
+    ['output / return value', '输出 / 返回值', 'What does this code print? 问屏幕上显示什么。What does the function return? 问函数交回给调用者的值。'],
+    ['raise an exception', '抛出异常', '执行在该处中断。例如取超出范围的列表索引会引发 IndexError。'],
+    ['terminate / termination', '终止 / 终止性', '问算法能否对每个合法输入都在有限步骤内结束。'],
+    ['invariant', '不变式', '每次迭代在指定位置都成立的条件。例如每轮开始时，左侧前缀已经排好序。'],
+    ['trace / iteration', '逐步推演 / 一次迭代', 'Trace the code 要按执行顺序记变量值。One iteration 指指定循环执行一轮。'],
+    ['at most / exactly', '至多 / 恰好', 'At most n 包含 n，也允许更少。Exactly n 必须等于 n。'],
+    ['initially / after / remaining', '起初 / 执行之后 / 剩余的', 'After one pass 只推演一趟。Remaining items 指当前还没排除或处理的元素。'],
+    ['duplicate / distinct', '重复元素 / 互不相同的', 'Two distinct indices 要求索引不同，即使两个位置的值相同也能满足。'],
+  ]],
+  ['L01–L02 · 算法与复杂度', [
+    ['algorithm / data structure', '算法 / 数据结构', '前者是解决问题的步骤，后者是组织和存取数据的方式。'],
+    ['time complexity / space complexity', '时间复杂度 / 空间复杂度', '分别问操作次数和空间用量如何随输入规模增长。看到 extra memory 时只算额外内存。'],
+    ['best / worst / average case', '最好 / 最坏 / 平均情况', '同一输入规模下分别看最少成本、最大成本和某个输入分布下的期望成本。'],
+    ['drop constants / dominant term', '忽略常数因子 / 主导项', '4n² + 3n + 7 的主导项是 n²。题目若问确切操作次数，要保留各项。'],
+    ['constant / logarithmic / linear', '常数 / 对数 / 线性', '分别常写作 O(1)、O(log n)、O(n)。每轮将范围减半常对应对数轮数。'],
+    ['quadratic / nested loop', '平方级 / 嵌套循环', '两层各做 n 轮时通常是 O(n²)。内层若固定做 3 次，总次数只有 3n。'],
+  ]],
+  ['L03–L04 · 列表与字符串', [
+    ['index / length', '索引 / 长度', '长度为 n 的非空序列，最后一个非负索引是 n − 1。'],
+    ['slice / exclusive end', '切片 / 不包含结束位置', 'a[i:j] 包含 i，直到 j 前一位。列表的 a[:] 产生浅拷贝。'],
+    ['alias / shallow copy', '别名 / 浅拷贝', 'b = a 共享同一个列表。b = a[:] 拷贝外层列表，内部可变对象仍可能共享。'],
+    ['mutable / immutable', '可变 / 不可变', '列表可原地修改，字符串不能通过索引给某个字符赋值。'],
+    ['append / insert / shift', '追加 / 插入 / 移位', '列表末尾 append 的均摊成本为 O(1)。在列表开头插入通常要移动其余元素。'],
+    ['pop / remove', '按位置移除并返回 / 按值移除', 'pop(i) 返回被移除的元素。remove(x) 删除第一个等于 x 的元素，返回 None。'],
+    ['concatenate / split / join', '拼接 / 拆分 / 连接', 'split() 把字符串拆成列表。separator.join(parts) 用分隔符连接字符串片段。'],
+    ['substring / find / truthy', '子串 / 查找位置 / 在布尔判断中为真', 'str.find() 找到时返回索引，找不到返回 −1。Python 中 0 为假，−1 为真。'],
+  ]],
+  ['L05–L06 · 排序', [
+    ['ascending / descending', '升序 / 降序', '判断顺序时也要留意题目是否要求保留重复项。'],
+    ['comparison / swap', '比较 / 交换', '一次比较用来决定顺序，只有满足交换条件时才计一次交换。'],
+    ['adjacent / one full pass', '相邻 / 完整一趟', '冒泡排序对相邻元素反复比较。按常见升序写法，从左往右一趟会将当前最大值移到右端。'],
+    ['selection sort / unsorted suffix', '选择排序 / 未排序的后缀', '从未排序部分选最小项，放到该部分开头。'],
+    ['stable / relative order', '稳定 / 相对顺序', '排序键相同的元素仍保持原有先后顺序，则排序是稳定的。'],
+    ['in place / return None', '原地修改 / 返回 None', 'Python 的 list.sort() 修改原列表并返回 None。sorted() 返回一个新列表。'],
+  ]],
+  ['L07–L08 · 搜索与双指针', [
+    ['target / match', '目标值 / 匹配', '题目可能问是否找到、匹配索引或比较次数，先看清要返回哪一种。'],
+    ['linear search / early exit', '线性搜索 / 提前结束', '可按顺序扫未排序列表，命中就返回。即使能提前结束，最坏仍可能扫遍整个列表。'],
+    ['binary search / sorted input', '二分搜索 / 已排序输入', '利用有序性比较中点，每次排除一半候选范围。题目若要求先排序，需计入排序成本。'],
+    ['low / high / midpoint', '下界 / 上界 / 中点', '先确认 high 是否包含在搜索区间内，再判断循环条件和边界更新。'],
+    ['two pointers / read and write indices', '双指针 / 读写索引', '删除指定值时，读指针扫描，写指针只在保留元素时前进。'],
+    ['logical length / valid prefix', '逻辑长度 / 有效前缀', '原地保留元素后，返回的长度 k 只保证前 k 项有效，底层列表可能比 k 长。'],
+    ['pair sum / remaining range', '两数之和 / 剩余范围', '对升序列表，当前和太小就移动左指针，太大就移动右指针。'],
+  ]],
+];
 </script>
 <script>(function(){ const {P,H,LI,C,T,W,X,K,D,S} = RV;
 REVIEW.L01 = {
@@ -3258,13 +3338,21 @@ VIEWS.exam = function(){
   <div class="row">${last?`<span class="mini">上次 ${last.score} 分 · 最高 ${best} 分</span>`:''}</div></div>
   <div class="eh2">${ring(1,'var(--cyan)','45:00','倒计时')}</div></div>
   <h2 class="sec">选择模拟试卷<small>固定试卷 · 不与练习题混合</small></h2><div class="grid g2">${window.EXAM_PAPERS.map((p,i)=>`<div class="card"><h3>${p.title}</h3><p class="mini">33 题 · 45 分钟 · 覆盖 L01–L08</p><button class="btn gold" data-paper="${i}">选择并开始</button></div>`).join('')}</div>
-  <div class="rules"><div class="card"><b>33</b><span>题，每套试卷题目和顺序固定</span></div><div class="card"><b>3 + 1</b><span>每题 3 分，另送 1 分</span></div><div class="card"><b>80 秒</b><span>平均每题的时间。卡住超过 90 秒就标记，先往下做</span></div><div class="card"><b>可回头</b><span>用右侧答题卡跳题，标记过的题有黄点</span></div></div>
+  <div class="rules"><div class="card"><b>33</b><span>题，每套试卷题目和顺序固定</span></div><div class="card"><b>3 + 1</b><span>每题 3 分，另送 1 分</span></div><div class="card"><b>80 秒</b><span>平均每题的时间。卡住超过 90 秒就标记，先往下做</span></div><div class="card"><b>可回头</b><span>用答题卡跳题，标记过的题有黄点</span></div></div>
   <h2 class="sec">历史成绩</h2><div class="card hist">${S.exams.length?S.exams.slice(-8).map(e=>{const g=grade(e.score);return `<div class="hb" title="${e.score} 分"><i style="height:${e.score}%;background:${g[2]}"></i><b>${e.score}</b></div>`}).join(''):'<span class="mini">还没有成绩。完成一次模拟考后，这里会显示最近 8 次的分数。</span>'}</div>`;
   document.querySelectorAll('[data-paper]').forEach(b => b.onclick = () => { const p=window.EXAM_PAPERS[+b.dataset.paper]; go('exam', {paper:p.questions, paperTitle:p.title, ans:{}, mark:{}, cur:0, end:Date.now()+EXAM_MS}); });
 };
 function examRun(){
   const c = ctx, P = c.paper;
+  let sheetOpen = false;
   const clock = () => { const left = Math.max(0, c.end-Date.now()); return {left, txt:Math.floor(left/60000)+':'+pad(Math.floor(left/1000)%60), frac:left/EXAM_MS}; };
+  const clockMarkup = tk => `<span class="clock-inline"><span>剩余时间</span><strong>${tk.txt}</strong></span>${ring(tk.frac,tk.left<5*60000?'var(--pink)':'var(--cyan)',tk.txt,'剩余时间')}`;
+  function moveTo(index){
+    c.cur = index;
+    sheetOpen = false;
+    draw();
+    window.scrollTo(0,0);
+  }
   function draw(){
     const q = P[c.cur], tk = clock(), answered = Object.keys(c.ans).length, mk = Object.keys(c.mark).filter(k=>c.mark[k]).length;
     $('#app').innerHTML = `<div class="exwrap"><div class="exmain">
@@ -3272,16 +3360,26 @@ function examRun(){
       <article class="qcard"><div class="qh"><span class="qno">${pad(c.cur+1)}<small> / 33</small></span><span class="qtags"><span class="pill lz" style="--lc:${LCOL[q.lesson]}">${q.lesson}</span></span><button class="flag ${c.mark[c.cur]?'on':''}" id="mk" aria-pressed="${!!c.mark[c.cur]}">${c.mark[c.cur]?'已标记':'标记，稍后检查'}</button></div>
       <div class="prompt">${md(q.prompt)}</div>${refCode(q)}<div class="opts">${q.options.map((o,k)=>`<button class="opt ${c.ans[c.cur]===k?'sel':''}" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span></button>`).join('')}</div>
       <div class="qf"><button class="btn ghost" id="pv" ${c.cur?'':'disabled'}>上一题</button><span class="kbd"><kbd>1</kbd>–<kbd>4</kbd> 作答 <kbd>←</kbd><kbd>→</kbd> 切题</span><span class="sp"></span><button class="btn" id="nx" ${c.cur<32?'':'disabled'}>下一题</button></div></article></div>
-      <aside class="sheetp card"><div class="clock ${tk.left<5*60000?'low':''}" id="clock">${ring(tk.frac,tk.left<5*60000?'var(--pink)':'var(--cyan)',tk.txt,'剩余时间')}</div>
-      <div class="legend"><span><i class="d done"></i>已答</span><span><i class="d"></i>未答</span><span><i class="d mk"></i>标记</span></div>
-      <div class="grid33">${P.map((p,k)=>`<button class="dot ${c.ans[k]!==undefined?'done':''} ${k===c.cur?'cur':''} ${c.mark[k]?'mk':''}" data-k="${k}" aria-label="第 ${k+1} 题">${k+1}</button>`).join('')}</div>
-      <button class="btn pink" id="sub" style="width:100%">交卷</button></aside></div>`;
+      <aside class="sheetp card ${sheetOpen?'sheet-open':''}">
+      <div class="sheet-bar"><div class="clock ${tk.left<5*60000?'low':''}" id="clock">${clockMarkup(tk)}</div>
+      <button class="btn ghost sheet-toggle" id="sheet-toggle" aria-controls="sheet-controls" aria-expanded="${sheetOpen}">${sheetOpen?'收起答题卡':'答题卡'}</button></div>
+      <div id="sheet-controls" class="sheet-controls">
+      <div class="legend"><span><i class="d answered"></i>已答</span><span><i class="d"></i>未答</span><span><i class="d mk"></i>标记</span></div>
+      <div class="grid33">${P.map((p,k)=>`<button class="dot ${c.ans[k]!==undefined?'done':''} ${k===c.cur?'cur':''} ${c.mark[k]?'mk':''}" data-k="${k}" aria-label="第 ${k+1} 题${c.ans[k]!==undefined?'，已答':'，未答'}${c.mark[k]?'，已标记':''}"${k===c.cur?' aria-current="true"':''}>${k+1}</button>`).join('')}</div>
+      <button class="btn pink" id="sub" style="width:100%">交卷</button></div></aside></div>`;
     document.querySelectorAll('.opt').forEach(b => b.onclick = () => { c.ans[c.cur] = +b.dataset.k; draw(); });
-    document.querySelectorAll('.dot').forEach(b => b.onclick = () => { c.cur = +b.dataset.k; draw(); });
-    $('#pv').onclick = () => { c.cur--; draw(); }; $('#nx').onclick = () => { c.cur++; draw(); };
+    document.querySelectorAll('.dot').forEach(b => b.onclick = () => moveTo(+b.dataset.k));
+    $('#pv').onclick = () => moveTo(c.cur-1); $('#nx').onclick = () => moveTo(c.cur+1);
+    const toggle = $('#sheet-toggle');
+    toggle.onclick = () => {
+      sheetOpen = !sheetOpen;
+      toggle.closest('.sheetp').classList.toggle('sheet-open',sheetOpen);
+      toggle.setAttribute('aria-expanded',sheetOpen);
+      toggle.textContent = sheetOpen?'收起答题卡':'答题卡';
+    };
     $('#mk').onclick = () => { c.mark[c.cur] = !c.mark[c.cur]; draw(); };
     $('#sub').onclick = () => { const blank = 33-Object.keys(c.ans).length; if(!blank || confirm('还有 '+blank+' 题没有作答，空白按答错算。确定交卷吗？')) submit(); };
-    document.onkeydown = e => { if('1234'.includes(e.key)){ c.ans[c.cur] = +e.key-1; draw(); } else if(e.key==='ArrowRight' && c.cur<32){ c.cur++; draw(); } else if(e.key==='ArrowLeft' && c.cur>0){ c.cur--; draw(); } };
+    document.onkeydown = e => { if('1234'.includes(e.key)){ c.ans[c.cur] = +e.key-1; draw(); } else if(e.key==='ArrowRight' && c.cur<32){ moveTo(c.cur+1); } else if(e.key==='ArrowLeft' && c.cur>0){ moveTo(c.cur-1); } };
   }
   function submit(){
     clearInterval(c.timer); document.onkeydown = null; let ok = 0; const wrong = [], per = {};
@@ -3298,9 +3396,10 @@ function examRun(){
     $('#r1').onclick = () => { $('#rev').innerHTML = wrong.map(k => { const q=P[k], a=c.ans[k];
       return `<article class="qcard rv"><div class="qh"><span class="qno">${pad(k+1)}</span><span class="qtags">${pill(q)}</span></div><div class="mini" style="margin:4px 0 10px">你的答案 <b style="color:var(--pink)">${a===undefined?'未答':'ABCD'[a]}</b> · 正确答案 <b style="color:var(--cyan)">${'ABCD'[q.answer]}</b></div><div class="prompt">${md(q.prompt)}</div>${refCode(q)}<div class="opts">${q.options.map((o,n)=>`<div class="opt ${n===q.answer?'right':n===a?'wrong':''}"><span class="k">${'ABCD'[n]}</span><span class="ot">${md(o)}</span></div>`).join('')}</div><div class="exp no">${md(expText(q))}</div></article>`; }).join(''); $('#rev').scrollIntoView({behavior:'smooth'}); };
     nav();
+    window.scrollTo(0,0);
   }
   c.timer = setInterval(() => { const tk = clock(); if(tk.left<=0){ clearInterval(c.timer); toast('时间到，自动交卷'); submit(); return; }
-    const el = $('#clock'); if(el){ el.innerHTML = ring(tk.frac, tk.left<5*60000?'var(--pink)':'var(--cyan)', tk.txt, '剩余时间'); el.classList.toggle('low', tk.left<5*60000); } }, 1000);
+    const el = $('#clock'); if(el){ el.innerHTML = clockMarkup(tk); el.classList.toggle('low', tk.left<5*60000); } }, 1000);
   draw();
 }
 
@@ -3390,34 +3489,75 @@ function rvMountDemos(){
   });
 }
 
+function renderReviewGlossary(){
+  const groups = window.REVIEW_GLOSSARY;
+  return `<div class="rvhead card" style="--c:#2ef2d6"><div><div class="mini">MCQ1 · L01–L08</div><h2>L0　考前专业单词速览</h2></div></div>
+  <p class="lead">按英文题干查词，也可以按考点顺着看。每个词都附有中文释义和做题时要留意的地方。</p>
+  <div class="glossary-find"><label for="glossary-search">查找术语</label><input type="search" id="glossary-search" placeholder="输入英文或中文" autocomplete="off"><p class="mini" id="glossary-count" role="status"></p></div>
+  <div class="grid g2 glossary-groups">${groups.map(([title, terms]) => `<section class="card glossary-group">
+    <h3>${esc(title)}</h3><dl>${terms.map(([en, zh, cue]) => `<div class="glossary-term"><dt lang="en">${esc(en)}</dt><dd><b>${esc(zh)}</b><p>${esc(cue)}</p></dd></div>`).join('')}</dl>
+  </section>`).join('')}</div>
+  <div class="rvfoot"><button class="btn ghost" id="nx">下一课 · L01</button></div>`;
+}
+
 VIEWS.review = function(){
-  const rv = rvPrep(), id = ctx.l || 'L01', mode = ctx.mode || 'full';
+  const rv = rvPrep(), id = ctx.l || 'L0', mode = ctx.mode || 'full';
+  const chips = [{id:'L0', title:'考前专业单词速览'}, ...studyLessons].map(x => `<button class="chip ${x.id===id?'on':''} ${rv[x.id]&&rv[x.id].done?'fin':''}" data-v="${x.id}" style="--c:${LCOL[x.id] || '#2ef2d6'}">${x.id} ${x.title}</button>`).join('');
+  const reviewed = studyLessons.filter(x => rv[x.id] && rv[x.id].done).length;
+  const heading = `<h2 class="sec">快速复习<small>已复习 ${reviewed} / ${studyLessons.length} 课</small></h2><div class="chips lessonbar">${chips}</div>`;
+  const mountChips = () => {
+    const bar = $('.lessonbar'), selected = $('.lessonbar .on');
+    bar.scrollLeft = Math.max(0, selected.getBoundingClientRect().right - bar.getBoundingClientRect().right);
+    bar.querySelectorAll('.chip').forEach(b => b.onclick = () => go('review',{l:b.dataset.v,mode}));
+  };
+  if(id === 'L0'){
+    $('#app').innerHTML = heading + renderReviewGlossary();
+    mountChips();
+    $('#nx').onclick = () => go('review',{l:studyLessons[0].id,mode});
+    const groups = Array.from(document.querySelectorAll('.glossary-group'), group => ({
+      group,
+      terms: Array.from(group.querySelectorAll('.glossary-term'), term => ({term, text:term.textContent.toLowerCase()}))
+    }));
+    const search = $('#glossary-search'), count = $('#glossary-count');
+    const filter = () => {
+      const words = search.value.trim().toLowerCase().split(/\s+/);
+      let found = 0;
+      groups.forEach(({group, terms}) => {
+        let matches = 0;
+        terms.forEach(({term, text}) => {
+          term.hidden = !words.every(word => text.includes(word));
+          if(!term.hidden) matches++;
+        });
+        group.hidden = matches === 0;
+        found += matches;
+      });
+      count.textContent = found ? `共 ${found} 条术语` : '没有找到相关术语，试试其他关键词。';
+    };
+    search.addEventListener('input',filter);
+    filter();
+    return;
+  }
   const idx = studyLessons.findIndex(x => x.id===id), l = studyLessons[idx], R = REVIEW[id], c = LCOL[id];
   const pool = practiceQuestions.filter(q => q.lesson===id);
   const isL10 = id===l10Lesson.id;
   const done = rv[id] && rv[id].done;
-  const chips = studyLessons.map(x => `<button class="chip ${x.id===id?'on':''} ${rv[x.id]&&rv[x.id].done?'fin':''}" data-v="${x.id}" style="--c:${LCOL[x.id]}">${x.id} ${x.title}</button>`).join('');
-  const reviewed = studyLessons.filter(x => rv[x.id] && rv[x.id].done).length;
   const full = () => `<p class="lead">${md(R.lead)}</p>
     <div class="rvgrid"><aside class="toc" aria-label="本课目录"><b>本课目录</b>${R.sections.map(s=>`<a href="#rv-${s.id}" data-sec="${s.id}">${s.title}</a>`).join('')}</aside>
     <div class="rvbody">${R.sections.map(s=>`<section id="rv-${s.id}" class="rsec"><h3 style="--c:${c}">${s.title}</h3>${s.blocks.map(b=>rvBlock(b)).join('')}</section>`).join('')}
     <section class="rsec" id="rv-quiz"><h3 style="--c:${c}">本课自测</h3><p class="rp">${isL10?'4 道题，每题答完立刻看解析。':'4 道题，答完立刻看解析，答错的会进错题本。'}</p><div class="row" style="margin-top:8px"><button class="btn" id="qz">开始自测</button><span class="mini">${pool.length} 道本课题目</span></div></section></div></div>`;
   const quick = () => `<div class="grid g2"><div class="card" style="box-shadow:inset 0 0 0 1px var(--line),inset 0 3px 0 ${c}"><h3 style="font-size:26px;color:${c}">必须掌握</h3><ul class="rl">${l.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>
     <div class="card trap"><h3 style="font-size:26px;color:var(--pink)">易错点</h3><ul class="rl">${l.traps.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`;
-  $('#app').innerHTML = `<h2 class="sec">快速复习<small>已复习 ${reviewed} / ${studyLessons.length} 课</small></h2>
-  <div class="chips lessonbar">${chips}</div>
+  $('#app').innerHTML = `${heading}
   <div class="rvhead card" style="--c:${c}"><div><div class="mini">${l.en}${isL10?' · MCQ1 范围外':''}</div><h2>${l.id}　${l.title}</h2></div><span class="sp"></span>
     <div class="seg"><button class="${mode==='full'?'on':''}" data-m="full">完整详解</button><button class="${mode==='quick'?'on':''}" data-m="quick">一分钟速览</button></div></div>
   <div id="rvc">${mode==='full'?full():quick()}</div>
-  <div class="rvfoot"><button class="btn ghost" id="pv" ${idx?'':'disabled'}>上一课</button><span class="sp"></span><button class="btn ${done?'ghost':'gold'}" id="dn">${done?'✓ 已复习（点击取消）':'标记为已复习'}</button><span class="sp"></span><button class="btn ghost" id="nx" ${idx<studyLessons.length-1?'':'disabled'}>下一课</button></div>
+  <div class="rvfoot"><button class="btn ghost" id="pv">上一课</button><span class="sp"></span><button class="btn ${done?'ghost':'gold'}" id="dn">${done?'✓ 已复习（点击取消）':'标记为已复习'}</button><span class="sp"></span><button class="btn ghost" id="nx" ${idx<studyLessons.length-1?'':'disabled'}>下一课</button></div>
   ${mode==='full'?'':`<div class="row"><button class="btn" id="pr">练习 ${l.id}</button></div>`}
   ${isL10?'<p class="mini">依据 L10 课程笔记和练习册整理。</p>':`<h2 class="sec">考前三句话</h2>${COMMON.map(t=>{const[e,z]=t.split('  ');return `<div class="mantra">${esc(e)}<span class="zh">${esc(z||'')}</span></div>`}).join('')}
   <p class="mini">依据 L09 复习笔记和各课笔记整理。插入排序不在 MCQ1 范围内。</p>`}`;
-  const bar = $('.lessonbar'), selected = $('.lessonbar .on');
-  bar.scrollLeft = Math.max(0, selected.getBoundingClientRect().right - bar.getBoundingClientRect().right);
-  document.querySelectorAll('.lessonbar .chip').forEach(b => b.onclick = () => go('review',{l:b.dataset.v,mode}));
+  mountChips();
   document.querySelectorAll('.seg button').forEach(b => b.onclick = () => go('review',{l:id,mode:b.dataset.m}));
-  $('#pv').onclick = () => go('review',{l:studyLessons[idx-1].id,mode}); $('#nx').onclick = () => go('review',{l:studyLessons[idx+1].id,mode});
+  $('#pv').onclick = () => go('review',{l:idx ? studyLessons[idx-1].id : 'L0',mode}); $('#nx').onclick = () => go('review',{l:studyLessons[idx+1].id,mode});
   $('#dn').onclick = () => { rv[id] = {done:!done, t:Date.now()}; save(); if(!done) toast(id+' 已标记为已复习'); go('review',ctx); };
   if($('#pr')) $('#pr').onclick = () => go('practice',{lesson:id,mode:'all'});
   if(mode==='full'){

@@ -1,31 +1,72 @@
+function renderReviewGlossary(){
+  const groups = window.REVIEW_GLOSSARY;
+  return `<div class="rvhead card" style="--c:#2ef2d6"><div><div class="mini">MCQ1 · L01–L08</div><h2>L0　考前专业单词速览</h2></div></div>
+  <p class="lead">按英文题干查词，也可以按考点顺着看。每个词都附有中文释义和做题时要留意的地方。</p>
+  <div class="glossary-find"><label for="glossary-search">查找术语</label><input type="search" id="glossary-search" placeholder="输入英文或中文" autocomplete="off"><p class="mini" id="glossary-count" role="status"></p></div>
+  <div class="grid g2 glossary-groups">${groups.map(([title, terms]) => `<section class="card glossary-group">
+    <h3>${esc(title)}</h3><dl>${terms.map(([en, zh, cue]) => `<div class="glossary-term"><dt lang="en">${esc(en)}</dt><dd><b>${esc(zh)}</b><p>${esc(cue)}</p></dd></div>`).join('')}</dl>
+  </section>`).join('')}</div>
+  <div class="rvfoot"><button class="btn ghost" id="nx">下一课 · L01</button></div>`;
+}
+
 VIEWS.review = function(){
-  const rv = rvPrep(), id = ctx.l || 'L01', mode = ctx.mode || 'full';
+  const rv = rvPrep(), id = ctx.l || 'L0', mode = ctx.mode || 'full';
+  const chips = [{id:'L0', title:'考前专业单词速览'}, ...studyLessons].map(x => `<button class="chip ${x.id===id?'on':''} ${rv[x.id]&&rv[x.id].done?'fin':''}" data-v="${x.id}" style="--c:${LCOL[x.id] || '#2ef2d6'}">${x.id} ${x.title}</button>`).join('');
+  const reviewed = studyLessons.filter(x => rv[x.id] && rv[x.id].done).length;
+  const heading = `<h2 class="sec">快速复习<small>已复习 ${reviewed} / ${studyLessons.length} 课</small></h2><div class="chips lessonbar">${chips}</div>`;
+  const mountChips = () => {
+    const bar = $('.lessonbar'), selected = $('.lessonbar .on');
+    bar.scrollLeft = Math.max(0, selected.getBoundingClientRect().right - bar.getBoundingClientRect().right);
+    bar.querySelectorAll('.chip').forEach(b => b.onclick = () => go('review',{l:b.dataset.v,mode}));
+  };
+  if(id === 'L0'){
+    $('#app').innerHTML = heading + renderReviewGlossary();
+    mountChips();
+    $('#nx').onclick = () => go('review',{l:studyLessons[0].id,mode});
+    const groups = Array.from(document.querySelectorAll('.glossary-group'), group => ({
+      group,
+      terms: Array.from(group.querySelectorAll('.glossary-term'), term => ({term, text:term.textContent.toLowerCase()}))
+    }));
+    const search = $('#glossary-search'), count = $('#glossary-count');
+    const filter = () => {
+      const words = search.value.trim().toLowerCase().split(/\s+/);
+      let found = 0;
+      groups.forEach(({group, terms}) => {
+        let matches = 0;
+        terms.forEach(({term, text}) => {
+          term.hidden = !words.every(word => text.includes(word));
+          if(!term.hidden) matches++;
+        });
+        group.hidden = matches === 0;
+        found += matches;
+      });
+      count.textContent = found ? `共 ${found} 条术语` : '没有找到相关术语，试试其他关键词。';
+    };
+    search.addEventListener('input',filter);
+    filter();
+    return;
+  }
   const idx = studyLessons.findIndex(x => x.id===id), l = studyLessons[idx], R = REVIEW[id], c = LCOL[id];
   const pool = practiceQuestions.filter(q => q.lesson===id);
   const isL10 = id===l10Lesson.id;
   const done = rv[id] && rv[id].done;
-  const chips = studyLessons.map(x => `<button class="chip ${x.id===id?'on':''} ${rv[x.id]&&rv[x.id].done?'fin':''}" data-v="${x.id}" style="--c:${LCOL[x.id]}">${x.id} ${x.title}</button>`).join('');
-  const reviewed = studyLessons.filter(x => rv[x.id] && rv[x.id].done).length;
   const full = () => `<p class="lead">${md(R.lead)}</p>
     <div class="rvgrid"><aside class="toc" aria-label="本课目录"><b>本课目录</b>${R.sections.map(s=>`<a href="#rv-${s.id}" data-sec="${s.id}">${s.title}</a>`).join('')}</aside>
     <div class="rvbody">${R.sections.map(s=>`<section id="rv-${s.id}" class="rsec"><h3 style="--c:${c}">${s.title}</h3>${s.blocks.map(b=>rvBlock(b)).join('')}</section>`).join('')}
     <section class="rsec" id="rv-quiz"><h3 style="--c:${c}">本课自测</h3><p class="rp">${isL10?'4 道题，每题答完立刻看解析。':'4 道题，答完立刻看解析，答错的会进错题本。'}</p><div class="row" style="margin-top:8px"><button class="btn" id="qz">开始自测</button><span class="mini">${pool.length} 道本课题目</span></div></section></div></div>`;
   const quick = () => `<div class="grid g2"><div class="card" style="box-shadow:inset 0 0 0 1px var(--line),inset 0 3px 0 ${c}"><h3 style="font-size:26px;color:${c}">必须掌握</h3><ul class="rl">${l.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>
     <div class="card trap"><h3 style="font-size:26px;color:var(--pink)">易错点</h3><ul class="rl">${l.traps.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`;
-  $('#app').innerHTML = `<h2 class="sec">快速复习<small>已复习 ${reviewed} / ${studyLessons.length} 课</small></h2>
-  <div class="chips lessonbar">${chips}</div>
+  $('#app').innerHTML = `${heading}
   <div class="rvhead card" style="--c:${c}"><div><div class="mini">${l.en}${isL10?' · MCQ1 范围外':''}</div><h2>${l.id}　${l.title}</h2></div><span class="sp"></span>
     <div class="seg"><button class="${mode==='full'?'on':''}" data-m="full">完整详解</button><button class="${mode==='quick'?'on':''}" data-m="quick">一分钟速览</button></div></div>
   <div id="rvc">${mode==='full'?full():quick()}</div>
-  <div class="rvfoot"><button class="btn ghost" id="pv" ${idx?'':'disabled'}>上一课</button><span class="sp"></span><button class="btn ${done?'ghost':'gold'}" id="dn">${done?'✓ 已复习（点击取消）':'标记为已复习'}</button><span class="sp"></span><button class="btn ghost" id="nx" ${idx<studyLessons.length-1?'':'disabled'}>下一课</button></div>
+  <div class="rvfoot"><button class="btn ghost" id="pv">上一课</button><span class="sp"></span><button class="btn ${done?'ghost':'gold'}" id="dn">${done?'✓ 已复习（点击取消）':'标记为已复习'}</button><span class="sp"></span><button class="btn ghost" id="nx" ${idx<studyLessons.length-1?'':'disabled'}>下一课</button></div>
   ${mode==='full'?'':`<div class="row"><button class="btn" id="pr">练习 ${l.id}</button></div>`}
   ${isL10?'<p class="mini">依据 L10 课程笔记和练习册整理。</p>':`<h2 class="sec">考前三句话</h2>${COMMON.map(t=>{const[e,z]=t.split('  ');return `<div class="mantra">${esc(e)}<span class="zh">${esc(z||'')}</span></div>`}).join('')}
   <p class="mini">依据 L09 复习笔记和各课笔记整理。插入排序不在 MCQ1 范围内。</p>`}`;
-  const bar = $('.lessonbar'), selected = $('.lessonbar .on');
-  bar.scrollLeft = Math.max(0, selected.getBoundingClientRect().right - bar.getBoundingClientRect().right);
-  document.querySelectorAll('.lessonbar .chip').forEach(b => b.onclick = () => go('review',{l:b.dataset.v,mode}));
+  mountChips();
   document.querySelectorAll('.seg button').forEach(b => b.onclick = () => go('review',{l:id,mode:b.dataset.m}));
-  $('#pv').onclick = () => go('review',{l:studyLessons[idx-1].id,mode}); $('#nx').onclick = () => go('review',{l:studyLessons[idx+1].id,mode});
+  $('#pv').onclick = () => go('review',{l:idx ? studyLessons[idx-1].id : 'L0',mode}); $('#nx').onclick = () => go('review',{l:studyLessons[idx+1].id,mode});
   $('#dn').onclick = () => { rv[id] = {done:!done, t:Date.now()}; save(); if(!done) toast(id+' 已标记为已复习'); go('review',ctx); };
   if($('#pr')) $('#pr').onclick = () => go('practice',{lesson:id,mode:'all'});
   if(mode==='full'){

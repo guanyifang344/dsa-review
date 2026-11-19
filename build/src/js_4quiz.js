@@ -91,13 +91,21 @@ VIEWS.exam = function(){
   <div class="row">${last?`<span class="mini">上次 ${last.score} 分 · 最高 ${best} 分</span>`:''}</div></div>
   <div class="eh2">${ring(1,'var(--cyan)','45:00','倒计时')}</div></div>
   <h2 class="sec">选择模拟试卷<small>固定试卷 · 不与练习题混合</small></h2><div class="grid g2">${window.EXAM_PAPERS.map((p,i)=>`<div class="card"><h3>${p.title}</h3><p class="mini">33 题 · 45 分钟 · 覆盖 L01–L08</p><button class="btn gold" data-paper="${i}">选择并开始</button></div>`).join('')}</div>
-  <div class="rules"><div class="card"><b>33</b><span>题，每套试卷题目和顺序固定</span></div><div class="card"><b>3 + 1</b><span>每题 3 分，另送 1 分</span></div><div class="card"><b>80 秒</b><span>平均每题的时间。卡住超过 90 秒就标记，先往下做</span></div><div class="card"><b>可回头</b><span>用右侧答题卡跳题，标记过的题有黄点</span></div></div>
+  <div class="rules"><div class="card"><b>33</b><span>题，每套试卷题目和顺序固定</span></div><div class="card"><b>3 + 1</b><span>每题 3 分，另送 1 分</span></div><div class="card"><b>80 秒</b><span>平均每题的时间。卡住超过 90 秒就标记，先往下做</span></div><div class="card"><b>可回头</b><span>用答题卡跳题，标记过的题有黄点</span></div></div>
   <h2 class="sec">历史成绩</h2><div class="card hist">${S.exams.length?S.exams.slice(-8).map(e=>{const g=grade(e.score);return `<div class="hb" title="${e.score} 分"><i style="height:${e.score}%;background:${g[2]}"></i><b>${e.score}</b></div>`}).join(''):'<span class="mini">还没有成绩。完成一次模拟考后，这里会显示最近 8 次的分数。</span>'}</div>`;
   document.querySelectorAll('[data-paper]').forEach(b => b.onclick = () => { const p=window.EXAM_PAPERS[+b.dataset.paper]; go('exam', {paper:p.questions, paperTitle:p.title, ans:{}, mark:{}, cur:0, end:Date.now()+EXAM_MS}); });
 };
 function examRun(){
   const c = ctx, P = c.paper;
+  let sheetOpen = false;
   const clock = () => { const left = Math.max(0, c.end-Date.now()); return {left, txt:Math.floor(left/60000)+':'+pad(Math.floor(left/1000)%60), frac:left/EXAM_MS}; };
+  const clockMarkup = tk => `<span class="clock-inline"><span>剩余时间</span><strong>${tk.txt}</strong></span>${ring(tk.frac,tk.left<5*60000?'var(--pink)':'var(--cyan)',tk.txt,'剩余时间')}`;
+  function moveTo(index){
+    c.cur = index;
+    sheetOpen = false;
+    draw();
+    window.scrollTo(0,0);
+  }
   function draw(){
     const q = P[c.cur], tk = clock(), answered = Object.keys(c.ans).length, mk = Object.keys(c.mark).filter(k=>c.mark[k]).length;
     $('#app').innerHTML = `<div class="exwrap"><div class="exmain">
@@ -105,16 +113,26 @@ function examRun(){
       <article class="qcard"><div class="qh"><span class="qno">${pad(c.cur+1)}<small> / 33</small></span><span class="qtags"><span class="pill lz" style="--lc:${LCOL[q.lesson]}">${q.lesson}</span></span><button class="flag ${c.mark[c.cur]?'on':''}" id="mk" aria-pressed="${!!c.mark[c.cur]}">${c.mark[c.cur]?'已标记':'标记，稍后检查'}</button></div>
       <div class="prompt">${md(q.prompt)}</div>${refCode(q)}<div class="opts">${q.options.map((o,k)=>`<button class="opt ${c.ans[c.cur]===k?'sel':''}" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="ot">${md(o)}</span></button>`).join('')}</div>
       <div class="qf"><button class="btn ghost" id="pv" ${c.cur?'':'disabled'}>上一题</button><span class="kbd"><kbd>1</kbd>–<kbd>4</kbd> 作答 <kbd>←</kbd><kbd>→</kbd> 切题</span><span class="sp"></span><button class="btn" id="nx" ${c.cur<32?'':'disabled'}>下一题</button></div></article></div>
-      <aside class="sheetp card"><div class="clock ${tk.left<5*60000?'low':''}" id="clock">${ring(tk.frac,tk.left<5*60000?'var(--pink)':'var(--cyan)',tk.txt,'剩余时间')}</div>
-      <div class="legend"><span><i class="d done"></i>已答</span><span><i class="d"></i>未答</span><span><i class="d mk"></i>标记</span></div>
-      <div class="grid33">${P.map((p,k)=>`<button class="dot ${c.ans[k]!==undefined?'done':''} ${k===c.cur?'cur':''} ${c.mark[k]?'mk':''}" data-k="${k}" aria-label="第 ${k+1} 题">${k+1}</button>`).join('')}</div>
-      <button class="btn pink" id="sub" style="width:100%">交卷</button></aside></div>`;
+      <aside class="sheetp card ${sheetOpen?'sheet-open':''}">
+      <div class="sheet-bar"><div class="clock ${tk.left<5*60000?'low':''}" id="clock">${clockMarkup(tk)}</div>
+      <button class="btn ghost sheet-toggle" id="sheet-toggle" aria-controls="sheet-controls" aria-expanded="${sheetOpen}">${sheetOpen?'收起答题卡':'答题卡'}</button></div>
+      <div id="sheet-controls" class="sheet-controls">
+      <div class="legend"><span><i class="d answered"></i>已答</span><span><i class="d"></i>未答</span><span><i class="d mk"></i>标记</span></div>
+      <div class="grid33">${P.map((p,k)=>`<button class="dot ${c.ans[k]!==undefined?'done':''} ${k===c.cur?'cur':''} ${c.mark[k]?'mk':''}" data-k="${k}" aria-label="第 ${k+1} 题${c.ans[k]!==undefined?'，已答':'，未答'}${c.mark[k]?'，已标记':''}"${k===c.cur?' aria-current="true"':''}>${k+1}</button>`).join('')}</div>
+      <button class="btn pink" id="sub" style="width:100%">交卷</button></div></aside></div>`;
     document.querySelectorAll('.opt').forEach(b => b.onclick = () => { c.ans[c.cur] = +b.dataset.k; draw(); });
-    document.querySelectorAll('.dot').forEach(b => b.onclick = () => { c.cur = +b.dataset.k; draw(); });
-    $('#pv').onclick = () => { c.cur--; draw(); }; $('#nx').onclick = () => { c.cur++; draw(); };
+    document.querySelectorAll('.dot').forEach(b => b.onclick = () => moveTo(+b.dataset.k));
+    $('#pv').onclick = () => moveTo(c.cur-1); $('#nx').onclick = () => moveTo(c.cur+1);
+    const toggle = $('#sheet-toggle');
+    toggle.onclick = () => {
+      sheetOpen = !sheetOpen;
+      toggle.closest('.sheetp').classList.toggle('sheet-open',sheetOpen);
+      toggle.setAttribute('aria-expanded',sheetOpen);
+      toggle.textContent = sheetOpen?'收起答题卡':'答题卡';
+    };
     $('#mk').onclick = () => { c.mark[c.cur] = !c.mark[c.cur]; draw(); };
     $('#sub').onclick = () => { const blank = 33-Object.keys(c.ans).length; if(!blank || confirm('还有 '+blank+' 题没有作答，空白按答错算。确定交卷吗？')) submit(); };
-    document.onkeydown = e => { if('1234'.includes(e.key)){ c.ans[c.cur] = +e.key-1; draw(); } else if(e.key==='ArrowRight' && c.cur<32){ c.cur++; draw(); } else if(e.key==='ArrowLeft' && c.cur>0){ c.cur--; draw(); } };
+    document.onkeydown = e => { if('1234'.includes(e.key)){ c.ans[c.cur] = +e.key-1; draw(); } else if(e.key==='ArrowRight' && c.cur<32){ moveTo(c.cur+1); } else if(e.key==='ArrowLeft' && c.cur>0){ moveTo(c.cur-1); } };
   }
   function submit(){
     clearInterval(c.timer); document.onkeydown = null; let ok = 0; const wrong = [], per = {};
@@ -131,8 +149,9 @@ function examRun(){
     $('#r1').onclick = () => { $('#rev').innerHTML = wrong.map(k => { const q=P[k], a=c.ans[k];
       return `<article class="qcard rv"><div class="qh"><span class="qno">${pad(k+1)}</span><span class="qtags">${pill(q)}</span></div><div class="mini" style="margin:4px 0 10px">你的答案 <b style="color:var(--pink)">${a===undefined?'未答':'ABCD'[a]}</b> · 正确答案 <b style="color:var(--cyan)">${'ABCD'[q.answer]}</b></div><div class="prompt">${md(q.prompt)}</div>${refCode(q)}<div class="opts">${q.options.map((o,n)=>`<div class="opt ${n===q.answer?'right':n===a?'wrong':''}"><span class="k">${'ABCD'[n]}</span><span class="ot">${md(o)}</span></div>`).join('')}</div><div class="exp no">${md(expText(q))}</div></article>`; }).join(''); $('#rev').scrollIntoView({behavior:'smooth'}); };
     nav();
+    window.scrollTo(0,0);
   }
   c.timer = setInterval(() => { const tk = clock(); if(tk.left<=0){ clearInterval(c.timer); toast('时间到，自动交卷'); submit(); return; }
-    const el = $('#clock'); if(el){ el.innerHTML = ring(tk.frac, tk.left<5*60000?'var(--pink)':'var(--cyan)', tk.txt, '剩余时间'); el.classList.toggle('low', tk.left<5*60000); } }, 1000);
+    const el = $('#clock'); if(el){ el.innerHTML = clockMarkup(tk); el.classList.toggle('low', tk.left<5*60000); } }, 1000);
   draw();
 }
