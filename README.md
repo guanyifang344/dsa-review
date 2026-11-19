@@ -16,7 +16,7 @@ python3 -m http.server 8765
 
 ## 修改与发布
 
-`index.html` 是可直接发布的完整网站，编辑源文件位于 `build/src/`。
+`index.html` 是网站首页，`gpa.html` 是绩点查询入口，两者共用 `assets/portal.css`。`study.html` 是算法与数据结构学习页，其源文件位于 `build/src/`。
 
 修改源文件后，在此目录重新生成页面：
 

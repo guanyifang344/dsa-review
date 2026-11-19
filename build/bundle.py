@@ -6,4 +6,4 @@ open('build/app.bundle.js','w').write(app)
 h=h.replace('<script src="app.js"></script>','<script>'+app.replace('</script>','<\\/script>')+'</script>')
 for f in ['data.js','practice_l10.js','exam-papers.js','cards.js','review_0.js','review_1.js','review_2.js','review_3.js','review_4.js','review_10.js']:
     h=h.replace(f'<script src="{f}"></script>','<script>'+open(s+f).read().replace('</script>','<\\/script>')+'</script>')
-open('index.html','w').write(h); print(len(h))
+open('study.html','w').write(h); print(len(h))
