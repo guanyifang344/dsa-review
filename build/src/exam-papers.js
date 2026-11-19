@@ -157,7 +157,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does a[-1] access for a non-empty list?",
+        "prompt": "For a non-empty Python list a, what does this expression access?\n\n```python\na[-1]\n```",
         "options": [
           "The second element",
           "An invalid index",
@@ -172,7 +172,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What is len([4, 8, 2])?",
+        "prompt": "What does this code print?\n\n```python\nprint(len([4, 8, 2]))\n```",
         "options": [
           "2",
           "4",
@@ -187,7 +187,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "For a = [10, 20, 30, 40], what is a[1:3]?",
+        "prompt": "What does this code print?\n\n```python\na = [10, 20, 30, 40]\nprint(a[1:3])\n```",
         "options": [
           "[20, 30]",
           "[10, 20, 30]",
@@ -202,7 +202,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does list.append(x) do?",
+        "prompt": "What does this statement do to the list?\n\n```python\na.append(x)\n```",
         "options": [
           "Adds x to the front",
           "Adds x to the end of the list",
@@ -217,7 +217,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What is len('cat')?",
+        "prompt": "What does this code print?\n\n```python\nprint(len(\"cat\"))\n```",
         "options": [
           "4",
           "0",
@@ -232,7 +232,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does 'abc'[1] return?",
+        "prompt": "What is the value of this Python expression?\n\n```python\n\"abc\"[1]\n```",
         "options": [
           "'a'",
           "'c'",
@@ -247,7 +247,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does 'abc'.upper() return?",
+        "prompt": "What is the value of this Python expression?\n\n```python\n\"abc\".upper()\n```",
         "options": [
           "'ABC'",
           "'abc'",
@@ -367,7 +367,7 @@ window.EXAM_PAPERS = [
         "lesson": "L06",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does sorted(a) do for a Python list?",
+        "prompt": "What does this call return for a Python list a?\n\n```python\nsorted(a)\n```",
         "options": [
           "Returns a new sorted list",
           "Sorts a in place and returns None",
@@ -382,7 +382,7 @@ window.EXAM_PAPERS = [
         "lesson": "L06",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does a.sort() return?",
+        "prompt": "What does this call return for a Python list a?\n\n```python\na.sort()\n```",
         "options": [
           "The last element",
           "None",
@@ -642,7 +642,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "For a = [7, 9, 5], what is a[2]?",
+        "prompt": "What does this code print?\n\n```python\na = [7, 9, 5]\nprint(a[2])\n```",
         "options": [
           "9",
           "IndexError",
@@ -657,7 +657,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does a[0:2] include?",
+        "prompt": "Which elements does this slice include?\n\n```python\na[0:2]\n```",
         "options": [
           "Only index 2",
           "Indices 0, 1 and 2",
@@ -672,7 +672,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What happens after a = [1, 2]; a.append(3)?",
+        "prompt": "What happens to a after this code runs?\n\n```python\na = [1, 2]\na.append(3)\n```",
         "options": [
           "a becomes [1, 2, 3]",
           "a becomes [3, 1, 2]",
@@ -687,7 +687,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "If b = a and a is a list, what does b refer to?",
+        "prompt": "If a is a Python list, what does b refer to after this assignment?\n\n```python\nb = a\n```",
         "options": [
           "A string",
           "The same list",
@@ -717,7 +717,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What is 'hello'[1:4]?",
+        "prompt": "What is the value of this Python expression?\n\n```python\n\"hello\"[1:4]\n```",
         "options": [
           "'hel'",
           "'ello'",
@@ -732,7 +732,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does 'a' + 'bc' produce?",
+        "prompt": "What is the value of this Python expression?\n\n```python\n\"a\" + \"bc\"\n```",
         "options": [
           "'abc'",
           "['a', 'bc']",
@@ -747,7 +747,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "Given s = 'abc', what happens to s after s.upper() with no assignment?",
+        "prompt": "What happens to s after this code runs?\n\n```python\ns = \"abc\"\ns.upper()\n```",
         "options": [
           "It is deleted",
           "It remains 'abc'",
@@ -882,7 +882,7 @@ window.EXAM_PAPERS = [
         "lesson": "L06",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "What does sorted([3, 1, 2]) return?",
+        "prompt": "What does this call return?\n\n```python\nsorted([3, 1, 2])\n```",
         "options": [
           "[3, 1, 2]",
           "6",
@@ -972,7 +972,7 @@ window.EXAM_PAPERS = [
         "lesson": "L08",
         "src": "exam",
         "topic": "模拟考试",
-        "prompt": "For sorted values [1, 3, 5, 8] and target 9, which endpoint pair matches?",
+        "prompt": "Which pair formed by the two endpoints adds up to the target?\n\n```python\na = [1, 3, 5, 8]\ntarget = 9\n```",
         "options": [
           "1 and 8",
           "3 and 8",
@@ -1037,7 +1037,7 @@ window.EXAM_PAPERS = [
         "lesson": "L02",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "How many times does the inner statement run? `for i in range(n): for j in range(i): work()`",
+        "prompt": "How many times is work() called?\n\n```python\nfor i in range(n):\n    for j in range(i):\n        work()\n```",
         "options": [
           "2n",
           "n(n-1)/2",
@@ -1052,7 +1052,7 @@ window.EXAM_PAPERS = [
         "lesson": "L02",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is the time complexity of `i = 1; while i < n: i *= 2`?",
+        "prompt": "What is the time complexity of this code?\n\n```python\ni = 1\nwhile i < n:\n    i *= 2\n```",
         "options": [
           "O(log n)",
           "O(n)",
@@ -1112,7 +1112,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is printed? `a=[1,2]; b=a; b[0]=9; print(a)`",
+        "prompt": "What does this code print?\n\n```python\na = [1, 2]\nb = a\nb[0] = 9\nprint(a)\n```",
         "options": [
           "[9, 2]",
           "[1, 2]",
@@ -1127,7 +1127,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is printed? `a=[1,2]; b=a[:]; b.append(3); print(a)`",
+        "prompt": "What does this code print?\n\n```python\na = [1, 2]\nb = a[:]\nb.append(3)\nprint(a)\n```",
         "options": [
           "[1, 2, 3]",
           "[3, 1, 2]",
@@ -1142,7 +1142,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is the value of `[10,20,30,40,50][1:5:2]`?",
+        "prompt": "What is the value of this Python expression?\n\n```python\n[10, 20, 30, 40, 50][1:5:2]\n```",
         "options": [
           "[10, 30, 50]",
           "[20, 40, 50]",
@@ -1157,7 +1157,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is printed? `a=[3,1,2]; x=a.sort(); print(x)`",
+        "prompt": "What does this code print?\n\n```python\na = [3, 1, 2]\nx = a.sort()\nprint(x)\n```",
         "options": [
           "3",
           "None",
@@ -1172,7 +1172,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "For `a=[4,8,12]`, which expression raises IndexError?",
+        "prompt": "Given this list, which expression raises IndexError?\n\n```python\na = [4, 8, 12]\n```",
         "options": [
           "a[len(a)]",
           "a[-1]",
@@ -1187,7 +1187,7 @@ window.EXAM_PAPERS = [
         "lesson": "L03",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is the value of `[1,2,3,4][::-1]`?",
+        "prompt": "What is the value of this Python expression?\n\n```python\n[1, 2, 3, 4][::-1]\n```",
         "options": [
           "[1, 2, 3, 4]",
           "[]",
@@ -1202,7 +1202,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is printed? `s='banana'; s.replace('a','o'); print(s)`",
+        "prompt": "What does this code print?\n\n```python\ns = \"banana\"\ns.replace(\"a\", \"o\")\nprint(s)\n```",
         "options": [
           "bananaNone",
           "An error",
@@ -1217,7 +1217,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is the value of `'abcdef'[-5:-1:2]`?",
+        "prompt": "What is the value of this Python expression?\n\n```python\n\"abcdef\"[-5:-1:2]\n```",
         "options": [
           "'df'",
           "'bd'",
@@ -1232,7 +1232,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "Which statement raises an error for `s='abc'`?",
+        "prompt": "Given this string, which statement raises an error?\n\n```python\ns = \"abc\"\n```",
         "options": [
           "s[0] = 'A'",
           "s = s.upper()",
@@ -1247,7 +1247,7 @@ window.EXAM_PAPERS = [
         "lesson": "L04",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "What is the value of `len('a b') + len('')`?",
+        "prompt": "What is the value of this Python expression?\n\n```python\nlen(\"a b\") + len(\"\")\n```",
         "options": [
           "2",
           "4",
@@ -1262,7 +1262,7 @@ window.EXAM_PAPERS = [
         "lesson": "L05",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "Using ascending bubble sort, after one full left-to-right pass over [4, 1, 3, 2], what is the list?",
+        "prompt": "What is a after this single left-to-right bubble-sort pass?\n\n```python\na = [4, 1, 3, 2]\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        a[i], a[i + 1] = a[i + 1], a[i]\n```",
         "options": [
           "[4, 1, 2, 3]",
           "[3, 1, 2, 4]",
@@ -1277,7 +1277,7 @@ window.EXAM_PAPERS = [
         "lesson": "L05",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "Using ascending selection sort on [4, 2, 3, 1], what is the array after the first swap?",
+        "prompt": "What is a after this first pass of ascending selection sort?\n\n```python\na = [4, 2, 3, 1]\nmin_index = 0\nfor i in range(1, len(a)):\n    if a[i] < a[min_index]:\n        min_index = i\na[0], a[min_index] = a[min_index], a[0]\n```",
         "options": [
           "[4, 2, 1, 3]",
           "[1, 2, 3, 4]",
@@ -1337,7 +1337,7 @@ window.EXAM_PAPERS = [
         "lesson": "L06",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "Stable sort by score ascending: [(A,2),(B,1),(C,2),(D,1)]. Which result is possible?",
+        "prompt": "Which output is possible when the records are stably sorted by score in ascending order?\n\n```python\nrecords = [(\"A\", 2), (\"B\", 1), (\"C\", 2), (\"D\", 1)]\n```",
         "options": [
           "(A,2),(C,2),(B,1),(D,1)",
           "(B,1),(D,1),(A,2),(C,2)",
@@ -1352,7 +1352,7 @@ window.EXAM_PAPERS = [
         "lesson": "L06",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "Given `a=[3,1,2]; b=sorted(a)`, which is true?",
+        "prompt": "Which statement about a and b is true after this code runs?\n\n```python\na = [3, 1, 2]\nb = sorted(a)\n```",
         "options": [
           "a is [3,1,2] and b is [1,2,3]",
           "Both a and b are [1,2,3]",
@@ -1367,7 +1367,7 @@ window.EXAM_PAPERS = [
         "lesson": "L06",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "After `a=[2,1]; b=a; a.sort()`, what is b?",
+        "prompt": "What is the value of b after this code runs?\n\n```python\na = [2, 1]\nb = a\na.sort()\n```",
         "options": [
           "[2, 1]",
           "None",
@@ -1382,7 +1382,7 @@ window.EXAM_PAPERS = [
         "lesson": "L07",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "Binary search uses inclusive bounds `lo=0, hi=7` and `mid=(lo+hi)//2`. If the middle value is below the target, what is the new lo?",
+        "prompt": "Binary search starts with these inclusive bounds. If a[mid] is below the target, what is the new value of lo?\n\n```python\nlo = 0\nhi = 7\nmid = (lo + hi) // 2\n```",
         "options": [
           "5",
           "7",
@@ -1442,7 +1442,7 @@ window.EXAM_PAPERS = [
         "lesson": "L08",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "In sorted [1,2,4,7,11], target 9: which first move follows a sum that is too large?",
+        "prompt": "The two pointers start at the endpoints. The sum is too large. Which move comes first?\n\n```python\na = [1, 2, 4, 7, 11]\ntarget = 9\n```",
         "options": [
           "Move both pointers inward",
           "Stop because no pair exists",
@@ -1457,7 +1457,7 @@ window.EXAM_PAPERS = [
         "lesson": "L08",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "For sorted [-3,-1,2,4,8], target 1, which pair is found by opposite-end two pointers?",
+        "prompt": "Which pair is found by the opposite-end two-pointer method?\n\n```python\na = [-3, -1, 2, 4, 8]\ntarget = 1\n```",
         "options": [
           "(-3,8)",
           "(-3,4)",
@@ -1472,7 +1472,7 @@ window.EXAM_PAPERS = [
         "lesson": "L08",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "For sorted [2,3,5] and target 4, why must a standard two-pointer method stop when left equals right?",
+        "prompt": "Why must the two-pointer search stop when left equals right?\n\n```python\na = [2, 3, 5]\ntarget = 4\n```",
         "options": [
           "The same element cannot be used twice when two distinct indices are required",
           "The array becomes unsorted",
@@ -1487,7 +1487,7 @@ window.EXAM_PAPERS = [
         "lesson": "L08",
         "src": "exam",
         "topic": "炼狱挑战",
-        "prompt": "For sorted [1,1,2,3] and target 2, may two pointers use both ones?",
+        "prompt": "Can the two pointers use both occurrences of 1 to reach the target?\n\n```python\na = [1, 1, 2, 3]\ntarget = 2\n```",
         "options": [
           "No, equal values can never form a pair",
           "Only if the list has unique values",
