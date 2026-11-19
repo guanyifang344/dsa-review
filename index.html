@@ -2053,6 +2053,539 @@ kbd{font:700 12px var(--mono);background:var(--s3);color:var(--ink);border-radiu
         "exp": "两个数的值可以相同，只要它们位于不同索引。"
       }
     ]
+  },
+  {
+    "title": "考前打靶",
+    "questions": [
+      {
+        "id": "exam-target-01",
+        "lesson": "L01",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "The task is to return the largest number in any non-empty list of integers. This algorithm compares every item and always stops. Which input shows that it is not correct for every valid input?\n\n```python\ndef largest(items):\n    best = 0\n    for item in items:\n        if item > best:\n            best = item\n    return best\n```",
+        "options": [
+          "[0, 4, 2]",
+          "[-8, -3, -5]",
+          "[7]",
+          "[-4, 0, -1]"
+        ],
+        "answer": 1,
+        "exp": "初值 0 比三个负数都大，最终返回 0。真正的最大值是 -3。一个合法输入失败就足以否定算法对所有合法输入的正确性。",
+        "zh": "回看 L09 复习笔记第 3 节。"
+      },
+      {
+        "id": "exam-target-02",
+        "lesson": "L01",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "A list holds 1,024 distinct student IDs. Each test compares the target with the middle ID. What property lets each test safely discard about half the remaining IDs?",
+        "options": [
+          "The list has no duplicate IDs.",
+          "The list has a power of two items.",
+          "The IDs are stored in ascending order.",
+          "The IDs are stored as integers."
+        ],
+        "answer": 2,
+        "exp": "有序性让中间值成为界线，能证明目标只可能在一侧。元素互异、数量为 2 的幂和整数类型本身都不能提供这条保证。",
+        "zh": "回看 L09 复习笔记第 3 节。"
+      },
+      {
+        "id": "exam-target-03",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Exactly how many times does the line that updates count run when n = 7?\n\n```python\ncount = 0\nfor i in range(7):\n    for j in range(i):\n        count = count + 1\n```",
+        "options": [
+          "21",
+          "28",
+          "49",
+          "42"
+        ],
+        "answer": 0,
+        "exp": "内层每次从 0 到 i-1，共 i 次。i 取 0 到 6，所以总次数为 0 + 1 + 2 + 3 + 4 + 5 + 6 = 21。",
+        "zh": "回看 L09 复习笔记第 4 节。"
+      },
+      {
+        "id": "exam-target-04",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What is the total time complexity as n grows? Assume each update does constant work.\n\n```python\ncount = 0\nfor i in range(n):\n    count = count + 1\n\nsize = n\nwhile size > 0:\n    for j in range(size):\n        count = count + 1\n    size = size // 2\n```",
+        "options": [
+          "O(log n)",
+          "O(n log n)",
+          "O(n²)",
+          "O(n)"
+        ],
+        "answer": 3,
+        "exp": "首个循环运行 n 次。第二部分外层减半，内层依次运行 n、约 n/2、约 n/4 次，合计小于 2n。两个部分相加是 O(n)。",
+        "zh": "回看 L09 复习笔记第 4 节。"
+      },
+      {
+        "id": "exam-target-05",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "The function receives a list of n numbers. What is its peak extra space complexity?\n\n```python\ndef repeated_copies(numbers):\n    total = 0\n    for item in numbers:\n        copy = numbers[1:]\n        total = total + len(copy)\n    return total\n```",
+        "options": [
+          "O(n²)",
+          "O(n)",
+          "O(1)",
+          "O(log n)"
+        ],
+        "answer": 1,
+        "exp": "每次切片都产生一个长度为 n-1 的新列表，但循环不会保留所有副本。同一时刻只有常数个这样的列表，总时间 O(n²)，峰值额外空间 O(n)。",
+        "zh": "回看 L09 复习笔记第 4 节。"
+      },
+      {
+        "id": "exam-target-06",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What are the worst-case running times of f and g, respectively, on a list of n items?\n\n```python\ndef f(items):\n    for item in items:\n        return item < 0\n    return False\n\ndef g(items):\n    for item in items:\n        if item < 0:\n            return True\n    return False\n```",
+        "options": [
+          "O(1), O(1)",
+          "O(n), O(n²)",
+          "O(1), O(n)",
+          "O(n), O(n)"
+        ],
+        "answer": 2,
+        "exp": "f 的循环体最多运行一次就返回。g 可能直到最后一个元素才找到负数，或扫描整份列表仍找不到。",
+        "zh": "回看 L09 复习笔记第 4 节。"
+      },
+      {
+        "id": "exam-target-07",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\ni = 1\ncount = 0\nwhile i < 17:\n    i = i * 2\n    count = count + 1\nprint(count)\n```",
+        "options": [
+          "3",
+          "4",
+          "6",
+          "5"
+        ],
+        "answer": 3,
+        "exp": "每轮更新前 i 依次为 1、2、4、8、16。第五轮后变成 32，比较 32 < 17 为假。",
+        "zh": "回看 L09 复习笔记第 4 节。"
+      },
+      {
+        "id": "exam-target-08",
+        "lesson": "L02",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What is the time complexity of this code? Assume n is a positive integer and each update does constant work.\n\n```python\ncount = 0\nfor i in range(n):\n    k = n\n    while k > 1:\n        k = k // 2\n        count = count + 1\n```",
+        "options": [
+          "O(n log n)",
+          "O(n²)",
+          "O(n)",
+          "O(log n)"
+        ],
+        "answer": 0,
+        "exp": "每轮外层循环都把 k 重置为 n，内层需要约 log n 次减半；共进行 n 轮这样的计算。",
+        "zh": "回看 L09 复习笔记第 4 节。"
+      },
+      {
+        "id": "exam-target-09",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\na = [1, 2]\nb = a\nb[0] = 7\nb = b[:]\nb.append(3)\nprint(a)\n```",
+        "options": [
+          "[7, 2]",
+          "[1, 2, 3]",
+          "[7, 2, 3]",
+          "[1, 2]"
+        ],
+        "answer": 0,
+        "exp": "b 与 a 最初指向同一份列表，b[0] = 7 修改了原列表。随后 b 指向切片生成的新列表，append 只修改新列表。",
+        "zh": "回看 L09 复习笔记第 5 节。"
+      },
+      {
+        "id": "exam-target-10",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\nitems = [3, 3, 2, 3, 3]\nfor item in items:\n    if item == 3:\n        items.remove(item)\nprint(items)\n```",
+        "options": [
+          "[2]",
+          "[3, 2, 3]",
+          "[3, 3, 2, 3, 3]",
+          "[2, 3, 3]"
+        ],
+        "answer": 3,
+        "exp": "第一次移除首个 3，得到 [3, 2, 3, 3]。下一轮索引 1 读到 2。再下一轮索引 2 读到 3，但 remove(3) 会删掉当前列表里第一个 3，最后索引 3 已越过列表末尾。",
+        "zh": "回看 L09 复习笔记第 5 节。"
+      },
+      {
+        "id": "exam-target-11",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Starting with n items, what is the total cost of all shifts in this loop?\n\n```python\nwhile len(items) > 0:\n    items.pop(0)\n```",
+        "options": [
+          "O(n)",
+          "O(n log n)",
+          "O(n²)",
+          "O(1)"
+        ],
+        "answer": 2,
+        "exp": "每次 pop(0) 分别移动 n-1、n-2、……、0 个元素。相加为 n(n-1)/2。",
+        "zh": "回看 L09 复习笔记第 5 节。"
+      },
+      {
+        "id": "exam-target-12",
+        "lesson": "L03",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\na = [1, 2, 3]\nb = a[1:]\na.pop()\nb.pop(0)\nprint(a, b)\n```",
+        "options": [
+          "[1, 2] [2, 3]",
+          "[2, 3] [1, 2]",
+          "[1, 2] [2]",
+          "[1, 2] [3]"
+        ],
+        "answer": 3,
+        "exp": "切片 b 起初是 [2, 3] 的独立副本。a.pop() 只从 a 尾部删 3，b.pop(0) 只从 b 开头删 2。",
+        "zh": "回看 L09 复习笔记第 5 节。"
+      },
+      {
+        "id": "exam-target-13",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\ntext = \"green tea\"\nif text.find(\"z\"):\n    print(\"found\")\nelse:\n    print(\"missing\")\n```",
+        "options": [
+          "found",
+          "0",
+          "missing",
+          "An error"
+        ],
+        "answer": 0,
+        "exp": "虽然字符串里没有 z，find 却返回 -1。-1 在条件判断中为真，所以进入第一个分支。检查是否找到时应显式判断返回值是否为 -1。",
+        "zh": "回看 L09 复习笔记第 6 节。"
+      },
+      {
+        "id": "exam-target-14",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\ntext = \"a  b cc\"\nwords = text.split()\nprint(\"-\".join(words))\n```",
+        "options": [
+          "a b cc",
+          "a-b-cc",
+          "A--B-CC",
+          "['a', 'b', 'cc']"
+        ],
+        "answer": 1,
+        "exp": "split() 按空白分词并跳过连续空格，得到三个词。join 在词之间插入一个连字符，不保留原来的空格。",
+        "zh": "回看 L09 复习笔记第 6 节。"
+      },
+      {
+        "id": "exam-target-15",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "The original string has length n. Using the course cost model, what is the total time spent on slicing?\n\n```python\nwhile len(text) > 0:\n    text = text[1:]\n```",
+        "options": [
+          "O(n)",
+          "O(1)",
+          "O(n log n)",
+          "O(n²)"
+        ],
+        "answer": 3,
+        "exp": "每次切片都复制当前字符串除首字符之外的部分。复制长度依次为 n-1、n-2、……、0，合计为二次量级。",
+        "zh": "回看 L09 复习笔记第 6 节。"
+      },
+      {
+        "id": "exam-target-16",
+        "lesson": "L04",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\ns = \"boat\"\na = s[0:2] + s[2:]\nb = s[1:] + s[0]\nprint(a, b)\n```",
+        "options": [
+          "boat oatb",
+          "boat bat",
+          "bat oatb",
+          "bat boat"
+        ],
+        "answer": 0,
+        "exp": "s[0:2] 为 bo，s[2:] 为 at。第一个拼接结果是 boat，第二个把首字符移到末尾得到 oatb。两个表达式都只读取原字符串。",
+        "zh": "回看 L09 复习笔记第 6 节。"
+      },
+      {
+        "id": "exam-target-17",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Bubble sort compares neighbours from left to right and sorts in ascending order. What is the list after two complete passes?\n\n```python\nnumbers = [5, 1, 4, 3, 2]\n```",
+        "options": [
+          "[1, 3, 2, 4, 5]",
+          "[1, 2, 3, 4, 5]",
+          "[1, 3, 4, 2, 5]",
+          "[1, 4, 3, 2, 5]"
+        ],
+        "answer": 0,
+        "exp": "第一趟依次把 5 推到末尾，得到 [1, 4, 3, 2, 5]。第二趟把未排序区间的最大值 4 推向右边，得到 [1, 3, 2, 4, 5]。",
+        "zh": "回看 L09 复习笔记第 7 节。"
+      },
+      {
+        "id": "exam-target-18",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Ascending selection sort always selects the smallest item in the unsorted suffix. What is the list after the first two passes?\n\n```python\nnumbers = [8, 2, 7, 3, 5]\n```",
+        "options": [
+          "[2, 3, 7, 5, 8]",
+          "[8, 2, 7, 3, 5]",
+          "[2, 3, 5, 7, 8]",
+          "[2, 3, 7, 8, 5]"
+        ],
+        "answer": 3,
+        "exp": "第一趟将 2 与开头的 8 交换，得到 [2, 8, 7, 3, 5]。第二趟将剩余部分的最小值 3 与 8 交换。",
+        "zh": "回看 L09 复习笔记第 7 节。"
+      },
+      {
+        "id": "exam-target-19",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Selection sort scans every item after the current position to find the minimum. On seven items, which pair gives the number of comparisons and the maximum number of swaps?",
+        "options": [
+          "21 comparisons, 6 swaps",
+          "6 comparisons, 21 swaps",
+          "21 comparisons, 7 swaps",
+          "7 comparisons, 6 swaps"
+        ],
+        "answer": 0,
+        "exp": "前六趟分别扫描 6、5、4、3、2、1 项。一趟最多交换一次，所以总共比较 21 次，最多交换 6 次。",
+        "zh": "回看 L09 复习笔记第 7 节。"
+      },
+      {
+        "id": "exam-target-20",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "The bubble sort below stops as soon as it finishes a pass with no swaps. How many comparisons does this input cause in total?\n\n```python\na = [2, 1, 3, 4]\nfor end in range(len(a) - 1, 0, -1):\n    swapped = False\n    for i in range(end):\n        if a[i] > a[i + 1]:\n            a[i], a[i + 1] = a[i + 1], a[i]\n            swapped = True\n    if not swapped:\n        break\n```",
+        "options": [
+          "3",
+          "6",
+          "5",
+          "2"
+        ],
+        "answer": 2,
+        "exp": "第一趟三次比较，仅交换 2 和 1，得到 [1, 2, 3, 4]。第二趟比较两次，无交换，马上停止。",
+        "zh": "回看 L09 复习笔记第 7 节。"
+      },
+      {
+        "id": "exam-target-21",
+        "lesson": "L05",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "After one left-to-right bubble-sort pass, what are the list and the number of swaps?\n\n```python\nnumbers = [4, 2, 4, 1]\n```",
+        "options": [
+          "[2, 1, 4, 4], 1",
+          "[2, 4, 1, 4], 2",
+          "[1, 2, 4, 4], 3",
+          "[2, 4, 1, 4], 3"
+        ],
+        "answer": 1,
+        "exp": "先交换 4 和 2，接着比较相等的 4 和 4，不交换。最后交换右侧的 4 和 1，共两次。",
+        "zh": "回看 L09 复习笔记第 7 节。"
+      },
+      {
+        "id": "exam-target-22",
+        "lesson": "L06",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "A stable sort orders these records by score from lowest to highest. In what order do the names appear?\n\n```python\nrecords = [(\"A\", 7), (\"B\", 5), (\"C\", 6), (\"D\", 7), (\"E\", 5)]\n```",
+        "options": [
+          "C, B, E, A, D",
+          "B, E, C, A, D",
+          "B, E, C, D, A",
+          "E, B, C, A, D"
+        ],
+        "answer": 1,
+        "exp": "5 分组按原顺序 B、E，随后是 6 分的 C，最后 7 分组按 A、D 排列。稳定性约束的是同分记录的相对顺序。",
+        "zh": "回看 L09 复习笔记第 8 节。"
+      },
+      {
+        "id": "exam-target-23",
+        "lesson": "L06",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\na = [4, 1, 3]\nb = a[:]\nc = a\nout = c.sort()\nprint(a, b, out)\n```",
+        "options": [
+          "[1, 3, 4] [4, 1, 3] None",
+          "[4, 1, 3] [1, 3, 4] None",
+          "[4, 1, 3] [4, 1, 3] None",
+          "[1, 3, 4] [4, 1, 3] [1, 3, 4]"
+        ],
+        "answer": 0,
+        "exp": "b 是切片复制出来的独立列表，c 与 a 指向同一份列表。c.sort() 会修改 a，也会返回 None，因此 out 为 None。",
+        "zh": "回看 L09 复习笔记第 8 节。"
+      },
+      {
+        "id": "exam-target-24",
+        "lesson": "L06",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Both calls scan their input. What does the code print, and what is its total time for a list of length n ≥ 3?\n\n```python\nnumbers = [9, 4, 2, 8]\nprint(max(numbers) - min(numbers[1:]))\n```",
+        "options": [
+          "7, O(n²)",
+          "8, O(n)",
+          "7, O(n)",
+          "10, O(n)"
+        ],
+        "answer": 2,
+        "exp": "max(numbers) 为 9，min(numbers[1:]) 为 2，差为 7。复制切片、扫描求最小值和扫描求最大值各耗线性时间，顺序执行的成本相加。",
+        "zh": "回看 L09 复习笔记第 8 节。"
+      },
+      {
+        "id": "exam-target-25",
+        "lesson": "L06",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "We need the three smallest values from a list of n items and must leave the original list unchanged. Which line does both?",
+        "options": [
+          "values.sort()[:3]",
+          "sorted(values[:3])",
+          "values.sort(); result = values[:3]",
+          "result = sorted(values)[:3]"
+        ],
+        "answer": 3,
+        "exp": "先对整个列表生成有序副本，再取前三个。只排序开头三项可能漏掉后面更小的值，sort() 会原地修改列表并返回 None。",
+        "zh": "回看 L09 复习笔记第 8 节。"
+      },
+      {
+        "id": "exam-target-26",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\ndef find_index(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n    return -1\n\nnumbers = [2, 5, 9]\nposition = find_index(numbers, 7)\nprint(numbers[position])\n```",
+        "options": [
+          "-1",
+          "2",
+          "9",
+          "0"
+        ],
+        "answer": 2,
+        "exp": "目标不在列表时返回 -1，随后 numbers[-1] 按 Python 的负索引规则访问最后一个元素 9。",
+        "zh": "回看 L09 复习笔记第 9 节。"
+      },
+      {
+        "id": "exam-target-27",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Binary search uses inclusive bounds and mid = (low + high) // 2. It starts with low = 0 and high = len(numbers) - 1. Which values does it inspect, in order, when searching for 7?\n\n```python\nnumbers = [2, 4, 6, 8, 10, 12, 14, 16]\n```",
+        "options": [
+          "8, 4, 6",
+          "8, 6, 4",
+          "6, 8",
+          "8, 4, 6, 7"
+        ],
+        "answer": 0,
+        "exp": "中点索引依次是 3、1、2。看到 8 往左找，看到 4 和 6 都往右找，最后区间为空。",
+        "zh": "回看 L09 复习笔记第 9 节。"
+      },
+      {
+        "id": "exam-target-28",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "The loop is meant to return the position of a target in an ascending list. Which single edit fixes it for every valid input?\n\n```python\ndef search(a, target):\n    low = 0\n    high = len(a) - 1\n    while low < high:\n        mid = (low + high) // 2\n        if a[mid] == target:\n            return mid\n        if a[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n```",
+        "options": [
+          "Change low = mid + 1 to low = mid.",
+          "Change high = mid - 1 to high = mid.",
+          "Set high = len(a) initially.",
+          "Change while low < high to while low <= high."
+        ],
+        "answer": 3,
+        "exp": "当 low == high 时仍剩下一个未检查的位置，例如单元素列表。改成 <= 后会检查该位置，每次都排除已检查中点，循环可以正常终止。",
+        "zh": "回看 L09 复习笔记第 9 节。"
+      },
+      {
+        "id": "exam-target-29",
+        "lesson": "L07",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "For one list sorted at a cost of 1,000 steps, each binary search costs 10 steps. On the same unsorted list, each linear search costs 100 steps. What is the smallest number of searches for which sorting once and then using binary search costs strictly less?",
+        "options": [
+          "10",
+          "12",
+          "11",
+          "100"
+        ],
+        "answer": 1,
+        "exp": "比较 1000 + 10k 与 100k，需要 90k > 1000。11 次时花 1110 对 1100，12 次时花 1120 对 1200。",
+        "zh": "回看 L09 复习笔记第 9 节。"
+      },
+      {
+        "id": "exam-target-30",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "What does this code print?\n\n```python\ndef remove_value(numbers, target):\n    slow = 0\n    for fast in range(len(numbers)):\n        if numbers[fast] != target:\n            numbers[slow] = numbers[fast]\n            slow = slow + 1\n    return slow\n\nnumbers = [0, 7, 8, 0, 9]\nlength = remove_value(numbers, 0)\nprint(length, numbers)\n```",
+        "options": [
+          "3 [7, 8, 9]",
+          "5 [7, 8, 9, 0, 9]",
+          "3 [7, 8, 9, 0, 9]",
+          "3 [7, 8, 9, 8, 9]"
+        ],
+        "answer": 2,
+        "exp": "快指针扫描所有值，慢指针依次写入 7、8、9。只更新前三个位置，列表长度仍是五，尾部原来的 0、9 仍留着。",
+        "zh": "回看 L09 复习笔记第 10 节。"
+      },
+      {
+        "id": "exam-target-31",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Which pair of values does this function find first?\n\n```python\ndef find_pair_sorted(numbers, target):\n    left = 0\n    right = len(numbers) - 1\n    while left < right:\n        total = numbers[left] + numbers[right]\n        if total == target:\n            return (numbers[left], numbers[right])\n        if total < target:\n            left = left + 1\n        else:\n            right = right - 1\n    return None\n\nprint(find_pair_sorted([1, 2, 4, 6, 8, 11], 10))\n```",
+        "options": [
+          "(2, 8)",
+          "(4, 6)",
+          "(1, 5)",
+          "(2, 6)"
+        ],
+        "answer": 0,
+        "exp": "首先比较 1 + 11，大于 10，右指针左移到 8。接着 1 + 8 小于 10，左指针右移到 2。之后 2 + 8 匹配，立刻返回。",
+        "zh": "回看 L09 复习笔记第 10 节。"
+      },
+      {
+        "id": "exam-target-32",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "An opposite-end two-pointer search starts with left = 0 and right = n - 1, where n ≥ 1. On each unsuccessful turn it moves one pointer inward by exactly one. What is the largest possible number of pairs checked before it finds no match?",
+        "options": [
+          "n",
+          "n(n - 1) / 2",
+          "log₂ n",
+          "n - 1"
+        ],
+        "answer": 3,
+        "exp": "两指针起初相距 n-1。每检查一个不匹配的数对，距离减 1。距离变成 0 时停止，所以最多检查 n-1 次。这里假定 n ≥ 1。",
+        "zh": "回看 L09 复习笔记第 10 节。"
+      },
+      {
+        "id": "exam-target-33",
+        "lesson": "L08",
+        "src": "exam",
+        "topic": "考前打靶",
+        "prompt": "Which edit keeps the valid pairs while preventing an index from being used twice?\n\n```python\ndef pair(a, target):\n    left = 0\n    right = len(a) - 1\n    while left <= right:\n        total = a[left] + a[right]\n        if total == target:\n            return (a[left], a[right])\n        if total < target:\n            left = left + 1\n        else:\n            right = right - 1\n    return None\n\nprint(pair([1, 3, 8], 6))\n```",
+        "options": [
+          "Change while left <= right to while left < right.",
+          "Require a[left] != a[right] before returning.",
+          "Set right = len(a) initially.",
+          "Move left and right on every turn."
+        ],
+        "answer": 0,
+        "exp": "只允许 left < right 保证位置不同。数值可以相等，例如两个不同位置的 3 可以凑成 6。对下面的输入，修正后会返回 None。",
+        "zh": "回看 L09 复习笔记第 10 节。"
+      }
+    ]
   }
 ];
 </script>
@@ -2611,7 +3144,7 @@ VIEWS.home = function(){
   const total = Q.length, done = Object.keys(S.att).length, wrong = Object.keys(S.mistakes).length;
   $('#app').innerHTML = `${S.seen.guide?'':`<div class="tip"><span><b>第一次使用？</b>1 分钟看懂每个页面怎么用。</span><span class="sp"></span><button class="btn gold" id="tg">看教程</button><button class="btn ghost" id="tx">不再提示</button></div>`}
   <section class="card stage"><div class="top"><h1>先在纸上推演，<em>再选答案</em></h1>
-    <p>${total} 道练习题覆盖 L01 到 L08。练习错题自动进错题本；模拟考有三套独立试卷，按真实卷面计时。下面的演示台可以单步看四种算法怎么跑。</p></div>
+    <p>${total} 道练习题覆盖 L01 到 L08。练习错题自动进错题本；模拟考有 ${window.EXAM_PAPERS.length} 套独立试卷，按真实卷面计时。下面的演示台可以单步看四种算法怎么跑。</p></div>
     <div class="scope"><div class="bar"><div class="tabs2" id="dtabs">${Object.entries(DEMOS).map(([k,d])=>`<button data-k="${k}">${d.name}</button>`).join('')}</div>
       <div class="ctl"><button id="pv" aria-label="上一步"><svg viewBox="0 0 16 16"><path d="M12 2v12L4 8zM3 2h2v12H3z"/></svg></button><button id="pp" aria-label="播放或暂停"></button><button id="nx" aria-label="下一步"><svg viewBox="0 0 16 16"><path d="M4 2v12l8-6zM11 2h2v12h-2z"/></svg></button><button id="rs" aria-label="重播"><svg viewBox="0 0 16 16"><path d="M8 2a6 6 0 11-6 6h2a4 4 0 104-4v3L4 3.5 8 0z"/></svg></button></div></div>
       <div class="plot" id="plot"></div><div class="readout" id="readout"></div></div>
