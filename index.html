@@ -19,9 +19,19 @@
 <script defer src="assets/player.js"></script>
 <script defer src="assets/portal.js"></script>
 </head>
-<body><header><a class="brand" href="./"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Plato's Academy</a><span id="identity" hidden></span></header><main><section class="hero"><img class="photo" src="assets/glass-book.jpg" width="1536" height="1024" alt="" fetchpriority="high"><div class="intro"><h1 class="wordmark">Plato's<br>Academy</h1></div></section>
-<section class="menu" aria-label="功能选择">
- <details><summary><span class="icon book" aria-hidden="true">◫</span><span>选择学习<small>算法与数据结构</small></span><span aria-hidden="true" class="action toggle"></span></summary>
- <a href="study.html" class="course">进入算法与数据结构 <span>→</span></a></details>
- <a class="option" href="gpa.html"><span class="icon chart" aria-hidden="true"><i></i><i></i><i></i></span><span>当前绩点查询<small>筹备中</small></span><span aria-hidden="true" class="action">↗</span></a></section>
- </main></body></html>
+<body>
+<main class="campus">
+  <div class="mast"><span id="identity" hidden></span>
+    <h1 class="wordmark"><span>Plato's</span> <span>Academy</span></h1>
+  </div>
+  <div class="panorama"><img src="assets/courtyard.webp" alt="银色环廊围合的学院中庭" width="1536" height="1024" fetchpriority="high"></div>
+  <section class="destinations" aria-label="功能选择">
+    <details>
+      <summary><span class="frame"><img src="assets/glass-book.jpg" alt=""></span><span class="caption">选择学习<span class="arrow" aria-hidden="true">＋</span></span></summary>
+      <a class="course" href="study.html">算法与数据结构 <span aria-hidden="true">↗</span></a>
+    </details>
+    <a class="destination" href="gpa.html"><span class="frame"><img src="assets/prisms.webp" alt=""></span><span class="caption">当前绩点查询<span class="arrow" aria-hidden="true">↗</span></span></a>
+  </section>
+</main>
+</body>
+</html>

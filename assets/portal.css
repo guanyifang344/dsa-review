@@ -1,77 +1,71 @@
-:root{color-scheme:light;font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:#191b20;background:#f6f7f9}
-*{box-sizing:border-box}
-body{margin:auto;width:min(1456px,100%);padding:0 clamp(16px,4.5vw,76px) 42px}
-a{color:inherit;text-decoration:none}
-header,.brand,.field,summary,.option,.course,.chart{display:flex;align-items:center}
-header{height:74px;justify-content:space-between}
-.brand{gap:11px;font-weight:650;font-size:17px}
-.mark{display:flex;align-items:center;gap:3px;transform:skewY(-15deg)}
-.mark i{width:4px;height:18px;background:#2d3542;border-radius:2px}
-.mark i:nth-child(2){height:24px}
-.back,#identity{font-size:14px;color:#495364}
-#identity{max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.hero{position:relative;isolation:isolate;overflow:hidden;border-radius:30px;background:#e2e5e9;min-height:clamp(420px,40vw,586px);display:flex;align-items:center}
-.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 61%;z-index:-2}
-.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,247,249,.95),rgba(246,248,250,.82) 21%,transparent 54%);z-index:-1}
-.intro{margin:36px clamp(24px,5.2vw,82px)}
-h1{font-size:clamp(44px,5.4vw,84px);letter-spacing:-.065em;line-height:1.1;margin:0;font-weight:640}
-form{margin-top:32px}
-label,.intro>p{display:block;font-size:16px;color:#414955;margin:0 0 12px}
-.intro>p{margin-top:22px}
-.field{width:255px;max-width:100%;background:#ffffffdf;border:1px solid #ffffff;border-radius:40px;padding:5px;box-shadow:0 4px 20px #23324a0c}
-input,button{font:inherit}
-input{width:0;flex:1;min-width:0;border:none;background:transparent;padding:8px 12px}
-button,.action{display:grid;place-items:center;border-radius:50%}
-button{background:#20252c;color:white;border:0;width:39px;height:39px;cursor:pointer;font-size:21px}
-#note{font-size:13px;margin:8px 0 0}
-.menu{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:18px;margin-top:20px}
-details,.option{border:1px solid #dfe3e9;background:white;border-radius:22px}
-summary,.option{min-height:112px;padding:22px clamp(18px,2.3vw,40px);gap:16px;cursor:pointer;font-size:23px;font-weight:600;list-style:none}
-summary::-webkit-details-marker{display:none}
-small{display:block;font-size:13px;color:#636c79;font-weight:400;margin-top:5px}
-.icon{display:grid;place-content:center;width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#edf7fe,#d6e5f3);color:#344c68;font-size:30px}
-.chart{display:flex;justify-content:center;align-items:flex-end;padding-bottom:15px;gap:3px;background:linear-gradient(145deg,#f2f0f9,#e1dff0)}
-.chart i{width:4px;height:9px;border-radius:2px;background:#685e80}
-.chart i:nth-child(2){height:14px}.chart i:nth-child(3){height:19px}
-.action{margin-left:auto;width:32px;height:32px;background:#f2f4f6;font-size:18px}
-.toggle:after{content:'+'}details[open] .toggle:after{content:'−'}
-.course{margin:0 24px;padding:18px 0;border-top:1px solid #e4e7eb;justify-content:space-between;color:#205c97}
-.option:hover,details:has(summary:hover){background:#fafbfd}
-:focus-visible{outline:3px solid #2082d6;outline-offset:3px}
-[hidden]{display:none!important}
-@media(max-width:680px){
- header{height:58px}.hero{min-height:0;height:auto;display:block;border-radius:23px;padding-bottom:62%}
- .photo{height:76%;top:auto;object-position:67% 58%}
- .hero:before{background:linear-gradient(#e7e9ec 18%,#e7e9ecf2 34%,transparent 60%)}
- .intro{margin:0;padding:28px 24px 10px}.field{width:238px}
- form{margin-top:17px}.menu{grid-template-columns:1fr;gap:10px;margin-top:12px}
- summary,.option{min-height:84px;font-size:20px;padding:15px 18px}.icon{width:43px;height:43px}
+:root {
+  color-scheme: light;
+  font-family: "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+  color: #172029;
+  background: #f7f8f8;
+  --gutter: clamp(20px, 5vw, 85px);
+  --ease: cubic-bezier(.16,.78,.22,1);
 }
-
-/* Academy identity and the first-visit spread */
-body{max-width:1490px}
-.brand{letter-spacing:-.045em;font-size:20px}
-.brand .mark{color:#394559}
-header{height:clamp(64px,6vw,88px)}
-.wordmark{font-family:"Helvetica Neue",Arial,sans-serif;font-size:clamp(70px,7.7vw,118px);font-weight:540;letter-spacing:-.077em;line-height:.92}
-.welcome{display:grid;grid-template-columns:1.12fr 1fr;min-height:clamp(500px,68vh,680px);overflow:hidden;background:#fff;border-radius:28px;box-shadow:0 22px 66px -38px #5467805e,inset 0 0 0 1px #dde2e8}
-.still{position:relative;overflow:hidden;background:#d6dde3;min-height:100%}
-.still img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:71% center}
-.welcome-panel{width:min(100%,490px);padding:clamp(26px,4.8vw,70px);margin:auto}
-.welcome-panel h1{font-size:clamp(36px,3.65vw,58px);letter-spacing:-.055em;line-height:1.16}
-.welcome-panel form{margin-top:42px}
-.welcome-panel label{font-size:14px;color:#484e58;font-weight:600}
-.welcome-panel input{display:block;width:100%;padding:15px 16px;border-radius:13px;border:1px solid #bdc5cf;background:#fafbfd;color:#20252c;font-size:16px}
-.welcome-panel button{margin-top:18px;width:100%;min-height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;border-radius:13px;font-size:16px;font-weight:550;background:#242931}
-.welcome-panel button:hover{background:#394252}
-#note:empty{display:none}
-#note{color:#923a32}
-.course{min-height:48px}
-@media(max-width:680px){
- .welcome{grid-template-columns:1fr;min-height:0;border-radius:22px}
- .still{min-height:0;height:clamp(190px,60vw,320px)}
- .still img{object-position:70% 60%}
- .welcome-panel{padding:32px 24px 34px}
- .welcome-panel form{margin-top:26px}
- .wordmark{font-size:clamp(58px,14vw,84px)}
+* { box-sizing: border-box; }
+body, h1, p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button, summary { cursor: pointer; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid #326592; outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.campus { max-width: 1700px; margin: auto; padding: 0 var(--gutter) 6vh; }
+.mast { padding: 24px 0 clamp(16px,2vw,32px); }
+#identity { display: block; text-align: right; color: #525d68; font-size: 14px; overflow-wrap: anywhere; }
+.wordmark { margin: 14px 0 0 -.055em; font-size: clamp(72px,10.7vw,184px); line-height: .96; letter-spacing: -.053em; font-weight: 500; }
+.wordmark span { display: inline-block; }
+.panorama,.frame,.arrival { position: relative; overflow: hidden; isolation: isolate; }
+.panorama { height: clamp(240px,34vw,540px); border-radius: 3px; }
+.panorama img,.frame img,.scene { width: 100%; height: 100%; object-fit: cover; display: block; }
+.panorama img { object-position: 50% 57%; }
+.destinations { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px,2vw,34px); margin-top: clamp(18px,2.4vw,36px); align-items: start; }
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.frame { display: block; aspect-ratio: 2.6; background: #dfe4e6; border-radius: 3px; }
+.frame img { object-position: center 60%; transition: transform .8s var(--ease); }
+.caption,.course { display: flex; align-items: center; justify-content: space-between; }
+.caption { min-height: 54px; border-bottom: 1px solid #abb3b9; font-size: clamp(16px,1.7vw,28px); font-weight: 550; }
+.arrow { font-size: 1em; transition: transform .35s; }
+details[open] .arrow { transform: rotate(45deg); }
+.course { min-height: 50px; gap: 8px; font-size: 15px; color: #314f68; }
+@media (hover:hover) { summary:hover img,.destination:hover img { transform: scale(1.065); } }
+.arrival { min-height: 100vh; min-height: 100svh; padding: max(32px,env(safe-area-inset-top)) var(--gutter) max(7vh,env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 160px; }
+.scene { position: absolute; inset: 0; z-index: -2; }
+.arrival:before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#eef4f6b8,transparent 23%,transparent 73%,#25334035); }
+.signature { font-size: clamp(24px,2.8vw,44px); font-weight: 600; letter-spacing: -.065em; line-height: 1; }
+.pane { width: min(475px,100%); padding: clamp(24px,3vw,44px); border-radius: 24px; background: #f2f5f6df; border: 1px solid #ffffffcf; -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); box-shadow: 0 12px 60px #16253220; }
+.pane h1 { font-weight: 570; font-size: clamp(30px,3vw,48px); letter-spacing: -.055em; line-height: 1.14; }
+.field { display: flex; margin-top: 24px; padding: 4px; border-radius: 30px; background: #ffffffec; border: 1px solid #b9c2c9; }
+input { width: 0; min-width: 0; flex: 1; border: 0; border-radius: 22px; padding: 10px 14px; background: transparent; font-size: 16px; }
+button { display: flex; align-items: center; gap: 10px; min-height: 44px; border: 0; padding: 0 17px; border-radius: 24px; background: #25323c; color: white; }
+#note:not(:empty),.pane>p { margin-top: 14px; }
+.back { display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; }
+@keyframes approach { from { transform: scale(1.18) translateY(2%); } to { transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(42px); } to { opacity: 1; transform: none; } }
+@keyframes reveal { from { clip-path: inset(0 0 90% 0); } to { clip-path: inset(0); } }
+@media (prefers-reduced-motion:no-preference) {
+ .scene,.panorama img { animation: approach 2.8s var(--ease) both; }
+ .pane,.wordmark span { animation: rise 1.1s var(--ease) backwards; }
+ .pane { animation-delay: .32s; }
+ .wordmark span+span { animation-delay: .14s; }
+ .panorama { animation: reveal 1.15s var(--ease) backwards; }
+ .destinations>* { animation: rise 1s .35s var(--ease) backwards; }
+ .destinations>*+* { animation-delay: .52s; }
+}
+@media (max-width:680px) {
+ .mast { padding-top: max(16px,env(safe-area-inset-top)); }
+ .wordmark { font-size: clamp(70px,18vw,112px); margin-top: 16px; line-height: .88; }
+ .wordmark span { display: block; }
+ .panorama { height: clamp(208px,33svh,350px); }
+ .panorama img { object-position: 60% center; }
+ .frame { aspect-ratio: 1.35; }
+ .caption { font-size: clamp(15px,4vw,20px); }
+ .arrival { padding-bottom: max(28px,env(safe-area-inset-bottom)); }
+ .scene { object-position: 50% center; }
+ .pane { border-radius: 20px; }
 }

@@ -19,15 +19,18 @@
 <script defer src="assets/player.js"></script>
 <script defer src="assets/portal.js"></script>
 </head>
-<body><header><a class="brand" href="./"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Plato's Academy</a><span id="identity" hidden></span></header><main class="welcome">
-  <div class="still"><img src="assets/glass-book.jpg" alt="" width="1536" height="1024"></div>
-  <section class="welcome-panel">
+<body>
+<main class="arrival">
+  <img class="scene" src="assets/entrance.webp" alt="" fetchpriority="high">
+  <div class="signature">Plato's Academy</div>
+  <section class="pane">
     <h1>怎么称呼你？</h1>
-    <form id="enroll">
-      <label for="nickname">你的昵称</label>
-      <input id="nickname" name="nickname" autocomplete="nickname" required placeholder="输入昵称" aria-describedby="note">
+    <form id="enroll"><label class="sr" for="nickname">你的昵称</label>
+      <div class="field"><input id="nickname" name="nickname" autocomplete="nickname" required placeholder="输入昵称" aria-describedby="note">
+      <button type="submit">继续 <span aria-hidden="true">→</span></button></div>
       <p role="status" id="note"></p>
-      <button>继续<span aria-hidden="true">→</span></button>
     </form>
   </section>
-</main></body></html>
+</main>
+</body>
+</html>
